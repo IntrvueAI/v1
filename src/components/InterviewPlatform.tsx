@@ -160,6 +160,18 @@ export const InterviewPlatform: React.FC = () => {
                       </div>
                     </div>
                   )}
+                  
+                  {/* Interview Timer */}
+                  <InterviewTimer 
+                    isActive={isStreaming}
+                    onTimeUp={() => {
+                      toast({
+                        title: "Time's Up!",
+                        description: "Your 30-minute interview session has ended.",
+                        variant: "destructive",
+                      });
+                    }}
+                  />
                 </div>
 
                 {/* Audio Controls */}
@@ -216,18 +228,6 @@ export const InterviewPlatform: React.FC = () => {
             />
           </div>
         )}
-
-        {/* Interview Timer - Fixed Position */}
-        <InterviewTimer 
-          isActive={isStreaming}
-          onTimeUp={() => {
-            toast({
-              title: "Time's Up!",
-              description: "Your 30-minute interview session has ended.",
-              variant: "destructive",
-            });
-          }}
-        />
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ export const InterviewTimer: React.FC<InterviewTimerProps> = ({
   const isLowTime = timeLeft <= 300; // Last 5 minutes
 
   return (
-    <Card className={`fixed bottom-4 right-4 p-3 z-50 shadow-lg border transition-colors ${
+    <Card className={`absolute bottom-4 right-4 p-3 z-10 shadow-lg border transition-colors ${
       isLowTime ? 'border-destructive bg-destructive/5' : 'border-border bg-card'
     }`}>
       <div className="flex items-center gap-2">
