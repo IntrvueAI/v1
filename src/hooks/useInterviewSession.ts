@@ -8,12 +8,18 @@ import systemPromptText from '/system_prompt.md?raw';
 // Types for the interview session
 type SessionStatus = 'idle' | 'connecting' | 'connected' | 'streaming' | 'error';
 
+interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp?: Date;
+}
+
 interface UseInterviewSessionReturn {
   isConnected: boolean;
   isStreaming: boolean;
   error: string | null;
   sessionStatus: SessionStatus;
-  liveTranscription: string;
+  chatHistory: ChatMessage[];
   startInterview: () => Promise<void>;
   stopInterview: () => Promise<string | null>;
 }
@@ -30,7 +36,7 @@ export const useInterviewSession = (
   const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sessionStatus, setSessionStatus] = useState<SessionStatus>('idle');
-  const [liveTranscription, setLiveTranscription] = useState<string>('');
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   
   // Ref to store the anam client instance and messages
   const clientRef = useRef<any>(null);
@@ -97,18 +103,15 @@ export const useInterviewSession = (
       client.addListener(AnamEvent.MESSAGE_HISTORY_UPDATED, (messages: any[]) => {
         console.log('MESSAGE_HISTORY_UPDATED received:', messages);
         messagesRef.current = messages;
-      });
-
-      // Add event listener for live transcription updates
-      client.addListener(AnamEvent.MESSAGE_STREAM_EVENT_RECEIVED, (event: any) => {
-        console.log('MESSAGE_STREAM_EVENT_RECEIVED:', event);
-        if (event.role === "persona") {
-          // Show persona speaking in real-time
-          setLiveTranscription(`Interviewer: ${event.content}`);
-        } else if (event.role === "user") {
-          // Clear persona transcript when user speaks
-          setLiveTranscription('');
-        }
+        
+        // Convert messages to chat history format
+        const formattedMessages: ChatMessage[] = messages.map((msg: any) => ({
+          role: msg.role === 'user' ? 'user' : 'assistant',
+          content: msg.content,
+          timestamp: new Date()
+        }));
+        
+        setChatHistory(formattedMessages);
       });
 
       // Start streaming to video element
@@ -162,7 +165,7 @@ export const useInterviewSession = (
       setIsStreaming(false);
       setSessionStatus('idle');
       setError(null);
-      setLiveTranscription('');
+      setChatHistory([]);
 
       console.log('Interview session stopped, transcription:', transcription);
       return transcription;
@@ -189,7 +192,7 @@ export const useInterviewSession = (
     isStreaming,
     error,
     sessionStatus,
-    liveTranscription,
+    chatHistory,
     startInterview,
     stopInterview,
   };
