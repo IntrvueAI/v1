@@ -1,6 +1,7 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { createClient } from '@anam-ai/js-sdk';
+import { AnamEvent } from "@anam-ai/js-sdk/dist/module/types";
 import { supabase } from '@/integrations/supabase/client';
 import systemPromptText from '/system_prompt.md?raw';
 
@@ -29,8 +30,9 @@ export const useInterviewSession = (
   const [error, setError] = useState<string | null>(null);
   const [sessionStatus, setSessionStatus] = useState<SessionStatus>('idle');
   
-  // Ref to store the anam client instance
+  // Ref to store the anam client instance and messages
   const clientRef = useRef<any>(null);
+  const messagesRef = useRef<any[]>([]);
 
   /**
    * Get session token from secure Supabase Edge Function
@@ -89,6 +91,12 @@ export const useInterviewSession = (
       const client = createClient(sessionToken);
       clientRef.current = client;
 
+      // Add event listener for message history updates
+      client.addListener(AnamEvent.MESSAGE_HISTORY_UPDATED, (messages: any[]) => {
+        console.log('MESSAGE_HISTORY_UPDATED received:', messages);
+        messagesRef.current = messages;
+      });
+
       // Start streaming to video element
       await client.streamToVideoElement('interview-video');
 
@@ -114,44 +122,19 @@ export const useInterviewSession = (
       let transcription = null;
       
       if (clientRef.current) {
-        // Get transcription before stopping - check what methods are available
+        // Get transcription from stored messages (updated via MESSAGE_HISTORY_UPDATED event)
         try {
-          console.log('Attempting to get transcription...');
-          console.log('Client object keys:', Object.keys(clientRef.current));
-          console.log('Client object methods:', Object.getOwnPropertyNames(clientRef.current));
+          console.log('Attempting to get transcription from stored messages...');
+          console.log('Stored messages:', messagesRef.current);
           
-          // Check if client has a messages property or method
-          if (clientRef.current.messages) {
-            console.log('Found messages property:', clientRef.current.messages);
-            transcription = clientRef.current.messages.map((msg: any) => {
+          if (messagesRef.current && messagesRef.current.length > 0) {
+            transcription = messagesRef.current.map((msg: any) => {
               const speaker = msg.role === 'user' ? 'Student' : 'Interviewer';
               return `${speaker}: ${msg.content}`;
             }).join('\n\n');
-          } else if (typeof clientRef.current.getMessages === 'function') {
-            const messages = await clientRef.current.getMessages();
-            console.log('Got messages from getMessages:', messages);
-            if (messages && messages.length > 0) {
-              transcription = messages.map((msg: any) => {
-                const speaker = msg.role === 'user' ? 'Student' : 'Interviewer';
-                return `${speaker}: ${msg.content}`;
-              }).join('\n\n');
-            }
-          } else if (clientRef.current.messageHistoryClient) {
-            console.log('messageHistoryClient found:', clientRef.current.messageHistoryClient);
-            console.log('messageHistoryClient methods:', Object.getOwnPropertyNames(clientRef.current.messageHistoryClient));
-            
-            if (typeof clientRef.current.messageHistoryClient.getMessages === 'function') {
-              const messages = await clientRef.current.messageHistoryClient.getMessages();
-              console.log('Got messages from messageHistoryClient:', messages);
-              if (messages && messages.length > 0) {
-                transcription = messages.map((msg: any) => {
-                  const speaker = msg.role === 'user' ? 'Student' : 'Interviewer';
-                  return `${speaker}: ${msg.content}`;
-                }).join('\n\n');
-              }
-            }
+            console.log('Generated transcription:', transcription);
           } else {
-            console.log('No message methods found on client');
+            console.log('No messages available in stored messages');
           }
         } catch (transcriptionError) {
           console.warn('Could not get transcription:', transcriptionError);
