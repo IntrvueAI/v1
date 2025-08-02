@@ -1,0 +1,186 @@
+import React, { useState, useRef, useCallback } from 'react';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { InterviewControls } from './InterviewControls';
+import { InterviewStatus } from './InterviewStatus';
+import { useInterviewSession } from '@/hooks/useInterviewSession';
+import { Play, Square, Mic, MicOff } from 'lucide-react';
+
+/**
+ * Main Interview Platform Component
+ * Handles the complete 11+ interview preparation experience
+ */
+export const InterviewPlatform: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isAudioEnabled, setIsAudioEnabled] = useState(true);
+  
+  // Custom hook to manage anam.ai interview session
+  const {
+    isConnected,
+    isStreaming,
+    error,
+    startInterview,
+    stopInterview,
+    sessionStatus
+  } = useInterviewSession(videoRef);
+
+  // Handle starting the interview session
+  const handleStartInterview = useCallback(async () => {
+    try {
+      await startInterview();
+    } catch (err) {
+      console.error('Failed to start interview:', err);
+    }
+  }, [startInterview]);
+
+  // Handle stopping the interview session
+  const handleStopInterview = useCallback(async () => {
+    try {
+      await stopInterview();
+    } catch (err) {
+      console.error('Failed to stop interview:', err);
+    }
+  }, [stopInterview]);
+
+  // Toggle audio input (microphone)
+  const toggleAudio = useCallback(() => {
+    setIsAudioEnabled(prev => !prev);
+    // TODO: Implement actual audio control via anam SDK
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-gradient-background">
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
+        
+        {/* Header Section */}
+        <div className="text-center mb-8">
+          <h1 className="interview-title mb-3">
+            11+ Interview Preparation
+          </h1>
+          <p className="interview-subtitle mb-2">
+            Practice with our AI interviewer to build confidence
+          </p>
+          <p className="interview-instruction max-w-2xl mx-auto">
+            Prepare for your 11+ school interview with realistic practice sessions. 
+            Our AI interviewer will ask questions commonly used in entrance interviews 
+            and provide instant feedback to help you improve.
+          </p>
+        </div>
+
+        {/* Main Interview Interface */}
+        <div className="grid lg:grid-cols-3 gap-8">
+          
+          {/* Video Interview Area */}
+          <div className="lg:col-span-2">
+            <Card className="p-6 shadow-medium">
+              <div className="space-y-4">
+                
+                {/* Interview Status */}
+                <InterviewStatus 
+                  isConnected={isConnected}
+                  isStreaming={isStreaming}
+                  sessionStatus={sessionStatus}
+                  error={error}
+                />
+                
+                {/* Video Element for AI Interviewer */}
+                <div className="relative bg-muted rounded-lg overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                  <video
+                    ref={videoRef}
+                    id="interview-video"
+                    autoPlay
+                    playsInline
+                    muted={false}
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Video Overlay for Non-active States */}
+                  {!isStreaming && (
+                    <div className="absolute inset-0 bg-muted flex items-center justify-center">
+                      <div className="text-center space-y-4">
+                        <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                          <Mic className="w-12 h-12 text-primary" />
+                        </div>
+                        <p className="text-muted-foreground font-medium">
+                          {isConnected ? 'Ready to start interview' : 'Connect to begin'}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Audio Controls */}
+                <div className="flex justify-center">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={toggleAudio}
+                    className="gap-2"
+                  >
+                    {isAudioEnabled ? (
+                      <>
+                        <Mic className="w-4 h-4" />
+                        Microphone On
+                      </>
+                    ) : (
+                      <>
+                        <MicOff className="w-4 h-4" />
+                        Microphone Off
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          </div>
+
+          {/* Controls and Information Panel */}
+          <div className="space-y-6">
+            
+            {/* Interview Controls */}
+            <InterviewControls
+              isStreaming={isStreaming}
+              onStartInterview={handleStartInterview}
+              onStopInterview={handleStopInterview}
+              disabled={!!error}
+            />
+
+            {/* Interview Tips */}
+            <Card className="p-6">
+              <h3 className="font-semibold text-primary mb-4">Interview Tips</h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                  <p>Speak clearly and maintain good posture</p>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                  <p>Take your time to think before answering</p>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                  <p>Show enthusiasm for learning</p>
+                </div>
+                <div className="flex items-start gap-2">
+                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                  <p>Ask questions when appropriate</p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Technical Requirements */}
+            <Card className="p-6">
+              <h3 className="font-semibold text-primary mb-4">Technical Setup</h3>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p>✓ Camera and microphone access required</p>
+                <p>✓ Stable internet connection recommended</p>
+                <p>✓ Quiet environment preferred</p>
+                <p>✓ Chrome or Safari browser supported</p>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

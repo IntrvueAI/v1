@@ -1,73 +1,183 @@
-# Welcome to your Lovable project
+# 11+ Interview Preparation Platform
 
-## Project info
+A professional AI-powered platform to help students prepare for UK 11+ school entrance interviews using anam.ai's conversational AI technology.
 
-**URL**: https://lovable.dev/projects/59892db9-cc0f-4b5a-9484-25a6b371dece
+## Features
 
-## How can I edit this code?
+- **AI Interview Assistant**: Realistic interview practice with an AI interviewer specialized in 11+ school admissions
+- **Professional Interface**: Clean, academic design optimized for educational use
+- **Real-time Interaction**: Live video conversation with AI interviewer
+- **Interview Controls**: Easy start/stop functionality with status monitoring
+- **Responsive Design**: Works on desktop and mobile devices
+- **Educational Focus**: Age-appropriate questions for 10-11 year olds
 
-There are several ways of editing your application.
+## Technology Stack
 
-**Use Lovable**
+- **Frontend**: React + TypeScript + Vite
+- **Styling**: Tailwind CSS with custom design system
+- **AI Integration**: anam.ai SDK for conversational AI
+- **Future**: OpenAI API for feedback analysis (to be implemented)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/59892db9-cc0f-4b5a-9484-25a6b371dece) and start prompting.
+## Setup Instructions
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (version 16 or higher)
+- npm or yarn package manager
+- Anam.ai API key ([Get one here](https://dashboard.anam.ai/))
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd 11-plus-interview-platform
+   ```
 
-Follow these steps:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. **Configure environment variables**
+   ```bash
+   # Copy the example environment file
+   cp .env.example .env
+   
+   # Edit the .env file and add your API keys:
+   VITE_ANAM_API_KEY=your_anam_api_key_here
+   VITE_OPENAI_API_KEY=your_openai_api_key_here
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+4. **Configure anam.ai persona** (Important!)
+   
+   You need to replace the placeholder persona IDs in the code with actual IDs from your anam.ai dashboard:
+   
+   - Go to [anam.ai dashboard](https://dashboard.anam.ai/)
+   - Create or select an avatar, voice, and LLM
+   - Copy the IDs and update them in `src/hooks/useInterviewSession.ts`:
+   
+   ```typescript
+   // Replace these placeholder IDs with your actual persona IDs:
+   avatarId: "your-actual-avatar-id",
+   voiceId: "your-actual-voice-id", 
+   llmId: "your-actual-llm-id",
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+5. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+6. **Open in browser**
+   Navigate to `http://localhost:8080` to use the platform
+
+## Usage
+
+1. **Grant permissions**: Allow camera and microphone access when prompted
+2. **Start interview**: Click "Start Interview" to begin the AI-powered interview session
+3. **Interact naturally**: Speak clearly and answer the interviewer's questions
+4. **End session**: Click "End Interview" when finished
+
+## Important Security Note
+
+**For Production Use**: The current setup includes API keys in environment variables for development convenience. For production deployment:
+
+1. Create a backend API to handle anam.ai authentication
+2. Move API keys to server-side environment variables
+3. Implement session token generation on your backend
+4. Update the frontend to call your backend API instead of anam.ai directly
+
+Example backend endpoint structure:
+```
+POST /api/anam/session-token
+→ Returns: { sessionToken: "..." }
 ```
 
-**Edit a file directly in GitHub**
+## Configuration
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Interview Persona Customization
 
-**Use GitHub Codespaces**
+The AI interviewer's behavior is defined in the `systemPrompt` within `useInterviewSession.ts`. You can customize:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Question types and topics
+- Interview style and tone
+- Age-appropriate content
+- Subject focus areas
 
-## What technologies are used for this project?
+### Design Customization
 
-This project is built with:
+The design system is defined in:
+- `src/index.css` - Color palette and design tokens
+- `tailwind.config.ts` - Tailwind configuration
+- Component-specific styling in individual component files
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Development
 
-## How can I deploy this project?
+### Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/59892db9-cc0f-4b5a-9484-25a6b371dece) and click on Share -> Publish.
+```
+src/
+├── components/
+│   ├── InterviewPlatform.tsx    # Main platform component
+│   ├── InterviewControls.tsx    # Start/stop controls
+│   └── InterviewStatus.tsx      # Connection status display
+├── hooks/
+│   └── useInterviewSession.ts   # anam.ai integration hook
+├── api/
+│   └── anam.ts                  # API integration utilities
+└── pages/
+    └── Index.tsx                # Main page
+```
 
-## Can I connect a custom domain to my Lovable project?
+### Key Components
 
-Yes, you can!
+- **InterviewPlatform**: Main container with video interface and controls
+- **InterviewControls**: Professional start/stop buttons with loading states
+- **InterviewStatus**: Real-time connection and session status
+- **useInterviewSession**: React hook managing anam.ai SDK integration
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Troubleshooting
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Common Issues
+
+1. **"ANAM_API_KEY not found" error**
+   - Ensure you've created a `.env` file with your API key
+   - Verify the key is prefixed with `VITE_` for client-side access
+
+2. **Video not displaying**
+   - Check browser permissions for camera/microphone
+   - Verify your anam.ai persona IDs are correct
+
+3. **Connection failures**
+   - Confirm your anam.ai API key is valid and has sufficient credits
+   - Check browser console for detailed error messages
+
+### Debug Mode
+
+The platform includes debug information in development mode. Check the browser console for detailed logging and the status component for technical details.
+
+## Future Enhancements
+
+- [ ] OpenAI integration for interview feedback
+- [ ] Interview recording and playback
+- [ ] Performance analytics and scoring
+- [ ] Multiple interview scenarios
+- [ ] Progress tracking over time
+- [ ] Parent/teacher dashboard
+
+## License
+
+This project is created for educational purposes. Please ensure compliance with anam.ai's terms of service when using their API.
+
+## Support
+
+For technical issues:
+1. Check the browser console for error messages
+2. Verify API key configuration
+3. Review anam.ai documentation: https://docs.anam.ai/
+4. Check that persona IDs are correctly configured
+
+---
+
+Built with ❤️ for 11+ students and their families.
