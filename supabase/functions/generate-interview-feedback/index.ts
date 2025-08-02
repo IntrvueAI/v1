@@ -84,6 +84,29 @@ Required JSON structure:
   }
 }`;
 
+    console.log('Preparing OpenAI request...');
+    console.log('API Key exists:', !!openAIApiKey);
+    console.log('API Key length:', openAIApiKey ? openAIApiKey.length : 0);
+    console.log('Transcription length:', transcription.length);
+
+    const requestBody = {
+      model: 'gpt-4o',  // Using more widely available model
+      messages: [
+        { 
+          role: 'system', 
+          content: systemPrompt 
+        },
+        { 
+          role: 'user', 
+          content: `Evaluate this interview transcription and return ONLY valid JSON:\n\n${transcription}` 
+        }
+      ],
+      temperature: 0,
+      response_format: { type: "json_object" },
+    };
+
+    console.log('Making OpenAI request with model:', requestBody.model);
+    
     // Generate feedback using OpenAI
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -91,25 +114,16 @@ Required JSON structure:
         'Authorization': `Bearer ${openAIApiKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        model: 'gpt-4.1-2025-04-14',
-        messages: [
-          { 
-            role: 'system', 
-            content: systemPrompt 
-          },
-          { 
-            role: 'user', 
-            content: `Evaluate this interview transcription and return ONLY valid JSON:\n\n${transcription}` 
-          }
-        ],
-        temperature: 0,
-        response_format: { type: "json_object" },
-      }),
+      body: JSON.stringify(requestBody),
     });
 
+    console.log('OpenAI response status:', response.status);
+    console.log('OpenAI response ok:', response.ok);
+
     if (!response.ok) {
-      throw new Error(`OpenAI API error: ${response.statusText}`);
+      const errorText = await response.text();
+      console.error('OpenAI API error details:', errorText);
+      throw new Error(`OpenAI API error: ${response.status} ${response.statusText} - ${errorText}`);
     }
 
     const data = await response.json();
