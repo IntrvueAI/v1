@@ -1,3 +1,4 @@
+
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { createClient } from '@anam-ai/js-sdk';
 import { supabase } from '@/integrations/supabase/client';
@@ -113,23 +114,24 @@ export const useInterviewSession = (
       let transcription = null;
       
       if (clientRef.current) {
-        // Get transcription before stopping
+        // Get transcription before stopping using messageHistoryClient
         try {
           console.log('Attempting to get transcription...');
-          console.log('Client methods:', Object.getOwnPropertyNames(clientRef.current));
           
-          // Try different possible method names for getting transcription
-          if (typeof clientRef.current.getTranscription === 'function') {
-            transcription = await clientRef.current.getTranscription();
-            console.log('Got transcription via getTranscription:', transcription);
-          } else if (typeof clientRef.current.getSessionTranscript === 'function') {
-            transcription = await clientRef.current.getSessionTranscript();
-            console.log('Got transcription via getSessionTranscript:', transcription);
-          } else if (typeof clientRef.current.getConversationHistory === 'function') {
-            transcription = await clientRef.current.getConversationHistory();
-            console.log('Got transcription via getConversationHistory:', transcription);
+          // Access the message history through messageHistoryClient
+          if (clientRef.current.messageHistoryClient) {
+            const messages = await clientRef.current.messageHistoryClient.getMessages();
+            console.log('Got messages from messageHistoryClient:', messages);
+            
+            // Convert messages to a readable transcription format
+            if (messages && messages.length > 0) {
+              transcription = messages.map((msg: any) => {
+                const speaker = msg.role === 'user' ? 'Student' : 'Interviewer';
+                return `${speaker}: ${msg.content}`;
+              }).join('\n\n');
+            }
           } else {
-            console.log('No transcription method found on client');
+            console.log('No messageHistoryClient found on client');
           }
         } catch (transcriptionError) {
           console.warn('Could not get transcription:', transcriptionError);
