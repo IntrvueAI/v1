@@ -3,7 +3,8 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import { createClient } from '@anam-ai/js-sdk';
 import { AnamEvent } from "@anam-ai/js-sdk/dist/module/types";
 import { supabase } from '@/integrations/supabase/client';
-import systemPromptText from '/system_prompt.md?raw';
+import { loadSystemPrompt } from '@/utils/promptLoader';
+import { InterviewType } from '@/config/interviewTypes';
 
 // Types for the interview session
 type SessionStatus = 'idle' | 'connecting' | 'connected' | 'streaming' | 'error';
@@ -29,7 +30,8 @@ interface UseInterviewSessionReturn {
  * Handles connection, streaming, and session management
  */
 export const useInterviewSession = (
-  videoRef: React.RefObject<HTMLVideoElement>
+  videoRef: React.RefObject<HTMLVideoElement>,
+  interviewType: InterviewType
 ): UseInterviewSessionReturn => {
   // State management
   const [isConnected, setIsConnected] = useState(false);
@@ -48,16 +50,19 @@ export const useInterviewSession = (
    */
   const getSessionToken = async (): Promise<string> => {
     try {
+      // Load the system prompt for the selected interview type
+      const systemPrompt = await loadSystemPrompt(interviewType.id);
+      
       const { data, error } = await supabase.functions.invoke('get-anam-session-token', {
         body: {
           personaConfig: {
-            name: "Interview Assistant",
+            name: `${interviewType.name} Assistant`,
             // Using placeholder IDs - replace these with actual anam.ai persona IDs from your dashboard
             avatarId: "bb4f5306-ffdb-4437-a837-da6fdc23cbff",
             voiceId: "04965b9e-ff4c-4b54-a4dc-fba6e458c760", 
             brainType: "ANAM_GPT_4O_MINI_V1",
-            maxSessionLengthSeconds: 1800,
-            systemPrompt: systemPromptText
+            maxSessionLengthSeconds: interviewType.duration * 60, // Convert minutes to seconds
+            systemPrompt: systemPrompt
           },
         },
       });

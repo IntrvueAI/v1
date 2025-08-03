@@ -11,18 +11,28 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Play, Square, Mic, MicOff } from 'lucide-react';
 import { InterviewTimer } from './InterviewTimer';
+import { InterviewType, getDefaultInterviewType } from '@/config/interviewTypes';
+
+interface InterviewPlatformProps {
+  selectedInterviewType?: InterviewType | null;
+}
 
 /**
  * Main Interview Platform Component
- * Handles the complete 11+ interview preparation experience
+ * Handles the complete interview preparation experience
  */
-export const InterviewPlatform: React.FC = () => {
+export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({ 
+  selectedInterviewType 
+}) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isAudioEnabled, setIsAudioEnabled] = useState(true);
   const [feedback, setFeedback] = useState(null);
   const [isGeneratingFeedback, setIsGeneratingFeedback] = useState(false);
   const { user } = useAuth();
   const { toast } = useToast();
+  
+  // Use selected interview type or default to 11-plus
+  const interviewType = selectedInterviewType || getDefaultInterviewType();
   
   // Custom hook to manage anam.ai interview session
   const {
@@ -33,7 +43,7 @@ export const InterviewPlatform: React.FC = () => {
     startInterview,
     stopInterview,
     sessionStatus
-  } = useInterviewSession(videoRef);
+  } = useInterviewSession(videoRef, interviewType);
 
   // Handle starting the interview session
   const handleStartInterview = useCallback(async () => {
@@ -59,6 +69,9 @@ export const InterviewPlatform: React.FC = () => {
             transcription: transcription,
             sessionId: Date.now().toString(), // Simple session ID
             userId: user.id,
+            interviewType: interviewType.id,
+            interviewCategory: interviewType.category,
+            scoringSystem: interviewType.scoringSystem,
           },
         });
 

@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { InterviewPlatform } from '@/components/InterviewPlatform';
+import { InterviewSelection } from '@/components/InterviewSelection';
 import { FeedbackHistory } from '@/components/FeedbackHistory';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Video, History } from 'lucide-react';
+import { Video, History, ArrowLeft } from 'lucide-react';
+import { InterviewType } from '@/config/interviewTypes';
 
 /**
  * Main Index Page - 11+ Interview Preparation Platform
@@ -14,7 +16,8 @@ import { Video, History } from 'lucide-react';
 const Index = () => {
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
-  const [currentView, setCurrentView] = useState<'interview' | 'history'>('interview');
+  const [currentView, setCurrentView] = useState<'selection' | 'interview' | 'history'>('selection');
+  const [selectedInterviewType, setSelectedInterviewType] = useState<InterviewType | null>(null);
 
   // Redirect to auth if not logged in
   useEffect(() => {
@@ -26,6 +29,16 @@ const Index = () => {
   const handleSignOut = async () => {
     await signOut();
     navigate('/auth');
+  };
+
+  const handleSelectInterview = (interviewType: InterviewType) => {
+    setSelectedInterviewType(interviewType);
+    setCurrentView('interview');
+  };
+
+  const handleBackToSelection = () => {
+    setCurrentView('selection');
+    setSelectedInterviewType(null);
   };
 
   // Show loading spinner while checking auth
@@ -64,27 +77,47 @@ const Index = () => {
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-14 items-center justify-between">
           <div className="flex items-center gap-6">
-            <h1 className="text-lg font-semibold">11+ Interview Prep</h1>
-            <nav className="flex gap-2">
-              <Button 
-                variant={currentView === 'interview' ? 'default' : 'ghost'} 
-                size="sm"
-                onClick={() => setCurrentView('interview')}
-                className="gap-2"
-              >
-                <Video className="w-4 h-4" />
-                Interview
-              </Button>
-              <Button 
-                variant={currentView === 'history' ? 'default' : 'ghost'} 
-                size="sm"
-                onClick={() => setCurrentView('history')}
-                className="gap-2"
-              >
-                <History className="w-4 h-4" />
-                History
-              </Button>
-            </nav>
+            <div className="flex items-center gap-3">
+              {currentView === 'interview' && selectedInterviewType && (
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={handleBackToSelection}
+                  className="gap-2"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  Back
+                </Button>
+              )}
+              <h1 className="text-lg font-semibold">
+                {currentView === 'interview' && selectedInterviewType 
+                  ? selectedInterviewType.name
+                  : 'Interview Preparation Platform'
+                }
+              </h1>
+            </div>
+            {currentView !== 'interview' && (
+              <nav className="flex gap-2">
+                <Button 
+                  variant={currentView === 'selection' ? 'default' : 'ghost'} 
+                  size="sm"
+                  onClick={() => setCurrentView('selection')}
+                  className="gap-2"
+                >
+                  <Video className="w-4 h-4" />
+                  Practice
+                </Button>
+                <Button 
+                  variant={currentView === 'history' ? 'default' : 'ghost'} 
+                  size="sm"
+                  onClick={() => setCurrentView('history')}
+                  className="gap-2"
+                >
+                  <History className="w-4 h-4" />
+                  History
+                </Button>
+              </nav>
+            )}
           </div>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">
@@ -97,8 +130,12 @@ const Index = () => {
         </div>
       </header>
       <main>
-        {currentView === 'interview' ? (
-          <InterviewPlatform />
+        {currentView === 'selection' ? (
+          <div className="container mx-auto px-4 py-8 max-w-6xl">
+            <InterviewSelection onSelectInterview={handleSelectInterview} />
+          </div>
+        ) : currentView === 'interview' ? (
+          <InterviewPlatform selectedInterviewType={selectedInterviewType} />
         ) : (
           <div className="container mx-auto px-4 py-8 max-w-4xl">
             <FeedbackHistory />

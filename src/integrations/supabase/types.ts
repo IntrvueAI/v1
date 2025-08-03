@@ -22,10 +22,13 @@ export type Database = {
           extracurricular_score: number | null
           feedback_content: string
           id: string
+          interview_category: string | null
           interview_session_id: string | null
+          interview_type: string | null
           personal_insight_score: number | null
           rating: number | null
           reasoning_score: number | null
+          scoring_system: string | null
           total_score: number | null
           transcription: string | null
           user_id: string
@@ -37,10 +40,13 @@ export type Database = {
           extracurricular_score?: number | null
           feedback_content: string
           id?: string
+          interview_category?: string | null
           interview_session_id?: string | null
+          interview_type?: string | null
           personal_insight_score?: number | null
           rating?: number | null
           reasoning_score?: number | null
+          scoring_system?: string | null
           total_score?: number | null
           transcription?: string | null
           user_id: string
@@ -52,10 +58,13 @@ export type Database = {
           extracurricular_score?: number | null
           feedback_content?: string
           id?: string
+          interview_category?: string | null
           interview_session_id?: string | null
+          interview_type?: string | null
           personal_insight_score?: number | null
           rating?: number | null
           reasoning_score?: number | null
+          scoring_system?: string | null
           total_score?: number | null
           transcription?: string | null
           user_id?: string
@@ -68,6 +77,7 @@ export type Database = {
           email: string
           full_name: string | null
           id: string
+          preferred_interview_type: string | null
           updated_at: string
         }
         Insert: {
@@ -75,6 +85,7 @@ export type Database = {
           email: string
           full_name?: string | null
           id: string
+          preferred_interview_type?: string | null
           updated_at?: string
         }
         Update: {
@@ -82,6 +93,7 @@ export type Database = {
           email?: string
           full_name?: string | null
           id?: string
+          preferred_interview_type?: string | null
           updated_at?: string
         }
         Relationships: []
