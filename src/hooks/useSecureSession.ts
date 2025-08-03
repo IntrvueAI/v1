@@ -42,11 +42,23 @@ export const useSecureSession = () => {
 
   // Check session validity
   const validateSession = useCallback(() => {
-    if (!user) return true;
+    if (!user) return true; // Allow when no user (public routes)
 
+    // Don't validate immediately after login to prevent blank screen
     const sessionData = sessionSecurity.getSessionData('user_session');
     
-    if (!sessionData || sessionData.userId !== user.id) {
+    // If no session data exists yet, create it (new login)
+    if (!sessionData && user) {
+      sessionSecurity.setSessionData('user_session', {
+        timestamp: Date.now(),
+        userId: user.id,
+        sessionId: sessionSecurity.generateSessionId()
+      });
+      return true;
+    }
+    
+    // Only validate if session data exists and user IDs don't match
+    if (sessionData && sessionData.userId !== user.id) {
       handleSessionTimeout();
       return false;
     }

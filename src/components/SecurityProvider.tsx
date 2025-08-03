@@ -27,7 +27,8 @@ interface SecurityProviderProps {
 export const SecurityProvider: React.FC<SecurityProviderProps> = ({ children }) => {
   const secureSession = useSecureSession();
 
-  // Security hardening on mount
+  // Always render children - don't block based on session validation
+  // Security checks should be advisory, not blocking
   useEffect(() => {
     // Disable right-click context menu in production for security
     if (process.env.NODE_ENV === 'production') {
