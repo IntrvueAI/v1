@@ -121,15 +121,16 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
         {/* Header Section */}
         <div className="text-center mb-8">
           <h1 className="interview-title mb-3">
-            11+ Interview Preparation
+            {interviewType.name} Practice
           </h1>
           <p className="interview-subtitle mb-2">
-            Practice with our AI interviewer to build confidence
+            {interviewType.description}
           </p>
           <p className="interview-instruction max-w-2xl mx-auto">
-            Prepare for your 11+ school interview with realistic practice sessions. 
-            Our AI interviewer will ask questions commonly used in entrance interviews 
-            and provide instant feedback to help you improve.
+            {interviewType.id === 'ielts' 
+              ? 'Practice your IELTS Speaking test with our AI examiner. Get Band Score feedback (0-9) on all four assessment criteria: Fluency & Coherence, Lexical Resource, Grammatical Range & Accuracy, and Pronunciation.'
+              : 'Prepare for your 11+ school interview with realistic practice sessions. Our AI interviewer will ask questions commonly used in entrance interviews and provide instant feedback to help you improve.'
+            }
           </p>
         </div>
 
