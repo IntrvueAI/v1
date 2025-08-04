@@ -122,39 +122,62 @@ export const apiRateLimiter = new RateLimiter(10, 60 * 1000); // 10 attempts per
 // Secure logging utility
 export const secureLog = {
   info: (message: string, metadata?: object) => {
-    console.log(`[INFO] ${message}`, metadata ? sanitizeLogData(metadata) : '');
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`[INFO] ${message}`, metadata ? sanitizeLogData(metadata) : '');
+    }
   },
   
   warn: (message: string, metadata?: object) => {
-    console.warn(`[WARN] ${message}`, metadata ? sanitizeLogData(metadata) : '');
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(`[WARN] ${message}`, metadata ? sanitizeLogData(metadata) : '');
+    }
   },
   
   error: (message: string, error?: any, metadata?: object) => {
-    console.error(`[ERROR] ${message}`, {
-      error: error?.message || 'Unknown error',
-      stack: error?.stack,
-      ...metadata ? sanitizeLogData(metadata) : {}
-    });
+    // Always log errors but sanitize in production
+    if (process.env.NODE_ENV === 'production') {
+      console.error(`[ERROR] ${message}`, '[REDACTED - Check server logs]');
+    } else {
+      console.error(`[ERROR] ${message}`, {
+        error: error?.message || 'Unknown error',
+        stack: error?.stack,
+        ...metadata ? sanitizeLogData(metadata) : {}
+      });
+    }
   }
 };
 
 // Sanitize sensitive data from logs
 const sanitizeLogData = (data: any): any => {
-  const sensitiveKeys = ['password', 'token', 'secret', 'key', 'auth', 'credential'];
+  const sensitiveKeys = [
+    'password', 'token', 'secret', 'key', 'auth', 'credential',
+    'transcription', 'content', 'email', 'user_id', 'userId',
+    'sessionId', 'feedback', 'scores', 'persona', 'avatar'
+  ];
   
   if (typeof data !== 'object' || data === null) {
     return data;
   }
   
-  const sanitized = { ...data };
-  
-  Object.keys(sanitized).forEach(key => {
-    if (sensitiveKeys.some(sensitive => key.toLowerCase().includes(sensitive))) {
-      sanitized[key] = '[REDACTED]';
-    } else if (typeof sanitized[key] === 'object') {
-      sanitized[key] = sanitizeLogData(sanitized[key]);
+  const redactSensitiveData = (obj: any): any => {
+    if (typeof obj !== 'object' || obj === null) {
+      return obj;
     }
-  });
+    
+    const result = Array.isArray(obj) ? [] : {};
+    
+    Object.keys(obj).forEach(key => {
+      if (sensitiveKeys.some(sensitive => key.toLowerCase().includes(sensitive))) {
+        result[key] = '[REDACTED]';
+      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+        result[key] = redactSensitiveData(obj[key]);
+      } else {
+        result[key] = obj[key];
+      }
+    });
+    
+    return result;
+  };
   
-  return sanitized;
+  return redactSensitiveData(data);
 };

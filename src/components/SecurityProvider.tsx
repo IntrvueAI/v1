@@ -27,36 +27,10 @@ interface SecurityProviderProps {
 export const SecurityProvider: React.FC<SecurityProviderProps> = ({ children }) => {
   const secureSession = useSecureSession();
 
-  // Always render children - don't block based on session validation
-  // Security checks should be advisory, not blocking
-  useEffect(() => {
-    // Disable right-click context menu in production for security
-    if (process.env.NODE_ENV === 'production') {
-      const handleContextMenu = (e: MouseEvent) => {
-        e.preventDefault();
-      };
-      
-      const handleSelectStart = (e: Event) => {
-        e.preventDefault();
-      };
+  // Security monitoring - removed ineffective client-side protections
+  // Focus on server-side security instead
 
-      const handleDragStart = (e: DragEvent) => {
-        e.preventDefault();
-      };
-
-      document.addEventListener('contextmenu', handleContextMenu);
-      document.addEventListener('selectstart', handleSelectStart);
-      document.addEventListener('dragstart', handleDragStart);
-
-      return () => {
-        document.removeEventListener('contextmenu', handleContextMenu);
-        document.removeEventListener('selectstart', handleSelectStart);
-        document.removeEventListener('dragstart', handleDragStart);
-      };
-    }
-  }, []);
-
-  // Console warning for security
+  // Console warning for security - only in production
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       console.clear();
