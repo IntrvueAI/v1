@@ -43,11 +43,6 @@ export const LandingFooter = () => {
           {/* Brand Section */}
           <div className="col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <img 
-                src="/lovable-uploads/logo.png" 
-                alt="Intrvue AI" 
-                className="w-8 h-8"
-              />
               <span className="text-xl font-bold">Intrvue.AI</span>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
