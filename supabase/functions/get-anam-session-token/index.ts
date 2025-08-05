@@ -5,11 +5,15 @@ const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Content-Security-Policy': "default-src 'self'; script-src 'none'; object-src 'none';",
+  'Content-Security-Policy': "default-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';",
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
   'X-XSS-Protection': '1; mode=block',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+  'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
+  'X-Permitted-Cross-Domain-Policies': 'none',
+  'Cache-Control': 'no-store, no-cache, must-revalidate, private',
 };
 
 interface PersonaConfig {

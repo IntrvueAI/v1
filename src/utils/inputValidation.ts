@@ -1,5 +1,6 @@
 // Input validation and sanitization utilities
 import DOMPurify from 'dompurify';
+import { recordSuspiciousRequest } from './securityMonitor';
 
 // Email validation regex
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -69,6 +70,32 @@ export const validateName = (name: string): { isValid: boolean; error?: string }
 export const sanitizeInput = (input: string): string => {
   if (typeof input !== 'string') {
     return '';
+  }
+  
+  // Check for suspicious patterns
+  const suspiciousPatterns = [
+    /<script/i,
+    /javascript:/i,
+    /on\w+\s*=/i,
+    /eval\s*\(/i,
+    /alert\s*\(/i,
+    /document\./i,
+    /window\./i,
+    /<iframe/i,
+    /<object/i,
+    /<embed/i,
+  ];
+  
+  for (const pattern of suspiciousPatterns) {
+    if (pattern.test(input)) {
+      recordSuspiciousRequest({
+        type: 'xss_attempt',
+        pattern: pattern.source,
+        input: input.slice(0, 100), // Log first 100 chars only
+        timestamp: Date.now()
+      });
+      break;
+    }
   }
   
   // Remove any potential XSS content

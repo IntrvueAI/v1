@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { sanitizeErrorMessage, authRateLimiter } from '@/utils/secureErrorHandler';
+import { recordAuthFailure, recordRateLimit } from '@/utils/securityMonitor';
 
 export const useSimpleAuth = () => {
   const { signIn, signUp, signOut } = useAuth();
@@ -12,6 +13,7 @@ export const useSimpleAuth = () => {
     const identifier = `signin_${email}`;
     
     if (authRateLimiter.isRateLimited(identifier)) {
+      recordRateLimit(identifier, 'signin');
       toast({
         title: "Too Many Attempts",
         description: "Please wait before trying again.",
@@ -25,6 +27,7 @@ export const useSimpleAuth = () => {
     try {
       const result = await signIn(email, password);
       if (result.error) {
+        recordAuthFailure(email, sanitizeErrorMessage(result.error));
         toast({
           title: "Sign In Failed",
           description: sanitizeErrorMessage(result.error),
@@ -47,6 +50,7 @@ export const useSimpleAuth = () => {
     const identifier = `signup_${email}`;
     
     if (authRateLimiter.isRateLimited(identifier)) {
+      recordRateLimit(identifier, 'signup');
       toast({
         title: "Too Many Attempts",
         description: "Please wait before trying again.",
@@ -60,6 +64,7 @@ export const useSimpleAuth = () => {
     try {
       const result = await signUp(email, password, fullName);
       if (result.error) {
+        recordAuthFailure(email, sanitizeErrorMessage(result.error));
         toast({
           title: "Sign Up Failed",
           description: sanitizeErrorMessage(result.error),
