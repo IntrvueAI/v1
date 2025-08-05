@@ -5,67 +5,40 @@ export interface SecureError {
   statusCode: number;
 }
 
-export const createSecureError = (
-  userMessage: string,
-  logMessage: string,
-  statusCode: number = 500
-): SecureError => ({
-  userMessage,
-  logMessage,
-  statusCode
-});
-
 // Sanitize error messages to prevent information disclosure
 export const sanitizeErrorMessage = (error: any): string => {
-  // Common secure error messages for users
+  // Secure error messages for users - never expose internal details
   const secureMessages = {
     authentication: 'Authentication failed. Please check your credentials.',
-    authorization: 'You do not have permission to access this resource.',
-    validation: 'The provided data is invalid. Please check your input.',
-    network: 'A network error occurred. Please try again later.',
-    server: 'An internal error occurred. Please try again later.',
-    rateLimit: 'Too many requests. Please wait before trying again.',
-    notFound: 'The requested resource was not found.',
-    timeout: 'The request timed out. Please try again.',
+    authorization: 'Access denied.',
+    validation: 'Invalid input. Please check your data.',
+    network: 'Connection error. Please try again.',
+    server: 'Something went wrong. Please try again.',
+    rateLimit: 'Too many requests. Please wait.',
+    notFound: 'Resource not found.',
+    timeout: 'Request timed out. Please try again.',
   };
 
-  // Log the actual error for debugging
-  console.error('Full error details:', error);
+  // Log safely in development only
+  if (process.env.NODE_ENV === 'development') {
+    console.error('Error details:', error?.message || 'Unknown error');
+  }
 
-  // Return sanitized message based on error type
-  if (error?.message?.includes('auth') || error?.status === 401) {
+  // Return appropriate secure message based on error type
+  if (error?.status === 401 || error?.message?.toLowerCase().includes('auth')) {
     return secureMessages.authentication;
   }
-  
-  if (error?.status === 403) {
-    return secureMessages.authorization;
-  }
-  
-  if (error?.status === 400) {
-    return secureMessages.validation;
-  }
-  
-  if (error?.status === 404) {
-    return secureMessages.notFound;
-  }
-  
-  if (error?.status === 429) {
-    return secureMessages.rateLimit;
-  }
-  
-  if (error?.status === 408 || error?.message?.includes('timeout')) {
-    return secureMessages.timeout;
-  }
-  
-  if (error?.code === 'NETWORK_ERROR' || error?.message?.includes('network')) {
-    return secureMessages.network;
-  }
+  if (error?.status === 403) return secureMessages.authorization;
+  if (error?.status === 400) return secureMessages.validation;
+  if (error?.status === 404) return secureMessages.notFound;
+  if (error?.status === 429) return secureMessages.rateLimit;
+  if (error?.status === 408) return secureMessages.timeout;
+  if (error?.code === 'NETWORK_ERROR') return secureMessages.network;
 
-  // Default secure message
   return secureMessages.server;
 };
 
-// Rate limiting utility for client-side
+// Simple rate limiter for basic protection
 class RateLimiter {
   private attempts: Map<string, number[]> = new Map();
   private readonly maxAttempts: number;
@@ -79,13 +52,8 @@ class RateLimiter {
   isRateLimited(identifier: string): boolean {
     const now = Date.now();
     const attempts = this.attempts.get(identifier) || [];
-    
-    // Remove old attempts outside the time window
     const recentAttempts = attempts.filter(time => now - time < this.windowMs);
-    
-    // Update the attempts array
     this.attempts.set(identifier, recentAttempts);
-    
     return recentAttempts.length >= this.maxAttempts;
   }
 
@@ -95,89 +63,7 @@ class RateLimiter {
     attempts.push(now);
     this.attempts.set(identifier, attempts);
   }
-
-  getRemainingAttempts(identifier: string): number {
-    const attempts = this.attempts.get(identifier) || [];
-    const now = Date.now();
-    const recentAttempts = attempts.filter(time => now - time < this.windowMs);
-    return Math.max(0, this.maxAttempts - recentAttempts.length);
-  }
-
-  getTimeUntilReset(identifier: string): number {
-    const attempts = this.attempts.get(identifier) || [];
-    if (attempts.length === 0) return 0;
-    
-    const now = Date.now();
-    const oldestAttempt = Math.min(...attempts);
-    const resetTime = oldestAttempt + this.windowMs;
-    
-    return Math.max(0, resetTime - now);
-  }
 }
 
-// Global rate limiter instances
-export const authRateLimiter = new RateLimiter(5, 15 * 60 * 1000); // 5 attempts per 15 minutes
-export const apiRateLimiter = new RateLimiter(10, 60 * 1000); // 10 attempts per minute
-
-// Secure logging utility
-export const secureLog = {
-  info: (message: string, metadata?: object) => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`[INFO] ${message}`, metadata ? sanitizeLogData(metadata) : '');
-    }
-  },
-  
-  warn: (message: string, metadata?: object) => {
-    if (process.env.NODE_ENV === 'development') {
-      console.warn(`[WARN] ${message}`, metadata ? sanitizeLogData(metadata) : '');
-    }
-  },
-  
-  error: (message: string, error?: any, metadata?: object) => {
-    // Always log errors but sanitize in production
-    if (process.env.NODE_ENV === 'production') {
-      console.error(`[ERROR] ${message}`, '[REDACTED - Check server logs]');
-    } else {
-      console.error(`[ERROR] ${message}`, {
-        error: error?.message || 'Unknown error',
-        stack: error?.stack,
-        ...metadata ? sanitizeLogData(metadata) : {}
-      });
-    }
-  }
-};
-
-// Sanitize sensitive data from logs
-const sanitizeLogData = (data: any): any => {
-  const sensitiveKeys = [
-    'password', 'token', 'secret', 'key', 'auth', 'credential',
-    'transcription', 'content', 'email', 'user_id', 'userId',
-    'sessionId', 'feedback', 'scores', 'persona', 'avatar'
-  ];
-  
-  if (typeof data !== 'object' || data === null) {
-    return data;
-  }
-  
-  const redactSensitiveData = (obj: any): any => {
-    if (typeof obj !== 'object' || obj === null) {
-      return obj;
-    }
-    
-    const result = Array.isArray(obj) ? [] : {};
-    
-    Object.keys(obj).forEach(key => {
-      if (sensitiveKeys.some(sensitive => key.toLowerCase().includes(sensitive))) {
-        result[key] = '[REDACTED]';
-      } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-        result[key] = redactSensitiveData(obj[key]);
-      } else {
-        result[key] = obj[key];
-      }
-    });
-    
-    return result;
-  };
-  
-  return redactSensitiveData(data);
-};
+// Basic rate limiter for auth attempts
+export const authRateLimiter = new RateLimiter(5, 15 * 60 * 1000);

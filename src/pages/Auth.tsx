@@ -10,7 +10,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useToast } from '@/hooks/use-toast';
 import { useEffect } from 'react';
 import { validateEmail, validatePassword, validateName, sanitizeInput } from '@/utils/inputValidation';
-import { sanitizeErrorMessage, authRateLimiter, secureLog } from '@/utils/secureErrorHandler';
+import { sanitizeErrorMessage, authRateLimiter } from '@/utils/secureErrorHandler';
+import { useSimpleAuth } from '@/hooks/useSimpleAuth';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
@@ -19,7 +20,8 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
-  const { signUp, signIn, user } = useAuth();
+  const { user } = useAuth();
+  const { handleSignIn: authSignIn, handleSignUp: authSignUp } = useSimpleAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -34,15 +36,6 @@ const Auth = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-
-    // Rate limiting check
-    const identifier = email.toLowerCase();
-    if (authRateLimiter.isRateLimited(identifier)) {
-      const timeUntilReset = Math.ceil(authRateLimiter.getTimeUntilReset(identifier) / 60000);
-      setError(`Too many attempts. Please try again in ${timeUntilReset} minutes.`);
-      setLoading(false);
-      return;
-    }
 
     // Input validation
     const emailValidation = validateEmail(email);
@@ -70,24 +63,11 @@ const Auth = () => {
     const sanitizedEmail = sanitizeInput(email);
     const sanitizedName = sanitizeInput(fullName);
 
-    try {
-      const { error } = await signUp(sanitizedEmail, password, sanitizedName);
-      
-      if (error) {
-        authRateLimiter.recordAttempt(identifier);
-        secureLog.warn('Sign up failed', { email: sanitizedEmail, errorType: error.message });
-        setError(sanitizeErrorMessage(error));
-      } else {
-        secureLog.info('User signed up successfully', { email: sanitizedEmail });
-        toast({
-          title: "Account created successfully!",
-          description: "Please check your email for verification.",
-        });
-      }
-    } catch (error) {
-      authRateLimiter.recordAttempt(identifier);
-      secureLog.error('Sign up error', error, { email: sanitizedEmail });
-      setError(sanitizeErrorMessage(error));
+    const { error } = await authSignUp(sanitizedEmail, password, sanitizedName);
+    if (!error) {
+      setEmail('');
+      setPassword('');
+      setFullName('');
     }
     
     setLoading(false);
@@ -97,15 +77,6 @@ const Auth = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-
-    // Rate limiting check
-    const identifier = email.toLowerCase();
-    if (authRateLimiter.isRateLimited(identifier)) {
-      const timeUntilReset = Math.ceil(authRateLimiter.getTimeUntilReset(identifier) / 60000);
-      setError(`Too many attempts. Please try again in ${timeUntilReset} minutes.`);
-      setLoading(false);
-      return;
-    }
 
     // Input validation
     const emailValidation = validateEmail(email);
@@ -125,25 +96,9 @@ const Auth = () => {
     // Sanitize email input
     const sanitizedEmail = sanitizeInput(email);
 
-    try {
-      const { error } = await signIn(sanitizedEmail, password);
-      
-      if (error) {
-        authRateLimiter.recordAttempt(identifier);
-        secureLog.warn('Sign in failed', { email: sanitizedEmail, errorType: error.message });
-        setError(sanitizeErrorMessage(error));
-      } else {
-        secureLog.info('User signed in successfully', { email: sanitizedEmail });
-        toast({
-          title: "Welcome back!",
-          description: "You have been signed in successfully.",
-        });
-        navigate('/');
-      }
-    } catch (error) {
-      authRateLimiter.recordAttempt(identifier);
-      secureLog.error('Sign in error', error, { email: sanitizedEmail });
-      setError(sanitizeErrorMessage(error));
+    const { error } = await authSignIn(sanitizedEmail, password);
+    if (!error) {
+      navigate('/');
     }
     
     setLoading(false);

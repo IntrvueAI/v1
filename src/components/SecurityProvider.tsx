@@ -1,13 +1,9 @@
-// Security provider component for enhanced security context
+// Simplified security provider for essential auth protection
 import React, { createContext, useContext, useEffect } from 'react';
-import { useSecureSession } from '@/hooks/useSecureSession';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface SecurityContextType {
-  validateSession: () => boolean;
   secureSignOut: () => Promise<void>;
-  getCsrfToken: () => string | null;
-  refreshSession: () => void;
-  isSessionValid: boolean;
 }
 
 const SecurityContext = createContext<SecurityContextType | undefined>(undefined);
@@ -25,28 +21,24 @@ interface SecurityProviderProps {
 }
 
 export const SecurityProvider: React.FC<SecurityProviderProps> = ({ children }) => {
-  const secureSession = useSecureSession();
+  const { signOut } = useAuth();
 
-  // Security monitoring - removed ineffective client-side protections
-  // Focus on server-side security instead
-
-  // Console warning for security - only in production
+  // Simple console warning for production
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
-      console.clear();
       console.log(
-        '%cStop!',
-        'color: red; font-size: 50px; font-weight: bold;'
-      );
-      console.log(
-        '%cThis is a browser feature intended for developers. Do not paste or enter any code here as it could compromise your account security.',
-        'color: red; font-size: 16px;'
+        '%cStop! This is a browser feature intended for developers.',
+        'color: red; font-size: 16px; font-weight: bold;'
       );
     }
   }, []);
 
+  const secureSignOut = async () => {
+    await signOut();
+  };
+
   return (
-    <SecurityContext.Provider value={secureSession}>
+    <SecurityContext.Provider value={{ secureSignOut }}>
       {children}
     </SecurityContext.Provider>
   );
