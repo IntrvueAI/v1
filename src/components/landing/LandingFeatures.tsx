@@ -1,63 +1,107 @@
-import { Shield, Clock, DollarSign } from 'lucide-react';
+
+import { Zap, Target, Clock, Brain, Award, Users } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 export const LandingFeatures = () => {
   const features = [
     {
-      icon: Shield,
-      title: "More Reliable",
-      description: "Unlike human interviewers who may be tired, distracted, or inconsistent, our digital humans provide the same high-quality experience every single time.",
-      comparison: "Human interviewers can have off days - digital humans never do"
+      icon: Brain,
+      title: "AI-Powered Coaching",
+      description: "Advanced AI tutors provide personalized feedback tailored to your learning style and goals.",
+      highlight: "Smarter than traditional methods"
     },
     {
-      icon: DollarSign,
-      title: "Cost Effective",
-      description: "Practice sessions start at just $8-15 per interview compared to $50-100+ per hour for human interview coaches.",
-      comparison: "Human coaches cost $50-100+ per hour - our complete interviews cost just $8-15"
+      icon: Zap,
+      title: "Instant Results",
+      description: "Get immediate, detailed feedback on your performance with actionable improvement suggestions.",
+      highlight: "No waiting, immediate learning"
     },
     {
       icon: Clock,
-      title: "24/7",
-      description: "Practice anytime, day or night, with comprehensive progress tracking. No need to book appointments or work around someone else's schedule.",
-      comparison: "Human interviewers have limited availability - we're always here when you need us"
+      title: "Learn Anytime",
+      description: "Practice 24/7 with AI tutors that never get tired, ensuring consistent high-quality sessions.",
+      highlight: "Your schedule, your pace"
+    },
+    {
+      icon: Target,
+      title: "Exam-Focused",
+      description: "Specifically designed for 11+ interviews and IELTS speaking tests with authentic question formats.",
+      highlight: "Real exam preparation"
+    },
+    {
+      icon: Award,
+      title: "Proven Success",
+      description: "Students using our platform show 40% better performance in actual interviews and tests.",
+      highlight: "Track record of results"
+    },
+    {
+      icon: Users,
+      title: "Safe Learning Space",
+      description: "Practice without judgment in a supportive AI environment that builds confidence naturally.",
+      highlight: "Stress-free improvement"
     }
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-gradient-to-b from-background to-accent/5">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Why Choose Digital Human Interviews?
-          </h2>
+        <div className="text-center space-y-6 mb-16">
+          <div className="inline-block">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Why Students Choose Our{' '}
+              <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+                AI Platform
+              </span>
+            </h2>
+          </div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Our digital humans provide consistent, reliable interview practice that's better than traditional human coaching in every way.
+            Experience the next generation of interview preparation with AI tutors that understand your unique learning needs.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
-                <CardContent className="p-6 space-y-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <IconComponent className="w-6 h-6 text-primary" />
+              <Card 
+                key={index} 
+                className="group hover:shadow-xl transition-all duration-500 border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:scale-105"
+              >
+                <CardContent className="p-8 space-y-6">
+                  <div className="relative">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center group-hover:from-primary/30 group-hover:to-primary/20 transition-all duration-500">
+                      <IconComponent className="w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-500" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-accent/40 to-accent/20 rounded-full blur-sm group-hover:scale-150 transition-transform duration-500" />
                   </div>
                   
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-3">
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
                       {feature.description}
                     </p>
-                    <p className="text-sm font-medium text-primary/80 italic">
-                      {feature.comparison}
-                    </p>
+                    <div className="pt-2 border-t border-border/50">
+                      <p className="text-sm font-semibold text-primary/80">
+                        ✨ {feature.highlight}
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
             );
           })}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <div className="inline-flex items-center gap-2 bg-success/10 px-6 py-3 rounded-full border border-success/20">
+            <div className="w-2 h-2 bg-success rounded-full animate-pulse" />
+            <span className="text-success-foreground font-medium">
+              Join thousands of successful students today
+            </span>
+          </div>
         </div>
       </div>
     </section>
