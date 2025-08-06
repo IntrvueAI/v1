@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,10 +19,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
-    /* Primary: Material Design Blue #1976D2 */
-    --primary: 210 88% 46%;
-    --primary-foreground: 210 40% 98%;
-    --primary-soft: 210 75% 55%;
+    /* Primary: Coral #FF7F50 (16 50% 65%) */
+    --primary: 16 50% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 16 45% 70%;
 
     /* Secondary: Soft professional gray */
     --secondary: 210 20% 94%;
@@ -31,8 +32,8 @@
     --muted: 210 15% 94%;
     --muted-foreground: 215 15% 45%;
 
-    /* Accent: Professional blue for interactive elements */
-    --accent: 210 25% 92%;
+    /* Accent: Professional coral tone for interactive elements */
+    --accent: 16 20% 92%;
     --accent-foreground: 215 35% 25%;
 
     /* Status colors - muted for professional feel */
@@ -48,7 +49,7 @@
     /* Interface elements */
     --border: 215 20% 88%;
     --input: 215 20% 96%;
-    --ring: 210 88% 46%;
+    --ring: 16 50% 65%;
 
     /* Professional rounded corners */
     --radius: 0.75rem;
@@ -65,18 +66,18 @@
     --shadow-strong: 215 25% 25% / 0.12;
 
     /* Professional gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(210 88% 46%), hsl(210 75% 55%));
+    --gradient-primary: linear-gradient(135deg, hsl(16 50% 65%), hsl(16 45% 70%));
     --gradient-background: linear-gradient(180deg, hsl(210 15% 98%), hsl(210 20% 96%));
     
     /* Sidebar elements - keeping minimal since not used */
     --sidebar-background: 210 15% 98%;
     --sidebar-foreground: 215 25% 25%;
-    --sidebar-primary: 210 88% 46%;
-    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-primary: 16 50% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 210 20% 94%;
     --sidebar-accent-foreground: 215 25% 25%;
     --sidebar-border: 215 20% 88%;
-    --sidebar-ring: 210 88% 46%;
+    --sidebar-ring: 16 50% 65%;
   }
 
   .dark {
@@ -90,9 +91,9 @@
     --popover: 215 25% 10%;
     --popover-foreground: 210 20% 92%;
 
-    --primary: 210 88% 70%;
+    --primary: 16 50% 70%;
     --primary-foreground: 215 25% 15%;
-    --primary-soft: 210 75% 60%;
+    --primary-soft: 16 45% 65%;
 
     --secondary: 215 20% 15%;
     --secondary-foreground: 210 20% 85%;
@@ -114,7 +115,7 @@
 
     --border: 215 20% 18%;
     --input: 215 20% 15%;
-    --ring: 210 88% 70%;
+    --ring: 16 50% 70%;
     
     --interview-active: 145 40% 60%;
     --interview-active-foreground: 145 40% 10%;
@@ -125,17 +126,17 @@
     --shadow-medium: 215 25% 5% / 0.3;
     --shadow-strong: 215 25% 5% / 0.4;
 
-    --gradient-primary: linear-gradient(135deg, hsl(210 88% 70%), hsl(210 75% 60%));
+    --gradient-primary: linear-gradient(135deg, hsl(16 50% 70%), hsl(16 45% 65%));
     --gradient-background: linear-gradient(180deg, hsl(215 25% 8%), hsl(215 20% 10%));
     
     --sidebar-background: 215 25% 8%;
     --sidebar-foreground: 210 20% 85%;
-    --sidebar-primary: 210 88% 70%;
+    --sidebar-primary: 16 50% 70%;
     --sidebar-primary-foreground: 215 25% 15%;
     --sidebar-accent: 215 20% 15%;
     --sidebar-accent-foreground: 210 20% 85%;
     --sidebar-border: 215 20% 18%;
-    --sidebar-ring: 210 88% 70%;
+    --sidebar-ring: 16 50% 70%;
   }
 }
 
