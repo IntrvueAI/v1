@@ -15,7 +15,7 @@ export const LandingHero = ({
             <img src="/lovable-uploads/logo.png" alt="Intrvue.ai Logo" className="h-20 w-auto " />
             
           </div>
-          <Button variant="outline" size="sm" onClick={onSignUp}>
+          <Button variant="outline" size="sm" onClick={onSignUp} className="text-orange-500 font-medium text-sm">
             Sign In
           </Button>
         </div>
