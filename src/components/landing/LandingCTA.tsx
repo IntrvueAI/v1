@@ -1,16 +1,14 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Rocket, Users, Award, BookOpen, Star } from 'lucide-react';
-
 interface LandingCTAProps {
   onSignUp: () => void;
 }
-
-export const LandingCTA = ({ onSignUp }: LandingCTAProps) => {
-  return (
-    <section className="py-24 bg-gradient-to-br from-primary/10 via-background to-accent/10 relative overflow-hidden">
+export const LandingCTA = ({
+  onSignUp
+}: LandingCTAProps) => {
+  return <section className="py-24 bg-gradient-to-br from-primary/10 via-background to-accent/10 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse" />
@@ -45,41 +43,42 @@ export const LandingCTA = ({ onSignUp }: LandingCTAProps) => {
 
               {/* Stats Row */}
               <div className="grid md:grid-cols-4 gap-8 py-8">
-                {[
-                  { icon: Users, stat: '1000+', label: 'IELTS Candidates' },
-                  { icon: Award, stat: '7.5', label: 'Average Band Score' },
-                  { icon: BookOpen, stat: '24/7', label: 'Available' },
-                  { icon: Star, stat: '91%', label: 'Pass Rate' }
-                ].map((item, index) => {
-                  const IconComponent = item.icon;
-                  return (
-                    <div key={index} className="text-center space-y-2">
+                {[{
+                icon: Users,
+                stat: '1000+',
+                label: 'IELTS Candidates'
+              }, {
+                icon: Award,
+                stat: '7.5',
+                label: 'Average Band Score'
+              }, {
+                icon: BookOpen,
+                stat: '24/7',
+                label: 'Available'
+              }, {
+                icon: Star,
+                stat: '91%',
+                label: 'Pass Rate'
+              }].map((item, index) => {
+                const IconComponent = item.icon;
+                return <div key={index} className="text-center space-y-2">
                       <div className="w-12 h-12 mx-auto rounded-xl bg-primary/20 flex items-center justify-center">
                         <IconComponent className="w-6 h-6 text-primary" />
                       </div>
                       <div className="text-2xl font-bold text-foreground">{item.stat}</div>
                       <div className="text-sm text-muted-foreground">{item.label}</div>
-                    </div>
-                  );
-                })}
+                    </div>;
+              })}
               </div>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                <Button 
-                  size="lg" 
-                  onClick={onSignUp}
-                  className="text-xl px-10 py-6 h-auto gap-3 group shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-                >
+                <Button size="lg" onClick={onSignUp} className="text-xl px-10 py-6 h-auto gap-3 group shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
                   <BookOpen className="w-6 h-6" />
                   <span>Start IELTS Practice Now</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="text-lg px-8 py-6 h-auto border-2 hover:bg-primary/5 transition-all duration-300"
-                >
+                <Button variant="outline" size="lg" className="text-lg px-8 py-6 h-auto border-2 hover:bg-primary/5 transition-all duration-300">
                   Download Sample Questions
                 </Button>
               </div>
@@ -103,14 +102,9 @@ export const LandingCTA = ({ onSignUp }: LandingCTAProps) => {
               {/* Final Testimonial */}
               <div className="bg-gradient-to-r from-primary/5 via-accent/10 to-primary/5 rounded-2xl p-8 mt-12 max-w-4xl mx-auto">
                 <div className="flex justify-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-primary fill-current" />
-                  ))}
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-primary fill-current" />)}
                 </div>
-                <blockquote className="text-lg md:text-xl font-medium text-foreground italic mb-4">
-                  "The digital humans were so realistic! I practiced for just one week and improved from 
-                  band 6 to 7.5 in speaking. This platform is a game-changer for IELTS preparation."
-                </blockquote>
+                <blockquote className="text-lg md:text-xl font-medium text-foreground italic mb-4">"The digital humans were so realistic! I practiced for just one week and improved from band 4.0 to 8.0 in speaking. This platform is a game-changer for IELTS preparation."</blockquote>
                 <div className="text-muted-foreground">
                   <div className="font-semibold">Maria Rodriguez</div>
                   <div className="text-sm">Achieved band 8.0, now studying in Canada</div>
@@ -120,6 +114,5 @@ export const LandingCTA = ({ onSignUp }: LandingCTAProps) => {
           </CardContent>
         </Card>
       </div>
-    </section>
-  );
+    </section>;
 };
