@@ -26,7 +26,7 @@ export const LandingTruth = () => {
       icon: TrendingUp,
       title: "Track Progress",
       description: "See your band score improvement over time with detailed analytics and performance trends",
-      stat: "1.5 band avg. improvement"
+      stat: "3.0 band avg. improvement"
     },
     {
       icon: Shield,
