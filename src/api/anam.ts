@@ -3,6 +3,8 @@
  * Handles server-side API calls to keep API keys secure
  */
 
+import { supabase } from "@/integrations/supabase/client";
+
 interface PersonaConfig {
   name: string;
   avatarId: string;
@@ -10,10 +12,6 @@ interface PersonaConfig {
   brainType: string;
   systemPrompt: string;
   maxSessionLengthSeconds?: number;
-}
-
-interface SessionTokenRequest {
-  personaConfig: PersonaConfig;
 }
 
 interface SessionTokenResponse {
@@ -25,35 +23,19 @@ interface SessionTokenResponse {
  * This should be called from server-side only to keep API key secure
  */
 export const getAnamSessionToken = async (config: PersonaConfig): Promise<string> => {
-  const apiKey = process.env.ANAM_API_KEY;
-  
-  if (!apiKey) {
-    throw new Error('ANAM_API_KEY environment variable is not set');
+  const { data, error } = await supabase.functions.invoke<SessionTokenResponse>(
+    'get-anam-session-token',
+    { body: { personaConfig: config } }
+  );
+
+  if (error) {
+    console.error('get-anam-session-token error:', error);
+    throw new Error(error.message || 'Failed to get Anam session token');
   }
-
-  try {
-    const response = await fetch('https://api.anam.ai/v1/auth/session-token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        personaConfig: config,
-      }),
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Anam API error: ${response.status} ${response.statusText} - ${errorText}`);
-    }
-
-    const data: SessionTokenResponse = await response.json();
-    return data.sessionToken;
-  } catch (error) {
-    console.error('Error getting session token from anam.ai:', error);
-    throw error;
+  if (!data?.sessionToken) {
+    throw new Error('No session token returned');
   }
+  return data.sessionToken;
 };
 
 /**

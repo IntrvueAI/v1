@@ -13,28 +13,36 @@ const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
 const stripe = new Stripe(STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
 
-function cors(res: Response) {
+function cors(res: Response, origin?: string) {
   const headers = new Headers(res.headers);
-  headers.set("Access-Control-Allow-Origin", "*");
+  headers.set("Access-Control-Allow-Origin", origin || "*");
   headers.set("Access-Control-Allow-Headers", "authorization, x-client-info, apikey, content-type");
   headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
   return new Response(res.body, { status: res.status, headers });
 }
 
 serve(async (req) => {
-  if (req.method === "OPTIONS") {
-    return cors(new Response(null, { status: 204 }));
+if (req.method === "OPTIONS") {
+  return cors(new Response(null, { status: 204 }), req.headers.get("origin") || "*");
+}
+
+try {
+  if (req.method !== "POST") {
+    return cors(new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405 }), req.headers.get("origin") || "*");
   }
 
-  try {
-    if (req.method !== "POST") {
-      return cors(new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405 }));
-    }
+const { session_id } = await req.json().catch(() => ({}));
+if (!session_id) {
+  return cors(new Response(JSON.stringify({ error: "Missing session_id" }), { status: 400 }), req.headers.get("origin") || "*");
+}
 
-    const { session_id } = await req.json().catch(() => ({}));
-    if (!session_id) {
-      return cors(new Response(JSON.stringify({ error: "Missing session_id" }), { status: 400 }));
-    }
+// Authenticate caller
+const authHeader = req.headers.get("Authorization") || "";
+const token = authHeader.replace("Bearer ", "");
+const { data: userData, error: userErr } = await anon.auth.getUser(token);
+if (userErr || !userData?.user) {
+  return cors(new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 }), req.headers.get("origin") || "*");
+}
 
     // Retrieve session from Stripe
     const session = await stripe.checkout.sessions.retrieve(session_id);
@@ -46,7 +54,7 @@ serve(async (req) => {
       return cors(new Response(JSON.stringify({ error: "Payment not completed" }), { status: 400 }));
     }
 
-    const service = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    const service = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY); const anon = createClient(SUPABASE_URL, Deno.env.get("SUPABASE_ANON_KEY")!);
 
     // Find order
     const { data: order, error: orderErr } = await service
@@ -55,9 +63,14 @@ serve(async (req) => {
       .eq("stripe_session_id", session.id)
       .single();
 
-    if (orderErr || !order) {
-      return cors(new Response(JSON.stringify({ error: "Order not found" }), { status: 404 }));
-    }
+if (orderErr || !order) {
+  return cors(new Response(JSON.stringify({ error: "Order not found" }), { status: 404 }), req.headers.get("origin") || "*");
+}
+
+// Ensure the authenticated user owns the order
+if (order.user_id !== userData.user.id) {
+  return cors(new Response(JSON.stringify({ error: "Forbidden" }), { status: 403 }), req.headers.get("origin") || "*");
+}
 
     // Idempotency: if already paid, return current balance
     if (order.status === "paid") {
@@ -67,16 +80,17 @@ serve(async (req) => {
         .select("credits")
         .eq("user_id", order.user_id)
         .maybeSingle();
-      return cors(
-        new Response(JSON.stringify({ ok: true, alreadyProcessed: true, credits_added: 0, balance: balanceRow?.credits ?? 0 }), {
-          status: 200,
-          headers: { "Content-Type": "application/json" },
-        }),
-      );
+return cors(
+  new Response(JSON.stringify({ ok: true, alreadyProcessed: true, credits_added: 0, balance: balanceRow?.credits ?? 0 }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  }),
+  req.headers.get("origin") || "*"
+);
     }
 
     // Mark order as paid
-    await service.from("orders").update({ status: "paid" }).eq("id", order.id);
+    const { data: updatedOrder } = await service.from("orders").update({ status: "paid" }).eq("id", order.id).eq("status", "pending").select("id").maybeSingle();
 
     // Update credits balance (increment or insert)
     let newBalance = 0;
@@ -98,14 +112,15 @@ serve(async (req) => {
       newBalance = order.credits_purchased ?? 0;
     }
 
-    return cors(
-      new Response(JSON.stringify({ ok: true, credits_added: order.credits_purchased ?? 0, balance: newBalance }), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      }),
-    );
+return cors(
+  new Response(JSON.stringify({ ok: true, credits_added: order.credits_purchased ?? 0, balance: newBalance }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  }),
+  req.headers.get("origin") || "*"
+);
   } catch (e) {
     console.error("verify-payment error", e);
-    return cors(new Response(JSON.stringify({ error: "Internal server error" }), { status: 500 }));
+    return cors(new Response(JSON.stringify({ error: "Internal server error" }), { status: 500 }), req.headers.get("origin") || "*");
   }
 });

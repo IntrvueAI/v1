@@ -20,6 +20,7 @@ const corsHeaders = {
 const openAIApiKey = Deno.env.get('OPENAI_API_KEY');
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
 
 // Import interview configuration for dynamic prompt generation
 const INTERVIEW_TYPES: Record<string, any> = {
@@ -196,25 +197,43 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
-  try {
-    // Input validation and sanitization
-    const inputBody = await req.json();
-    const { transcription, sessionId, userId, interviewType, interviewCategory, scoringSystem } = inputBody;
+try {
+  // Input validation and sanitization
+  const inputBody = await req.json();
+  const { transcription, sessionId, userId, interviewType, interviewCategory, scoringSystem } = inputBody;
 
-    // Validate required fields
-    if (!transcription || typeof transcription !== 'string') {
-      return new Response(JSON.stringify({ error: 'Valid transcription is required' }), {
-        status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
+  // Validate required fields
+  if (!transcription || typeof transcription !== 'string') {
+    return new Response(JSON.stringify({ error: 'Valid transcription is required' }), {
+      status: 400,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
 
-    if (!userId || typeof userId !== 'string') {
-      return new Response(JSON.stringify({ error: 'Valid userId is required' }), {
-        status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
+  if (!userId || typeof userId !== 'string') {
+    return new Response(JSON.stringify({ error: 'Valid userId is required' }), {
+      status: 400,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
+
+  // Auth check: ensure caller matches provided userId
+  const authHeader = req.headers.get('Authorization') || '';
+  const token = authHeader.replace('Bearer ', '');
+  const supabaseAuth = createClient(supabaseUrl, supabaseAnonKey);
+  const { data: userData, error: userErr } = await supabaseAuth.auth.getUser(token);
+  if (userErr || !userData?.user) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
+  if (userData.user.id !== userId) {
+    return new Response(JSON.stringify({ error: 'Forbidden' }), {
+      status: 403,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
 
     // Sanitize and validate transcription length
     const sanitizedTranscription = transcription.trim();
