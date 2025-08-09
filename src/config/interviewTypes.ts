@@ -19,7 +19,7 @@ export const INTERVIEW_TYPES: Record<string, InterviewType> = {
     description: 'Practice interviews for UK 11+ grammar school and independent school admissions',
     category: 'academic',
     promptFile: 'academic/11-plus.md',
-    duration: 15,
+    duration: 30,
     scoringSystem: '0-5',
     scoringCriteria: [
       'Personal Insight & Self-Awareness',
