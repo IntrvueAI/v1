@@ -403,6 +403,65 @@ serve(async (req) => {
       }
     }
 
+    // Generate annotated highlights for the transcript (Student-only)
+    let annotations: any[] = [];
+    try {
+      const annotationSystemPrompt = `You are an expert speaking examiner. Given a transcript of an interview, extract short quoted spans from ONLY the Student's lines that represent either strengths or issues.
+
+- Categories: "strength", "grammar", "fluency", "lexical"
+- For each item provide: { "quote": string (short, as it appears), "category": one of the four, "explanation": string, "suggestion": string }
+- Keep quotes short (3-15 words) and precise so they can be highlighted inline.
+- Focus on the most relevant 8-15 items.
+- Return ONLY valid JSON with shape: { "annotations": Annotation[] }`;
+
+      const annotationRequest = {
+        model: 'gpt-4o-mini',
+        messages: [
+          { role: 'system', content: annotationSystemPrompt },
+          { role: 'user', content: `Transcript to annotate (only highlight Student lines):\n\n${sanitizedTranscription}` }
+        ],
+        temperature: 0,
+        response_format: { type: 'json_object' },
+      };
+
+      const annotationResp = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${openAIApiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(annotationRequest),
+      });
+
+      if (annotationResp.ok) {
+        const annData = await annotationResp.json();
+        const annText = (annData.choices?.[0]?.message?.content || '').trim();
+        try {
+          const parsed = JSON.parse(annText);
+          if (parsed && Array.isArray(parsed.annotations)) {
+            annotations = parsed.annotations;
+          }
+        } catch (_) {
+          // Try to salvage JSON from content
+          const match = annText.match(/\{[\s\S]*\}/);
+          if (match) {
+            try {
+              const parsed = JSON.parse(match[0]);
+              if (parsed && Array.isArray(parsed.annotations)) {
+                annotations = parsed.annotations;
+              }
+            } catch { /* ignore */ }
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Annotation generation failed:', e?.message || e);
+    }
+
+    // Attach raw transcription and annotations to response (not persisted yet)
+    feedbackData.transcription = sanitizedTranscription;
+    feedbackData.annotations = annotations;
+
     // Build flexible scores object for new JSONB column
     const config = INTERVIEW_TYPES[interviewType] || INTERVIEW_TYPES['11-plus'];
     const flexibleScores: Record<string, number> = {};

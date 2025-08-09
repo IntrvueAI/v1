@@ -2,6 +2,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { BookOpen, Brain, Activity, Globe, MessageSquare, Languages, FileText, Volume2 } from 'lucide-react';
+import { AnnotatedTranscript } from './AnnotatedTranscript';
+
+interface Annotation {
+  quote: string;
+  category: 'strength' | 'grammar' | 'fluency' | 'lexical';
+  explanation: string;
+  suggestion?: string;
+}
 
 interface FeedbackData {
   // 11+ scores
@@ -31,6 +39,9 @@ interface FeedbackData {
     overall: string;
     band_assessment: string;
   };
+  // New annotated transcript fields (optional)
+  transcription?: string;
+  annotations?: Annotation[];
 }
 
 interface InterviewFeedbackProps {
@@ -204,6 +215,22 @@ export const InterviewFeedback = ({ feedback, isLoading, interviewType = '11-plu
           );
         })}
       </div>
+
+      {/* Annotated Transcript */}
+      {feedback.transcription && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Annotated Transcript</CardTitle>
+            <CardDescription>Full transcript with highlighted strengths and areas to improve</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <AnnotatedTranscript 
+              transcript={feedback.transcription}
+              annotations={feedback.annotations || []}
+            />
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };
