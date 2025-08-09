@@ -238,26 +238,19 @@ serve(async (req) => {
     // Get dynamic system prompt based on interview type
     const systemPrompt = getSystemPrompt(interviewType || '11-plus', scoringSystem || '0-5');
 
-    // Reduced logging for production security
     if (Deno.env.get('NODE_ENV') !== 'production') {
       console.log('Preparing OpenAI request...');
       console.log('Transcription length:', sanitizedTranscription.length);
     }
 
     const requestBody = {
-      model: 'gpt-4o',  // Using more widely available model
+      model: 'gpt-4o',
       messages: [
-        { 
-          role: 'system', 
-          content: systemPrompt 
-        },
-        { 
-          role: 'user', 
-          content: `Evaluate this interview transcription and return ONLY valid JSON:\n\n${sanitizedTranscription}` 
-        }
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: `Evaluate this interview transcription and return ONLY valid JSON with the required fields.\n\n${sanitizedTranscription}` }
       ],
       temperature: 0,
-      response_format: { type: "json_object" },
+      response_format: { type: 'json_object' },
     };
 
     // Add security headers
@@ -314,33 +307,32 @@ serve(async (req) => {
       cleanedText = cleanedText.replace(/```json\s*/, '').replace(/```\s*$/, '');
       
       // Try direct parsing first
-      try {
-        feedbackData = JSON.parse(cleanedText);
-      } catch (firstError) {
-        // Try extracting JSON from anywhere in the text
-        const jsonMatch = cleanedText.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-          feedbackData = JSON.parse(jsonMatch[0]);
-        } else {
-          throw firstError;
-        }
-      }
-      
-      // Validate and ensure all required fields exist with proper types
-      if (interviewType === 'ielts') {
-        const requiredFields = ['fluency_coherence_score', 'lexical_resource_score', 'grammatical_range_score', 'pronunciation_score', 'total_score'];
-        for (const field of requiredFields) {
-          if (typeof feedbackData[field] !== 'number' || feedbackData[field] < 0 || feedbackData[field] > 9) {
-            throw new Error(`Invalid or missing ${field}: must be a number between 0-9`);
+        try {
+          feedbackData = JSON.parse(cleanedText);
+        } catch (firstError) {
+          // Try extracting JSON from anywhere in the text
+          const jsonMatch = cleanedText.match(/\{[\s\S]*\}/);
+          if (jsonMatch) {
+            feedbackData = JSON.parse(jsonMatch[0]);
+          } else {
+            throw firstError;
           }
         }
         
-        // Ensure total_score is calculated correctly (average for IELTS)
-        feedbackData.total_score = Math.round(((feedbackData.fluency_coherence_score + 
-                                               feedbackData.lexical_resource_score + 
-                                               feedbackData.grammatical_range_score + 
-                                               feedbackData.pronunciation_score) / 4) * 2) / 2; // Round to nearest 0.5
-      } else {
+        // Validate and ensure all required fields exist with proper types
+        if (interviewType === 'ielts') {
+          const requiredFields = ['fluency_coherence_score', 'lexical_resource_score', 'grammatical_range_score', 'pronunciation_score', 'total_score'];
+          for (const field of requiredFields) {
+            if (typeof feedbackData[field] !== 'number' || feedbackData[field] < 0 || feedbackData[field] > 9) {
+              throw new Error(`Invalid or missing ${field}: must be a number between 0-9`);
+            }
+          }
+          // Note: Keep precise total in response; store integer in DB later
+          feedbackData.total_score = Math.round(((feedbackData.fluency_coherence_score + 
+                                                 feedbackData.lexical_resource_score + 
+                                                 feedbackData.grammatical_range_score + 
+                                                 feedbackData.pronunciation_score) / 4) * 2) / 2; // 0.5 step
+        } else {
         // 11+ validation
         const requiredFields = ['personal_insight_score', 'reasoning_score', 'extracurricular_score', 'current_awareness_score', 'total_score'];
         for (const field of requiredFields) {
@@ -409,9 +401,10 @@ serve(async (req) => {
       const annotationSystemPrompt = `You are an expert speaking examiner. Given a transcript of an interview, extract short quoted spans from ONLY the Student's lines that represent either strengths or issues.
 
 - Categories: "strength", "grammar", "fluency", "lexical"
-- For each item provide: { "quote": string (short, as it appears), "category": one of the four, "explanation": string, "suggestion": string }
-- Keep quotes short (3-15 words) and precise so they can be highlighted inline.
-- Focus on the most relevant 8-15 items.
+- IMPORTANT: For each quote, COPY-PASTE the exact substring from the transcript (preserve casing, punctuation, and spacing) so it can be highlighted precisely.
+- For each item provide: { "quote": string, "category": one of the four, "explanation": string, "suggestion": string }
+- Keep quotes short (3–15 words) and precise.
+- Focus on the most relevant 8–15 items.
 - Return ONLY valid JSON with shape: { "annotations": Annotation[] }`;
 
       const annotationRequest = {
@@ -442,7 +435,6 @@ serve(async (req) => {
             annotations = parsed.annotations;
           }
         } catch (_) {
-          // Try to salvage JSON from content
           const match = annText.match(/\{[\s\S]*\}/);
           if (match) {
             try {
@@ -458,7 +450,7 @@ serve(async (req) => {
       console.warn('Annotation generation failed:', e?.message || e);
     }
 
-    // Attach raw transcription and annotations to response (not persisted yet)
+    // Attach raw transcription and annotations to response
     feedbackData.transcription = sanitizedTranscription;
     feedbackData.annotations = annotations;
 
@@ -466,7 +458,7 @@ serve(async (req) => {
     const config = INTERVIEW_TYPES[interviewType] || INTERVIEW_TYPES['11-plus'];
     const flexibleScores: Record<string, number> = {};
     
-    // Generate criteria keys and map scores
+    // Generate criteria keys and map scores (reserved for future use)
     const criteriaKeys = config.scoringCriteria.map((criteria: string) => 
       criteria.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '')
     );
@@ -474,7 +466,7 @@ serve(async (req) => {
     if (interviewType === 'ielts') {
       flexibleScores.fluency_and_coherence = feedbackData.fluency_coherence_score;
       flexibleScores.lexical_resource = feedbackData.lexical_resource_score;
-      flexibleScores.grammatical_range_and_accuracy = feedbackData.grammatical_range_score;
+      flexibleScores.grammatical_range_and_accuracy = feedbackData.grammatical_range_score; // maps to GR&A
       flexibleScores.pronunciation = feedbackData.pronunciation_score;
     } else {
       flexibleScores.personal_insight_self_awareness = feedbackData.personal_insight_score;
@@ -483,12 +475,17 @@ serve(async (req) => {
       flexibleScores.current_awareness_curiosity = feedbackData.current_awareness_score;
     }
 
+    // Prepare data for DB insert (ensure integer total_score for schema)
+    const dbTotalScore = Number.isFinite(feedbackData.total_score)
+      ? Math.round(feedbackData.total_score)
+      : null;
+
     // Save feedback to database with flexible scoring
     const insertData: any = {
       user_id: userId,
       interview_session_id: sessionId || `session_${Date.now()}`,
       transcription: sanitizedTranscription,
-      total_score: feedbackData.total_score,
+      total_score: dbTotalScore,
       detailed_feedback: feedbackData.detailed_feedback,
       feedback_content: JSON.stringify(feedbackData.detailed_feedback),
       interview_type: interviewType || '11-plus',

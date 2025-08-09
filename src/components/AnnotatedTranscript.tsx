@@ -22,64 +22,61 @@ const categoryStyles: Record<AnnotationCategory, string> = {
   lexical: 'text-primary underline underline-offset-2 decoration-2',
 };
 
-// Safely escape regex special chars in a string
 const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+// Build a regex that matches the quote allowing arbitrary punctuation/whitespace between words
+const buildFlexiblePattern = (quote: string) => {
+  const words = quote.trim().split(/\s+/).filter(Boolean).map(escapeRegExp);
+  if (words.length === 0) return null;
+  // \W+ matches any non-word (punctuation/space). Use global and case-insensitive flags.
+  return new RegExp(words.join('\\W+'), 'gi');
+};
+
 export const AnnotatedTranscript: React.FC<AnnotatedTranscriptProps> = ({ transcript, annotations }) => {
-  // Sort longer quotes first to reduce nested/overlap issues
   const sorted = [...(annotations || [])]
-    .filter(a => a && a.quote && a.quote.length > 2)
+    .filter(a => a && a.quote && a.quote.trim().length > 2)
     .sort((a, b) => b.quote.length - a.quote.length);
 
-  // Build a progressively annotated set of React nodes
   const renderWithHighlights = () => {
     let nodes: React.ReactNode[] = [transcript];
 
     sorted.forEach((ann, idx) => {
-      const nextNodes: React.ReactNode[] = [];
-      nodes.forEach((node) => {
-        if (typeof node !== 'string') {
-          nextNodes.push(node); // already annotated segment
-          return;
-        }
-        const text = node as string;
-        const pattern = new RegExp(escapeRegExp(ann.quote), 'i');
-        const match = text.match(pattern);
-        if (!match || !match[0]) {
-          nextNodes.push(text);
-          return;
-        }
-        const start = match.index ?? -1;
-        if (start < 0) {
-          nextNodes.push(text);
-          return;
-        }
-        const before = text.slice(0, start);
-        const matched = text.slice(start, start + match[0].length);
-        const after = text.slice(start + match[0].length);
+      const regex = buildFlexiblePattern(ann.quote);
+      if (!regex) return;
 
-        nextNodes.push(before);
-        nextNodes.push(
-          <TooltipProvider key={`ann-${idx}-${start}`}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span className={categoryStyles[ann.category]}>
-                  {matched}
-                </span>
-              </TooltipTrigger>
-              <TooltipContent className="max-w-xs">
-                <div className="text-sm font-medium capitalize mb-1">{ann.category}</div>
-                <p className="text-sm mb-1">{ann.explanation}</p>
-                {ann.suggestion && (
-                  <p className="text-sm text-muted-foreground">Suggestion: {ann.suggestion}</p>
-                )}
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        );
-        nextNodes.push(after);
+      const next: React.ReactNode[] = [];
+      nodes.forEach((node) => {
+        if (typeof node !== 'string') { next.push(node); return; }
+        const text = node as string;
+        let lastIndex = 0;
+        let m: RegExpExecArray | null;
+        while ((m = regex.exec(text)) !== null) {
+          const start = m.index;
+          const end = start + m[0].length;
+          if (start > lastIndex) next.push(text.slice(lastIndex, start));
+          const matched = text.slice(start, end);
+          next.push(
+            <TooltipProvider key={`ann-${idx}-${start}`}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className={categoryStyles[ann.category]}> {matched} </span>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <div className="text-sm font-medium capitalize mb-1">{ann.category}</div>
+                  <p className="text-sm mb-1">{ann.explanation}</p>
+                  {ann.suggestion && (
+                    <p className="text-sm text-muted-foreground">Suggestion: {ann.suggestion}</p>
+                  )}
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          );
+          lastIndex = end;
+          if (regex.lastIndex === start) regex.lastIndex++; // prevent infinite loop on zero-length
+        }
+        if (lastIndex < text.length) next.push(text.slice(lastIndex));
       });
-      nodes = nextNodes;
+      nodes = next;
     });
 
     return nodes;
@@ -87,7 +84,6 @@ export const AnnotatedTranscript: React.FC<AnnotatedTranscriptProps> = ({ transc
 
   return (
     <div className="space-y-4">
-      {/* Legend */}
       <div className="flex flex-wrap gap-3 text-sm">
         <span className="inline-flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-success"></span>
@@ -107,7 +103,6 @@ export const AnnotatedTranscript: React.FC<AnnotatedTranscriptProps> = ({ transc
         </span>
       </div>
 
-      {/* Transcript */}
       <div className="whitespace-pre-wrap leading-relaxed text-sm text-foreground/90">
         {renderWithHighlights()}
       </div>
