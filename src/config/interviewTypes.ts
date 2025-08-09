@@ -16,7 +16,7 @@ export const INTERVIEW_TYPES: Record<string, InterviewType> = {
   '11-plus': {
     id: '11-plus',
     name: '11+ School Interview',
-    description: 'Practice interviews for UK 11+ grammar school admissions',
+    description: 'Practice interviews for UK 11+ grammar school and independent school admissions',
     category: 'academic',
     promptFile: 'academic/11-plus.md',
     duration: 15,
@@ -28,7 +28,7 @@ export const INTERVIEW_TYPES: Record<string, InterviewType> = {
       'Current Awareness & Curiosity'
     ],
     difficultyLevel: 2,
-    tags: ['school admission', 'academic', 'UK education', 'grammar school'],
+    tags: ['school admission', 'academic', 'UK education', 'grammar school', 'independent school'],
     icon: 'GraduationCap'
   },
   'ielts': {
