@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      credits_balance: {
+        Row: {
+          created_at: string
+          credits: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          credits?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          credits?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       feedback: {
         Row: {
           annotations: Json | null
@@ -89,6 +110,45 @@ export type Database = {
         }
         Relationships: []
       }
+      orders: {
+        Row: {
+          amount: number
+          created_at: string
+          credits_purchased: number
+          currency: string
+          id: string
+          metadata: Json | null
+          status: string
+          stripe_session_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          credits_purchased?: number
+          currency?: string
+          id?: string
+          metadata?: Json | null
+          status?: string
+          stripe_session_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          credits_purchased?: number
+          currency?: string
+          id?: string
+          metadata?: Json | null
+          status?: string
+          stripe_session_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -121,6 +181,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      consume_credit: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
+      }
       delete_user: {
         Args: Record<PropertyKey, never>
         Returns: undefined
