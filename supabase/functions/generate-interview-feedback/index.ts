@@ -516,14 +516,11 @@ serve(async (req) => {
       .from('feedback')
       .insert(insertData)
       .select()
-      .single();
+      .maybeSingle();
 
     if (insertError) {
-      console.error('Database error:', insertError.message);
-      return new Response(JSON.stringify({ error: 'Failed to save feedback' }), {
-        status: 500,
-        headers: securityHeaders,
-      });
+      console.warn('Database insert warning:', insertError.message);
+      // Do not fail the request; return the generated feedback so the UI can display it
     }
 
     return new Response(JSON.stringify(feedbackData), {
