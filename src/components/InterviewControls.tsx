@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Play, Square, Loader2 } from 'lucide-react';
-
 interface InterviewControlsProps {
   isStreaming: boolean;
   onStartInterview: () => Promise<void>;
@@ -67,24 +67,39 @@ export const InterviewControls: React.FC<InterviewControlsProps> = ({
             )}
           </Button>
         ) : (
-          <Button
-            onClick={handleStop}
-            disabled={isLoading}
-            className="w-full interview-button-stop gap-2"
-            size="lg"
-          >
-            {isLoading ? (
-              <>
-                <Loader2 className="w-5 h-5 animate-spin" />
-                Ending...
-              </>
-            ) : (
-              <>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button
+                disabled={isLoading}
+                className="w-full interview-button-stop gap-2"
+                size="lg"
+              >
                 <Square className="w-5 h-5" />
                 End Interview
-              </>
-            )}
-          </Button>
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>End interview?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Are you sure you want to end the interview now? We will stop the call and start generating your feedback.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleStop}>
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Ending...
+                    </>
+                  ) : (
+                    'End Interview'
+                  )}
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         )}
 
         {/* Interview Duration */}
