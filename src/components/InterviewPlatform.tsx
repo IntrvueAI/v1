@@ -245,6 +245,7 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
                   
                   <InterviewTimer 
                     isActive={isStreaming}
+                    duration={interviewType.duration}
                     onTimeUp={() => {
                       toast({
                         title: "Time's Up!",

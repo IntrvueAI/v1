@@ -4,18 +4,20 @@ import { Clock } from 'lucide-react';
 
 interface InterviewTimerProps {
   isActive: boolean;
+  duration: number; // duration in minutes
   onTimeUp?: () => void;
 }
 
 export const InterviewTimer: React.FC<InterviewTimerProps> = ({ 
   isActive, 
+  duration,
   onTimeUp 
 }) => {
-  const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(duration * 60); // duration in seconds
 
   useEffect(() => {
     if (!isActive) {
-      setTimeLeft(30 * 60); // Reset to 30 minutes when not active
+      setTimeLeft(duration * 60); // Reset to original duration when not active
       return;
     }
 
@@ -30,7 +32,7 @@ export const InterviewTimer: React.FC<InterviewTimerProps> = ({
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isActive, onTimeUp]);
+  }, [isActive, onTimeUp, duration]);
 
   // Don't render if not active
   if (!isActive) return null;
