@@ -64,6 +64,7 @@ export const LandingHero = ({
             <Button 
               variant="outline" 
               size="lg" 
+              onClick={() => document.getElementById('demo-video')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
               className="w-full sm:w-auto text-base md:text-lg px-6 md:px-8 py-3 md:py-4 h-auto min-h-[48px] border-2 hover:bg-primary/5 transition-all duration-300"
             >
               <Play className="w-4 md:w-5 h-4 md:h-5 mr-2" />
@@ -88,25 +89,28 @@ export const LandingHero = ({
           </div>
         </div>
 
-        {/* Demo Video Placeholder */}
-        <div className="relative max-w-4xl mx-auto">
+        {/* Demo Video */}
+        <div id="demo-video" className="relative max-w-4xl mx-auto">
+          <h2 className="text-xl md:text-2xl font-semibold text-center mb-4">Demo Video</h2>
           <div className="relative bg-card/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-border/50 overflow-hidden group hover:shadow-3xl transition-all duration-500">
-          <div className="aspect-video bg-gradient-to-br from-primary/5 via-accent/10 to-primary/5 flex items-center justify-center relative">
-            <video
-              className="absolute inset-4 rounded-2xl border object-cover"
-              controls
-              preload="metadata"
-              playsInline
-              aria-label="IELTS Speaking demo video"
-            >
-              <source src="/lovable-uploads/DemoVideo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
+            <div className="aspect-video bg-gradient-to-br from-primary/5 via-accent/10 to-primary/5 relative">
+              <div className="absolute inset-0 p-4">
+                <video
+                  className="w-full h-full rounded-2xl border object-contain bg-black z-10 pointer-events-auto"
+                  controls
+                  preload="metadata"
+                  playsInline
+                  aria-label="IELTS Speaking demo video"
+                >
+                  <source src="/lovable-uploads/DemoVideo.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
             
             {/* Floating elements */}
-            <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-tr from-primary/15 to-accent/15 rounded-full blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
+            <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-500 pointer-events-none" />
+            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-tr from-primary/15 to-accent/15 rounded-full blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none" />
           </div>
         </div>
       </div>
