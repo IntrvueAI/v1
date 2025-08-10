@@ -136,6 +136,11 @@ export const InterviewSelection = ({
                   {/* Start Button */}
                   <Button className="w-full group-hover:bg-primary/90 transition-colors" onClick={e => {
                 e.stopPropagation();
+                const cost = interview.costCredits ?? 1;
+                if (cost === 0) {
+                  onSelectInterview(interview);
+                  return;
+                }
                 if ((credits ?? 0) > 0) {
                   setPendingInterview(interview);
                   setConfirmOpen(true);

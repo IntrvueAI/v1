@@ -51,6 +51,15 @@ const Index = () => {
       return;
     }
     try {
+      const cost = interviewType.costCredits ?? 1;
+
+      // Free/demo interviews: skip credit checks and consumption
+      if (cost === 0) {
+        setSelectedInterviewType(interviewType);
+        setCurrentView('interview');
+        return;
+      }
+
       // If we know balance and it's 0, shortcut to credits
       if ((credits ?? 0) <= 0) {
         toast({

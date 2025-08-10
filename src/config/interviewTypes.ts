@@ -10,6 +10,7 @@ export interface InterviewType {
   difficultyLevel: 1 | 2 | 3;
   tags: string[];
   icon: string; // Lucide icon name
+  costCredits?: number; // Number of credits required (default 1). 0 for free/demo.
 }
 
 export const INTERVIEW_TYPES: Record<string, InterviewType> = {
@@ -48,6 +49,25 @@ export const INTERVIEW_TYPES: Record<string, InterviewType> = {
     difficultyLevel: 3,
     tags: ['IELTS', 'English proficiency', 'speaking test', 'band score'],
     icon: 'MessageSquare'
+  },
+  'demo': {
+    id: 'demo',
+    name: '2-Minute Demo Interview',
+    description: 'Try a free 2-minute demo interview. Practice the flow and see feedback without using any credits.',
+    category: 'language',
+    promptFile: 'demo/demo.md',
+    duration: 2,
+    scoringSystem: '0-5',
+    scoringCriteria: [
+      'Communication',
+      'Clarity',
+      'Confidence',
+      'Relevance'
+    ],
+    difficultyLevel: 1,
+    tags: ['demo', 'free', 'quick test', 'trial'],
+    icon: 'Timer',
+    costCredits: 0
   }
 };
 
