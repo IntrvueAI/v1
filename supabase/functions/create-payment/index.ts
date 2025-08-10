@@ -48,7 +48,7 @@ if (userErr || !userData?.user) {
 }
 
     const userId = userData.user.id;
-    const amount = pack === 1 ? 1499 : pack === 5 ? 4999 : 7999;
+    const amount = pack === 1 ? 999 : pack === 5 ? 4499 : 6999;
     const credits = pack;
 
 const usedOrigin =

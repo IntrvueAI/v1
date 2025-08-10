@@ -9,9 +9,9 @@ import { supabase } from "@/integrations/supabase/client";
 type Pack = 1 | 5 | 10;
 
 const PACKS: { credits: Pack; priceCents: number; label: string; note?: string }[] = [
-  { credits: 1, priceCents: 1499, label: "1 Credit", note: "Great for a quick try" },
-  { credits: 5, priceCents: 4999, label: "5 Credits", note: "Most popular" },
-  { credits: 10, priceCents: 7999, label: "10 Credits", note: "Best value" },
+  { credits: 1, priceCents: 999, label: "1 Credit", note: "Great for a quick try" },
+  { credits: 5, priceCents: 4499, label: "5 Credits", note: "Most popular" },
+  { credits: 10, priceCents: 6999, label: "10 Credits", note: "Best value" },
 ];
 
 export const CreditsStore: React.FC = () => {
