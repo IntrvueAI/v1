@@ -25,17 +25,18 @@ export const AdminUserManagement = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [actionType, setActionType] = useState<'add' | 'remove'>('add');
 
-  const { data: users, isLoading, refetch } = useQuery({
+  const { data: users, isLoading, refetch, error } = useQuery({
     queryKey: ['admin-users', searchTerm],
     queryFn: async () => {
+      console.log('Fetching users for admin dashboard...');
+      
       let query = supabase
         .from('profiles')
         .select(`
           id,
           email,
           full_name,
-          created_at,
-          credits_balance(credits)
+          created_at
         `)
         .order('created_at', { ascending: false });
 
@@ -43,20 +44,49 @@ export const AdminUserManagement = () => {
         query = query.or(`email.ilike.%${searchTerm}%,full_name.ilike.%${searchTerm}%`);
       }
 
-      const { data, error } = await query;
+      const { data: profilesData, error: profilesError } = await query;
+      
+      if (profilesError) {
+        console.error('Error fetching profiles:', profilesError);
+        throw profilesError;
+      }
 
-      if (error) throw error;
+      console.log('Profiles data:', profilesData);
 
-      return data?.map(user => ({
-        id: user.id,
-        email: user.email,
-        full_name: user.full_name,
-        created_at: user.created_at,
-        credits: (user.credits_balance as any)?.[0]?.credits || 0
-      })) as UserWithCredits[];
+      // Get credits for all users separately
+      const { data: creditsData, error: creditsError } = await supabase
+        .from('credits_balance')
+        .select('user_id, credits');
+
+      if (creditsError) {
+        console.error('Error fetching credits:', creditsError);
+        // Don't throw error for credits, just log it
+      }
+
+      console.log('Credits data:', creditsData);
+
+      // Map profiles with their credits
+      const usersWithCredits = profilesData?.map(user => {
+        const userCredits = creditsData?.find(c => c.user_id === user.id);
+        return {
+          id: user.id,
+          email: user.email,
+          full_name: user.full_name,
+          created_at: user.created_at,
+          credits: userCredits?.credits || 0
+        };
+      }) || [];
+
+      console.log('Final users with credits:', usersWithCredits);
+      return usersWithCredits as UserWithCredits[];
     },
     refetchInterval: 30000,
   });
+
+  // Add error logging
+  if (error) {
+    console.error('User management query error:', error);
+  }
 
   const handleCreditAction = async () => {
     if (!selectedUser || !creditAmount) return;
@@ -68,6 +98,8 @@ export const AdminUserManagement = () => {
     }
 
     try {
+      console.log('Attempting credit action:', { userId: selectedUser.id, action: actionType, amount, email: selectedUser.email });
+      
       const { data, error } = await supabase.functions.invoke('admin-credit-management', {
         body: {
           userId: selectedUser.id,
@@ -77,7 +109,12 @@ export const AdminUserManagement = () => {
         }
       });
 
-      if (error) throw error;
+      console.log('Credit action response:', { data, error });
+
+      if (error) {
+        console.error('Credit action error:', error);
+        throw error;
+      }
 
       toast.success(
         `Successfully ${actionType === 'add' ? 'added' : 'removed'} ${amount} credits ${
@@ -91,7 +128,7 @@ export const AdminUserManagement = () => {
       refetch();
     } catch (error) {
       console.error('Error managing credits:', error);
-      toast.error('Failed to update credits. Please try again.');
+      toast.error(`Failed to update credits: ${error.message || 'Please try again.'}`);
     }
   };
 

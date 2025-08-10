@@ -10,6 +10,8 @@ export const useAdminStatus = () => {
     queryFn: async () => {
       if (!user) return false;
       
+      console.log('Checking admin status for user:', user.email);
+      
       const { data, error } = await supabase.rpc('is_current_user_admin');
       
       if (error) {
@@ -17,6 +19,7 @@ export const useAdminStatus = () => {
         return false;
       }
       
+      console.log('Admin status result:', data);
       return data as boolean;
     },
     enabled: !!user,
