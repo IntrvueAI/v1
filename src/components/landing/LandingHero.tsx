@@ -96,7 +96,7 @@ export const LandingHero = ({
             <div className="aspect-video bg-gradient-to-br from-primary/5 via-accent/10 to-primary/5 relative">
               <div className="absolute inset-0 p-4">
                 <video
-                  className="w-full h-full rounded-2xl border object-contain bg-black z-10 pointer-events-auto"
+                  className="w-full h-full rounded-2xl border object-contain bg-white z-10 pointer-events-auto"
                   controls
                   preload="metadata"
                   playsInline
