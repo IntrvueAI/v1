@@ -59,8 +59,8 @@ export const CreditsStore: React.FC = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="text-3xl font-bold">
-              ${(p.priceCents / 100).toFixed(2)}
-              <span className="text-muted-foreground text-sm ml-1">USD</span>
+              £{(p.priceCents / 100).toFixed(2)}
+              <span className="text-muted-foreground text-sm ml-1">GBP</span>
             </div>
             <Button
               className="w-full"

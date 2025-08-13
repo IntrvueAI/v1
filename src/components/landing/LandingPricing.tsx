@@ -14,7 +14,7 @@ export const LandingPricing = ({
     credits: 1,
     price: 9.99,
     description: 'Perfect for testing our Digital Humans Interviewers platform',
-    features: ['1 Complete AI Interview', 'Instant Detailed Feedback', 'Performance Score & Analysis', 'Learning Recommendations', 'Valid for 30 days'],
+    features: ['1 complete AI interview', 'Instant detailed feedback', 'Performance score & analysis', 'Learning recommendations', 'valid for forever'],
     popular: false,
     savings: null,
     icon: BookOpen,
@@ -26,7 +26,7 @@ export const LandingPricing = ({
     price: 44.99,
     originalPrice: 74.95,
     description: 'Most popular choice for serious preparation',
-    features: ['5 Complete AI Interviews', 'Advanced Progress Tracking', 'Personalized Study Plan', 'Detailed Performance Reports', 'Priority Email Support', 'Valid for 90 days', 'Multiple Subject Areas'],
+    features: ['5 complete AI interviews', 'Advanced progress tracking', 'Personalized study plan', 'Detailed performance reports', 'Priority email support', 'valid for forever', 'Multiple subject areas'],
     popular: true,
     savings: 25,
     icon: Users,
@@ -38,7 +38,7 @@ export const LandingPricing = ({
     price: 69.99,
     originalPrice: 149.90,
     description: 'Comprehensive preparation for top performance',
-    features: ['10 Complete AI Interviews', 'Premium Analytics Dashboard', 'Custom Learning Pathways', 'Video Performance Review', 'Priority Support & Live Chat', 'Valid for 6 months', 'All Interview Types', 'Study Resources Library'],
+    features: ['10 complete AI interviews', 'Premium analytics dashboard', 'Custom learning pathways', 'Video performance review', 'Priority support & live chat', 'valid for forever', 'All interview types', 'Study resources library'],
     popular: false,
     savings: 70,
     icon: Award,
@@ -102,9 +102,9 @@ export const LandingPricing = ({
                   {/* Pricing */}
                   <div className="space-y-2">
                     <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-4xl font-bold">${plan.price}</span>
+                      <span className="text-4xl font-bold">£{plan.price}</span>
                       {plan.originalPrice && <span className="text-xl text-muted-foreground line-through">
-                          ${plan.originalPrice}
+                          £{plan.originalPrice}
                         </span>}
                     </div>
                     <div className="space-y-1">
@@ -112,7 +112,7 @@ export const LandingPricing = ({
                         {plan.credits} {plan.credits === 1 ? 'Interview Credit' : 'Interview Credits'}
                       </div>
                       <div className="text-xs text-muted-foreground">
-                        ${Math.round(plan.price / plan.credits)} per interview session
+                        £{Math.round(plan.price / plan.credits)} per interview session
                       </div>
                     </div>
                   </div>

@@ -73,7 +73,7 @@ if (!usedOrigin) {
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency: "gbp",
             product_data: {
               name: `Interview Credits x${credits}`,
               description: "Each credit equals one interview.",
@@ -94,7 +94,7 @@ if (!usedOrigin) {
       user_id: userId,
       stripe_session_id: session.id,
       amount,
-      currency: "usd",
+      currency: "gbp",
       credits_purchased: credits,
       status: "pending",
       metadata: { source: "checkout" } as any,

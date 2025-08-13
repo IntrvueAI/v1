@@ -100,7 +100,7 @@ export const AdminOverview = () => {
     },
     {
       title: 'Revenue',
-      value: `$${stats?.totalRevenue?.toFixed(2) || '0.00'}`,
+      value: `£${stats?.totalRevenue?.toFixed(2) || '0.00'}`,
       description: 'Total revenue generated',
       icon: DollarSign,
       trend: 'up'
