@@ -7,12 +7,18 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Trash2, Key, User, Mail } from 'lucide-react';
+import { Loader2, Trash2, Key, User, Mail, School, Calendar, X } from 'lucide-react';
+import { Calendar as CalendarComponent } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { format } from 'date-fns';
+import { cn } from '@/lib/utils';
 
 interface UserProfile {
   id: string;
   full_name: string | null;
   email: string;
+  schools: string[] | null;
+  interview_date: string | null;
 }
 
 export const UserSettings = () => {
@@ -26,7 +32,9 @@ export const UserSettings = () => {
   
   const [formData, setFormData] = useState({
     fullName: '',
-    email: ''
+    email: '',
+    schools: [''] as string[],
+    interviewDate: undefined as Date | undefined
   });
 
   useEffect(() => {
@@ -50,7 +58,9 @@ export const UserSettings = () => {
       setProfile(data);
       setFormData({
         fullName: data.full_name || '',
-        email: data.email || user.email || ''
+        email: data.email || user.email || '',
+        schools: data.schools || [''],
+        interviewDate: data.interview_date ? new Date(data.interview_date) : undefined
       });
     } catch (error: any) {
       toast({
@@ -70,11 +80,14 @@ export const UserSettings = () => {
     setUpdating(true);
     try {
       // Update profile in database
+      const filteredSchools = formData.schools.filter(school => school.trim() !== '');
       const { error: profileError } = await supabase
         .from('profiles')
         .update({
           full_name: formData.fullName,
-          email: formData.email
+          email: formData.email,
+          schools: filteredSchools.length > 0 ? filteredSchools : null,
+          interview_date: formData.interviewDate ? formData.interviewDate.toISOString().split('T')[0] : null,
         })
         .eq('id', user.id);
 
@@ -176,6 +189,27 @@ export const UserSettings = () => {
     }
   };
 
+  const addSchoolField = () => {
+    setFormData(prev => ({
+      ...prev,
+      schools: [...prev.schools, '']
+    }));
+  };
+
+  const removeSchoolField = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      schools: prev.schools.filter((_, i) => i !== index)
+    }));
+  };
+
+  const updateSchool = (index: number, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      schools: prev.schools.map((school, i) => i === index ? value : school)
+    }));
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-8">
@@ -239,6 +273,79 @@ export const UserSettings = () => {
                 )}
               </Button>
             </form>
+          </CardContent>
+        </Card>
+
+        {/* Interview Information */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <School className="h-5 w-5" />
+              Interview Information
+            </CardTitle>
+            <CardDescription>
+              Manage your school applications and interview dates.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <Label htmlFor="schools">Schools you're applying to</Label>
+              <div className="space-y-2 mt-2">
+                {formData.schools.map((school, index) => (
+                  <div key={index} className="flex gap-2">
+                    <Input
+                      value={school}
+                      onChange={(e) => updateSchool(index, e.target.value)}
+                      placeholder="Enter school name"
+                    />
+                    {formData.schools.length > 1 && (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="icon"
+                        onClick={() => removeSchoolField(index)}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
+                ))}
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={addSchoolField}
+                  className="w-full"
+                >
+                  Add another school
+                </Button>
+              </div>
+            </div>
+
+            <div>
+              <Label>Interview date</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full justify-start text-left font-normal mt-2",
+                      !formData.interviewDate && "text-muted-foreground"
+                    )}
+                  >
+                    <Calendar className="mr-2 h-4 w-4" />
+                    {formData.interviewDate ? format(formData.interviewDate, "PPP") : "Select interview date"}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <CalendarComponent
+                    mode="single"
+                    selected={formData.interviewDate}
+                    onSelect={(date) => setFormData(prev => ({ ...prev, interviewDate: date }))}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
           </CardContent>
         </Card>
 

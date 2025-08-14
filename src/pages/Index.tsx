@@ -3,6 +3,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { InterviewPlatform } from '@/components/InterviewPlatform';
+import { PostSignupForm } from '@/components/PostSignupForm';
 import { InterviewSelection } from '@/components/InterviewSelection';
 import { FeedbackHistory } from '@/components/FeedbackHistory';
 import { UserSettings } from '@/components/UserSettings';
@@ -33,7 +34,9 @@ const Index = () => {
   const {
     user,
     loading,
-    signOut
+    signOut,
+    showPostSignupForm,
+    setShowPostSignupForm
   } = useAuth();
   const navigate = useNavigate();
   const [currentView, setCurrentView] = useState<'selection' | 'interview' | 'history' | 'settings' | 'credits'>('selection');
@@ -299,6 +302,15 @@ const Index = () => {
           </div>
         )}
       </main>
+      
+      {/* Post-signup form */}
+      {user && showPostSignupForm && (
+        <PostSignupForm
+          isOpen={showPostSignupForm}
+          onClose={() => setShowPostSignupForm(false)}
+          userId={user.id}
+        />
+      )}
     </div>;
 };
 export default Index;

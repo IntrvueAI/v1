@@ -6,6 +6,8 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
+  showPostSignupForm: boolean;
+  setShowPostSignupForm: (show: boolean) => void;
   signUp: (email: string, password: string, fullName?: string) => Promise<{ error: any }>;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
   signInWithGoogle: () => Promise<{ error: any }>;
@@ -26,6 +28,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showPostSignupForm, setShowPostSignupForm] = useState(false);
 
   useEffect(() => {
     // Set up auth state listener first
@@ -33,6 +36,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
+        
+        // Show post-signup form for new signups
+        if (event === 'SIGNED_IN' && session?.user) {
+          const isNewUser = new Date(session.user.created_at).getTime() > Date.now() - 10000; // Within 10 seconds
+          if (isNewUser) {
+            setShowPostSignupForm(true);
+          }
+        }
+        
         setLoading(false);
       }
     );
@@ -98,6 +110,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     user,
     session,
     loading,
+    showPostSignupForm,
+    setShowPostSignupForm,
     signUp,
     signIn,
     signInWithGoogle,
