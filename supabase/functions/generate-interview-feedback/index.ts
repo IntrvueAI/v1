@@ -318,19 +318,25 @@ try {
     try {
       const annotationSystemPrompt = `You are an expert speaking examiner providing comprehensive feedback. Given a transcript string, extract quoted spans from ONLY the Student's lines throughout the ENTIRE conversation.
 
+CRITICAL: You MUST provide exactly 30-35 annotations to give thorough feedback coverage.
+
 - Categories: "strength", "grammar", "fluency", "lexical"
 - IMPORTANT: For each quote, COPY the exact substring from the transcript (preserve casing/punctuation/spacing) and include character indexes.
 - For each item provide: { "quote": string, "category": one of the four, "explanation": string, "suggestion": string, "start": number, "end": number }
 - start/end are 0-based character offsets into the full transcript string, such that transcript.slice(start, end) === quote.
-- Keep quotes varied in length (2-20 words) to cover different aspects. Return between 15 and 25 items to provide comprehensive coverage.
-- Analyze the ENTIRE student transcript systematically:
-  * Beginning, middle, and end portions
-  * Different types of responses (short answers, longer explanations)
-  * Various grammatical structures used
-  * Vocabulary choices throughout
-  * Fluency patterns across the conversation
-  * Both strengths and areas for improvement
-- Ensure good distribution across all four categories
+- Keep quotes varied in length (1-15 words) to cover different aspects. MUST return between 30-35 items for comprehensive detailed coverage.
+- Analyze the ENTIRE student transcript systematically and exhaustively:
+  * Divide the conversation into beginning, early-middle, late-middle, and end sections - annotate each section thoroughly
+  * Every single student response should have multiple annotations
+  * Short answers: annotate word choice, grammar, pronunciation patterns
+  * Longer explanations: annotate fluency, complex structures, vocabulary range, coherence
+  * Find specific grammatical structures (verb tenses, sentence types, conjunctions)
+  * Identify vocabulary choices (simple vs sophisticated words, topic-specific terms)
+  * Note fluency markers (hesitations, natural speech flow, connected speech)
+  * Highlight both micro-strengths (good word choice) and broader strengths (clear explanations)
+- Ensure balanced distribution: ~8-9 annotations per category (strength, grammar, fluency, lexical)
+- Look for: individual words, short phrases, clauses, complete sentences - all can be annotated
+- Be granular: annotate specific grammar points, individual vocabulary items, short fluency segments
 - Return ONLY valid JSON with shape: { "annotations": Annotation[] }`;
 
       const annotationRequest = {
