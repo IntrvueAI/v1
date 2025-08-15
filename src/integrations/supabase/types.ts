@@ -104,6 +104,7 @@ export type Database = {
           interview_session_id: string | null
           interview_type: string | null
           lexical_resource_score: number | null
+          overall_improvement_feedback: string | null
           personal_insight_score: number | null
           pronunciation_score: number | null
           rating: number | null
@@ -128,6 +129,7 @@ export type Database = {
           interview_session_id?: string | null
           interview_type?: string | null
           lexical_resource_score?: number | null
+          overall_improvement_feedback?: string | null
           personal_insight_score?: number | null
           pronunciation_score?: number | null
           rating?: number | null
@@ -152,6 +154,7 @@ export type Database = {
           interview_session_id?: string | null
           interview_type?: string | null
           lexical_resource_score?: number | null
+          overall_improvement_feedback?: string | null
           personal_insight_score?: number | null
           pronunciation_score?: number | null
           rating?: number | null

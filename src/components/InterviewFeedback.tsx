@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { BookOpen, Brain, Activity, Globe, MessageSquare, Languages, FileText, Volume2 } from 'lucide-react';
+import { BookOpen, Brain, Activity, Globe, MessageSquare, Languages, FileText, Volume2, Target } from 'lucide-react';
 import { AnnotatedTranscript } from './AnnotatedTranscript';
 
 interface Annotation {
@@ -44,6 +44,8 @@ interface FeedbackData {
   // New annotated transcript fields (optional)
   transcription?: string;
   annotations?: Annotation[];
+  // Overall improvement feedback
+  overall_improvement_feedback?: string;
 }
 
 interface InterviewFeedbackProps {
@@ -230,6 +232,31 @@ export const InterviewFeedback = ({ feedback, isLoading, interviewType = '11-plu
               transcript={feedback.transcription}
               annotations={feedback.annotations || []}
             />
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Overall Improvement Feedback */}
+      {feedback.overall_improvement_feedback && (
+        <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-lg text-primary">
+              <Target className="w-5 h-5" />
+              Your Action Plan for Improvement
+            </CardTitle>
+            <CardDescription>Specific steps to boost your performance in your next interview</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="prose prose-sm max-w-none text-muted-foreground">
+              {feedback.overall_improvement_feedback.split('\n').map((paragraph, index) => {
+                if (paragraph.trim() === '') return null;
+                return (
+                  <p key={index} className="mb-3 leading-relaxed">
+                    {paragraph}
+                  </p>
+                );
+              })}
+            </div>
           </CardContent>
         </Card>
       )}

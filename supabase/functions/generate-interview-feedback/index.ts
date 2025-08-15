@@ -514,9 +514,73 @@ CRITICAL: You MUST provide exactly 30-35 annotations to give thorough feedback c
       }
     }
 
+    // Generate overall improvement feedback
+    let overallImprovementFeedback = '';
+    try {
+      const improvementSystemPrompt = `You are an expert educational coach providing actionable improvement guidance. Based on the interview scores and detailed feedback, create a comprehensive "Action Plan" for the student.
+
+SCORING CONTEXT:
+- Interview Type: ${interviewType}
+- Scoring System: ${scoringSystem === '0-5' ? '0-5 scale' : 'IELTS 0-9 scale'}
+
+REQUIREMENTS:
+1. **Immediate Priority Actions** (next 1-2 weeks):
+   - Identify the 2-3 lowest scoring areas
+   - Provide specific, measurable daily practice activities
+   - Give concrete examples of what to practice
+
+2. **Medium-term Development** (next month):
+   - Target areas for sustained improvement
+   - Suggest specific resources or activities
+   - Set achievable milestones
+
+3. **Strength Reinforcement**:
+   - Acknowledge what they're doing well
+   - Suggest how to leverage strengths to improve weak areas
+
+4. **Practical Tips**:
+   - Age-appropriate advice for ${interviewType === 'ielts' ? 'IELTS candidates' : '11+ students'}
+   - Specific techniques they can use in their next interview
+   - Common mistakes to avoid
+
+FORMAT: Write in clear, encouraging paragraphs. Use bullet points for specific actions. Keep language motivating but realistic.
+
+STUDENT PERFORMANCE DATA:`;
+
+      const improvementRequest = {
+        model: 'gpt-4.1-2025-04-14',
+        messages: [
+          { role: 'system', content: improvementSystemPrompt },
+          { role: 'user', content: `Scores: ${JSON.stringify(feedbackData)}\n\nDetailed Feedback: ${JSON.stringify(feedbackData.detailed_feedback)}\n\nPlease create a comprehensive action plan for this student's improvement.` }
+        ],
+        max_completion_tokens: 800,
+      };
+
+      console.log('Generating overall improvement feedback...');
+      const improvementResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${openAIApiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(improvementRequest),
+      });
+
+      if (improvementResponse.ok) {
+        const improvementData = await improvementResponse.json();
+        overallImprovementFeedback = improvementData.choices[0]?.message?.content || '';
+        console.log('Generated overall improvement feedback:', overallImprovementFeedback.substring(0, 200) + '...');
+      } else {
+        console.error('Failed to generate improvement feedback:', await improvementResponse.text());
+      }
+    } catch (improvementError) {
+      console.error('Error generating improvement feedback:', improvementError);
+    }
+
     // Attach raw transcription and annotations to response
     feedbackData.transcription = sanitizedTranscription;
     feedbackData.annotations = annotations;
+    feedbackData.overall_improvement_feedback = overallImprovementFeedback;
     // Build flexible scores object for new JSONB column
     const config = INTERVIEW_TYPES[interviewType] || INTERVIEW_TYPES['11-plus'];
     const flexibleScores: Record<string, number> = {};
@@ -549,6 +613,7 @@ CRITICAL: You MUST provide exactly 30-35 annotations to give thorough feedback c
       scoring_system: config.scoringSystem,
       scores: flexibleScores, // New flexible JSONB scores
       annotations: annotations,
+      overall_improvement_feedback: overallImprovementFeedback,
     };
 
     // Keep legacy columns for backward compatibility

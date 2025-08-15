@@ -25,6 +25,7 @@ interface FeedbackRecord {
   scoring_system?: string;
   transcription?: string;
   annotations?: any[];
+  overall_improvement_feedback?: string;
 }
 
 export const FeedbackHistory: React.FC = () => {
@@ -121,7 +122,9 @@ export const FeedbackHistory: React.FC = () => {
             detailed_feedback: selectedFeedback.detailed_feedback,
             // Annotated transcript
             transcription: selectedFeedback.transcription,
-            annotations: (selectedFeedback as any).annotations || []
+            annotations: (selectedFeedback as any).annotations || [],
+            // Overall improvement feedback
+            overall_improvement_feedback: selectedFeedback.overall_improvement_feedback
           }}
           interviewType={selectedFeedback.interview_type || '11-plus'}
           scoringSystem={selectedFeedback.scoring_system || '0-5'}
