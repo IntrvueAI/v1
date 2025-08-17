@@ -296,7 +296,7 @@ const Index = () => {
           <InterviewPlatform selectedInterviewType={selectedInterviewType} />
         ) : currentView === 'history' ? (
           <div className="container mx-auto px-4 py-8 max-w-4xl">
-            <FeedbackHistory />
+            <FeedbackHistory onBack={() => setCurrentView('selection')} />
           </div>
         ) : currentView === 'credits' ? (
           <div className="container mx-auto px-4 py-8 max-w-4xl">
