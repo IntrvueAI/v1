@@ -548,12 +548,12 @@ FORMAT: Write in clear, encouraging paragraphs. Use bullet points for specific a
 STUDENT PERFORMANCE DATA:`;
 
       const improvementRequest = {
-        model: 'gpt-4.1-2025-04-14',
+        model: 'gpt-4o',
         messages: [
           { role: 'system', content: improvementSystemPrompt },
           { role: 'user', content: `Scores: ${JSON.stringify(feedbackData)}\n\nDetailed Feedback: ${JSON.stringify(feedbackData.detailed_feedback)}\n\nPlease create a comprehensive action plan for this student's improvement.` }
         ],
-        max_completion_tokens: 800,
+        max_tokens: 800,
       };
 
       console.log('Generating overall improvement feedback...');
@@ -571,10 +571,13 @@ STUDENT PERFORMANCE DATA:`;
         overallImprovementFeedback = improvementData.choices[0]?.message?.content || '';
         console.log('Generated overall improvement feedback:', overallImprovementFeedback.substring(0, 200) + '...');
       } else {
-        console.error('Failed to generate improvement feedback:', await improvementResponse.text());
+        const errorText = await improvementResponse.text();
+        console.error('Failed to generate improvement feedback:', errorText);
+        overallImprovementFeedback = `Based on your performance, here are key areas for improvement:\n\n• Review the detailed feedback above for specific guidance on each assessment criteria\n• Practice expressing your thoughts more clearly and confidently\n• Focus on the areas where you scored lower to maximize your improvement\n• Consider doing additional practice interviews to build your skills\n\nKeep practicing - every interview is a step toward success!`;
       }
     } catch (improvementError) {
       console.error('Error generating improvement feedback:', improvementError);
+      overallImprovementFeedback = `Based on your performance, here are key areas for improvement:\n\n• Review the detailed feedback above for specific guidance on each assessment criteria\n• Practice expressing your thoughts more clearly and confidently\n• Focus on the areas where you scored lower to maximize your improvement\n• Consider doing additional practice interviews to build your skills\n\nKeep practicing - every interview is a step toward success!`;
     }
 
     // Attach raw transcription and annotations to response
