@@ -35,12 +35,10 @@ export const LandingHero = ({
           {/* St. Paul's School Badge */}
           <Badge className="bg-white text-[#FF7F50] hover:bg-gray-50 px-4 py-2 text-sm font-medium border border-[#FF7F50]/40 relative overflow-hidden">
             <BookOpen className="w-4 h-4 mr-2" />
-            <SparklesText 
-              text="Designed by Students & Teachers from St. Paul's School, London"
-              className="text-sm font-medium"
-              sparklesCount={5}
-              colors={{ first: "#FF7F50", second: "#FFB347" }}
-            />
+            <SparklesText text="Designed by Students & Teachers from St. Paul's School, London" className="text-sm font-medium" sparklesCount={5} colors={{
+              first: "#FF7F50",
+              second: "#FFB347"
+            }} />
           </Badge>
 
           {/* Technology Badge */}
@@ -64,7 +62,7 @@ export const LandingHero = ({
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center pt-4 px-4">
             <Button size="lg" onClick={onSignUp} className="w-full sm:w-auto text-base md:text-lg px-6 md:px-8 py-3 md:py-4 h-auto min-h-[48px] shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               <BookOpen className="w-4 md:w-5 h-4 md:h-5 mr-2" />
-              <span className="whitespace-nowrap">Start 11+ Practice Free</span>
+              <span className="whitespace-nowrap">Start 11+ Practice</span>
             </Button>
             <Button variant="outline" size="lg" onClick={() => document.getElementById('demo-video')?.scrollIntoView({
               behavior: 'smooth',
