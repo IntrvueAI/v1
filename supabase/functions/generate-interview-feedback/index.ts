@@ -517,33 +517,17 @@ CRITICAL: You MUST provide exactly 30-35 annotations to give thorough feedback c
     // Generate overall improvement feedback
     let overallImprovementFeedback = '';
     try {
-      const improvementSystemPrompt = `You are an expert educational coach providing actionable improvement guidance. Based on the interview scores and detailed feedback, create a comprehensive "Action Plan" for the student.
+      const improvementSystemPrompt = `You are an experienced teacher providing constructive feedback to help students improve their interview performance.
 
-SCORING CONTEXT:
-- Interview Type: ${interviewType}
-- Scoring System: ${scoringSystem === '0-5' ? '0-5 scale' : 'IELTS 0-9 scale'}
+Create feedback using this exact format:
 
-REQUIREMENTS:
-1. **Immediate Priority Actions** (next 1-2 weeks):
-   - Identify the 2-3 lowest scoring areas
-   - Provide specific, measurable daily practice activities
-   - Give concrete examples of what to practice
+**What went well**
+[Write exactly 5 sentences about what the student did well, focusing on specific strengths and positive aspects of their performance. Sound like a supportive teacher giving genuine praise for concrete achievements.]
 
-2. **Medium-term Development** (next month):
-   - Target areas for sustained improvement
-   - Suggest specific resources or activities
-   - Set achievable milestones
+**Even better if**
+[Write exactly 5 sentences with actionable next steps based on areas that need improvement. Each sentence should be a specific, practical action they can take. Sound like a teacher guiding them toward improvement.]
 
-3. **Strength Reinforcement**:
-   - Acknowledge what they're doing well
-   - Suggest how to leverage strengths to improve weak areas
-
-4. **Practical Tips**:
-   - Age-appropriate advice for ${interviewType === 'ielts' ? 'IELTS candidates' : '11+ students'}
-   - Specific techniques they can use in their next interview
-   - Common mistakes to avoid
-
-FORMAT: Write in clear, encouraging paragraphs. Use bullet points for specific actions. Keep language motivating but realistic.
+Use encouraging, teacher-like language throughout. Be specific about what they did well and what concrete steps they can take to improve.
 
 STUDENT PERFORMANCE DATA:`;
 
