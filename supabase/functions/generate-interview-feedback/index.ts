@@ -315,73 +315,172 @@ try {
 
     // Generate annotated highlights for the transcript (Student-only)
     let annotations: any[] = [];
-    try {
-      const annotationSystemPrompt = `You are an expert speaking examiner providing comprehensive feedback. Given a transcript string, extract quoted spans from ONLY the Student's lines throughout the ENTIRE conversation.
+    
+    // Helper function to split transcript into segments for better coverage
+    const splitTranscriptIntoSegments = (transcript: string, numSegments: number = 4) => {
+      const lines = transcript.split('\n');
+      const studentLines = lines.filter(line => line.trim().startsWith('Student:'));
+      const segmentSize = Math.ceil(studentLines.length / numSegments);
+      
+      const segments = [];
+      for (let i = 0; i < numSegments; i++) {
+        const startIdx = i * segmentSize;
+        const endIdx = Math.min((i + 1) * segmentSize, studentLines.length);
+        const segmentLines = studentLines.slice(startIdx, endIdx);
+        
+        if (segmentLines.length > 0) {
+          // Find the position of these lines in the original transcript
+          const firstLine = segmentLines[0];
+          const lastLine = segmentLines[segmentLines.length - 1];
+          const startPos = transcript.indexOf(firstLine);
+          const endPos = transcript.indexOf(lastLine) + lastLine.length;
+          
+          segments.push({
+            content: transcript.substring(startPos, endPos),
+            segmentNumber: i + 1,
+            totalSegments: numSegments,
+            expectedAnnotations: Math.ceil(8 / numSegments) // Aim for 8-10 annotations per segment
+          });
+        }
+      }
+      return segments;
+    };
 
-CRITICAL: You MUST provide exactly 30-35 annotations to give thorough feedback coverage.
+    try {
+      const segments = splitTranscriptIntoSegments(sanitizedTranscription, 4);
+      console.log(`Processing ${segments.length} transcript segments for comprehensive annotation coverage`);
+      
+      // Process each segment separately to ensure full coverage
+      for (const segment of segments) {
+        const segmentAnnotationPrompt = `You are an expert speaking examiner. Analyze ONLY this specific segment (${segment.segmentNumber}/${segment.totalSegments}) of the student's interview transcript.
+
+CRITICAL INSTRUCTIONS:
+- Extract exactly ${segment.expectedAnnotations}-${segment.expectedAnnotations + 2} annotations from ONLY the Student lines in this segment
+- Categories: "strength", "grammar", "fluency", "lexical" (aim for 2-3 annotations per category)
+- For each quote, provide: { "quote": string, "category": string, "explanation": string, "suggestion": string, "start": number, "end": number }
+- start/end are 0-based character offsets into the FULL ORIGINAL transcript (not just this segment)
+- Focus on this segment only - do not analyze other parts of the conversation
+- Be thorough and granular: annotate specific words, phrases, grammatical structures, vocabulary choices
+- Return ONLY valid JSON: { "annotations": Annotation[] }
+
+Segment to analyze:`;
+
+        const segmentRequest = {
+          model: 'gpt-4o',
+          messages: [
+            { role: 'system', content: segmentAnnotationPrompt },
+            { role: 'user', content: `${segment.content}\n\nFull transcript for character index reference:\n${sanitizedTranscription}` }
+          ],
+          temperature: 0,
+          max_tokens: 2000,
+          response_format: { type: 'json_object' },
+        };
+
+        try {
+          const segmentResp = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${openAIApiKey}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(segmentRequest),
+          });
+
+          if (segmentResp.ok) {
+            const segmentData = await segmentResp.json();
+            const segmentText = (segmentData.choices?.[0]?.message?.content || '').trim();
+            
+            try {
+              const parsed = JSON.parse(segmentText);
+              if (parsed && Array.isArray(parsed.annotations)) {
+                annotations.push(...parsed.annotations);
+                console.log(`Added ${parsed.annotations.length} annotations from segment ${segment.segmentNumber}`);
+              }
+            } catch (_) {
+              const match = segmentText.match(/\{[\s\S]*\}/);
+              if (match) {
+                try {
+                  const parsed = JSON.parse(match[0]);
+                  if (parsed && Array.isArray(parsed.annotations)) {
+                    annotations.push(...parsed.annotations);
+                  }
+                } catch { /* ignore */ }
+              }
+            }
+          } else {
+            console.warn(`Segment ${segment.segmentNumber} annotation API error:`, segmentResp.status);
+          }
+        } catch (e) {
+          console.warn(`Segment ${segment.segmentNumber} annotation failed:`, e?.message || e);
+        }
+      }
+
+      console.log(`Total annotations generated from all segments: ${annotations.length}`);
+      
+    } catch (e) {
+      console.warn('Segmented annotation generation failed, falling back to single request:', e?.message || e);
+      
+      // Fallback to original single-request method with increased token limit
+      const fallbackAnnotationPrompt = `You are an expert speaking examiner providing comprehensive feedback. Given a transcript string, extract quoted spans from ONLY the Student's lines throughout the ENTIRE conversation.
+
+CRITICAL: You MUST provide exactly 30-35 annotations to give thorough feedback coverage across the ENTIRE transcript.
 
 - Categories: "strength", "grammar", "fluency", "lexical"
 - IMPORTANT: For each quote, COPY the exact substring from the transcript (preserve casing/punctuation/spacing) and include character indexes.
 - For each item provide: { "quote": string, "category": one of the four, "explanation": string, "suggestion": string, "start": number, "end": number }
 - start/end are 0-based character offsets into the full transcript string, such that transcript.slice(start, end) === quote.
-- Keep quotes varied in length (1-15 words) to cover different aspects. MUST return between 30-35 items for comprehensive detailed coverage.
-- Analyze the ENTIRE student transcript systematically and exhaustively:
-  * Divide the conversation into beginning, early-middle, late-middle, and end sections - annotate each section thoroughly
-  * Every single student response should have multiple annotations
-  * Short answers: annotate word choice, grammar, pronunciation patterns
-  * Longer explanations: annotate fluency, complex structures, vocabulary range, coherence
-  * Find specific grammatical structures (verb tenses, sentence types, conjunctions)
-  * Identify vocabulary choices (simple vs sophisticated words, topic-specific terms)
-  * Note fluency markers (hesitations, natural speech flow, connected speech)
-  * Highlight both micro-strengths (good word choice) and broader strengths (clear explanations)
+- SYSTEMATIC ANALYSIS REQUIRED:
+  * Process the conversation chronologically from beginning to end
+  * Ensure annotations are distributed throughout: early (25%), early-middle (25%), late-middle (25%), end (25%)
+  * Every student response should have multiple annotations
+  * Analyze vocabulary, grammar, fluency, and strengths in each section
 - Ensure balanced distribution: ~8-9 annotations per category (strength, grammar, fluency, lexical)
-- Look for: individual words, short phrases, clauses, complete sentences - all can be annotated
-- Be granular: annotate specific grammar points, individual vocabulary items, short fluency segments
 - Return ONLY valid JSON with shape: { "annotations": Annotation[] }`;
 
-      const annotationRequest = {
+      const fallbackRequest = {
         model: 'gpt-4o',
         messages: [
-          { role: 'system', content: annotationSystemPrompt },
+          { role: 'system', content: fallbackAnnotationPrompt },
           { role: 'user', content: `Transcript to annotate (only highlight Student lines):\n\n${sanitizedTranscription}` }
         ],
         temperature: 0,
+        max_tokens: 3000,
         response_format: { type: 'json_object' },
       };
 
-      const annotationResp = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${openAIApiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(annotationRequest),
-      });
+      try {
+        const fallbackResp = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${openAIApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(fallbackRequest),
+        });
 
-      if (annotationResp.ok) {
-        const annData = await annotationResp.json();
-        const annText = (annData.choices?.[0]?.message?.content || '').trim();
-        try {
-          const parsed = JSON.parse(annText);
-          if (parsed && Array.isArray(parsed.annotations)) {
-            annotations = parsed.annotations;
-          }
-        } catch (_) {
-          const match = annText.match(/\{[\s\S]*\}/);
-          if (match) {
-            try {
-              const parsed = JSON.parse(match[0]);
-              if (parsed && Array.isArray(parsed.annotations)) {
-                annotations = parsed.annotations;
-              }
-            } catch { /* ignore */ }
+        if (fallbackResp.ok) {
+          const fallbackData = await fallbackResp.json();
+          const fallbackText = (fallbackData.choices?.[0]?.message?.content || '').trim();
+          try {
+            const parsed = JSON.parse(fallbackText);
+            if (parsed && Array.isArray(parsed.annotations)) {
+              annotations = parsed.annotations;
+            }
+          } catch (_) {
+            const match = fallbackText.match(/\{[\s\S]*\}/);
+            if (match) {
+              try {
+                const parsed = JSON.parse(match[0]);
+                if (parsed && Array.isArray(parsed.annotations)) {
+                  annotations = parsed.annotations;
+                }
+              } catch { /* ignore */ }
+            }
           }
         }
-      } else {
-        console.warn('Annotation API error status:', annotationResp.status);
+      } catch (fallbackError) {
+        console.warn('Fallback annotation generation failed:', fallbackError?.message || fallbackError);
       }
-    } catch (e) {
-      console.warn('Annotation generation failed:', e?.message || e);
     }
 
     // Post-process annotations: normalize categories, compute indices constrained to Student lines, and constrain to transcript bounds
