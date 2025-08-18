@@ -125,7 +125,9 @@ export const useInterviewSession = (
       // Get session token from backend
       console.log('🔑 Getting session token...');
       const sessionToken = await getSessionToken();
-      console.log('✅ Session token obtained');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('✅ Session token obtained');
+      }
 
       // Log token success (non-blocking)
       sessionLogger.logEvent('anam_token', 'Successfully obtained Anam session token')
