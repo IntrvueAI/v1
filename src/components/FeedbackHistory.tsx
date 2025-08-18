@@ -26,6 +26,7 @@ interface FeedbackRecord {
   transcription?: string;
   annotations?: any[];
   overall_improvement_feedback?: string;
+  session_reference?: string;
 }
 
 export const FeedbackHistory: React.FC = () => {
@@ -171,6 +172,11 @@ export const FeedbackHistory: React.FC = () => {
                       <Badge variant="outline" className="text-xs">
                         {feedback.interview_type?.toUpperCase() || '11+'}
                       </Badge>
+                      {feedback.session_reference && (
+                        <Badge variant="secondary" className="text-xs font-mono">
+                          {feedback.session_reference}
+                        </Badge>
+                      )}
                     </CardTitle>
                     <CardDescription className="flex items-center gap-2">
                       <CalendarDays className="w-4 h-4" />
