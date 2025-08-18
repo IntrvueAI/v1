@@ -18,7 +18,7 @@ export interface InterviewType {
   category: 'academic' | 'language' | 'professional';
   promptFile: string;
   duration: number; // in minutes
-  scoringSystem: '0-5' | '0-9' | '0-10';
+  scoringSystem: '0-5' | '0-9' | '0-10' | '0-7';
   scoringCriteria: string[];
   difficultyLevel: 1 | 2 | 3;
   tags: string[];
@@ -44,6 +44,23 @@ export const INTERVIEW_TYPES: Record<string, InterviewType> = {
     difficultyLevel: 2,
     tags: ['school admission', 'academic', 'UK education', 'grammar school', 'independent school'],
     icon: 'GraduationCap'
+  },
+  'logic-puzzles': {
+    id: 'logic-puzzles',
+    name: '11+ Logic Puzzles',
+    description: 'Focused practice on logic puzzles and reasoning problems for 11+ preparation',
+    category: 'academic',
+    promptFile: 'academic/logic-puzzles.md',
+    duration: 30,
+    scoringSystem: '0-7',
+    scoringCriteria: [
+      'Pattern Recognition & Sequences',
+      'Logical Deduction & Reasoning',
+      'Mathematical Logic & Word Problems'
+    ],
+    difficultyLevel: 3,
+    tags: ['11+', 'logic puzzles', 'reasoning', 'mathematics', 'patterns'],
+    icon: 'Brain'
   },
   'demo': {
     id: 'demo',
@@ -186,11 +203,54 @@ const IELTS_CONFIG: InterviewTypeConfig = {
   ]
 };
 
+// Logic Puzzles Configuration (20 points total: 7+7+6)
+const LOGIC_PUZZLES_CONFIG: InterviewTypeConfig = {
+  name: 'Logic Puzzles Interview',
+  description: 'Focused assessment of logical reasoning through voice-based puzzles',
+  scoringSystem: '0-7',
+  maxTotalScore: 20,
+  maxSectionScore: 7,
+  sections: [
+    {
+      id: 'pattern-recognition',
+      title: 'Pattern Recognition & Sequences',
+      iconName: 'TrendingUp',
+      description: 'Ability to identify patterns and predict sequences',
+      scoreField: 'pattern_recognition_score',
+      feedbackField: 'pattern_recognition'
+    },
+    {
+      id: 'logical-deduction',
+      title: 'Logical Deduction & Reasoning',
+      iconName: 'Brain',
+      description: 'Deductive reasoning and logical problem-solving skills',
+      scoreField: 'logical_deduction_score',
+      feedbackField: 'logical_deduction'
+    },
+    {
+      id: 'mathematical-logic',
+      title: 'Mathematical Logic & Word Problems',
+      iconName: 'Calculator',
+      description: 'Mathematical reasoning and word problem solving',
+      scoreField: 'mathematical_logic_score',
+      feedbackField: 'mathematical_logic'
+    }
+  ],
+  bandThresholds: [
+    { minScore: 18, label: 'Exceptional', colorClass: 'bg-emerald-500', description: 'Outstanding logical reasoning abilities' },
+    { minScore: 15, label: 'Strong', colorClass: 'bg-green-500', description: 'Strong logical thinking skills' },
+    { minScore: 12, label: 'Good', colorClass: 'bg-blue-500', description: 'Good reasoning with room for development' },
+    { minScore: 8, label: 'Developing', colorClass: 'bg-yellow-500', description: 'Basic reasoning skills, needs practice' },
+    { minScore: 0, label: 'Needs Support', colorClass: 'bg-red-500', description: 'Requires significant development in logical reasoning' }
+  ]
+};
+
 /**
  * Enhanced configurations mapped by modern interview type
  */
 export const INTERVIEW_TYPES_CONFIG: Record<ModernInterviewType, InterviewTypeConfig> = {
   '11-plus': ELEVEN_PLUS_CONFIG,
+  'logic-puzzles': LOGIC_PUZZLES_CONFIG,
   'ielts': IELTS_CONFIG,
   // Placeholder configurations for future interview types
   'oxbridge': {

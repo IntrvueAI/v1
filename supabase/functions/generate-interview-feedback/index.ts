@@ -36,6 +36,17 @@ const INTERVIEW_TYPES: Record<string, any> = {
       'Current Awareness & Curiosity'
     ]
   },
+  'logic-puzzles': {
+    id: 'logic-puzzles',
+    name: '11+ Logic Puzzles',
+    category: 'academic',
+    scoringSystem: '0-7',
+    scoringCriteria: [
+      'Pattern Recognition & Sequences',
+      'Logical Deduction & Reasoning',
+      'Mathematical Logic & Word Problems'
+    ]
+  },
   'demo': {
     id: 'demo',
     name: 'Free Demo Interview',
@@ -54,6 +65,64 @@ const INTERVIEW_TYPES: Record<string, any> = {
 const getSystemPrompt = (interviewType: string, scoringSystem: string): string => {
   const config = INTERVIEW_TYPES[interviewType] || INTERVIEW_TYPES['11-plus'];
   
+  if (interviewType === 'logic-puzzles') {
+    return `You are an expert evaluator for logic puzzles interviews designed for 11+ preparation. You MUST respond with valid JSON only.
+
+SCORING RUBRIC (Each section scored 0-7, total out of 20):
+
+Section 1: Pattern Recognition & Sequences (7 marks)
+- 7: Exceptional pattern recognition; quickly identifies complex sequences and explains reasoning clearly
+- 6: Strong pattern identification with good reasoning; minor gaps in explanation
+- 5: Good pattern recognition ability; mostly accurate with some hesitation
+- 4: Basic pattern recognition; needs guidance but shows understanding
+- 3: Limited pattern recognition; struggles with complex sequences
+- 2: Minimal ability to identify patterns; requires significant support
+- 1: Very limited pattern recognition; confused by basic sequences
+- 0: No pattern recognition ability or coherent responses
+
+Section 2: Logical Deduction & Reasoning (7 marks)
+- 7: Outstanding deductive reasoning; handles multi-step problems with ease
+- 6: Strong logical thinking; good at working through complex problems
+- 5: Solid deductive reasoning; minor errors in complex scenarios
+- 4: Basic logical reasoning; needs guidance on difficult problems
+- 3: Limited deductive ability; struggles with logical connections
+- 2: Minimal logical reasoning; confused by basic deductions
+- 1: Very limited reasoning ability; illogical thinking patterns
+- 0: No logical reasoning demonstrated
+
+Section 3: Mathematical Logic & Word Problems (6 marks)
+- 6: Excellent mathematical reasoning; fluent translation of words to math
+- 5: Strong mathematical logic; good problem-solving approach
+- 4: Solid mathematical reasoning with minor calculation errors
+- 3: Basic mathematical logic; needs guidance on complex problems
+- 2: Limited mathematical reasoning; struggles with word problems
+- 1: Minimal mathematical logic; confused by basic mathematical concepts
+- 0: No mathematical reasoning demonstrated
+
+SCORING BANDS:
+18-20: Exceptional candidate; outstanding logical reasoning abilities
+15-17: Strong candidate; excellent logical thinking skills
+12-14: Good performance; solid reasoning with room for development
+8-11: Developing; basic reasoning skills, needs practice
+0-7: Needs Support; requires significant development in logical reasoning
+
+CRITICAL: You MUST respond ONLY with a valid JSON object. No explanations, no markdown, no additional text.
+
+Required JSON structure:
+{
+  "pattern_recognition_score": 0,
+  "logical_deduction_score": 0,
+  "mathematical_logic_score": 0,
+  "total_score": 0,
+  "detailed_feedback": {
+    "pattern_recognition": "Brief feedback here",
+    "logical_deduction": "Brief feedback here",
+    "mathematical_logic": "Brief feedback here",
+    "overall": "Overall assessment here",
+    "band_assessment": "Band assessment here"
+  }
+}`;
+  }
   
   // For 11+ keep existing detailed prompt
   return `You are an expert evaluator for 11+ private school admissions interviews. You MUST respond with valid JSON only.
@@ -266,23 +335,42 @@ try {
         }
         
         // Validate and ensure all required fields exist with proper types
-        // 11+ validation
-        const requiredFields = ['personal_insight_score', 'reasoning_score', 'extracurricular_score', 'current_awareness_score'];
-        for (const field of requiredFields) {
-          // Convert to number if it's a string
-          if (typeof feedbackData[field] === 'string') {
-            feedbackData[field] = parseFloat(feedbackData[field]);
+        if (interviewType === 'logic-puzzles') {
+          // Logic puzzles validation
+          const requiredFields = ['pattern_recognition_score', 'logical_deduction_score', 'mathematical_logic_score'];
+          for (const field of requiredFields) {
+            // Convert to number if it's a string
+            if (typeof feedbackData[field] === 'string') {
+              feedbackData[field] = parseFloat(feedbackData[field]);
+            }
+            if (typeof feedbackData[field] !== 'number' || isNaN(feedbackData[field]) || feedbackData[field] < 0 || feedbackData[field] > 7) {
+              throw new Error(`Invalid or missing ${field}: must be a number between 0-7`);
+            }
           }
-          if (typeof feedbackData[field] !== 'number' || isNaN(feedbackData[field]) || feedbackData[field] < 0 || feedbackData[field] > 5) {
-            throw new Error(`Invalid or missing ${field}: must be a number between 0-5`);
+          
+          // Calculate total_score from individual scores
+          feedbackData.total_score = feedbackData.pattern_recognition_score + 
+                                     feedbackData.logical_deduction_score + 
+                                     feedbackData.mathematical_logic_score;
+        } else {
+          // 11+ validation
+          const requiredFields = ['personal_insight_score', 'reasoning_score', 'extracurricular_score', 'current_awareness_score'];
+          for (const field of requiredFields) {
+            // Convert to number if it's a string
+            if (typeof feedbackData[field] === 'string') {
+              feedbackData[field] = parseFloat(feedbackData[field]);
+            }
+            if (typeof feedbackData[field] !== 'number' || isNaN(feedbackData[field]) || feedbackData[field] < 0 || feedbackData[field] > 5) {
+              throw new Error(`Invalid or missing ${field}: must be a number between 0-5`);
+            }
           }
+          
+          // Calculate total_score from individual scores
+          feedbackData.total_score = feedbackData.personal_insight_score + 
+                                     feedbackData.reasoning_score + 
+                                     feedbackData.extracurricular_score + 
+                                     feedbackData.current_awareness_score;
         }
-        
-        // Calculate total_score from individual scores
-        feedbackData.total_score = feedbackData.personal_insight_score + 
-                                   feedbackData.reasoning_score + 
-                                   feedbackData.extracurricular_score + 
-                                   feedbackData.current_awareness_score;
       
       if (!feedbackData.detailed_feedback || typeof feedbackData.detailed_feedback !== 'object') {
         throw new Error('Missing or invalid detailed_feedback object');
@@ -291,22 +379,38 @@ try {
     } catch (e) {
       console.error('JSON parsing error:', e.message);
       
-      // Create a fallback response for 11+ interviews
-      feedbackData = {
-        personal_insight_score: 3,
-        reasoning_score: 3,
-        extracurricular_score: 3,
-        current_awareness_score: 3,
-        total_score: 12,
-        detailed_feedback: {
-          personal_insight: "Unable to fully assess due to processing error. Please try again.",
-          reasoning: "Unable to fully assess due to processing error. Please try again.",
-          extracurricular: "Unable to fully assess due to processing error. Please try again.",
-          current_awareness: "Unable to fully assess due to processing error. Please try again.",
-          overall: "There was an issue processing your interview. Please try conducting another interview for a complete assessment.",
-          band_assessment: "Processing error - assessment incomplete. Please retry."
-        }
-      };
+      // Create a fallback response based on interview type
+      if (interviewType === 'logic-puzzles') {
+        feedbackData = {
+          pattern_recognition_score: 4,
+          logical_deduction_score: 4,
+          mathematical_logic_score: 3,
+          total_score: 11,
+          detailed_feedback: {
+            pattern_recognition: "Unable to fully assess due to processing error. Please try again.",
+            logical_deduction: "Unable to fully assess due to processing error. Please try again.",
+            mathematical_logic: "Unable to fully assess due to processing error. Please try again.",
+            overall: "There was an issue processing your interview. Please try conducting another interview for a complete assessment.",
+            band_assessment: "Processing error - assessment incomplete. Please retry."
+          }
+        };
+      } else {
+        feedbackData = {
+          personal_insight_score: 3,
+          reasoning_score: 3,
+          extracurricular_score: 3,
+          current_awareness_score: 3,
+          total_score: 12,
+          detailed_feedback: {
+            personal_insight: "Unable to fully assess due to processing error. Please try again.",
+            reasoning: "Unable to fully assess due to processing error. Please try again.",
+            extracurricular: "Unable to fully assess due to processing error. Please try again.",
+            current_awareness: "Unable to fully assess due to processing error. Please try again.",
+            overall: "There was an issue processing your interview. Please try conducting another interview for a complete assessment.",
+            band_assessment: "Processing error - assessment incomplete. Please retry."
+          }
+        };
+      }
       
       if (Deno.env.get('NODE_ENV') !== 'production') {
         console.log('Using fallback feedback data');
@@ -703,12 +807,19 @@ STUDENT PERFORMANCE DATA:`;
       overall_improvement_feedback: overallImprovementFeedback,
     };
 
-    // Keep legacy columns for backward compatibility
-    insertData.personal_insight_score = feedbackData.personal_insight_score;
-    insertData.reasoning_score = feedbackData.reasoning_score;
-    insertData.extracurricular_score = feedbackData.extracurricular_score;
-    insertData.current_awareness_score = feedbackData.current_awareness_score;
-    insertData.rating = Math.min(5, Math.max(1, Math.round(feedbackData.total_score / 4))); // Convert to 1-5 scale
+    // Keep legacy columns for backward compatibility based on interview type
+    if (interviewType === 'logic-puzzles') {
+      insertData.pattern_recognition_score = feedbackData.pattern_recognition_score;
+      insertData.logical_deduction_score = feedbackData.logical_deduction_score;
+      insertData.mathematical_logic_score = feedbackData.mathematical_logic_score;
+      insertData.rating = Math.min(5, Math.max(1, Math.round(feedbackData.total_score / 4))); // Convert to 1-5 scale
+    } else {
+      insertData.personal_insight_score = feedbackData.personal_insight_score;
+      insertData.reasoning_score = feedbackData.reasoning_score;
+      insertData.extracurricular_score = feedbackData.extracurricular_score;
+      insertData.current_awareness_score = feedbackData.current_awareness_score;
+      insertData.rating = Math.min(5, Math.max(1, Math.round(feedbackData.total_score / 4))); // Convert to 1-5 scale
+    }
 
     const { data: feedbackRecord, error: insertError } = await supabase
       .from('feedback')
