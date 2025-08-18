@@ -249,52 +249,93 @@ export const InterviewFeedback = ({ feedback, isLoading, interviewType = '11-plu
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            {/* Key Performance Insights */}
-            <div className="bg-white/70 rounded-lg p-4 border border-secondary/20">
-              <h4 className="font-semibold mb-3 flex items-center gap-2">
-                <Brain className="w-4 h-4" />
-                Key Performance Analysis
-              </h4>
-              <div className="prose prose-sm max-w-none text-muted-foreground">
-                {feedback.overall_improvement_feedback.split('\n').slice(0, 3).map((paragraph, index) => {
-                  if (paragraph.trim() === '') return null;
+            {/* Parse and render the overall improvement feedback */}
+            {(() => {
+              const feedbackText = feedback.overall_improvement_feedback || '';
+              const sections = feedbackText.split(/(?=\*\*(?:What went well|Even better if)\*\*)/);
+              
+              return sections.map((section, index) => {
+                const trimmedSection = section.trim();
+                if (!trimmedSection) return null;
+                
+                // Check if this is a "What went well" section
+                if (trimmedSection.startsWith('**What went well**')) {
+                  const content = trimmedSection.replace('**What went well**', '').trim();
                   return (
-                    <p key={index} className="mb-2 leading-relaxed">
-                      {paragraph}
-                    </p>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Action Steps */}
-            <div className="bg-white/70 rounded-lg p-4 border border-secondary/20">
-              <h4 className="font-semibold mb-3 flex items-center gap-2">
-                <Target className="w-4 h-4" />
-                Immediate Action Steps
-              </h4>
-              <div className="prose prose-sm max-w-none text-muted-foreground">
-                {feedback.overall_improvement_feedback.split('\n').slice(3).map((paragraph, index) => {
-                  if (paragraph.trim() === '') return null;
-                  
-                  // Check if it's a bullet point or numbered item
-                  const isBulletPoint = paragraph.trim().match(/^[•\-\*]\s/) || paragraph.trim().match(/^\d+\.\s/);
-                  
-                  return (
-                    <div key={index} className={`mb-2 leading-relaxed ${isBulletPoint ? 'ml-4' : ''}`}>
-                      {isBulletPoint ? (
-                        <div className="flex items-start gap-2">
-                          <span className="text-secondary font-semibold">→</span>
-                          <span>{paragraph.replace(/^[•\-\*]\s/, '').replace(/^\d+\.\s/, '')}</span>
-                        </div>
-                      ) : (
-                        <p>{paragraph}</p>
-                      )}
+                    <div key={index} className="bg-white/70 rounded-lg p-4 border border-green-200">
+                      <h4 className="font-semibold mb-3 flex items-center gap-2 text-green-700">
+                        <Brain className="w-4 h-4" />
+                        What went well
+                      </h4>
+                      <div className="prose prose-sm max-w-none text-muted-foreground">
+                        {content.split('\n').map((paragraph, pIndex) => {
+                          if (paragraph.trim() === '') return null;
+                          return (
+                            <p key={pIndex} className="mb-2 leading-relaxed">
+                              {paragraph}
+                            </p>
+                          );
+                        })}
+                      </div>
                     </div>
                   );
-                })}
-              </div>
-            </div>
+                }
+                
+                // Check if this is an "Even better if" section
+                if (trimmedSection.startsWith('**Even better if**')) {
+                  const content = trimmedSection.replace('**Even better if**', '').trim();
+                  return (
+                    <div key={index} className="bg-white/70 rounded-lg p-4 border border-orange-200">
+                      <h4 className="font-semibold mb-3 flex items-center gap-2 text-orange-700">
+                        <Target className="w-4 h-4" />
+                        Even better if
+                      </h4>
+                      <div className="prose prose-sm max-w-none text-muted-foreground">
+                        {content.split('\n').map((paragraph, pIndex) => {
+                          if (paragraph.trim() === '') return null;
+                          
+                          // Check if it's a bullet point or numbered item
+                          const isBulletPoint = paragraph.trim().match(/^[•\-\*]\s/) || paragraph.trim().match(/^\d+\.\s/);
+                          
+                          return (
+                            <div key={pIndex} className={`mb-2 leading-relaxed ${isBulletPoint ? 'ml-4' : ''}`}>
+                              {isBulletPoint ? (
+                                <div className="flex items-start gap-2">
+                                  <span className="text-orange-600 font-semibold">→</span>
+                                  <span>{paragraph.replace(/^[•\-\*]\s/, '').replace(/^\d+\.\s/, '')}</span>
+                                </div>
+                              ) : (
+                                <p>{paragraph}</p>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                }
+                
+                // For any other content (fallback or intro text)
+                if (trimmedSection && !trimmedSection.startsWith('**')) {
+                  return (
+                    <div key={index} className="bg-white/70 rounded-lg p-4 border border-secondary/20">
+                      <div className="prose prose-sm max-w-none text-muted-foreground">
+                        {trimmedSection.split('\n').map((paragraph, pIndex) => {
+                          if (paragraph.trim() === '') return null;
+                          return (
+                            <p key={pIndex} className="mb-2 leading-relaxed">
+                              {paragraph}
+                            </p>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                }
+                
+                return null;
+              }).filter(Boolean);
+            })()}
 
             {/* Success Reminder */}
             <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200">
