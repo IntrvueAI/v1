@@ -39,43 +39,6 @@ export const AnnotatedTranscript: React.FC<AnnotatedTranscriptProps> = ({ transc
     .filter(a => a && a.quote && a.quote.trim().length > 2)
     .sort((a, b) => b.quote.length - a.quote.length);
 
-  const formatTranscriptWithSpeakers = (text: string): React.ReactNode[] => {
-    // Split by lines first, then handle each line
-    const lines = text.split('\n');
-    const result: React.ReactNode[] = [];
-    
-    lines.forEach((line, lineIndex) => {
-      if (lineIndex > 0) result.push('\n');
-      
-      const studentMatch = line.match(/^(Student:\s*)(.*)/i);
-      const interviewerMatch = line.match(/^(Interviewer:\s*)(.*)/i);
-      
-      if (studentMatch) {
-        result.push(
-          <div key={`student-${lineIndex}`} className="flex gap-2 my-1">
-            <span className="inline-flex items-center px-2 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-medium min-w-fit">
-              Student
-            </span>
-            <span className="flex-1">{studentMatch[2]}</span>
-          </div>
-        );
-      } else if (interviewerMatch) {
-        result.push(
-          <div key={`interviewer-${lineIndex}`} className="flex gap-2 my-1">
-            <span className="inline-flex items-center px-2 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium min-w-fit">
-              Interviewer
-            </span>
-            <span className="flex-1">{interviewerMatch[2]}</span>
-          </div>
-        );
-      } else if (line.trim()) {
-        result.push(line);
-      }
-    });
-    
-    return result;
-  };
-
   const renderWithHighlights = () => {
     // Prefer precise index-based annotations when available
     const ranged = (annotations || []).filter((a) => (
@@ -183,17 +146,8 @@ export const AnnotatedTranscript: React.FC<AnnotatedTranscriptProps> = ({ transc
         </span>
       </div>
 
-      <div className="leading-relaxed text-sm text-foreground/90">
-        {(() => {
-          const highlighted = renderWithHighlights();
-          // Apply speaker tag formatting to the final result
-          return highlighted.map((node, index) => {
-            if (typeof node === 'string') {
-              return <span key={index}>{formatTranscriptWithSpeakers(node)}</span>;
-            }
-            return node;
-          });
-        })()}
+      <div className="whitespace-pre-wrap leading-relaxed text-sm text-foreground/90">
+        {renderWithHighlights()}
       </div>
     </div>
   );
