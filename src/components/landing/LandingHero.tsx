@@ -36,7 +36,7 @@ export const LandingHero = ({
           {/* St. Paul's School Badge */}
           <Badge className="bg-white text-[#FF7F50] hover:bg-gray-50 px-4 py-2 text-sm font-medium border border-[#FF7F50]/40 relative overflow-hidden">
             <BookOpen className="w-4 h-4 mr-2" />
-            <SparklesText text="Designed by Former Students & Teachers from St. Paul's School, London" className="text-sm font-medium" sparklesCount={5} colors={{
+            <SparklesText text="Designed by Students & Teachers from St. Paul's School, London" className="text-sm font-medium" sparklesCount={5} colors={{
               first: "#FF7F50",
               second: "#FFB347"
             }} />
@@ -55,7 +55,7 @@ export const LandingHero = ({
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 md:px-0">
               Practice 11+ interviews with realistic digital human interviewers. 
-              Get instant feedback and ace your UK private and grammar school admissions.
+              Get instant feedback and admissions insight from St. Paul's School, Westminster School, & Eton College to maximise results.
             </p>
           </div>
           
