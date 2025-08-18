@@ -272,7 +272,10 @@ const Index = () => {
       <main className={cn("pb-safe", isMobile && "pb-20")}>
         {showPaymentSuccess ? (
           <div className="container mx-auto px-4 py-8 max-w-3xl">
-            <PaymentSuccess onGoToPractice={() => setCurrentView('selection')} />
+            <PaymentSuccess 
+              onGoToPractice={() => setCurrentView('selection')} 
+              onGoToCredits={() => setCurrentView('credits')}
+            />
           </div>
         ) : currentView === 'selection' ? (
           <div className="container mx-auto px-4 py-8 max-w-6xl">

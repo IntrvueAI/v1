@@ -8,9 +8,10 @@ import { supabase } from "@/integrations/supabase/client";
 
 interface PaymentSuccessProps {
   onGoToPractice: () => void;
+  onGoToCredits: () => void;
 }
 
-export const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ onGoToPractice }) => {
+export const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ onGoToPractice, onGoToCredits }) => {
   const { toast } = useToast();
   const [processing, setProcessing] = React.useState(true);
   const [result, setResult] = React.useState<{ balance?: number; added?: number } | null>(null);
@@ -93,7 +94,7 @@ export const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ onGoToPractice }
               </div>
               <div className="flex gap-2">
                 <Button onClick={onGoToPractice}>Go to Practice</Button>
-                <Button variant="outline" onClick={() => (window.location.href = "/?view=credits")}>
+                <Button variant="outline" onClick={onGoToCredits}>
                   Buy more credits
                 </Button>
               </div>
