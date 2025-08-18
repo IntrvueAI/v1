@@ -34,18 +34,19 @@ export const useConnectionHealthCheck = (intervalMs: number = 30000): Connection
       abortControllerRef.current = new AbortController();
       const startTime = performance.now();
 
-      // Use a lightweight endpoint to check connectivity
-      const response = await fetch('/ping', {
+      // Use a simple connectivity check instead of /ping
+      const response = await fetch('https://www.google.com/favicon.ico', {
         method: 'HEAD',
         signal: abortControllerRef.current.signal,
-        cache: 'no-cache'
+        cache: 'no-cache',
+        mode: 'no-cors' // Avoid CORS issues
       });
 
       const endTime = performance.now();
       const latency = endTime - startTime;
 
       const newHealth: ConnectionHealth = {
-        isOnline: response.ok,
+        isOnline: true, // If we reach here, we're online
         latency: latency,
         lastCheck: new Date(),
         connectionQuality: latency < 500 ? 'good' : latency < 2000 ? 'poor' : 'offline'

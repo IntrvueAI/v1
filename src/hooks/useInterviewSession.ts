@@ -157,15 +157,12 @@ export const useInterviewSession = (
           .catch(err => console.warn('Failed to log message update:', err));
       });
 
-      // Add error listener
-      client.addListener(AnamEvent.CONNECTION_CLOSED, () => {
-        sessionLogger.logError('Anam connection closed unexpectedly')
-          .catch(err => console.warn('Failed to log connection closed:', err));
-        console.warn('Anam connection closed');
-      });
-
-      // Start streaming to video element
-      console.log('📹 Starting video stream...');
+      // Ensure video element is ready and start streaming
+      console.log('📹 Starting video stream to element:', videoRef.current?.id);
+      if (!videoRef.current) {
+        throw new Error('Video element lost during initialization');
+      }
+      
       await client.streamToVideoElement('interview-video');
       console.log('✅ Video streaming started');
 
