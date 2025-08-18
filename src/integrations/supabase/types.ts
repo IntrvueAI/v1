@@ -167,6 +167,92 @@ export type Database = {
         }
         Relationships: []
       }
+      interview_logs: {
+        Row: {
+          id: string
+          log_level: string
+          log_type: string
+          message: string
+          metadata: Json | null
+          session_id: string | null
+          timestamp: string
+        }
+        Insert: {
+          id?: string
+          log_level?: string
+          log_type: string
+          message: string
+          metadata?: Json | null
+          session_id?: string | null
+          timestamp?: string
+        }
+        Update: {
+          id?: string
+          log_level?: string
+          log_type?: string
+          message?: string
+          metadata?: Json | null
+          session_id?: string | null
+          timestamp?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "interview_logs_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "interview_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      interview_sessions: {
+        Row: {
+          anam_session_token_hash: string | null
+          created_at: string
+          ended_at: string | null
+          error_logs: Json | null
+          id: string
+          interview_type: string
+          last_activity_at: string
+          session_metadata: Json | null
+          session_reference: string
+          started_at: string
+          status: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          anam_session_token_hash?: string | null
+          created_at?: string
+          ended_at?: string | null
+          error_logs?: Json | null
+          id?: string
+          interview_type: string
+          last_activity_at?: string
+          session_metadata?: Json | null
+          session_reference: string
+          started_at?: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          anam_session_token_hash?: string | null
+          created_at?: string
+          ended_at?: string | null
+          error_logs?: Json | null
+          id?: string
+          interview_type?: string
+          last_activity_at?: string
+          session_metadata?: Json | null
+          session_reference?: string
+          started_at?: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           amount: number
@@ -239,6 +325,42 @@ export type Database = {
         }
         Relationships: []
       }
+      user_feedback: {
+        Row: {
+          admin_response: string | null
+          category: string
+          created_at: string
+          id: string
+          message: string
+          status: string
+          subject: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          admin_response?: string | null
+          category?: string
+          created_at?: string
+          id?: string
+          message: string
+          status?: string
+          subject?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          admin_response?: string | null
+          category?: string
+          created_at?: string
+          id?: string
+          message?: string
+          status?: string
+          subject?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -251,6 +373,10 @@ export type Database = {
       delete_user: {
         Args: Record<PropertyKey, never>
         Returns: undefined
+      }
+      generate_session_reference: {
+        Args: Record<PropertyKey, never>
+        Returns: string
       }
       get_current_admin_email: {
         Args: Record<PropertyKey, never>

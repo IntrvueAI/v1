@@ -5,6 +5,8 @@ import { AnamEvent } from "@anam-ai/js-sdk/dist/module/types";
 import { supabase } from '@/integrations/supabase/client';
 import { loadSystemPrompt } from '@/utils/promptLoader';
 import { InterviewType } from '@/config/interviewTypes';
+import { useInterviewSessionLogger } from './useInterviewSessionLogger';
+import { useConnectionHealthCheck } from './useConnectionHealthCheck';
 
 // Types for the interview session
 type SessionStatus = 'idle' | 'connecting' | 'connected' | 'streaming' | 'error';
@@ -21,7 +23,9 @@ interface UseInterviewSessionReturn {
   error: string | null;
   sessionStatus: SessionStatus;
   chatHistory: ChatMessage[];
-  startInterview: () => Promise<void>;
+  sessionReference: string | null;
+  connectionHealth: 'good' | 'poor' | 'offline';
+  startInterview: (userId: string) => Promise<void>;
   stopInterview: () => Promise<string | null>;
 }
 
@@ -43,6 +47,11 @@ export const useInterviewSession = (
   // Ref to store the anam client instance and messages
   const clientRef = useRef<any>(null);
   const messagesRef = useRef<any[]>([]);
+  const lastMessageTimeRef = useRef<number>(Date.now());
+
+  // Session logging and health monitoring
+  const sessionLogger = useInterviewSessionLogger();
+  const connectionHealth = useConnectionHealthCheck(15000); // Check every 15 seconds during interview
 
   /**
    * Get session token from secure Supabase Edge Function
@@ -88,7 +97,7 @@ export const useInterviewSession = (
   /**
    * Start the interview session
    */
-  const startInterview = useCallback(async () => {
+  const startInterview = useCallback(async (userId: string) => {
     if (!videoRef.current) {
       setError('Video element not found');
       return;
@@ -98,8 +107,16 @@ export const useInterviewSession = (
       setError(null);
       setSessionStatus('connecting');
 
+      // Start session logging
+      const sessionRef = await sessionLogger.startSession(interviewType, userId);
+      await sessionLogger.logEvent('session_start', 'Interview session initialization started');
+
+      // Start connection health monitoring
+      connectionHealth.startMonitoring();
+
       // Get session token from backend
       const sessionToken = await getSessionToken();
+      await sessionLogger.logEvent('anam_token', 'Successfully obtained Anam session token');
 
       // Create anam client
       const client = createClient(sessionToken);
@@ -109,6 +126,7 @@ export const useInterviewSession = (
       client.addListener(AnamEvent.MESSAGE_HISTORY_UPDATED, (messages: any[]) => {
         console.log('MESSAGE_HISTORY_UPDATED received:', messages);
         messagesRef.current = messages;
+        lastMessageTimeRef.current = Date.now();
         
         // Convert messages to chat history format
         const formattedMessages: ChatMessage[] = messages.map((msg: any) => ({
@@ -118,6 +136,16 @@ export const useInterviewSession = (
         }));
         
         setChatHistory(formattedMessages);
+        
+        // Update activity and log conversation progress
+        sessionLogger.updateActivity();
+        sessionLogger.logEvent('message_update', `Received ${messages.length} messages in conversation`);
+      });
+
+      // Add error listener
+      client.addListener(AnamEvent.CONNECTION_CLOSED, () => {
+        sessionLogger.logError('Anam connection closed unexpectedly');
+        console.warn('Anam connection closed');
       });
 
       // Start streaming to video element
@@ -127,15 +155,18 @@ export const useInterviewSession = (
       setIsStreaming(true);
       setSessionStatus('streaming');
 
+      await sessionLogger.logEvent('streaming_start', 'Video streaming started successfully');
       console.log('Interview session started successfully');
     } catch (err) {
       console.error('Failed to start interview:', err);
-      setError(err instanceof Error ? err.message : 'Failed to start interview');
+      const errorMessage = err instanceof Error ? err.message : 'Failed to start interview';
+      await sessionLogger.logError(`Failed to start interview: ${errorMessage}`);
+      setError(errorMessage);
       setSessionStatus('error');
       setIsConnected(false);
       setIsStreaming(false);
     }
-  }, [videoRef]);
+  }, [videoRef, sessionLogger, connectionHealth, interviewType]);
 
   /**
    * Stop the interview session and get transcription
@@ -144,6 +175,8 @@ export const useInterviewSession = (
     try {
       let transcription = null;
       
+      await sessionLogger.logEvent('stop_interview', 'Interview stop initiated');
+
       if (clientRef.current) {
         // Get transcription from stored messages (updated via MESSAGE_HISTORY_UPDATED event)
         try {
@@ -194,18 +227,34 @@ export const useInterviewSession = (
               transcription = lines.join('\n\n');
               if (!hasStudent) {
                 console.warn('No student responses detected in messages; transcription may be incomplete.');
+                await sessionLogger.logError('No student responses detected in transcription');
               }
+              
+              await sessionLogger.logEvent('transcription_generated', `Transcription built with ${lines.length} lines`, 'info', {
+                total_lines: lines.length,
+                has_student_responses: hasStudent,
+                last_message_time: lastMessageTimeRef.current
+              });
+              
               console.log('Transcription built with', lines.length, 'lines');
             } else {
               console.log('No messages available in stored messages');
+              await sessionLogger.logError('No messages available for transcription');
             }
         } catch (transcriptionError) {
           console.warn('Could not get transcription:', transcriptionError);
+          await sessionLogger.logError(`Transcription error: ${transcriptionError}`);
         }
         
         await clientRef.current.stopStreaming();
         clientRef.current = null;
       }
+
+      // Stop health monitoring
+      connectionHealth.stopMonitoring();
+
+      // End session logging
+      await sessionLogger.endSession(transcription ? 'completed' : 'error');
 
       setIsConnected(false);
       setIsStreaming(false);
@@ -217,10 +266,33 @@ export const useInterviewSession = (
       return transcription;
     } catch (err) {
       console.error('Failed to stop interview:', err);
-      setError(err instanceof Error ? err.message : 'Failed to stop interview');
+      const errorMessage = err instanceof Error ? err.message : 'Failed to stop interview';
+      await sessionLogger.logError(`Stop interview error: ${errorMessage}`);
+      setError(errorMessage);
       return null;
     }
-  }, []);
+  }, [sessionLogger, connectionHealth]);
+
+  // Monitor for potential timeouts or unresponsive sessions
+  useEffect(() => {
+    if (!isStreaming) return;
+
+    const timeoutCheck = setInterval(() => {
+      const timeSinceLastMessage = Date.now() - lastMessageTimeRef.current;
+      const TIMEOUT_THRESHOLD = 120000; // 2 minutes of no activity
+
+      if (timeSinceLastMessage > TIMEOUT_THRESHOLD) {
+        console.warn('Session appears unresponsive - no messages for', timeSinceLastMessage / 1000, 'seconds');
+        sessionLogger.logError(`Session timeout detected - no activity for ${Math.round(timeSinceLastMessage / 1000)} seconds`, {
+          last_message_time: lastMessageTimeRef.current,
+          current_time: Date.now(),
+          connection_quality: connectionHealth.connectionQuality
+        });
+      }
+    }, 30000); // Check every 30 seconds
+
+    return () => clearInterval(timeoutCheck);
+  }, [isStreaming, sessionLogger, connectionHealth.connectionQuality]);
 
   /**
    * Cleanup on unmount
@@ -230,8 +302,10 @@ export const useInterviewSession = (
       if (clientRef.current) {
         clientRef.current.stopStreaming().catch(console.error);
       }
+      connectionHealth.stopMonitoring();
+      sessionLogger.endSession('error').catch(console.error);
     };
-  }, []);
+  }, [connectionHealth, sessionLogger]);
 
   return {
     isConnected,
@@ -239,6 +313,8 @@ export const useInterviewSession = (
     error,
     sessionStatus,
     chatHistory,
+    sessionReference: sessionLogger.sessionReference,
+    connectionHealth: connectionHealth.connectionQuality,
     startInterview,
     stopInterview,
   };

@@ -46,6 +46,8 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
     isStreaming,
     error,
     chatHistory,
+    sessionReference,
+    connectionHealth,
     startInterview,
     stopInterview,
     sessionStatus
@@ -150,12 +152,21 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
 
   // Handle starting the interview session
   const handleStartInterview = useCallback(async () => {
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please sign in to start an interview session.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
-      await startInterview();
+      await startInterview(user.id);
     } catch (err) {
       console.error('Failed to start interview:', err);
     }
-  }, [startInterview]);
+  }, [startInterview, user, toast]);
 
   // Handle stopping the interview session and generate feedback
   const handleStopInterview = useCallback(async () => {
@@ -170,7 +181,7 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
         const { data, error } = await supabase.functions.invoke('generate-interview-feedback', {
           body: {
             transcription: transcription,
-            sessionId: Date.now().toString(), // Simple session ID
+            sessionId: sessionReference || Date.now().toString(),
             userId: user.id,
             interviewType: interviewType.id,
             interviewCategory: interviewType.category,
@@ -298,6 +309,26 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
                   sessionStatus={sessionStatus}
                   error={error}
                 />
+
+                {/* Session Reference Display */}
+                {sessionReference && (
+                  <div className="text-xs text-muted-foreground text-center">
+                    Session: <code className="bg-muted px-1 py-0.5 rounded text-xs">{sessionReference}</code>
+                  </div>
+                )}
+
+                {/* Connection Health Indicator */}
+                {isStreaming && (
+                  <div className="flex items-center justify-center gap-2 text-xs">
+                    <div className={`w-2 h-2 rounded-full ${
+                      connectionHealth === 'good' ? 'bg-green-500' : 
+                      connectionHealth === 'poor' ? 'bg-yellow-500' : 'bg-red-500'
+                    }`} />
+                    <span className="text-muted-foreground">
+                      Connection: {connectionHealth}
+                    </span>
+                  </div>
+                )}
                 
                 {/* Video Element for AI Interviewer - Mobile Optimized Aspect Ratio */}
                 <div className="relative bg-muted rounded-lg overflow-hidden aspect-video md:aspect-[16/10] lg:aspect-[16/9]">
