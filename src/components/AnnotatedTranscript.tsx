@@ -39,6 +39,26 @@ export const AnnotatedTranscript: React.FC<AnnotatedTranscriptProps> = ({ transc
     .filter(a => a && a.quote && a.quote.trim().length > 2)
     .sort((a, b) => b.quote.length - a.quote.length);
 
+  // Split transcript into lines and wrap student messages
+  const formatTranscriptLines = (content: React.ReactNode) => {
+    if (typeof content !== 'string') return content;
+    
+    const lines = content.split('\n');
+    return lines.map((line, index) => {
+      const isStudentLine = line.trim().startsWith('Student:');
+      
+      if (isStudentLine) {
+        return (
+          <div key={index} className="bg-muted/30 rounded-lg px-3 py-2 my-1 ml-4 mr-8">
+            {line}
+          </div>
+        );
+      }
+      
+      return <div key={index}>{line}</div>;
+    });
+  };
+
   const renderWithHighlights = () => {
     // Prefer precise index-based annotations when available
     const ranged = (annotations || []).filter((a) => (
@@ -147,7 +167,7 @@ export const AnnotatedTranscript: React.FC<AnnotatedTranscriptProps> = ({ transc
       </div>
 
       <div className="whitespace-pre-wrap leading-relaxed text-sm text-foreground/90">
-        {renderWithHighlights()}
+        {formatTranscriptLines(renderWithHighlights())}
       </div>
     </div>
   );
