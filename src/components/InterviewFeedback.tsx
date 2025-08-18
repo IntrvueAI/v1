@@ -240,7 +240,7 @@ export const InterviewFeedback = ({ feedback, isLoading, interviewType = '11-plu
       {feedback.overall_improvement_feedback && (
         <Card className="border-secondary/30 bg-gradient-to-br from-secondary/10 to-orange-50/50 shadow-lg">
           <CardHeader className="pb-4">
-            <CardTitle className="flex items-center gap-3 text-xl text-secondary">
+            <CardTitle className="flex items-center gap-3 text-xl font-semibold">
               <Target className="w-6 h-6" />
               Overall Feedback Summary & Action Plan
             </CardTitle>
@@ -251,7 +251,7 @@ export const InterviewFeedback = ({ feedback, isLoading, interviewType = '11-plu
           <CardContent className="space-y-6">
             {/* Key Performance Insights */}
             <div className="bg-white/70 rounded-lg p-4 border border-secondary/20">
-              <h4 className="font-semibold text-secondary mb-3 flex items-center gap-2">
+              <h4 className="font-semibold mb-3 flex items-center gap-2">
                 <Brain className="w-4 h-4" />
                 Key Performance Analysis
               </h4>
@@ -269,7 +269,7 @@ export const InterviewFeedback = ({ feedback, isLoading, interviewType = '11-plu
 
             {/* Action Steps */}
             <div className="bg-white/70 rounded-lg p-4 border border-secondary/20">
-              <h4 className="font-semibold text-secondary mb-3 flex items-center gap-2">
+              <h4 className="font-semibold mb-3 flex items-center gap-2">
                 <Target className="w-4 h-4" />
                 Immediate Action Steps
               </h4>
