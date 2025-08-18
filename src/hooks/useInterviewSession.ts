@@ -317,7 +317,7 @@ export const useInterviewSession = (
   }, [isStreaming, sessionLogger, connectionHealth.connectionQuality]);
 
   /**
-   * Cleanup on unmount
+   * Cleanup on unmount only
    */
   useEffect(() => {
     return () => {
@@ -327,7 +327,7 @@ export const useInterviewSession = (
       connectionHealth.stopMonitoring();
       sessionLogger.endSession('error').catch(console.error);
     };
-  }, [connectionHealth, sessionLogger]);
+  }, []); // Empty dependency array - only run on unmount
 
   return {
     isConnected,
