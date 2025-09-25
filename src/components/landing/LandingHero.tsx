@@ -83,7 +83,7 @@ export const LandingHero = ({
           <div className="flex flex-wrap justify-center items-center gap-8 pt-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-primary" />
-              <span>Trusted by 1000+ students</span>
+              <span>Trusted by 100+ students</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-success rounded-full animate-pulse" />
