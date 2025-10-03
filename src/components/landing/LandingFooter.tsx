@@ -1,12 +1,11 @@
 import { Separator } from '@/components/ui/separator';
+import { Twitter, Instagram } from 'lucide-react';
 
 export const LandingFooter = () => {
 
   const socialIcons = [
-    { name: 'Twitter', icon: 'TW', href: '#twitter' },
-    { name: 'LinkedIn', icon: 'LI', href: '#linkedin' },
-    { name: 'YouTube', icon: 'YT', href: '#youtube' },
-    { name: 'Facebook', icon: 'FB', href: '#facebook' }
+    { name: 'X', icon: Twitter, href: '#x' },
+    { name: 'Instagram', icon: Instagram, href: '#instagram' }
   ];
 
   return (
@@ -25,15 +24,19 @@ export const LandingFooter = () => {
             
             {/* Social Links */}
             <div className="flex items-center justify-center gap-3 pt-2">
-              {socialIcons.map((social, index) => (
-                <a 
-                  key={index}
-                  href={social.href}
-                  className="w-8 h-8 bg-muted rounded-full flex items-center justify-center text-xs font-bold text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                >
-                  {social.icon}
-                </a>
-              ))}
+              {socialIcons.map((social, index) => {
+                const IconComponent = social.icon;
+                return (
+                  <a 
+                    key={index}
+                    href={social.href}
+                    className="w-10 h-10 bg-muted rounded-full flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                    aria-label={social.name}
+                  >
+                    <IconComponent size={20} />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
