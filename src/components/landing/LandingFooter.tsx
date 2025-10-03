@@ -1,12 +1,7 @@
 import { Separator } from '@/components/ui/separator';
-import { X, Instagram } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 export const LandingFooter = () => {
-
-  const socialIcons = [
-    { name: 'X', icon: X, href: '#x' },
-    { name: 'Instagram', icon: Instagram, href: '#instagram' }
-  ];
 
   return (
     <footer className="bg-muted/30 border-t">
@@ -24,19 +19,20 @@ export const LandingFooter = () => {
             
             {/* Social Links */}
             <div className="flex items-center justify-center gap-3 pt-2">
-              {socialIcons.map((social, index) => {
-                const IconComponent = social.icon;
-                return (
-                  <a 
-                    key={index}
-                    href={social.href}
-                    className="w-10 h-10 bg-muted rounded-full flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                    aria-label={social.name}
-                  >
-                    <IconComponent size={20} />
-                  </a>
-                );
-              })}
+              <a 
+                href="#x"
+                className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-primary transition-colors p-2"
+                aria-label="X (formerly Twitter)"
+              >
+                <img src="/lovable-uploads/x-logo.png" alt="X" className="w-full h-full object-contain" />
+              </a>
+              <a 
+                href="#instagram"
+                className="w-10 h-10 bg-muted rounded-full flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
             </div>
           </div>
         </div>
