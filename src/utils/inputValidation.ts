@@ -6,7 +6,7 @@ import { recordSuspiciousRequest } from './securityMonitor';
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Password validation - at least 8 chars, one uppercase, one lowercase, one number
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
 // Name validation - only letters, spaces, hyphens, apostrophes
 const NAME_REGEX = /^[a-zA-Z\s'-]+$/;
