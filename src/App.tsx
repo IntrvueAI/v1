@@ -16,7 +16,7 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 // Set to true to display the downtime notice
-const IS_SITE_DOWN = true;
+const IS_SITE_DOWN = false;
 
 // Admin email that can bypass downtime
 const ADMIN_BYPASS_EMAIL = "ibrahim@khan.cc";
