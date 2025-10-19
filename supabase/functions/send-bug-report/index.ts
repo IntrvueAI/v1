@@ -18,30 +18,75 @@ interface BugReportRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  // Log incoming request
+  console.log('🔧 [EdgeFunction] Received request:', {
+    method: req.method,
+    url: req.url,
+    hasAuthHeader: !!req.headers.get("Authorization"),
+    authHeaderPreview: req.headers.get("Authorization")?.substring(0, 30) + '...'
+  });
+
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
+    console.log('🔧 [EdgeFunction] Handling OPTIONS request');
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
     // Verify authentication
     const authHeader = req.headers.get("Authorization");
+    console.log('🔧 [EdgeFunction] Auth header check:', {
+      hasAuthHeader: !!authHeader,
+      authHeaderLength: authHeader?.length || 0,
+      authHeaderStart: authHeader?.substring(0, 20) || 'missing'
+    });
+
     if (!authHeader) {
+      console.error('🔧 [EdgeFunction] Missing authorization header');
       throw new Error("Missing authorization header");
     }
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+    // Check environment variables
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseKey = Deno.env.get("SUPABASE_ANON_KEY");
+    
+    console.log('🔧 [EdgeFunction] Environment variables check:', {
+      hasSupabaseUrl: !!supabaseUrl,
+      supabaseUrl: supabaseUrl || 'MISSING',
+      hasSupabaseKey: !!supabaseKey,
+      supabaseKeyPreview: supabaseKey?.substring(0, 20) + '...' || 'MISSING'
+    });
+
+    if (!supabaseUrl || !supabaseKey) {
+      console.error('🔧 [EdgeFunction] Missing Supabase environment variables');
+      throw new Error("Server configuration error");
+    }
+
     const supabase = createClient(supabaseUrl, supabaseKey, {
       global: {
         headers: { Authorization: authHeader },
       },
     });
 
+    console.log('🔧 [EdgeFunction] Supabase client created, verifying user...');
+
     const { data: { user }, error: userError } = await supabase.auth.getUser();
+    
+    console.log('🔧 [EdgeFunction] User verification result:', {
+      hasUser: !!user,
+      userId: user?.id,
+      userEmail: user?.email,
+      hasError: !!userError,
+      errorMessage: userError?.message,
+      errorDetails: userError
+    });
+
     if (userError || !user) {
+      console.error('🔧 [EdgeFunction] User verification failed:', userError);
       throw new Error("Unauthorized");
     }
+
+    console.log('🔧 [EdgeFunction] User authenticated successfully, processing request...');
 
     // Parse and validate request body
     const { subject, category, description, stepsToReproduce, currentUrl }: BugReportRequest = await req.json();
