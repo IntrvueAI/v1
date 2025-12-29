@@ -381,30 +381,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      consume_credit: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
-      delete_user: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
-      }
-      generate_session_reference: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
-      get_current_admin_email: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
-      is_current_user_admin: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
-      verify_admin_access_with_logging: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
+      consume_credit: { Args: never; Returns: boolean }
+      delete_user: { Args: never; Returns: undefined }
+      generate_session_reference: { Args: never; Returns: string }
+      get_current_admin_email: { Args: never; Returns: string }
+      is_current_user_admin: { Args: never; Returns: boolean }
+      verify_admin_access_with_logging: { Args: never; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
