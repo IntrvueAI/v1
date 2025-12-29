@@ -62,29 +62,31 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error("Server configuration error");
     }
 
-    const supabase = createClient(supabaseUrl, supabaseKey, {
-      global: {
-        headers: { Authorization: authHeader },
-      },
-    });
+    // Extract token from Authorization header
+    const token = authHeader.replace('Bearer ', '');
+    console.log('🔧 [EdgeFunction] Token extracted, length:', token.length);
 
-    console.log('🔧 [EdgeFunction] Supabase client created, verifying user...');
+    const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    console.log('🔧 [EdgeFunction] Supabase client created, verifying user with token...');
+
+    // Pass token directly to getUser() - this is the correct pattern
+    const { data: userData, error: userError } = await supabase.auth.getUser(token);
     
     console.log('🔧 [EdgeFunction] User verification result:', {
-      hasUser: !!user,
-      userId: user?.id,
-      userEmail: user?.email,
+      hasUser: !!userData?.user,
+      userId: userData?.user?.id,
+      userEmail: userData?.user?.email,
       hasError: !!userError,
-      errorMessage: userError?.message,
-      errorDetails: userError
+      errorMessage: userError?.message
     });
 
-    if (userError || !user) {
+    if (userError || !userData?.user) {
       console.error('🔧 [EdgeFunction] User verification failed:', userError);
       throw new Error("Unauthorized");
     }
+
+    const user = userData.user;
 
     console.log('🔧 [EdgeFunction] User authenticated successfully, processing request...');
 
