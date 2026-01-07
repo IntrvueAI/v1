@@ -7,7 +7,6 @@ import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { SecurityProvider } from "@/components/SecurityProvider";
 import { ClickSpark } from "@/components/ui/click-spark";
 import { Heart, Snowflake, Mail } from "lucide-react";
-import Snowfall from "@/components/Snowfall";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
@@ -40,7 +39,6 @@ const AppContent = () => {
       style={{ pointerEvents: 'none' }}
     >
       <div className="w-full h-full pointer-events-auto">
-        <Snowfall />
         <Toaster />
         <Sonner />
         {shouldShowDowntime && (
