@@ -18,28 +18,13 @@ export const CreditsStore: React.FC = () => {
   const { toast } = useToast();
   const [loadingPack, setLoadingPack] = React.useState<Pack | null>(null);
 
-  const handleBuy = async (pack: Pack) => {
-    setLoadingPack(pack);
-    try {
-      const { data, error } = await supabase.functions.invoke("create-payment", {
-        body: { pack, origin: window.location.origin },
-      });
-
-      if (error) throw error;
-      if (!data?.url) {
-        throw new Error("Failed to create payment session.");
-      }
-
-      window.location.href = data.url as string;
-    } catch (e: any) {
-      console.error("create-payment failed", e);
-      toast({
-        title: "Unable to start checkout",
-        description: e?.message || "Please try again.",
-        variant: "destructive",
-      });
-      setLoadingPack(null);
-    }
+  const handleBuy = async (_pack: Pack) => {
+    // Payments are currently disabled as service is ending
+    toast({
+      title: "Purchases Unavailable",
+      description: "Intrvue.AI is not accepting new purchases at this time. Thank you for your interest!",
+      variant: "destructive",
+    });
   };
 
   return (
