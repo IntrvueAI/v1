@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { SecurityProvider } from "@/components/SecurityProvider";
 import { ClickSpark } from "@/components/ui/click-spark";
-import { Mail } from "lucide-react";
+import { Mail, Calendar } from "lucide-react";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
@@ -52,10 +52,21 @@ const AppContent = () => {
               {/* Main message */}
               <div className="space-y-4">
                 <h1 className="text-2xl font-bold text-foreground">
-                  We'll Be Back Soon
+                  Service Ending for This Exam Cycle
                 </h1>
                 <p className="text-muted-foreground leading-relaxed">
-                  <span className="font-semibold text-primary">Intrvue.AI</span> is currently undergoing scheduled maintenance. We're working hard to improve your experience.
+                  Thank you for choosing <span className="font-semibold text-primary">Intrvue.AI</span> to prepare for your interviews. We will be discontinuing our services for this exam cycle.
+                </p>
+              </div>
+              
+              {/* Shutdown date notice */}
+              <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
+                <div className="flex items-center justify-center gap-2 text-primary font-semibold">
+                  <Calendar className="w-5 h-5" />
+                  <span>Final Day: February 9th, 2025</span>
+                </div>
+                <p className="text-sm text-muted-foreground mt-2">
+                  All services will be unavailable after this date. We appreciate your support and wish all students the best in their academic journeys.
                 </p>
               </div>
               
@@ -75,7 +86,7 @@ const AppContent = () => {
               
               {/* Footer note */}
               <p className="text-xs text-muted-foreground/70">
-                Thank you for your patience! 🛠️
+                Thank you for being part of our journey! 💙
               </p>
             </div>
           </div>
