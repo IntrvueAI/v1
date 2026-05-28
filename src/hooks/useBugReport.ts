@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { authRateLimiter } from '@/utils/secureErrorHandler';
+import { FeedbackService } from '@/services/FeedbackService';
 
 interface BugReportData {
   subject: string;
@@ -66,60 +66,14 @@ export const useBugReport = () => {
         currentUrl: data.currentUrl
       });
 
-      // Call the edge function with retry logic for expired sessions
-      let retryCount = 0;
-      const maxRetries = 1;
+      await FeedbackService.submitBugReport(data);
 
-      while (retryCount <= maxRetries) {
-        const { data: result, error } = await supabase.functions.invoke('send-bug-report', {
-          body: data,
-        });
-
-        console.log('🐛 [BugReport] Edge function response:', {
-          hasResult: !!result,
-          hasError: !!error,
-          errorMessage: error?.message,
-          errorDetails: error,
-          retryCount
-        });
-
-        if (error && (error.message === 'Unauthorized' || error.message?.includes('Unauthorized')) && retryCount < maxRetries) {
-          console.log('🐛 [BugReport] Unauthorized error, attempting to refresh session...');
-          
-          // Refresh the session
-          const { data: { session: refreshedSession }, error: refreshError } = 
-            await supabase.auth.refreshSession();
-          
-          console.log('🐛 [BugReport] Session refresh result:', {
-            hasSession: !!refreshedSession,
-            refreshError: refreshError?.message
-          });
-          
-          if (refreshError || !refreshedSession) {
-            throw new Error('Session expired. Please log in again.');
-          }
-          
-          retryCount++;
-          continue; // Retry the function call
-        }
-
-        if (error) {
-          throw error;
-        }
-
-        // Success!
-        // Record attempt for rate limiting
-        authRateLimiter.recordAttempt(rateLimitKey);
-
-        toast({
-          title: "Bug report submitted",
-          description: "Thank you for helping us improve! We'll investigate this issue.",
-        });
-
-        return true;
-      }
-
-      return false;
+      authRateLimiter.recordAttempt(rateLimitKey);
+      toast({
+        title: "Bug report submitted",
+        description: "Thank you for helping us improve! We'll investigate this issue.",
+      });
+      return true;
     } catch (error: any) {
       console.error('🐛 [BugReport] Submission failed:', {
         message: error.message,

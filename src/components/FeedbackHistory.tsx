@@ -18,46 +18,16 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { InterviewFeedback } from './InterviewFeedback';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
 import { CalendarDays, ChevronRight } from 'lucide-react';
 
-// Import new modular utilities
 import { FeedbackRecord } from '@/types/interview';
 import { getBandLabel, getBandColor } from '@/utils/interviewHelpers';
 import { FEEDBACK_DEFAULTS } from '@/constants/feedback';
+import { FeedbackService } from '@/services/FeedbackService';
 
-/**
- * Legacy interface for backward compatibility
- * TODO: Migrate to use FeedbackRecord from types/interview.ts
- */
-interface LegacyFeedbackRecord {
-  id: string;
-  created_at: string;
-  total_score: number;
-  personal_insight_score?: number;
-  reasoning_score?: number;
-  extracurricular_score?: number;
-  current_awareness_score?: number;
-  fluency_coherence_score?: number;
-  lexical_resource_score?: number;
-  grammatical_range_score?: number;
-  pronunciation_score?: number;
-  detailed_feedback: any;
-  interview_session_id: string;
-  interview_type?: string;
-  scoring_system?: string;
-  transcription?: string;
-  annotations?: any[];
-  overall_improvement_feedback?: string;
-  session_reference?: string;
-}
-
-/**
- * Main FeedbackHistory component
- */
 export const FeedbackHistory: React.FC = () => {
-  const [feedbackHistory, setFeedbackHistory] = useState<LegacyFeedbackRecord[]>([]);
-  const [selectedFeedback, setSelectedFeedback] = useState<LegacyFeedbackRecord | null>(null);
+  const [feedbackHistory, setFeedbackHistory] = useState<FeedbackRecord[]>([]);
+  const [selectedFeedback, setSelectedFeedback] = useState<FeedbackRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
 
@@ -72,23 +42,13 @@ export const FeedbackHistory: React.FC = () => {
    */
   const fetchFeedbackHistory = async () => {
     if (!user) return;
-    
     try {
-      const { data, error } = await supabase
-        .from('feedback')
-        .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-      
-      // Normalize annotations data structure
-      const normalized = (data || []).map((row: any) => ({
-        ...row,
-        annotations: Array.isArray(row.annotations) ? row.annotations : [],
+      const records = await FeedbackService.getUserFeedbackHistory(user.id);
+      const normalized = records.map((r) => ({
+        ...r,
+        annotations: Array.isArray(r.annotations) ? r.annotations : [],
       }));
-      
-      setFeedbackHistory(normalized as LegacyFeedbackRecord[]);
+      setFeedbackHistory(normalized);
     } catch (error) {
       console.error('Error fetching feedback history:', error);
     } finally {
