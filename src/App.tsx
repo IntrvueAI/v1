@@ -16,11 +16,8 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Set to true to display the seasonal dormant notice
-const IS_SITE_DOWN = true;
-
-// Admin email that can bypass downtime
-const ADMIN_BYPASS_EMAIL = "ibrahim@khan.cc";
+const IS_SITE_DOWN = import.meta.env.VITE_SITE_DOWN === 'true';
+const ADMIN_BYPASS_EMAIL = (import.meta.env.VITE_ADMIN_BYPASS_EMAIL ?? '') as string;
 
 const AppContent = () => {
   const { user } = useAuth();
