@@ -374,3 +374,193 @@ rate_limits [TO CREATE: SEC-09]
 | TEST-01 | Testing | Vitest unit tests for services | P3 | [ ] |
 | TEST-02 | Testing | Edge function integration tests | P3 | [ ] |
 | TEST-03 | Testing | Playwright E2E critical paths | P3 | [ ] |
+
+---
+---
+
+# Practice Section Expansion
+
+> Added: 2026-05-31
+> Owner area: the **Practice** tab (where interviews are selected)
+> Status key: `[ ]` todo · `[~]` in progress · `[x]` done
+
+## Where we are now (baseline)
+
+A first-pass **practice minigames** block already ships inside the Practice view
+(`src/components/MinigameSection.tsx`), sitting under the interview selection.
+
+- **Format:** quick 10-question multiple-choice rounds with instant feedback,
+  explanations, and an end-of-round score.
+- **Subjects/categories:** Maths · Logic & Reasoning (verbal + non-verbal) · English.
+- **Data:** bundled local JSON in `src/data/minigames/*.json` (53 maths, 49 verbal,
+  45 english, 50 non-verbal). Self-contained inline SVGs for non-verbal.
+- **Service:** `src/services/MinigameService.ts` — normalises all question shapes;
+  `getQuestions()` reads local JSON today, `recordResult()` is a no-op.
+- **Not yet:** no persistence, no per-user history, no progress tracking, only one
+  practice *format* (MCQ drill), categories hardcoded in the service.
+- **Also note:** a temporary standalone `/minigames` demo route exists in `App.tsx`
+  (remove before production — see PRAC-09).
+
+## The vision
+
+Evolve the single MCQ block into a proper **Practice hub** that offers *different
+practice formats per subject*, not just one drill type:
+
+| Mode | What it is | Good for | Reuses |
+|------|------------|----------|--------|
+| **Drill** | Quick MCQ rounds (current) | Maths arithmetic, VR, NVR, English retrieval | `MinigameSection` |
+| **Mini-interview** | Short avatar-led "talk me through it" session, scored on reasoning not just the answer | Logic puzzles, maths **word problems**, ethics/opinion prompts | The existing `logic-puzzles` avatar flow |
+| **Current affairs** | News-based current-awareness questions, refreshed regularly | The interview's "Current Awareness & Curiosity" criterion | Drill UI + a content pipeline |
+| **Written/short-answer** | Free-text response with rubric-based feedback | English writing, extended maths reasoning | `generate-interview-feedback` style scoring |
+
+Each **category** declares which **modes** it supports; the hub routes the student
+into the right experience. The drill engine stays for what it's good at; heavier
+reasoning topics graduate to the mini-interview format.
+
+---
+
+## P0 — Foundation (do before adding new modes)
+
+### PRAC-01 · Persist questions + attempts in Supabase
+The local-JSON shortcut was deliberate for the prototype. Move to the DB so we get
+per-user history (this is the data source for **FEAT-02** progress dashboard).
+
+- [ ] Migration: `practice_questions` table (id, subject, category, topic, difficulty,
+      mode, prompt, payload JSONB for options/svg/passage, answer, explanation)
+- [ ] Migration: `practice_attempts` table (id, user_id FK, question_id, mode,
+      selected, correct, time_ms, created_at) + RLS "own rows only" + index on
+      `(user_id, created_at)`
+- [ ] Seed script `supabase/seed/practice/seed-practice.ts` loading the existing
+      `src/data/minigames/*.json`
+- [ ] `MinigameService.getQuestions()` → Supabase query (same signature, UI untouched)
+- [ ] `MinigameService.recordResult()` → insert attempts (replace the no-op)
+
+### PRAC-02 · Generalise the model from "minigame" to "practice"
+Rename and widen the domain so non-drill modes fit cleanly.
+
+- [ ] Rename `models/Minigame.ts` → `models/Practice.ts`; `MinigameService` →
+      `PracticeService`; `MinigameSection` → `PracticeSection`
+- [ ] Add `PracticeMode = 'drill' | 'mini_interview' | 'current_affairs' | 'written'`
+- [ ] Extend `MinigameCategory` → `PracticeCategory` with a `modes: PracticeMode[]`
+- [ ] Categories driven by data (DB/config), not the hardcoded array in the service
+
+### PRAC-03 · Practice hub UX (mode-aware)
+- [ ] Category grid → on select, if a category supports multiple modes, show a mode
+      picker ("Quick drill" vs "Talk it through"); single-mode categories go straight in
+- [ ] Shared results screen that works across modes (score for drills, rubric bands
+      for mini-interviews)
+- [ ] Decide placement: keep under interview selection, or promote to its own
+      sub-nav within the Practice tab
+
+---
+
+## P1 — New practice modes
+
+### PRAC-04 · Mini-interview mode (logic puzzles, reduced/free)
+Reuse the avatar interview as a lightweight practice format.
+
+- [ ] First **fix the existing logic-puzzles content** (see PRAC-AUDIT below) before
+      surfacing it as a polished practice mode
+- [ ] Add a short "practice" variant: fewer puzzles (e.g. 3–5), shorter
+      `maxSessionLengthSeconds`, **0 or reduced credit cost**
+- [ ] Entry point from the Practice hub (Logic & Reasoning → "Talk it through")
+- [ ] Confirm scoring path (`generate-interview-feedback`) handles the shorter session
+
+### PRAC-05 · Maths word problems (mini-interview or guided drill)
+- [ ] Author a word-problems set (e.g. `ma_word_problems.json`) — multi-step,
+      reasoning-heavy, distinct from arithmetic drills
+- [ ] Decide format: guided drill with "show working" step, **or** a maths
+      mini-interview prompt (`prompts/academic/maths-word-problems.md`) where the
+      avatar asks the student to talk through the method
+- [ ] If mini-interview: add interview type config + scoring sections (method,
+      accuracy, clarity)
+
+### PRAC-06 · Current affairs / news section
+The novel one — content must stay **fresh**, unlike static drills.
+
+- [ ] Schema: `current_affairs_questions` with `published_week` / `valid_from` /
+      `valid_to` so stale items expire
+- [ ] **Content pipeline** — pick one:
+  - **Manual curation** (simplest, safest): weekly admin adds ~10 dated questions
+  - **Assisted generation**: scheduled job pulls headlines → LLM drafts age-appropriate
+    Q+A → **human review queue** before publish (never auto-publish news to children)
+- [ ] Weekly refresh via pg_cron (mirrors FEAT-03's cron setup)
+- [ ] UI: "This week's current affairs" drill; show question date; avoid anything
+      sensitive/graphic (content policy for an under-12 audience)
+- [ ] Map results to the interview's **Current Awareness & Curiosity** criterion
+
+### PRAC-07 · Written / short-answer mode (stretch)
+- [ ] Free-text input + rubric scoring via an edge function (reuse the feedback
+      function's structure)
+- [ ] Start with one English writing prompt to prove the loop
+
+---
+
+## P2 — Retention & progress
+
+### PRAC-08 · Progress + gamification
+Ties practice into **FEAT-02** so effort is visible and sticky.
+
+- [ ] Feed `practice_attempts` into the progress dashboard (accuracy per subject,
+      trend over time, weak topics)
+- [ ] Daily challenge (one mixed round/day) + streak counter
+- [ ] Per-topic mastery indicator; surface "practise this next" suggestions
+- [ ] (Optional) XP / badges; keep it tasteful for the audience
+
+---
+
+## Cleanup carried in from the audit (2026-05-31)
+
+### PRAC-09 · Remove temporary demo route
+- [ ] Delete the standalone `/minigames` route + import from `App.tsx` once the
+      in-app Practice section is signed off
+
+### PRAC-AUDIT · Fix logic-puzzles content before it becomes a practice mode
+From the `src/prompts/academic/logic-puzzles.md` audit — broken content the avatar
+currently teaches verbatim:
+
+- [ ] **Puzzle 6 (Password)** — worked answers are arithmetically wrong (`1451` not
+      `1458`; `3473` not `3472`) and the puzzle is under-constrained (odd first digit
+      can push the 3rd digit past 9). Rewrite or constrain.
+- [ ] **Puzzle 10 (DYNASTY code)** — internally contradictory (M = 1 from MONDAY but
+      M = 4 from TEAM) and `S` is undefined, so it has no answer. Replace.
+- [ ] **Puzzle 9 (Clock)** — answer is defensible but the reasoning is hand-wavy;
+      tighten the explanation.
+- [ ] **Typo** `logic-puzzles.md:95` — "recieve" → "receive".
+- [ ] **Dead code** — `src/utils/dynamicPromptLoader.ts` is never imported and
+      shadows the real `promptLoader.ts` name. Delete to avoid future confusion.
+- [ ] **Decoupled scoring** — puzzle definitions (`.md`) and the scoring rubric
+      (hardcoded in `generate-interview-feedback/index.ts`) share nothing; document
+      or link them so editing puzzles doesn't silently drift scoring.
+
+---
+
+## Suggested order (the "ideal path")
+
+```
+1. PRAC-01  Persist to Supabase            ← unlocks history + dashboard
+2. PRAC-02  Rename/generalise to Practice  ← model supports modes
+3. PRAC-03  Mode-aware hub UX
+4. PRAC-AUDIT  Fix logic-puzzles content   ← prerequisite for PRAC-04
+5. PRAC-04  Mini-interview (logic) mode
+6. PRAC-05  Maths word problems
+7. PRAC-06  Current affairs pipeline
+8. PRAC-08  Progress + gamification
+9. PRAC-07  Written mode (stretch)
+10. PRAC-09 Remove demo route (pre-prod)
+```
+
+## Completion checklist — Practice expansion
+
+| ID | Title | Priority | Done |
+|----|-------|----------|------|
+| PRAC-01 | Persist questions + attempts in Supabase | P0 | [ ] |
+| PRAC-02 | Generalise model: minigame → practice | P0 | [ ] |
+| PRAC-03 | Mode-aware practice hub UX | P0 | [ ] |
+| PRAC-04 | Mini-interview mode (logic, reduced/free) | P1 | [ ] |
+| PRAC-05 | Maths word problems | P1 | [ ] |
+| PRAC-06 | Current affairs / news section | P1 | [ ] |
+| PRAC-07 | Written / short-answer mode | P2 | [ ] |
+| PRAC-08 | Progress + gamification | P2 | [ ] |
+| PRAC-09 | Remove temporary /minigames demo route | P2 | [ ] |
+| PRAC-AUDIT | Fix logic-puzzles content + dead loader | P1 | [ ] |
