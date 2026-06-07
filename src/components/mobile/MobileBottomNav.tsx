@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Video, History, Wallet, Settings, LogOut } from 'lucide-react';
+import { Video, History, Wallet, Settings, LogOut, ListChecks } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface MobileBottomNavProps {
-  currentView: 'selection' | 'interview' | 'history' | 'settings' | 'credits';
+  currentView: 'selection' | 'interview' | 'history' | 'settings' | 'credits' | 'questions';
   credits: number;
-  onViewChange: (view: 'selection' | 'interview' | 'history' | 'settings' | 'credits') => void;
+  onViewChange: (view: 'selection' | 'interview' | 'history' | 'settings' | 'credits' | 'questions') => void;
   onSignOut: () => void;
   className?: string;
 }
@@ -31,10 +31,21 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             variant={currentView === 'selection' ? 'default' : 'ghost'}
             size="sm"
             onClick={() => onViewChange('selection')}
-            className="flex-col h-auto py-2 px-3 gap-1 min-w-0"
+            className="flex-col h-auto py-2 px-2 gap-1 min-w-0"
           >
             <Video className="w-4 h-4" />
             <span className="text-xs">Practice</span>
+          </Button>
+
+          {/* Questions */}
+          <Button
+            variant={currentView === 'questions' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => onViewChange('questions')}
+            className="flex-col h-auto py-2 px-2 gap-1 min-w-0"
+          >
+            <ListChecks className="w-4 h-4" />
+            <span className="text-xs">Questions</span>
           </Button>
 
           {/* History */}
@@ -42,7 +53,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             variant={currentView === 'history' ? 'default' : 'ghost'}
             size="sm"
             onClick={() => onViewChange('history')}
-            className="flex-col h-auto py-2 px-3 gap-1 min-w-0"
+            className="flex-col h-auto py-2 px-2 gap-1 min-w-0"
           >
             <History className="w-4 h-4" />
             <span className="text-xs">History</span>
@@ -53,7 +64,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             variant={currentView === 'credits' ? 'default' : 'ghost'}
             size="sm"
             onClick={() => onViewChange('credits')}
-            className="flex-col h-auto py-2 px-3 gap-1 min-w-0 relative"
+            className="flex-col h-auto py-2 px-2 gap-1 min-w-0 relative"
           >
             <Wallet className="w-4 h-4" />
             <span className="text-xs">Credits</span>
@@ -67,7 +78,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             variant={currentView === 'settings' ? 'default' : 'ghost'}
             size="sm"
             onClick={() => onViewChange('settings')}
-            className="flex-col h-auto py-2 px-3 gap-1 min-w-0"
+            className="flex-col h-auto py-2 px-2 gap-1 min-w-0"
           >
             <Settings className="w-4 h-4" />
             <span className="text-xs">Settings</span>
@@ -78,7 +89,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             variant="ghost"
             size="sm"
             onClick={onSignOut}
-            className="flex-col h-auto py-2 px-3 gap-1 min-w-0"
+            className="flex-col h-auto py-2 px-2 gap-1 min-w-0"
           >
             <LogOut className="w-4 h-4" />
             <span className="text-xs">Exit</span>

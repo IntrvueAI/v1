@@ -10,7 +10,7 @@ import { FeedbackHistory } from '@/components/FeedbackHistory';
 import { UserSettings } from '@/components/UserSettings';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Video, History, ArrowLeft, Settings, Wallet } from 'lucide-react';
+import { Video, History, ArrowLeft, Settings, Wallet, ListChecks } from 'lucide-react';
 import { InterviewType } from '@/config/interviewTypes';
 import { useCredits } from '@/hooks/useCredits';
 import { useToast } from '@/hooks/use-toast';
@@ -41,7 +41,7 @@ const Index = () => {
     setShowPostSignupForm
   } = useAuth();
   const navigate = useNavigate();
-  const [currentView, setCurrentView] = useState<'selection' | 'interview' | 'history' | 'settings' | 'credits'>('selection');
+  const [currentView, setCurrentView] = useState<'selection' | 'interview' | 'history' | 'settings' | 'credits' | 'questions'>('selection');
   const [selectedInterviewType, setSelectedInterviewType] = useState<InterviewType | null>(null);
   const [paymentSuccessDismissed, setPaymentSuccessDismissed] = useState(false);
 
@@ -135,7 +135,7 @@ const Index = () => {
   }, [showPaymentSuccess, refetchCredits]);
 
   // Function to clear URL parameters and dismiss payment success
-  const clearPaymentSuccessAndNavigate = (view: 'selection' | 'interview' | 'history' | 'settings' | 'credits') => {
+  const clearPaymentSuccessAndNavigate = (view: 'selection' | 'interview' | 'history' | 'settings' | 'credits' | 'questions') => {
     // Clear URL parameters
     const url = new URL(window.location.href);
     url.searchParams.delete('session_id');
@@ -177,7 +177,17 @@ const Index = () => {
           <div className="flex items-center gap-2 md:gap-6 w-full">
             {/* Logo and Back Button */}
             <div className="flex items-center gap-2 md:gap-3">
-              <img src="/lovable-uploads/logo.png" alt="Intrvue.ai Logo" className="h-6 md:h-8 w-auto" />
+              <img
+                src="/lovable-uploads/logo.png"
+                alt="Intrvue.ai Logo — go to home"
+                className="h-6 md:h-8 w-auto cursor-pointer"
+                role="button"
+                tabIndex={0}
+                onClick={() => {
+                  setSelectedInterviewType(null);
+                  showPaymentSuccess ? clearPaymentSuccessAndNavigate('selection') : setCurrentView('selection');
+                }}
+              />
               {currentView === 'interview' && selectedInterviewType && (
                 <Button variant="ghost" size="sm" onClick={handleBackToSelection} className="gap-1 md:gap-2 px-2 md:px-3">
                   <ArrowLeft className="w-4 h-4" />
@@ -192,6 +202,10 @@ const Index = () => {
                 <Button variant={currentView === 'selection' ? 'default' : 'ghost'} size="sm" onClick={() => showPaymentSuccess ? clearPaymentSuccessAndNavigate('selection') : setCurrentView('selection')} className="gap-2">
                   <Video className="w-4 h-4" />
                   Practice
+                </Button>
+                <Button variant={currentView === 'questions' ? 'default' : 'ghost'} size="sm" onClick={() => showPaymentSuccess ? clearPaymentSuccessAndNavigate('questions') : setCurrentView('questions')} className="gap-2">
+                  <ListChecks className="w-4 h-4" />
+                  Questions
                 </Button>
                 <Button variant={currentView === 'history' ? 'default' : 'ghost'} size="sm" onClick={() => showPaymentSuccess ? clearPaymentSuccessAndNavigate('history') : setCurrentView('history')} className="gap-2">
                   <History className="w-4 h-4" />
@@ -220,8 +234,17 @@ const Index = () => {
                 >
                   <Video className="w-4 h-4" />
                 </Button>
-                <Button 
-                  variant={currentView === 'history' ? 'default' : 'ghost'} 
+                <Button
+                  variant={currentView === 'questions' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => showPaymentSuccess ? clearPaymentSuccessAndNavigate('questions') : setCurrentView('questions')}
+                  className="p-2"
+                  aria-label="Questions"
+                >
+                  <ListChecks className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant={currentView === 'history' ? 'default' : 'ghost'}
                   size="sm" 
                   onClick={() => showPaymentSuccess ? clearPaymentSuccessAndNavigate('history') : setCurrentView('history')} 
                   className="p-2"
@@ -296,8 +319,11 @@ const Index = () => {
             />
           </div>
         ) : currentView === 'selection' ? (
-          <div className="container mx-auto px-4 py-8 max-w-6xl space-y-12">
+          <div className="container mx-auto px-4 py-8 max-w-6xl">
             <InterviewSelection onSelectInterview={handleSelectInterview} />
+          </div>
+        ) : currentView === 'questions' ? (
+          <div className="container mx-auto px-4 py-8 max-w-4xl">
             <MinigameSection />
           </div>
         ) : currentView === 'interview' ? (
