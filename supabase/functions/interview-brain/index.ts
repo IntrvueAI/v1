@@ -130,9 +130,7 @@ serve(async (req) => {
     const response: BrainResponse = { say: result.say, done: result.done, uiState: uiStateOf(result.state) };
     return json(response);
   } catch (err) {
-    const detail = (err as Error)?.message || String(err);
-    console.error("interview-brain error:", detail);
-    // Temporary: surface the underlying error so we can diagnose from the browser network tab.
-    return json({ error: "Internal server error", detail }, 500);
+    console.error("interview-brain error:", (err as Error)?.message || err);
+    return json({ error: "Internal server error" }, 500);
   }
 });
