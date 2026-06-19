@@ -24,6 +24,11 @@ import { FeedbackRecord } from '@/types/interview';
 import { getBandLabel, getBandColor } from '@/utils/interviewHelpers';
 import { FEEDBACK_DEFAULTS } from '@/constants/feedback';
 import { FeedbackService } from '@/services/FeedbackService';
+import { INTERVIEW_TYPES } from '@/config/interviewTypes';
+
+// Interview types whose scores live in the four engine score columns (pattern_recognition_score …).
+const ENGINE_SCORED = new Set(['logic-puzzles', 'maths-interview', 'verbal-interview', 'current-affairs-interview']);
+const shortLabel = (s: string) => (s.length > 14 ? `${s.slice(0, 13)}…` : s);
 
 export const FeedbackHistory: React.FC = () => {
   const [feedbackHistory, setFeedbackHistory] = useState<FeedbackRecord[]>([]);
@@ -112,8 +117,9 @@ export const FeedbackHistory: React.FC = () => {
           </h2>
         </div>
         
-        {/* Use the enhanced InterviewFeedback component */}
-        <InterviewFeedback 
+        {/* Use the enhanced InterviewFeedback component — pass the FULL record so the detail view
+            matches the live post-interview feedback exactly (section scores + Questions review). */}
+        <InterviewFeedback
           feedback={{
             // 11+ scores
             personal_insight_score: selectedFeedback.personal_insight_score,
@@ -125,6 +131,11 @@ export const FeedbackHistory: React.FC = () => {
             lexical_resource_score: selectedFeedback.lexical_resource_score,
             grammatical_range_score: selectedFeedback.grammatical_range_score,
             pronunciation_score: selectedFeedback.pronunciation_score,
+            // Logic / Maths / Verbal / Current-affairs scores (engine-driven subjects)
+            pattern_recognition_score: (selectedFeedback as any).pattern_recognition_score,
+            logical_deduction_score: (selectedFeedback as any).logical_deduction_score,
+            mathematical_logic_score: (selectedFeedback as any).mathematical_logic_score,
+            clarity_of_thought_score: (selectedFeedback as any).clarity_of_thought_score,
             // Common fields
             total_score: selectedFeedback.total_score,
             detailed_feedback: selectedFeedback.detailed_feedback,
@@ -132,7 +143,9 @@ export const FeedbackHistory: React.FC = () => {
             transcription: selectedFeedback.transcription,
             annotations: selectedFeedback.annotations || [],
             // Overall improvement feedback
-            overall_improvement_feedback: selectedFeedback.overall_improvement_feedback
+            overall_improvement_feedback: selectedFeedback.overall_improvement_feedback,
+            // Per-question review (questions 1,2,3… + your response + mini review)
+            questions_review: (selectedFeedback as any).questions_review || [],
           }}
           interviewType={selectedFeedback.interview_type || FEEDBACK_DEFAULTS.INTERVIEW_TYPE}
           scoringSystem={selectedFeedback.scoring_system || FEEDBACK_DEFAULTS.SCORING_SYSTEM}
@@ -239,6 +252,26 @@ export const FeedbackHistory: React.FC = () => {
                       <div className="text-muted-foreground">Pronunciation</div>
                     </div>
                   </div>
+                ) : ENGINE_SCORED.has(feedback.interview_type) ? (
+                  (() => {
+                    const labels = INTERVIEW_TYPES[feedback.interview_type]?.scoringCriteria || [];
+                    const scores = [
+                      (feedback as any).pattern_recognition_score,
+                      (feedback as any).logical_deduction_score,
+                      (feedback as any).mathematical_logic_score,
+                      (feedback as any).clarity_of_thought_score,
+                    ];
+                    return (
+                      <div className="grid grid-cols-4 gap-4 text-sm">
+                        {scores.map((s, i) => (
+                          <div className="text-center" key={i}>
+                            <div className="font-semibold text-primary">{s || 0}/5</div>
+                            <div className="text-muted-foreground">{shortLabel(labels[i] || `Section ${i + 1}`)}</div>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })()
                 ) : (
                   <div className="grid grid-cols-4 gap-4 text-sm">
                     <div className="text-center">
