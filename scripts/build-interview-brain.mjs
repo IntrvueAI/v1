@@ -36,6 +36,7 @@ const FILES = [
   'subjects/types.ts',
   'subjects/maths/pack.ts',
   'subjects/logic/pack.ts',
+  'subjects/currentaffairs/pack.ts',
 ];
 
 /** Add `.ts` to extensionless relative import specifiers (Deno requirement). */

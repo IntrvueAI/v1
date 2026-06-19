@@ -1,0 +1,143 @@
+[
+  {
+    "id": "CA-C1",
+    "subject": "currentaffairs",
+    "topic": "climate-environment",
+    "difficulty": "standard",
+    "question": "Who do you think has the biggest responsibility to tackle climate change - governments, businesses, or individual people? You have to pick one.",
+    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
+    "modelReasoningPath": "Forcing the pick matters - \"everyone\" is the easy dodge. The real question is about leverage and accountability, and each option has a genuine case: - Government: only it can set binding rules and systemic change; individuals alone can't move the needle; businesses respond to regulation. - Business: corporations produce most emissions, hold the resources and technology, and their lobbying often blocks change. - Individuals: consumer choices collectively steer business; democratic pressure forces government to act; behaviour sets cultural norms. A strong child commits to one but acknowledges the other two, and the very best note that the three are connected (governments are pushed by voters, businesses respond to both) - systems thinking - before still making the choice.",
+    "rubric": {
+      "strong": "Picks one and gives a leverage-based reason, having briefly weighed the others. May spot the interconnection while still committing. Holds the choice under pushback.",
+      "developing": "Picks one with a reason, but doesn't really weigh the alternatives until prompted. Sensible but one-dimensional.",
+      "weak": "Refuses to choose (\"everyone's responsible\") and won't commit even when pressed, or names one with no reason at all."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Dodging the forced choice with \"it's everyone.\"",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Naming a culprit with no account of why it has the most leverage.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Blaming a group emotionally (\"greedy companies\") without an argument about responsibility or power.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "(If government:) \"But governments are slow and worried about votes - can you really rely on them?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "(If individuals:) \"Some say focusing on individuals - guilt over plastic straws - is a distraction that lets big polluters off the hook. Fair?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "(If business:) \"Businesses mostly do what customers and laws push them to - so aren't you really pointing back at us or the government?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Think about who has the *power to make the biggest change - and who causes the most of the problem. Are they the same?\"*",
+      "\"If you had to bet on one of the three actually making a difference, which would it be?\"",
+      "\"Pick one for now, even if it's close - and tell me why you leaned that way.\""
+    ]
+  },
+  {
+    "id": "CA-C2",
+    "subject": "currentaffairs",
+    "topic": "climate-environment",
+    "difficulty": "standard",
+    "question": "Is it fair that your generation has to deal with a problem - climate change - that it didn't really create?",
+    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
+    "modelReasoningPath": "By most definitions this is unfair - but the real test is whether the child keeps two questions apart: \"is it fair?\" and \"do we still have to act?\" A strong child says something like \"No, it isn't fair - but that doesn't mean we get to ignore it.\" They engage the genuine tensions: - Whether it's fair is separate from whether it must be dealt with. - This generation inherits benefits too (medicine, technology, relative peace), not only problems. - \"Creating\" is slippery - earlier generations may not have understood the consequences. The standout move is refusing to slide from \"it's not fair\" to \"so it's not our problem.\"",
+    "rubric": {
+      "strong": "Cleanly separates fairness from responsibility (\"unfair, but we still must act\"), and engages at least one deeper tension (inherited benefits, or what \"creating\" really means). Doesn't let the unfairness become an excuse.",
+      "developing": "Says it's unfair with a reason, but needs prompting to see that unfairness doesn't cancel the duty to act. Reasons clearly once the two questions are separated for them.",
+      "weak": "\"It's not fair, so it's not really our job\" stated as obvious - the key logical error - with no awareness it's even contestable; or just \"yeah it's unfair\" with nothing more."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Sliding from \"unfair\" straight to \"therefore not our responsibility.\"",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Only seeing inherited problems, never the inherited benefits.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Treating \"fair\" as simple, with no thought about what fairness even requires here.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Suppose I agree it's unfair. Does that actually let your generation off the hook?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Your generation also inherits medicine, technology, peace - does that change the fairness picture?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Did the people who caused it know what they were doing? Does that matter for blame?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Try splitting it into two questions: first, is it fair? Then separately, should we still do something about it?\"",
+      "\"Think of inheriting a messy room you didn't make - is it fair, and does someone still have to tidy it?\"",
+      "\"Give me your gut on the fairness part first, and we'll take the 'what now' part after.\""
+    ]
+  },
+  {
+    "id": "CA-C3",
+    "subject": "currentaffairs",
+    "topic": "climate-environment",
+    "difficulty": "standard",
+    "question": "Is there something you would genuinely be willing to give up - in your own life - to help the environment? Not something easy. Something that would actually cost you.",
+    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
+    "modelReasoningPath": "This question is about honesty and self-reflection, not extracting a particular sacrifice. The prize is a child who is candid about the gap between what they think they should do and what they think they actually would do - \"honestly, I'd find it really hard to give up meat, but I think I should.\" That beats a glib \"I'd give up flying\" from a child who clearly hasn't pictured what that costs. Moral self-awareness is the quality being tested, not moral self-congratulation.",
+    "rubric": {
+      "strong": "Names a genuine cost to themselves and is honest about how hard it would be, including any gap between their ideals and their likely behaviour. Reflective rather than performative.",
+      "developing": "Offers a real sacrifice but a fairly painless one, or claims an easy willingness without much reflection. Becomes more honest when gently pressed.",
+      "weak": "Either names something costless (\"I'd recycle more\") as if it were a sacrifice, or performs virtue (\"I'd give up everything!\") with no sign they've thought about the cost."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Choosing something that costs them nothing and calling it a sacrifice.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Performing the \"good\" answer rather than being honest.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Naming a big sacrifice with no apparent grasp of what it would actually mean day to day.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Be honest - would you *actually do that, or is it more what you feel you should say?\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Is it fair to ask people to give things up when the big systems around them aren't changing?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "What would be the hardest part of that, really?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Think about your actual day - food, travel, things you buy, screen time. Which would genuinely be hard to change?\"",
+      "\"It's okay to say something would be difficult - I'm more interested in honesty than in a heroic answer.\"",
+      "\"Name one thing you'd find hard to give up, and just tell me why it'd be hard.\""
+    ]
+  }
+]

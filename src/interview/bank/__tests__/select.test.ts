@@ -75,22 +75,14 @@ describe('selectQuestion', () => {
   });
 });
 
-describe('real sample bank', () => {
-  it('loads tiered maths questions across all six strands', () => {
+describe('real maths bank', () => {
+  it('loads the authored maths questions across the four Mathematical Thinking strands', () => {
     const bank = getMathsBank();
-    expect(bank.length).toBeGreaterThanOrEqual(18);
+    expect(bank.length).toBeGreaterThanOrEqual(20);
     expect(listTopics(bank).sort()).toEqual(
-      [
-        'arithmetic',
-        'fractions-decimals-percent',
-        'geometry-measure',
-        'ratio-proportion',
-        'sequences-algebra',
-        'word-problems',
-      ].sort(),
+      ['estimation', 'numerical-reasoning', 'pattern-proof-explanation', 'structured-problem-solving'].sort(),
     );
-    // Every tier present for arithmetic.
-    const tiers = new Set(bank.filter((x) => x.topic === 'arithmetic').map((x) => x.difficulty));
-    expect(tiers).toEqual(new Set(['foundation', 'standard', 'stretch']));
+    // Every question carries the rich 6-part spec.
+    expect(bank.every((q) => q.rubric && q.hints && q.hints.length > 0)).toBe(true);
   });
 });

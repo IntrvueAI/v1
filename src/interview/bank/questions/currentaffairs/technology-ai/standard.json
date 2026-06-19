@@ -1,0 +1,194 @@
+[
+  {
+    "id": "CA-B1",
+    "subject": "currentaffairs",
+    "topic": "technology-ai",
+    "difficulty": "standard",
+    "question": "Artificial intelligence is developing very fast. Is that something you feel excited about, worried about - or both? What's your honest view?",
+    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
+    "modelReasoningPath": "No right answer - what's prized is nuance, holding two things at once. A strong child can supply reasons on both sides and lands on \"I feel both, and here's why\": - For excitement: medical breakthroughs, solving hard problems, freeing people from drudgery, accessibility tools, creative help. - For worry: job loss, misinformation, privacy, over-dependence, autonomous weapons, AI outrunning human control. The hallmark is genuine tension, not a one-word verdict. \"I'm not worried at all\" or \"I'm terrified,\" with no qualification, both miss the complexity.",
+    "rubric": {
+      "strong": "Holds excitement and worry together, with a concrete reason for each, and maybe a sense of which worries are nearer-term vs. speculative. Comfortable with the ambivalence.",
+      "developing": "Leans one way with a reason, and can produce the other side when asked. Some nuance, but it needs drawing out.",
+      "weak": "All-in on one side with no reasons (\"robots are cool\" / \"AI is scary\"), and can't generate the opposing consideration even when prompted."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "A single undefended feeling with no specifics.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Sci-fi worries (killer robots) with no everyday ones (misinformation, jobs), or vice versa.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Treating \"both\" as a dodge (\"a bit of both\") with no reasons attached.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "(If excited:) \"What about people whose jobs disappear, or being unable to tell what's real online - does that not worry you?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "(If worried:) \"But AI is already spotting diseases earlier than doctors can - isn't that worth a lot?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Is there a specific use of AI that worries you more than the others?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Should AI ever decide things that change people's lives - who gets a job, or a prison sentence?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Think of one good thing AI could do, and one thing that could go wrong.\"",
+      "\"Have you used anything with AI in it? How did it feel - useful, strange, a bit of both?\"",
+      "\"You don't have to pick a side - just tell me one thing that excites you and one that gives you pause.\""
+    ]
+  },
+  {
+    "id": "CA-B2",
+    "subject": "currentaffairs",
+    "topic": "technology-ai",
+    "difficulty": "standard",
+    "question": "If a student used AI to help them write an essay - not copy it entirely, but get help with ideas and structure - would you consider that cheating? Where do you draw the line?",
+    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
+    "modelReasoningPath": "The richest move is to see a spectrum rather than a yes/no: AI checking spelling → suggesting vocabulary → restructuring an argument → generating the argument → writing the whole thing. Where on that line does it become cheating, and why there? The very best answers reframe the question around what learning is for - \"it depends what the teacher was trying to test.\" A child who notices that the essay might be there to assess thinking (not just to produce a document) is reasoning well beyond rule-following. Honesty about their own AI use is a bonus schools value.",
+    "rubric": {
+      "strong": "Draws a line and justifies where by appealing to purpose (what's being assessed, whether the student still does the thinking). Handles the dictionary/thesaurus/Google comparison thoughtfully. May be candid about their own use.",
+      "developing": "Has a sensible instinct (\"a bit of help is fine, writing it all isn't\") but draws the line by feel, and only engages with why when pushed. Some grasp of the spectrum.",
+      "weak": "A flat rule (\"any AI is cheating\" / \"it's fine, everyone does it\") with no line-drawing and no thought about purpose. Pure rule-following or pure dismissal."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Binary verdict with no spectrum and no \"why there.\"",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Ignoring the question of what the essay is for.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Inconsistency they don't notice (a thesaurus is fine but AI vocabulary isn't",
+        "reveals": "why?)."
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Is using a dictionary cheating? A thesaurus? Google? What's different about AI?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "If the student fully understood what the AI produced and could defend every line, does that change it?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "What's the essay actually *for - to test the student's thinking, or just to hand in some writing?\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Imagine a ladder: at the bottom, AI fixes a spelling mistake; at the top, it writes the whole essay. Where would *you put the cheating line?\"*",
+      "\"Think about why teachers set essays in the first place - what are they trying to find out?\"",
+      "\"Start with an easy case: is spell-check cheating? Now move up a step and see when it starts to feel wrong.\""
+    ]
+  },
+  {
+    "id": "CA-B3",
+    "subject": "currentaffairs",
+    "topic": "technology-ai",
+    "difficulty": "standard",
+    "question": "Do you think a computer could ever be truly creative - like write a poem that genuinely means something, or paint a picture that moves people? Or is creativity something only humans can do?",
+    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
+    "modelReasoningPath": "The single best move is to define \"creative\" before answering - this question rewards the child who says \"it depends what you mean by creative.\" Both sides have force: - Computers can be creative: AI already makes art, music and poetry people find moving; maybe creativity is just recombining old ideas in new ways - which machines do. - They can't: real creativity needs experience, emotion, intention, a wish to communicate something - and the AI doesn't know why it made what it made. The deepest version asks: is creativity in the process or the output? If a poem moves you, does it matter who - or what - wrote it?",
+    "rubric": {
+      "strong": "Pauses to pin down what \"creative\" means, then argues from that definition, engaging both the output and the process/intention angles. Comfortable that the answer turns on the definition.",
+      "developing": "Takes a side with a reason (often \"no, machines don't have feelings\") but treats \"creative\" as obvious and doesn't examine it until prompted. Some depth available.",
+      "weak": "Flat verdict (\"computers can't think so no\" / \"AI makes pictures so yes\") with no attempt to say what creativity is. No engagement with the deeper question."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Answering as if \"creative\" has one obvious meaning.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Judging only the output (\"the picture looks nice, so it's creative\") or only the intention, never noticing the two can come apart.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "\"Computers can't have feelings\" stated as a conversation-ender, not a starting point.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Before you decide - what do you actually mean by 'creative'? Is a machine that makes a beautiful image creative, or only if it *meant something by it?\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "If a poem genuinely moves you, does it matter whether a person or a machine wrote it?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Is creativity about the thing that's made, or about what's going on inside the maker?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Start with people: what makes something a *person does count as creative?\"*",
+      "\"Now ask whether a computer could have that same thing - and which part it might be missing.\"",
+      "\"You could split it: maybe a computer can make something that *looks creative, but is that the same as being creative? What do you think?\"*"
+    ]
+  },
+  {
+    "id": "CA-B4",
+    "subject": "currentaffairs",
+    "topic": "technology-ai",
+    "difficulty": "standard",
+    "question": "Is there a job you think a robot or AI could never do - not just 'couldn't do yet', but genuinely could never do, no matter how advanced technology gets? Why?",
+    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
+    "modelReasoningPath": "The key distinction is \"currently difficult\" vs. \"genuinely impossible forever.\" Children often name teacher, doctor, artist, counsellor - and these are exactly the ones to push back on, because AI already tutors, assists in surgery, makes art, and delivers therapy. The harder-to-dismiss answers point at something other than capability: roles needing genuine human presence and relationship (a parent, a friend), or genuine moral responsibility (a judge - can a machine be accountable for a decision?). A strong child realises the real issue may be accountability or relationship, not skill.",
+    "rubric": {
+      "strong": "Distinguishes \"can't do yet\" from \"can never do,\" survives the pushback on obvious jobs, and locates the sticking point in something deeper - accountability, genuine relationship, being held responsible. Philosophical, not just practical.",
+      "developing": "Names a role and a reason, but when shown AI can already do a version of it, has to think hard; with prompting, moves toward the presence/responsibility idea. Good raw instinct.",
+      "weak": "Names a job (\"doctor\") and, when told AI assists in surgery, simply switches to another with the same flaw, never reaching the \"what's really different about humans\" question."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Choosing a job AI demonstrably already helps with, and treating \"a robot couldn't do that\" as obvious.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Confusing \"I wouldn't want a robot to\" with \"a robot couldn't.\"",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Never moving past capability to ask about responsibility or relationship.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "(Whatever they pick:) \"Actually, AI already does a version of that - it tutors, assists surgeons, makes art, even gives therapy. So is it really impossible, or just early days?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Would you be okay with a machine *being responsible for a decision - say, a judge sending someone to prison?\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Is the problem that the machine *can't do it, or that we wouldn't accept it doing it?\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Think about jobs that are less about a skill and more about *being a person with someone.\"*",
+      "\"Is there a job where, even if a machine did it perfectly, something important would still be missing?\"",
+      "\"Try one and test it: could a machine ever really do this - and if not, what exactly is it lacking?\""
+    ]
+  }
+]

@@ -1,11 +1,13 @@
 import type { SubjectPack } from './types';
 import { mathsPack } from './maths';
 import { logicPack } from './logic';
+import { currentaffairsPack } from './currentaffairs';
 
-/** Registry of available subject packs. Add verbal/current-affairs/general here as they land. */
+/** Registry of available subject packs. Add verbal/general here as they land. */
 const PACKS: Record<string, SubjectPack> = {
   maths: mathsPack,
   logic: logicPack,
+  currentaffairs: currentaffairsPack,
 };
 
 export function getSubjectPack(subject: string): SubjectPack | undefined {

@@ -1,0 +1,237 @@
+[
+  {
+    "id": "MA-B1",
+    "subject": "maths",
+    "topic": "estimation",
+    "difficulty": "standard",
+    "question": "I drive from London to Edinburgh - that's a journey of 400 miles. On the way there, I average 50 miles per hour. On the way back the roads are busier, so I only manage 40 miles per hour. So what's my average speed for the whole round trip? Have a think before you answer.",
+    "answer": "44.4 mph - not 45 mph.",
+    "modelReasoningPath": "1. Resist averaging the two speeds. Average speed = total distance ÷ total time. 2. Total distance = 400 + 400 = 800 miles. Time there = 400 ÷ 50 = 8 hours; time back = 400 ÷ 40 = 10 hours; total = 18 hours. 3. Average = 800 ÷ 18 ≈ 44.4 mph. 4. Why below 45: you spend more time crawling at 40 than cruising at 50, so the slow speed pulls the average down. Simply averaging speeds only works for equal times, but here the distances are equal.  The gold standard is the instinct \"I spend longer driving slowly, so the answer should dip below the halfway 45\" - even before the exact figure.",
+    "rubric": {
+      "strong": "Pauses on the \"obvious\" 45 and reasons that more time is spent slow, so it must be under 45; computes via total distance ÷ total time to 44.4 (or argues it's just below 45). Explains the equal-distance vs equal-time point.",
+      "developing": "Initially says 45, but when prompted (\"have a think before you answer\" / \"are you sure?\") reconsiders and sees the slower leg takes longer, moving toward \"a bit less than 45.\" May need help with total-over-total.",
+      "weak": "States 45 and defends it on \"halfway between 40 and 50,\" with no sense that time spent differs. Doesn't engage when nudged."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "(40 + 50) ÷ 2 = 45",
+        "reveals": "the headline trap."
+      },
+      {
+        "mistake": "Computing the two times but then still averaging the speeds rather than dividing total distance by total time.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Forgetting to double the distance (using 400, not 800).",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Do you spend the same amount of *time going as coming back? Which leg takes longer?\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "How long does the trip there take? And the trip back? So what's the total time for 800 miles?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Since you're slow for longer, should the average be above or below 45?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Average speed isn't the average of the two numbers - it's all the distance divided by all the time. How far in total?\"",
+      "\"Work out the time for each leg: 400 miles at 50, then 400 miles at 40.\"",
+      "\"Add the two times, then divide the total 800 miles by that total time.\""
+    ]
+  },
+  {
+    "id": "MA-B2",
+    "subject": "maths",
+    "topic": "estimation",
+    "difficulty": "standard",
+    "question": "Roughly how many times does your heart beat in a year? I don't want an exact answer - just a sensible estimate. Talk me through how you'd work it out.",
+    "answer": "(no single answer)",
+    "modelReasoningPath": "The whole question is process. A strong candidate builds the estimate in stages - beats per minute → per hour or day → per year - choosing round numbers deliberately (\"I'll call it 70 a minute and 365 days\") and sanity-checking at the end (\"tens of millions - that feels about right for a whole year\"). Multiplying in friendly chunks (using 100,000 a day) is a sign of real numerical maturity.",
+    "rubric": {
+      "strong": "Breaks the problem into clear stages, picks sensible round approximations and says why, multiplies in manageable steps, and sanity-checks the magnitude. Reaches the right ballpark (tens of millions).",
+      "developing": "Has the right structure (rate × time) and most stages, but needs prompting for one link (e.g. minutes in a day) or makes a place-value slip in the big multiplication. The plan is sound.",
+      "weak": "Guesses a final number with no stages, or gets lost converting minutes/hours/days. No estimate of the heart rate and no idea how to proceed when told it."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Place-value errors in the large multiplications (answers off by a factor of 10 or 100).",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Stopping at \"beats per day\" and forgetting to scale to a year (or vice versa).",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Choosing an absurd heart rate (e.g. 5 or 500 a minute) and not sanity-checking it.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Roughly how many times a minute does a heart beat? If you're not sure, call it about 70.",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "How could you get from beats per minute to beats in a whole day?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Your answer's about 37 million - does that feel sensible for a year? How would you check?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Let's build it up in steps. Start small: roughly how many beats in one minute?\"",
+      "\"Now grow it - how many minutes in an hour, and in a whole day?\"",
+      "\"You've got beats per day. There are about 365 days in a year - put those together.\""
+    ]
+  },
+  {
+    "id": "MA-B3",
+    "subject": "maths",
+    "topic": "estimation",
+    "difficulty": "standard",
+    "question": "If you stacked one million £1 coins in a single pile, roughly how tall would it be? Would it be about as tall as a house, a skyscraper, or a mountain?",
+    "answer": "A reasonable path: - A £1 coin is about 3 mm thick. - 1,000,000 × 3 mm = 3,000,000 mm = 3,000 m = 3 km. - Compare: Burj Khalifa ≈ 830 m (much shorter); Snowdon ≈ 1,085 m and Ben Nevis ≈ 1,345 m (still shorter than the stack); Mont Blanc ≈ 4,800 m (taller). So the stack beats every skyscraper and British mountain, but not the high Alps.",
+    "modelReasoningPath": "1. Pick a sensible thickness for a coin - a few millimetres (about 3 mm). 2. Multiply by a million: 3 mm × 1,000,000 = 3,000,000 mm. 3. Convert the units carefully: mm → m (÷1,000) → km (÷1,000), landing at 3 km. 4. Anchor it against something real - taller than the tallest tower, shorter than a big mountain. The gold standard is the clean unit conversion plus a sanity-check against a known height.",
+    "rubric": {
+      "strong": "Estimates the coin thickness (or uses the given 3 mm), multiplies correctly, and converts mm → m → km fluently, then compares to a real landmark. Comfortable with the place value.",
+      "developing": "Sets up \"thickness × a million\" correctly but stumbles on the unit conversion (needs help stepping mm → m → km) or on the size of the comparison. Recovers with a nudge.",
+      "weak": "No sense of a coin's thickness and can't proceed when told; or multiplies but then can't turn millimetres into a meaningful height, producing an answer wildly off (e.g. 3 m or 3,000 km)."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Unit-conversion slips",
+        "reveals": "dropping or adding a factor of 1,000 (getting 30 m or 300 km)."
+      },
+      {
+        "mistake": "Guessing a coin is e.g. 1 cm thick without flagging it as a rough estimate.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Giving \"3,000,000 mm\" as the final answer without converting to a relatable unit.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Roughly how thick is a £1 coin - a few millimetres? Let's say 3 mm.",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "You've got 3 million millimetres. How many metres is that? And how many kilometres?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Is 3 km taller than a skyscraper? Taller than a mountain? Where does it sit?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Start with one coin - about 3 mm thick. Now you've got a million of them stacked up.\"",
+      "\"Multiply: 3 mm times a million. That's a lot of millimetres - write it out.\"",
+      "\"There are 1,000 mm in a metre, and 1,000 m in a kilometre. Step it down twice.\""
+    ]
+  },
+  {
+    "id": "MA-B4",
+    "subject": "maths",
+    "topic": "estimation",
+    "difficulty": "standard",
+    "question": "If you counted out loud at one number every second - one, two, three, and so on - how long would it take you to count all the way from one to a million? Give me your answer in a sensible unit - hours, days, whatever fits best.",
+    "answer": "About 11.5 days of non-stop counting.",
+    "modelReasoningPath": "1. One number per second means 1,000,000 numbers = 1,000,000 seconds. 2. Step the seconds up into bigger units: ÷ 60 → ≈ 16,667 minutes; ÷ 60 → ≈ 278 hours; ÷ 24 → ≈ 11.6 days. 3. Sanity-check: \"a million is huge, so not hours - but under two weeks feels right.\" A neat alternative is knowing/deriving 86,400 seconds in a day (60 × 60 × 24) and doing 1,000,000 ÷ 86,400 ≈ 11.6.  The gold standard is choosing a sensible final unit (days, not seconds) and stepping the conversion through cleanly.",
+    "rubric": {
+      "strong": "Sets up 1,000,000 seconds and converts step by step to days, choosing a meaningful unit and sanity-checking. May derive 86,400 seconds/day independently.",
+      "developing": "Knows it's a conversion problem and gets partway (e.g. to minutes or hours) but needs prompting for the next step, or to land on a sensible unit. Method is sound, execution partial.",
+      "weak": "Guesses \"a few hours\" or \"a year\" with no conversion, or can't get from seconds to a larger unit at all. No sense of scale."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Stopping at minutes or hours and reporting an unrelatable number.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Dividing by the wrong factor (e.g. ÷100 instead of ÷60) at a conversion step.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Guessing the magnitude without any working, often by orders of magnitude.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "One number a second - so how many seconds for a million numbers?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Seconds is an awkward unit for something this big. Can you turn it into minutes, then hours, then days?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Does your final answer feel sensible - hours, days, or years?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"A million numbers at one per second is a million seconds. That's the starting point.\"",
+      "\"Seconds is too small to picture. How many seconds in a minute? In an hour?\"",
+      "\"Keep stepping up: seconds → minutes → hours → days. Roughly how many days does it land on?\""
+    ]
+  },
+  {
+    "id": "MA-B5",
+    "subject": "maths",
+    "topic": "estimation",
+    "difficulty": "standard",
+    "question": "Imagine a class of 30 children. What do you think the chances are that at least two of them share the same birthday? Would you say it's more likely than not, or less likely than not? And why do you think that?",
+    "answer": "More likely than not - the probability is about 70%.",
+    "modelReasoningPath": "This is the famous (and deeply counterintuitive) Birthday Problem. It is not a calculation question - it's about probabilistic intuition and argument. 1. The tempting wrong frame: \"365 days, only 30 people, so it's unlikely.\" 2. The better frame: we're not asking \"does someone share my birthday,\" we're asking \"do any two of the 30 match.\" The number of pairs is what matters: 30 × 29 ÷ 2 = 435 different pairs, each a fresh chance to match. 3. With that many chances, a match becomes likely - in fact about 71%. The gold standard is the leap from \"people\" to \"pairs of people,\" even without the exact percentage.",
+    "rubric": {
+      "strong": "Reasons in terms of pairs (\"there are loads of possible pairings, so it's more likely than it first seems\") and concludes \"more likely than not,\" ideally noticing it's surprising. Doesn't need the exact number.",
+      "developing": "Starts with the \"365 vs 30\" intuition (less likely) but, when asked \"how many pairs are there?\", shifts and sees why the chance is higher than expected. Adapts well to the nudge.",
+      "weak": "Commits to \"unlikely, because 30 is small next to 365\" and can't move off it even when prompted about pairs. Treats it as comparing two raw numbers."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "The classic: comparing 30 people to 365 days and concluding \"unlikely.\"",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Answering the wrong question",
+        "reveals": "\"shares my birthday\" rather than \"any two share.\""
+      },
+      {
+        "mistake": "Assuming you'd need ~183 people (half of 365) for a 50% chance.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Are we asking if someone shares *your birthday, or if any two people in the room match?\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "How many different *pairs of people are there among the 30? Each pair is a chance to match.\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "With hundreds of possible pairs, does a match start to feel more or less likely?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Don't think about your own birthday - think about every possible *pair of children who could match.\"*",
+      "\"Roughly how many pairs can you make from 30 people? It's a lot more than 30.\"",
+      "\"With over 400 pairs, each one a chance to share a birthday - would you now say it's more or less likely than not?\""
+    ]
+  }
+]

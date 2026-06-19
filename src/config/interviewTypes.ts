@@ -137,7 +137,13 @@ export const INTERVIEW_TYPES: Record<string, InterviewType> = {
     ],
     difficultyLevel: 3,
     tags: ['11+', 'current affairs', 'moral reasoning', 'ethics', 'discussion'],
-    icon: 'Globe'
+    icon: 'Globe',
+    engineDriven: true,
+    engineSubject: 'currentaffairs',
+    preStartNote:
+      "There are no right or wrong answers here — it's a discussion.\n\n" +
+      "I'll gently push back on whatever you say. That's not because you're wrong; I just love hearing how you think, and it's completely fine to say you're not sure.\n\n" +
+      "Just share your honest view and your reasons."
   },
   'demo': {
     id: 'demo',

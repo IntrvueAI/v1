@@ -9,12 +9,14 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
 import { advanceAgent, initAgentState, type AgentState, type ChatComplete } from "./_shared/engine/agent.ts";
 import { mathsPack } from "./_shared/subjects/maths/pack.ts";
 import { logicPack } from "./_shared/subjects/logic/pack.ts";
+import { currentaffairsPack } from "./_shared/subjects/currentaffairs/pack.ts";
 import type { BrainRequest, BrainResponse, Mode } from "./_shared/engine/types.ts";
 import mathsBank from "./_shared/maths-bank.json" with { type: "json" };
 import logicBank from "./_shared/logic-bank.json" with { type: "json" };
+import currentaffairsBank from "./_shared/currentaffairs-bank.json" with { type: "json" };
 
-const PACKS: Record<string, any> = { maths: mathsPack, logic: logicPack };
-const BANKS: Record<string, any> = { maths: mathsBank, logic: logicBank };
+const PACKS: Record<string, any> = { maths: mathsPack, logic: logicPack, currentaffairs: currentaffairsPack };
+const BANKS: Record<string, any> = { maths: mathsBank, logic: logicBank, currentaffairs: currentaffairsBank };
 
 const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
 const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
@@ -35,7 +37,11 @@ const json = (body: unknown, status = 200) =>
     headers: { ...corsHeaders, "Content-Type": "application/json" },
   });
 
-const SUBJECT_BY_TYPE: Record<string, string> = { "maths-interview": "maths", "logic-puzzles": "logic" };
+const SUBJECT_BY_TYPE: Record<string, string> = {
+  "maths-interview": "maths",
+  "logic-puzzles": "logic",
+  "current-affairs-interview": "currentaffairs",
+};
 
 function safeParseArgs(s: string): Record<string, any> {
   try {

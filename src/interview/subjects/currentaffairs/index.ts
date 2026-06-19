@@ -1,0 +1,1 @@
+export { currentaffairsPack } from './pack';
