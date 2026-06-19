@@ -150,7 +150,7 @@ export const useDashboardStats = () => {
       const createdAtDates = history.map((h) => h.created_at);
 
       const schoolInterviewRows = resolveSchoolInterviews(
-        (profileResult.data?.school_interviews as RawSchoolInterview[] | null) ?? null,
+        (profileResult.data?.school_interviews as unknown as RawSchoolInterview[] | null) ?? null,
         profileResult.data?.schools ?? null,
         profileResult.data?.interview_date ?? null
       );

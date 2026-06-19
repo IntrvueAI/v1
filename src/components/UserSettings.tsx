@@ -62,7 +62,7 @@ export const UserSettings = () => {
       
       if (error) throw error;
 
-      setProfile(data);
+      setProfile(data as unknown as UserProfile);
 
       // Prefer the new paired school+date rows; fall back to the old shared-date
       // shape for users who haven't re-saved since this changed.

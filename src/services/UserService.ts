@@ -9,18 +9,18 @@ export const UserService = {
       .eq('id', userId)
       .single();
     if (error) throw error;
-    return data as UserProfile;
+    return data as unknown as UserProfile;
   },
 
   async updateProfile(userId: string, patch: Partial<UserProfile>): Promise<UserProfile> {
     const { data, error } = await supabase
       .from('profiles')
-      .update(patch)
+      .update(patch as any)
       .eq('id', userId)
       .select()
       .single();
     if (error) throw error;
-    return data as UserProfile;
+    return data as unknown as UserProfile;
   },
 
   async getCredits(userId: string): Promise<CreditBalance> {
