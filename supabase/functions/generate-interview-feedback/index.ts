@@ -560,12 +560,38 @@ try {
     if (sessionReference) {
       const { data: sessionRow } = await supabaseAdmin
         .from('interview_sessions')
-        .select('evidence')
+        .select('evidence, subject')
         .eq('session_reference', sessionReference)
         .eq('user_id', userId)
         .maybeSingle();
       if (sessionRow?.evidence && Array.isArray(sessionRow.evidence)) {
         evidence = sessionRow.evidence;
+
+        // Flatten the evidence log into the dashboard's per-question table. Best-effort and
+        // idempotent (clears any prior rows for this session so regenerating feedback won't dupe).
+        try {
+          await supabaseAdmin.from('question_attempts').delete().eq('session_reference', sessionReference).eq('user_id', userId);
+          const rows = evidence.map((e: any) => ({
+            user_id: userId,
+            session_reference: sessionReference,
+            interview_type: interviewType,
+            subject: sessionRow.subject ?? null,
+            topic: e.topic ?? null,
+            difficulty: e.difficulty ?? null,
+            question_id: e.id ?? null,
+            question: e.question ?? null,
+            outcome: e.outcome ?? null,
+            band: e.band ?? null,
+            skipped: Boolean(e.skipped),
+            hints_used: Number.isFinite(e.hintsUsed) ? e.hintsUsed : 0,
+            student_answer: e.studentAnswer ?? null,
+            question_index: e.index ?? null,
+          }));
+          if (rows.length) await supabaseAdmin.from('question_attempts').insert(rows);
+        } catch (err) {
+          console.warn('question_attempts write skipped (continuing):', (err as any)?.message || err);
+        }
+
         questionsReview = evidence.map((e: any) => ({
           index: e.index,
           topic: e.topic,
