@@ -211,7 +211,7 @@ export const useInterviewSession = (
       // so a thinking pause or a breath doesn't get cut off. Default is 0.5; kids pause a lot, so we
       // run it more patient. Lower further if she still interrupts; raise if replies feel laggy.
       const client = createClient(sessionToken, {
-        voiceDetection: { endOfSpeechSensitivity: 0.3 },
+        voiceDetection: { endOfSpeechSensitivity: 0.1 },
       });
       clientRef.current = client;
 
