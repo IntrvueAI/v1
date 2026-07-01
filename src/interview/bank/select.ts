@@ -2,15 +2,14 @@
  * Question selection — the "folders the model calls from", picked one at a time.
  *
  * Pure and dependency-free: operates on an in-memory `BankQuestion[]` so it runs identically in
- * the browser, in Vitest, and in the Deno edge function. Loading the array is the caller's job
- * (see ./index.ts for the client/test loader).
+ * the browser, in Vitest, and in the Deno edge function.
  *
- * Practice mode: draw from the chosen `topic` at the running difficulty.
- * Mock mode: sample across all strands for coverage, at the running difficulty.
- * Selection is seeded so a run is reproducible in tests but varies session-to-session.
+ * Difficulty is now a numeric STAR LEVEL. The mock climbs the levels (via `adapt`), so selection
+ * draws at the running level and falls back to the NEAREST level that still has an unused question.
+ * Practice mode draws from the chosen category (`topic`). Selection is seeded so a run is
+ * reproducible in tests but varies session-to-session, and prefers a fresh category for variety.
  */
 import type { BankQuestion, Difficulty } from '../engine/types';
-import { DIFFICULTY_ORDER } from '../engine/types';
 
 /** Deterministic PRNG (mulberry32) — small, fast, good enough for question shuffling. */
 export function makeRng(seed: number): () => number {
@@ -29,39 +28,36 @@ function pickRandom<T>(items: T[], rng: () => number): T | undefined {
   return items[Math.floor(rng() * items.length)];
 }
 
-/** Distinct strand ids present in the bank, in stable first-seen order. */
+/** Distinct category ids present in the bank, in stable first-seen order. */
 export function listTopics(bank: BankQuestion[]): string[] {
   const seen: string[] = [];
   for (const q of bank) if (!seen.includes(q.topic)) seen.push(q.topic);
   return seen;
 }
 
-/** Difficulty tiers ordered by closeness to `target` (target first, then outward). */
-function difficultyFallback(target: Difficulty): Difficulty[] {
-  const i = DIFFICULTY_ORDER.indexOf(target);
-  const out: Difficulty[] = [DIFFICULTY_ORDER[i]];
-  for (let d = 1; d < DIFFICULTY_ORDER.length; d++) {
-    if (DIFFICULTY_ORDER[i - d]) out.push(DIFFICULTY_ORDER[i - d]);
-    if (DIFFICULTY_ORDER[i + d]) out.push(DIFFICULTY_ORDER[i + d]);
-  }
-  return out;
+/** Star levels present in the given questions, ordered by closeness to `target` (nearest first). */
+function levelOrderByCloseness(questions: BankQuestion[], target: Difficulty): number[] {
+  const levels = [...new Set(questions.map((q) => q.difficulty))];
+  return levels.sort((a, b) => Math.abs(a - target) - Math.abs(b - target) || a - b);
 }
 
 export interface SelectParams {
   bank: BankQuestion[];
   mode: 'practice' | 'mock';
+  /** Running star level (the target `adapt` is climbing to). */
   difficulty: Difficulty;
   askedIds: string[];
-  /** Practice: the chosen strand. Mock: ignored (samples all strands). */
+  /** Practice: the chosen category. Mock: ignored (samples across categories). */
   topic?: string;
-  /** 0-based count of questions already asked — used to rotate strands in mock for coverage. */
+  /** 0-based count of questions already asked — salts the shuffle. */
   questionIndex: number;
   seed: number;
+  /** Categories already covered this run — mock prefers a fresh one for variety. */
+  recentTopics?: string[];
 }
 
 /**
- * Pick the next question. Honours topic (practice) and difficulty, falling back to neighbouring
- * tiers — and, only if a strand is exhausted, to other strands — rather than ever repeating an id.
+ * Pick the next question at (or nearest to) the running star level, never repeating an id.
  * Returns `null` when the whole reachable bank is exhausted (caller should then wrap up).
  */
 export function selectQuestion(p: SelectParams): BankQuestion | null {
@@ -69,28 +65,22 @@ export function selectQuestion(p: SelectParams): BankQuestion | null {
   const unused = p.bank.filter((q) => !asked.has(q.id));
   if (unused.length === 0) return null;
 
-  // Which strands are we allowed to draw from, in priority order?
-  let topicOrder: (string | undefined)[];
-  if (p.mode === 'practice' && p.topic) {
-    topicOrder = [p.topic, undefined]; // chosen strand first, then anything as a last resort
-  } else {
-    // Mock: rotate strands by questionIndex so a run samples across all of them.
-    const topics = listTopics(unused);
-    const rotated = topics
-      .map((t, i) => ({ t, order: (i - (p.questionIndex % Math.max(topics.length, 1)) + topics.length) % topics.length }))
-      .sort((a, b) => a.order - b.order)
-      .map((x) => x.t);
-    topicOrder = [...rotated, undefined];
-  }
+  // Which categories are we allowed to draw from, in priority order?
+  const topicOrder: (string | undefined)[] =
+    p.mode === 'practice' && p.topic ? [p.topic, undefined] : [undefined];
 
-  // Vary the shuffle per question so repeated runs differ.
   const rng = makeRng((p.seed ^ (p.questionIndex * 0x9e3779b1)) >>> 0);
+  const recent = new Set(p.recentTopics ?? []);
 
   for (const topic of topicOrder) {
-    for (const diff of difficultyFallback(p.difficulty)) {
-      const candidates = unused.filter(
-        (q) => (topic === undefined || q.topic === topic) && q.difficulty === diff,
-      );
+    const inTopic = unused.filter((q) => topic === undefined || q.topic === topic);
+    for (const level of levelOrderByCloseness(inTopic, p.difficulty)) {
+      let candidates = inTopic.filter((q) => q.difficulty === level);
+      // Mock: prefer a category not yet covered this run, for a good spread.
+      if (p.mode === 'mock' && recent.size) {
+        const fresh = candidates.filter((q) => !recent.has(q.topic));
+        if (fresh.length) candidates = fresh;
+      }
       const chosen = pickRandom(candidates, rng);
       if (chosen) return chosen;
     }

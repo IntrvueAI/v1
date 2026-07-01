@@ -37,8 +37,8 @@ export const logicPack: SubjectPack = {
     'Refuses the premise instead of questioning the assumption',
   ],
   domains: ['Logic', 'Verbal Reasoning', 'Thinking Aloud & Adaptability', 'Lateral Thinking'],
-  startDifficulty: 'standard',
-  mockTargetQuestions: 6,
+  startDifficulty: 1, // easiest logic questions are 1★
+  mockTargetQuestions: 7,
   scoringPhilosophy: [
     'THE GOLDEN RULE OF SCORING: reasoning beats the right answer, every time. A child who reasons aloud, tests cases, notices their own errors and adapts scores HIGHER than one who states the correct answer with no working. A correct answer with no reasoning is worth very little.',
     'Weight the evidence roughly: ~70% process (thinking aloud, structuring the problem, testing possibilities, noticing contradictions, responding to challenge); ~20% adaptability (updating when probed, rather than digging in or shutting down); ~10% final answer (a bonus, not the basis — open questions have no single answer to credit).',

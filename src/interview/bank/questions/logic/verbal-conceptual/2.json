@@ -1,0 +1,90 @@
+[
+  {
+    "id": "LG-C2",
+    "subject": "logic",
+    "topic": "verbal-conceptual",
+    "difficulty": 2,
+    "questionType": "Verbal",
+    "question": "Here's one to finish: pen is to author as scalpel is to… what? And once you've got it, tell me the link you used.",
+    "answer": "(no single answer)",
+    "modelReasoningPath": "A strong candidate fills the blank and immediately states the rule: \"tool a professional uses,\" \"creator and their work.\" When they hit a harder one, they reason from the named rule rather than from vibe. The explanation is the evidence of reasoning; the word alone could be pattern-matching.",
+    "rubric": {
+      "strong": "Completes analogies and articulates the underlying relationship in words, unprompted. Handles Level 3-4 abstraction and can run the relationship in reverse.",
+      "developing": "Fills blanks correctly but reaches for the relationship only when asked, and describes it loosely (\"they go together\"). Right answers, fuzzy rationale.",
+      "weak": "Guesses words, sometimes plausibly, but can't say why - \"it just sounded right\" - and can't transfer the rule to a harder item."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Filling the blank by association (\"scalpel… hospital\") instead of matching the relationship (tool → user).",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Naming a relationship that doesn't actually fit both halves.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Treating \"I just knew it\" as sufficient.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "After every answer: \"What's the relationship you used there?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Can you say the rule in a way that works for both pairs?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Look at the first two words - what's the link between them?\"",
+      "\"Say it as a sentence: 'a pen is the tool an author uses, so a scalpel is the tool a ___ uses.'\"",
+      "\"Name the relationship out loud first - once you've got the rule, the missing word falls out.\""
+    ]
+  },
+  {
+    "id": "LG-C5",
+    "subject": "logic",
+    "topic": "verbal-conceptual",
+    "difficulty": 2,
+    "questionType": "Verbal",
+    "question": "Give me three completely different meanings of the word sharp. They must be genuinely different - not just different contexts for the same basic meaning.",
+    "answer": "cutting edge (sharp knife); mentally quick (sharp mind); musical pitch raised a semitone (F sharp); cold/biting (sharp wind); clear/well-defined (sharp image); stylishly dressed (looking sharp); sudden/abrupt (a sharp turn).",
+    "modelReasoningPath": "A strong candidate first checks that meanings are genuinely distinct, not the same idea in two settings - \"a sharp knife\" and \"a sharp point\" are the same core meaning. They then reach across domains (physical → mental → musical → weather), which is the real signal of lexical range.",
+    "rubric": {
+      "strong": "Three (or more) genuinely distinct senses spanning different domains, with a clear grasp of why they're different. Reaches for a non-obvious one (musical, sartorial) spontaneously.",
+      "developing": "Produces a couple of clearly different meanings but a third that's really a repeat of the first in a new context; can fix it when the distinction is explained.",
+      "weak": "Lists near-duplicates (\"sharp knife, sharp scissors, sharp sword\") and doesn't see they're one meaning. Stuck in a single domain."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Confusing different contexts with different meanings.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Staying entirely in the \"physically cutting\" domain.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Inventing a meaning that isn't really used.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Is 'a sharp knife' and 'a sharp point' really two different meanings, or the same idea twice?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Can you use two different meanings of 'sharp' in one sentence that still makes sense?",
+        "goodResponse": "e.g. \"The sharp detective spotted the sharp knife.\""
+      }
+    ],
+    "hints": [
+      "\"Picture 'sharp' in totally different places - a kitchen, someone's mind, a piece of music.\"",
+      "\"A sharp knife and a sharp pencil are really the same meaning. Can you find one that has nothing to do with cutting?\"",
+      "\"What does 'sharp' mean in music? And what do we mean if we call a person sharp?\""
+    ]
+  }
+]

@@ -8,13 +8,14 @@
 import { z } from 'zod';
 import type { BankQuestion, Difficulty } from '../engine/types';
 
-export const DifficultySchema = z.enum(['foundation', 'standard', 'stretch']);
+export const DifficultySchema = z.number().int().min(1).max(5);
 
 export const BankQuestionSchema = z.object({
   id: z.string().min(1),
   subject: z.string().min(1),
   topic: z.string().min(1),
-  difficulty: DifficultySchema,
+  difficulty: DifficultySchema, // star level (1 = easiest)
+  questionType: z.string().optional(),
   question: z.string().min(1),
   answer: z.string().min(1),
   explanation: z.string().optional(),

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "MA-A2",
+    "subject": "maths",
+    "topic": "numerical-reasoning",
+    "difficulty": 2,
+    "questionType": "Numerical",
+    "question": "Here's a riddle: I'm a three-digit number. My hundreds digit is three times my units digit, and my tens digit is one more than my units digit. And if you add all three of my digits together, you get 16. So - what number am I?",
+    "answer": "943",
+    "modelReasoningPath": "A strong candidate anchors everything to the units digit, because the other two are defined in terms of it. 1. Call the units digit \"something\" (or u). Then hundreds = 3 × units, and tens = units + 1. 2. All three add to 16: (3u) + (u + 1) + u = 16, i.e. 5u + 1 = 16, so 5u = 15, u = 3. 3. Units = 3, tens = 4, hundreds = 9 → 943. Check: 9 + 4 + 3 = 16 ✓, and 9 = 3 × 3 ✓.  A trial approach also works well: \"the units must be small, because the hundreds is three times it - try 3: hundreds 9, tens 4, sum 16, yes.\" The gold standard is realising the units digit is the key that unlocks the other two.",
+    "rubric": {
+      "strong": "Spots that everything depends on the units digit and builds from there (by algebra or smart trial), holding all three clues at once. Checks the total at the end.",
+      "developing": "Tries values for the digits and checks them against the clues, getting there by organised trial, but without first seeing that the units digit drives the rest. Some hopping between clues.",
+      "weak": "Guesses three-digit numbers with no link to the constraints, or uses only one clue. Can't combine \"three times\" and \"one more\" and \"adds to 16\" together."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Reading \"hundreds is three times units\" backwards (units = 3 × hundreds), giving an impossible digit.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Forgetting to check all three clues hold for the final number.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Trying random numbers rather than realising the hundreds digit being \"three times\" something tightly limits the units to 1, 2, or 3.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Which digit do the other two depend on? Could you start there?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "If the hundreds digit is three times the units, how big can the units digit actually be?",
+        "goodResponse": "It can only be 1, 2, or 3, else hundreds > 9."
+      },
+      {
+        "probe": "Does your number pass all three clues? Check each one.",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Two of the digits are described using the units digit. So try starting with the units digit and calling it 'something'.\"",
+      "\"The hundreds digit is three times the units, and the tens is one more than the units. So if the units were 3, what would the other two be?\"",
+      "\"Add your three digits up - they need to make 16. Try units = 3 and see if it works.\""
+    ]
+  },
+  {
+    "id": "MA-A6",
+    "subject": "maths",
+    "topic": "numerical-reasoning",
+    "difficulty": 2,
+    "questionType": "Numerical",
+    "question": "A farmer's counting up all the animals in his yard. He's only got chickens and rabbits - nothing else. Altogether he counts 20 heads and 56 legs. So how many chickens has he got, and how many rabbits?",
+    "answer": "12 chickens, 8 rabbits.",
+    "modelReasoningPath": "1. Suppose all 20 animals were chickens. That's 20 × 2 = 40 legs. 2. But there are 56 legs - that's 16 legs too many. 3. Each rabbit has 2 more legs than a chicken, so every chicken we swap for a rabbit adds 2 legs. To explain 16 extra legs we need 16 ÷ 2 = 8 rabbits. 4. So 8 rabbits and 12 chickens. Check: 8 × 4 + 12 × 2 = 32 + 24 = 56 ✓.  Several routes are all good: the \"all chickens\" baseline (most elegant), organised trial and improvement, or two equations (c + r = 20; 2c + 4r = 56). The gold standard is any method the child can explain - especially the leap \"if they were all chickens, the extra legs must come from rabbits.\"",
+    "rubric": {
+      "strong": "Uses a structured method (baseline-and-adjust, or equations, or systematic trial) and can explain why it works. Checks legs and heads at the end.",
+      "developing": "Reaches the answer by trial and improvement, adjusting sensibly after each guess (e.g. \"too many legs, swap a rabbit for a chicken\"), even if it takes several tries. Method is sound but slower and less explained.",
+      "weak": "Guesses pairs of numbers without checking both the head count and the leg count, or fixes one total and ignores the other. Can't explain the approach."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Satisfying the heads (some split of 20) but not checking the legs, or vice versa.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Forgetting a rabbit has 4 legs and a chicken 2 (mixing them up).",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Random guessing with no adjustment rule between guesses.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Pretend for a moment they're all chickens - how many legs would that be? Why isn't it 56?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Each time you turn a chicken into a rabbit, what happens to the leg count?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Can you check your answer fits *both the 20 heads and the 56 legs?\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Imagine every animal is a chicken. How many legs would 20 chickens have?\"",
+      "\"You've got 40, but you need 56 - that's 16 legs short. Where do extra legs come from?\"",
+      "\"Each rabbit adds 2 legs compared to a chicken. So how many rabbits give you those 16 extra legs?\""
+    ]
+  }
+]

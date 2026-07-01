@@ -10,8 +10,8 @@ import { mathsPack } from '../../subjects/maths/pack';
 import type { BankQuestion } from '../types';
 
 const BANK: BankQuestion[] = [
-  { id: 'q1', subject: 'maths', topic: 'arithmetic', difficulty: 'standard', question: 'What is 7 times 8?', answer: '56' },
-  { id: 'q2', subject: 'maths', topic: 'word-problems', difficulty: 'standard', question: 'Bus has 5 free seats…', answer: '5' },
+  { id: 'q1', subject: 'maths', topic: 'arithmetic', difficulty: 2, question: 'What is 7 times 8?', answer: '56' },
+  { id: 'q2', subject: 'maths', topic: 'word-problems', difficulty: 2, question: 'Bus has 5 free seats…', answer: '5' },
 ];
 
 const say = (content: string): ChatResult => ({ content, toolCalls: [], raw: [] });

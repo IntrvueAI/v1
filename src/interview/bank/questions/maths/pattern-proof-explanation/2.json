@@ -1,0 +1,98 @@
+[
+  {
+    "id": "MA-D1",
+    "subject": "maths",
+    "topic": "pattern-proof-explanation",
+    "difficulty": 2,
+    "questionType": "Pattern",
+    "question": "On the first of June, there's a single lily pad floating on a pond. Every day, the number of lily pads doubles. By the thirtieth of June, the whole pond is completely covered. So - on which date was the pond exactly half covered?",
+    "answer": "The 29th of June.",
+    "modelReasoningPath": "1. Don't work forwards. The pads double each day, so going backwards they halve each day. 2. The pond is full on the 30th. The day before - the 29th - it must have been exactly half full, because one more doubling fills it. 3. So the answer is the 29th of June, with no calculation at all.  The gold standard is working backwards: \"whatever it looks like on the 30th, on the 29th it was half of that.\" A child who reaches for 2²⁸ or tries to count up from day 1 has missed the elegant shortcut.",
+    "rubric": {
+      "strong": "Immediately works backwards from \"full on the 30th\" to \"half full the day before,\" and can explain why no calculation is needed (doubling forwards = halving backwards). Often delighted by how simple it is.",
+      "developing": "Starts forwards (day 1 = 1, day 2 = 2…) but, prompted with \"what was it the day before it was full?\", flips to the backwards view and gets the 29th. The insight lands with a nudge.",
+      "weak": "Insists on calculating forwards, tries to halve 30 to get the 15th, or guesses a date with no doubling logic. Doesn't connect \"doubles\" to \"half the day before.\""
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Answering the 15th (\"half of 30 days\")",
+        "reveals": "the classic trap; halving the time instead of using the doubling."
+      },
+      {
+        "mistake": "Trying to compute the actual number of pads (2²⁹) and getting bogged down.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Working forwards from day 1 and losing the thread.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "If the pond doubles each day, what was it the day *before it was completely full?\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Do you actually need to know how many lily pads there are to answer this?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Going backwards in time, what happens to the number of pads each day?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Try thinking backwards instead of forwards. The pond's full on the 30th - picture the day before.\"",
+      "\"Each day it doubles. So the day before it was full, how much of the pond was covered?\"",
+      "\"If one more doubling fills it, the day before must have been exactly half. Which date is that?\""
+    ]
+  },
+  {
+    "id": "MA-D6",
+    "subject": "maths",
+    "topic": "pattern-proof-explanation",
+    "difficulty": 2,
+    "questionType": "Pattern",
+    "question": "I take a square piece of paper and fold it in half three times. Then I make one straight cut, all the way through every layer. When I unfold the paper again, what's the most holes I could possibly have made?",
+    "answer": "8 holes.",
+    "modelReasoningPath": "1. Each fold doubles the number of layers: 1 → 2 → 4 → 8. After 3 folds there are 2 × 2 × 2 = 8 layers. 2. One straight cut goes through all 8 layers at once. If the cut is placed so it doesn't sit on a fold, it makes a hole in each layer → 8 holes when unfolded. 3. The \"maximum\" wording matters: a cut landing on a fold line would join holes up and give fewer, so the cut must avoid the folds.  The gold standard is linking \"3 folds\" to \"8 layers\" by doubling (powers of 2), and reasoning about where the cut lands.",
+    "rubric": {
+      "strong": "Connects folds to layers by doubling (3 folds → 8 layers), sees one cut pierces every layer for 8 holes, and notes the cut must avoid the folds to get the maximum. May reason it out or test with paper.",
+      "developing": "Gets that folding multiplies the layers and that the cut goes through all of them, but needs a nudge on the doubling count or on the \"avoid the fold\" point. Sound instinct.",
+      "weak": "Guesses (often \"3\", matching the folds, or \"1\" for one cut) with no layer-doubling idea. Doesn't picture the stacked layers."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Answering 3 (confusing folds with holes) or 6.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Adding layers (2+2+2) instead of doubling (2×2×2).",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Ignoring placement",
+        "reveals": "not seeing that a cut on a fold yields fewer holes."
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Each time you fold, what happens to the number of layers stacked up?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "After three folds, how many layers does your one cut pass through?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Does it matter *where you make the cut - could a bad spot give you fewer holes?\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Count the layers as you fold: one fold makes 2 layers, two folds make…?\"",
+      "\"After three folds you've got 8 layers stacked. Your single cut slices through all of them at once.\"",
+      "\"Each layer gets its own hole - as long as the cut doesn't land on a fold. So how many holes when you open it out?\""
+    ]
+  }
+]

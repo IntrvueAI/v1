@@ -41,7 +41,7 @@ export const currentaffairsPack: SubjectPack = {
     'Treats a hard moral question as having an obvious, comfortable answer',
   ],
   domains: ['World Awareness', 'Forming & Defending a View', 'Considering Other Perspectives', 'Moral Maturity'],
-  startDifficulty: 'standard',
+  startDifficulty: 2, // discussion questions are not star-rated; all default to 2
   mockTargetQuestions: 6,
   scoringPhilosophy: [
     'THE GOLDEN RULE: you are scoring the THINKING, never the opinion. It does not matter which view the child takes — a child who defends an unfashionable view thoughtfully scores HIGHER than one who recites the "expected" view with no reasoning. Never let your own opinion, or the "nice" answer, leak into the score.',

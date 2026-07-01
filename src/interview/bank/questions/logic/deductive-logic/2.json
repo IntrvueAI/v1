@@ -1,0 +1,46 @@
+[
+  {
+    "id": "LG-A6",
+    "subject": "logic",
+    "topic": "deductive-logic",
+    "difficulty": 2,
+    "questionType": "Deductive",
+    "question": "Which is the odd one out: dog, cat, whale, bat, snake? I want you to give me as many different answers as you can, each with a different reason.",
+    "answer": "- Snake - only reptile; only one with no limbs. - Whale - only one living exclusively in water; can't survive on land. - Bat - only one capable of sustained flight. - Dog - only one routinely domesticated as a working animal; only canid. - Cat - only obligate carnivore; domestication angle.",
+    "modelReasoningPath": "A strong candidate doesn't hunt for the answer - they realise the task is to generate multiple lenses and switch deliberately between them: taxonomy, habitat, locomotion, diet, relationship to humans. The quality is in naming a principle (\"by where they live…\", \"by how they move…\") rather than a one-off observation.",
+    "rubric": {
+      "strong": "Offers several answers unprompted, each on a different principle, and names the principle each time. Finds at least one creative/unexpected distinction and defends it.",
+      "developing": "Gives one solid answer with a clear reason, and can produce a second when asked, but tends to stay on one type of distinction (e.g. only biological categories). Needs the \"different lens\" prompt to shift.",
+      "weak": "Gives a single answer and stops, or offers reasons that aren't really distinguishing (\"snake, because I don't like snakes\"). Can't articulate a principle behind the choice."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Treating it as having one right answer and defending only that.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Confusing a personal/aesthetic reason (\"scary\") with a categorical principle.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Repeating the same lens with different animals rather than genuinely shifting the lens.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Can you think of a reason a completely different animal could be the odd one out?",
+        "goodResponse": "Forces a lens-shift."
+      },
+      {
+        "probe": "What's the rule you're using to decide that one?",
+        "goodResponse": "Pushes observation → principle."
+      }
+    ],
+    "hints": [
+      "\"There's no single right answer here - just pick any one animal and tell me a reason it's different.\"",
+      "\"Think of different ways to sort them: where they live, how they move about, what they eat.\"",
+      "\"You've got one reason - now change the rule completely. Could a totally different animal be the odd one out for a totally different reason?\""
+    ]
+  }
+]

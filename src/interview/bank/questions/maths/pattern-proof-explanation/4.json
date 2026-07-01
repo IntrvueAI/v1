@@ -1,0 +1,98 @@
+[
+  {
+    "id": "MA-D2",
+    "subject": "maths",
+    "topic": "pattern-proof-explanation",
+    "difficulty": 4,
+    "questionType": "Pattern",
+    "question": "A staircase has 10 steps. I can climb it by taking either one step or two steps at a time, in any combination I like. For example, I could take 10 single steps, or 5 double steps, or some mixture. How many different ways are there to climb the staircase?",
+    "answer": "89 ways.",
+    "modelReasoningPath": "1. Start small and build up. 1 step: 1 way. 2 steps: 2 ways (1+1, or 2). 3 steps: 3 ways. 4 steps: 5 ways. 2. Notice the pattern: each answer is the sum of the previous two (3 = 1+2, 5 = 2+3…). Why? To reach step n, your last move is either a single step (from step n−1) or a double (from step n−2), so the ways to reach n = ways to reach (n−1) + ways to reach (n−2). It's the Fibonacci sequence. 3. Build it: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89.  The gold standard is spotting \"each number is the sum of the two before\" - exceptional at this age. Don't expect it; many will list combinations for small cases, which is exactly the right way to discover the pattern.",
+    "rubric": {
+      "strong": "Works small cases systematically (1, 2, 3, 5…), spots that each total is the sum of the previous two, and uses it to reach 89 - ideally explaining why (last move is a 1 or a 2). Rare and impressive.",
+      "developing": "Lists combinations carefully for small staircases and gets the early numbers right, sensing a pattern but needing a nudge (\"look at how each number relates to the two before it\") to build to 89. Strong method, partial leap.",
+      "weak": "Tries to list all combinations for 10 steps and loses track, or guesses, with no move to small cases and no pattern. Disorganised."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Trying to enumerate every route for 10 steps directly",
+        "reveals": "far too many to track."
+      },
+      {
+        "mistake": "Getting the small cases wrong (e.g. saying 2 steps has 1 way), which breaks the pattern.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Spotting \"add the two before\" but making an arithmetic slip partway up the chain.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "How many ways for a tiny staircase - 1 step? 2 steps? 3 steps? Write them out.",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Look at your numbers so far - how does each one relate to the two before it?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "To land on step 10, what could your very last move have been?",
+        "goodResponse": "Opens the n−1 / n−2 idea."
+      }
+    ],
+    "hints": [
+      "\"Ten steps is a lot to list. Start tiny - how many ways to climb 1 step, 2 steps, 3 steps?\"",
+      "\"Write the totals in a row: 1, 2, 3, 5… Do you see how each one is made from the two before it?\"",
+      "\"Each number is the sum of the previous two. Keep that rule going up to the 10th - where do you land?\""
+    ]
+  },
+  {
+    "id": "MA-D5",
+    "subject": "maths",
+    "topic": "pattern-proof-explanation",
+    "difficulty": 4,
+    "questionType": "Proof",
+    "question": "Earlier we noticed something interesting. 1 on its own is 1. 1 plus 3 makes 4. 1 plus 3 plus 5 makes 9. And 1 plus 3 plus 5 plus 7 makes 16. And those are all square numbers - one squared, two squared, three squared, four squared. So can you think of a picture, or a reason, why adding up the odd numbers in order like this always lands you on a square number?",
+    "answer": "(no single answer)",
+    "modelReasoningPath": "This is open-ended and visual - encourage drawing. A strong candidate connects \"adding the next odd number\" to \"adding a border that makes the next-size square.\" Even \"each time you add a border, and the border gets bigger by 2 each time\" is most of the insight. The gold standard is seeing the odd number as the L-shaped layer.",
+    "rubric": {
+      "strong": "Reaches the picture: each odd number is an L-shaped border that turns an n×n square into an (n+1)×(n+1) square, so the running total is always a perfect square. May draw it and explain clearly.",
+      "developing": "Senses that \"you keep adding a bigger layer each time\" and that the totals are squares, but doesn't fully nail the border-makes-the-next-square link without prompting or drawing. Real partial insight.",
+      "weak": "Re-checks that the sums are squares but offers no picture or reason for why, or can't engage with a visual/structural explanation at all."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Re-verifying the arithmetic (1+3+5+7=16) and treating that as the explanation, rather than giving a reason.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Drawing squares but not lining the odd numbers up with the borders.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Thinking the borders are full rings (4 sides) rather than L-shapes (2 sides), so the tile counts don't match.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "Try drawing it. Start with one square, then add 3 tiles - what shape can you make?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Where do the 3 extra tiles go to turn a 1×1 into a 2×2? And the next 5?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "So what is each odd number actually *doing to the square?\"*",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Grab some squared paper. Colour 1 square. Now add 3 more - can you make a 2-by-2 square?\"",
+      "\"Add the next odd number, 5, around two sides - does it become a 3-by-3 square?\"",
+      "\"Each odd number is the L-shaped border that grows the square to the next size. That's why the totals are always square numbers - can you say it back in your own words?\""
+    ]
+  }
+]

@@ -8,10 +8,19 @@
 /** How the interview is run (the flow diagram's "modefork"). */
 export type Mode = 'practice' | 'mock';
 
-/** Difficulty tiers questions are folded into so `adapt` has something to climb. */
-export type Difficulty = 'foundation' | 'standard' | 'stretch';
+/**
+ * Difficulty is a numeric STAR LEVEL (1 = easiest … up to 5), taken from each question's star
+ * rating in the source script. `adapt` climbs this one level at a time (harder on a clean solve,
+ * easier when they struggle). Levels present vary by subject (e.g. Logic 1–4, Maths 2–5).
+ */
+export type Difficulty = number;
 
-export const DIFFICULTY_ORDER: Difficulty[] = ['foundation', 'standard', 'stretch'];
+export const MIN_DIFFICULTY = 1;
+export const MAX_DIFFICULTY = 5;
+
+/** Clamp a star level into the supported range. */
+export const clampDifficulty = (n: number): Difficulty =>
+  Math.max(MIN_DIFFICULTY, Math.min(MAX_DIFFICULTY, Math.round(n)));
 
 /**
  * The evaluation outcome of a single answered (or skipped) question — mirrors the
@@ -54,8 +63,12 @@ export interface LiveProbe {
 export interface BankQuestion {
   id: string;
   subject: string;
-  topic: string;          // strand id, e.g. 'arithmetic' — MUST match the bank folder
-  difficulty: Difficulty; // MUST match the file it's in
+  topic: string;          // strand id — MUST match the bank folder
+  /** Numeric star level (1 = easiest). Adaptive difficulty climbs/eases this. */
+  difficulty: Difficulty;
+  /** The category / question-type this belongs to (e.g. "Numerical Reasoning"). Kept for the
+   *  practice-mode picker and the dashboard now that difficulty is the star level, not the category. */
+  questionType?: string;
   question: string;       // 1. read verbatim, exactly as written
   answer: string;         // the final answer (server-side only — NEVER spoken)
   /** Optional short worked method (legacy field; superseded by modelReasoningPath). */

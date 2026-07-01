@@ -39,7 +39,7 @@ export const mathsPack: SubjectPack = {
     'Misreads the question or drops a step',
   ],
   domains: ['Numerical Reasoning', 'Estimation', 'Structured Thinking', 'Explanation Quality'],
-  startDifficulty: 'standard',
+  startDifficulty: 2, // easiest maths questions are 2★
   mockTargetQuestions: 7,
   scoringPhilosophy: [
     'THE GOLDEN RULE: method beats the right answer, every time. A child who sets up the problem sensibly, narrates their steps, makes one arithmetic slip and lands on the wrong number is reasoning BETTER than one who blurts the correct number with no working. A correct answer with no method is barely scoreable.',

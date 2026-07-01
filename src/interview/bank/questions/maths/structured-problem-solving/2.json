@@ -1,0 +1,98 @@
+[
+  {
+    "id": "MA-C6",
+    "subject": "maths",
+    "topic": "structured-problem-solving",
+    "difficulty": 2,
+    "questionType": "Structured",
+    "question": "A knockout tennis tournament has 64 players. In every match there's one winner and one loser, and the moment you lose, you're out. So how many matches need to be played altogether before you're left with a single champion?",
+    "answer": "63 matches.",
+    "modelReasoningPath": "- Round by round (fine): 64 → 32 matches → 16 → 8 → 4 → 2 → 1. Add the matches: 32 + 16 + 8 + 4 + 2 + 1 = 63. - The elegant invariant: every match knocks out exactly one player. To get from 64 players down to 1 champion, 63 players must be knocked out - so exactly 63 matches, whatever the bracket looks like.  The gold standard is the invariant argument - \"one match, one player out, so 63 matches to remove 63 players.\" A child who reaches it (even after the round-by-round count) is reasoning at a high level.",
+    "rubric": {
+      "strong": "Gets 63, and either reaches the \"each match eliminates one player\" insight or arrives at it when prompted to find a quicker way. Reasons cleanly either route.",
+      "developing": "Works it round by round (32 + 16 + … + 1) carefully and correctly to 63, but doesn't see the one-match-one-elimination shortcut even when nudged. Sound, mechanical.",
+      "weak": "Loses track of the halving, miscounts the rounds, or guesses (e.g. says 64 or 32). No reliable structure."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Saying 64 (one per player) or 32 (just the first round).",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Slipping in the halving sequence (e.g. forgetting the final 1).",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Adding the players per round instead of the matches.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "How many players get knocked out in each single match?",
+        "goodResponse": "Targets the invariant."
+      },
+      {
+        "probe": "To crown one champion out of 64, how many players need to be eliminated altogether?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Can you think of a quicker way to see it than counting every round?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"Work it round by round. 64 players - how many matches in the first round, and how many players go through?\"",
+      "\"Keep halving: 64, 32, 16, 8, 4, 2, 1. Add up the matches in each round.\"",
+      "\"Here's a shortcut to spot: every match knocks out exactly one player. How many players must be knocked out to leave one winner?\""
+    ]
+  },
+  {
+    "id": "MA-C7",
+    "subject": "maths",
+    "topic": "structured-problem-solving",
+    "difficulty": 2,
+    "questionType": "Structured",
+    "question": "My calculator's broken. The only buttons that still work are the 'one' button, the 'plus' button, the 'minus' button, and the 'equals' button. I can press them as many times as I like. So what's the smallest number of button presses I'd need to make it show the number 13?",
+    "answer": "7 presses - pressing `1` `1` `+` `1` `+` `1` `=` (that is, 11 + 1 + 1 = 13).",
+    "modelReasoningPath": "1. The crucial insight: you can't press a \"3\", but you can build the two-digit number 11 by pressing `1` twice. So use 11 as a building block. 2. 11 + 1 + 1 = 13. Count the presses: `1` `1` (makes 11), `+`, `1`, `+`, `1`, `=` → 7 presses. 3. Check you can't do better: any single repunit you can make is 1 or 11 (111 is already too big), so reaching 13 needs 11 plus two more 1s, which can't be done in fewer than 7 presses. Subtraction doesn't help here (it would need even more presses to overshoot and come back).  The gold standard is the \"build 11 from two 1-presses\" idea, plus a genuine attempt to show 7 is the minimum, not just a way.",
+    "rubric": {
+      "strong": "Spots that 11 can be built by pressing `1` twice, constructs 13 = 11 + 1 + 1 in 7 presses, and argues (even informally) that nothing shorter works. Counts the presses carefully, including the `=`.",
+      "developing": "Finds a working sequence to 13 but with more presses (e.g. 1+1+1+…+1), and when nudged toward \"can you build a bigger number from 1s?\" sees the 11 shortcut. On the right track.",
+      "weak": "Adds 1s one at a time (13 ones plus operators) and treats that as the answer, with no idea you can form 11, and no attempt to minimise. Miscounts presses."
+    },
+    "commonMistakes": [
+      {
+        "mistake": "Not realising two `1` presses make `11`",
+        "reveals": "adding 1 thirteen times instead."
+      },
+      {
+        "mistake": "Forgetting to count the final `=` (or the operator presses) in the total.",
+        "reveals": "what this reveals about their thinking"
+      },
+      {
+        "mistake": "Claiming a shorter sequence that doesn't actually evaluate to 13.",
+        "reveals": "what this reveals about their thinking"
+      }
+    ],
+    "liveProbes": [
+      {
+        "probe": "You can't press 3 - but could you make a bigger number than 1 using only the 1 button?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "If you can make 11 easily, how close to 13 does that get you?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      },
+      {
+        "probe": "Count every press, including the equals. Can you find anything shorter than 7?",
+        "goodResponse": "engages thoughtfully and gives a reasoned response"
+      }
+    ],
+    "hints": [
+      "\"There's no 3 button - so you'll have to build 13 out of 1s, pluses and minuses. What numbers can you actually make?\"",
+      "\"Pressing the 1 button twice gives you 11. Does that help you get near 13?\"",
+      "\"11 plus 1 plus 1 is 13. Count up every button press you'd need, equals included.\""
+    ]
+  }
+]

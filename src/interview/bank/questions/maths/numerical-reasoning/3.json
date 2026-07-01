@@ -3,7 +3,8 @@
     "id": "MA-A1",
     "subject": "maths",
     "topic": "numerical-reasoning",
-    "difficulty": "standard",
+    "difficulty": 3,
+    "questionType": "Numerical",
     "question": "I'm thinking of a two-digit number. If you swap its two digits round, you get a number that's 27 bigger than the one I started with. And here's another clue: those two digits add up to 11. So - what's my number?",
     "answer": "47",
     "modelReasoningPath": "A strong candidate turns the two clues into two facts about the digits and combines them. 1. Reversing adds 27. Because swapping the tens and units of a two-digit number changes its value by 9 × (difference of the digits), \"27 bigger\" means the digits differ by 3 (since 27 ÷ 9 = 3). A child needn't know the \"× 9\" rule - many reason \"to jump up by 27 when you swap, the units must be a fair bit bigger than the tens.\" 2. The digits add to 11. 3. So: two digits that differ by 3 and add to 11 → 4 and 7. Since reversing makes it bigger, the larger digit is in the units: the number is 47 (47 → 74, a jump of 27 ✓).  Algebra (10b + a − 10a − b = 27 → b − a = 3) is impressive but absolutely not required. Reasoning \"they differ by 3 and add to 11, so 4 and 7\" is the gold standard at this age.",
@@ -47,57 +48,11 @@
     ]
   },
   {
-    "id": "MA-A2",
-    "subject": "maths",
-    "topic": "numerical-reasoning",
-    "difficulty": "standard",
-    "question": "Here's a riddle: I'm a three-digit number. My hundreds digit is three times my units digit, and my tens digit is one more than my units digit. And if you add all three of my digits together, you get 16. So - what number am I?",
-    "answer": "943",
-    "modelReasoningPath": "A strong candidate anchors everything to the units digit, because the other two are defined in terms of it. 1. Call the units digit \"something\" (or u). Then hundreds = 3 × units, and tens = units + 1. 2. All three add to 16: (3u) + (u + 1) + u = 16, i.e. 5u + 1 = 16, so 5u = 15, u = 3. 3. Units = 3, tens = 4, hundreds = 9 → 943. Check: 9 + 4 + 3 = 16 ✓, and 9 = 3 × 3 ✓.  A trial approach also works well: \"the units must be small, because the hundreds is three times it - try 3: hundreds 9, tens 4, sum 16, yes.\" The gold standard is realising the units digit is the key that unlocks the other two.",
-    "rubric": {
-      "strong": "Spots that everything depends on the units digit and builds from there (by algebra or smart trial), holding all three clues at once. Checks the total at the end.",
-      "developing": "Tries values for the digits and checks them against the clues, getting there by organised trial, but without first seeing that the units digit drives the rest. Some hopping between clues.",
-      "weak": "Guesses three-digit numbers with no link to the constraints, or uses only one clue. Can't combine \"three times\" and \"one more\" and \"adds to 16\" together."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Reading \"hundreds is three times units\" backwards (units = 3 × hundreds), giving an impossible digit.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Forgetting to check all three clues hold for the final number.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Trying random numbers rather than realising the hundreds digit being \"three times\" something tightly limits the units to 1, 2, or 3.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Which digit do the other two depend on? Could you start there?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "If the hundreds digit is three times the units, how big can the units digit actually be?",
-        "goodResponse": "It can only be 1, 2, or 3, else hundreds > 9."
-      },
-      {
-        "probe": "Does your number pass all three clues? Check each one.",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Two of the digits are described using the units digit. So try starting with the units digit and calling it 'something'.\"",
-      "\"The hundreds digit is three times the units, and the tens is one more than the units. So if the units were 3, what would the other two be?\"",
-      "\"Add your three digits up - they need to make 16. Try units = 3 and see if it works.\""
-    ]
-  },
-  {
     "id": "MA-A3",
     "subject": "maths",
     "topic": "numerical-reasoning",
-    "difficulty": "standard",
+    "difficulty": 3,
+    "questionType": "Numerical",
     "question": "Four friends are sharing out a pile of sweets equally between them, but there are 2 left over. Then a fifth friend turns up, and when they share the same pile equally between all five of them, this time there are 3 left over. So - what's the smallest number of sweets the pile could have been?",
     "answer": "18",
     "modelReasoningPath": "1. Translate the words into two conditions: the number leaves remainder 2 when divided by 4, and remainder 3 when divided by 5. 2. Generate candidates for each and look for the first overlap. - Remainder 2 with 4: 2, 6, 10, 14, 18, 22… - Remainder 3 with 5: 3, 8, 13, 18, 23… 3. The first number in both lists is 18. Check: 18 ÷ 4 = 4 remainder 2 ✓; 18 ÷ 5 = 3 remainder 3 ✓.  The gold standard is building both lists and hunting the overlap - a clear, organised search rather than random trial.",
@@ -144,7 +99,8 @@
     "id": "MA-A4",
     "subject": "maths",
     "topic": "numerical-reasoning",
-    "difficulty": "standard",
+    "difficulty": 3,
+    "questionType": "Numerical",
     "question": "I start at 1, and I keep adding on the next odd number each time. So I start with 1. Then 1 plus 3 makes 4. Then 4 plus 5 makes 9. Then 9 plus 7 makes 16, and so on. If I keep going until I've added the twentieth odd number - what's my total?",
     "answer": "400",
     "modelReasoningPath": "1. Look at the running totals already given: 1, 4, 9, 16. 2. Recognise these as square numbers - 1×1, 2×2, 3×3, 4×4. The total after adding the n*th odd number is n². 3. So after the 20th odd number, the total is 20 × 20 = 400.  The gold standard is spotting the squares pattern *from the examples in the question and generalising to \"the 20th total is 20 squared.\" A child who instead writes out more terms (25, 36, 49…) and then sees the squares is also reasoning well - slower, but sound. Credit anyone who sees the pattern even if they can't say why odds make squares (that \"why\" is question D5).",
@@ -191,7 +147,8 @@
     "id": "MA-A5",
     "subject": "maths",
     "topic": "numerical-reasoning",
-    "difficulty": "standard",
+    "difficulty": 3,
+    "questionType": "Numerical",
     "question": "A coat normally costs £80. In a sale, the shop takes 20% off the price. Then, once the sale ends, they put the price back up by 25%. So what's the new price now? And is it more than, less than, or exactly the same as the original £80?",
     "answer": "Exactly £80 - the same as the original.",
     "modelReasoningPath": "1. Work it in order, not by combining the percentages. 20% off £80 is £16 off, leaving £64. 2. Now 25% on is applied to £64, not to £80. 25% of £64 is £16, giving £64 + £16 = £80. 3. The two changes cancel exactly. The deep reason: a fifth off takes you to 4/5 of the price; a quarter on from there multiplies by 5/4; and 4/5 × 5/4 = 1, back to the start.  The gold standard isn't the arithmetic - it's the insight that the 25% is taken of a smaller number than the 20% was, so you can't just compare 25 against 20.",
@@ -235,57 +192,11 @@
     ]
   },
   {
-    "id": "MA-A6",
-    "subject": "maths",
-    "topic": "numerical-reasoning",
-    "difficulty": "standard",
-    "question": "A farmer's counting up all the animals in his yard. He's only got chickens and rabbits - nothing else. Altogether he counts 20 heads and 56 legs. So how many chickens has he got, and how many rabbits?",
-    "answer": "12 chickens, 8 rabbits.",
-    "modelReasoningPath": "1. Suppose all 20 animals were chickens. That's 20 × 2 = 40 legs. 2. But there are 56 legs - that's 16 legs too many. 3. Each rabbit has 2 more legs than a chicken, so every chicken we swap for a rabbit adds 2 legs. To explain 16 extra legs we need 16 ÷ 2 = 8 rabbits. 4. So 8 rabbits and 12 chickens. Check: 8 × 4 + 12 × 2 = 32 + 24 = 56 ✓.  Several routes are all good: the \"all chickens\" baseline (most elegant), organised trial and improvement, or two equations (c + r = 20; 2c + 4r = 56). The gold standard is any method the child can explain - especially the leap \"if they were all chickens, the extra legs must come from rabbits.\"",
-    "rubric": {
-      "strong": "Uses a structured method (baseline-and-adjust, or equations, or systematic trial) and can explain why it works. Checks legs and heads at the end.",
-      "developing": "Reaches the answer by trial and improvement, adjusting sensibly after each guess (e.g. \"too many legs, swap a rabbit for a chicken\"), even if it takes several tries. Method is sound but slower and less explained.",
-      "weak": "Guesses pairs of numbers without checking both the head count and the leg count, or fixes one total and ignores the other. Can't explain the approach."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Satisfying the heads (some split of 20) but not checking the legs, or vice versa.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Forgetting a rabbit has 4 legs and a chicken 2 (mixing them up).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Random guessing with no adjustment rule between guesses.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Pretend for a moment they're all chickens - how many legs would that be? Why isn't it 56?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Each time you turn a chicken into a rabbit, what happens to the leg count?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Can you check your answer fits *both the 20 heads and the 56 legs?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Imagine every animal is a chicken. How many legs would 20 chickens have?\"",
-      "\"You've got 40, but you need 56 - that's 16 legs short. Where do extra legs come from?\"",
-      "\"Each rabbit adds 2 legs compared to a chicken. So how many rabbits give you those 16 extra legs?\""
-    ]
-  },
-  {
     "id": "MA-A7",
     "subject": "maths",
     "topic": "numerical-reasoning",
-    "difficulty": "standard",
+    "difficulty": 3,
+    "questionType": "Numerical",
     "question": "My car's fuel tank is three-quarters full. Then I go on a long drive, and I use up two-thirds of the fuel that was in the tank when I set off. So at the end - what fraction of a full tank have I got left?",
     "answer": "1/4",
     "modelReasoningPath": "1. Read carefully: the fuel used is two-thirds of what was in the tank (which is 3/4 of a tank), not two-thirds of a full tank. 2. Fuel used = 2/3 × 3/4 = 6/12 = 1/2 a tank. 3. Fuel left = started with 3/4, used 1/2 → 3/4 − 2/4 = 1/4 of a tank.  A neat alternative: \"they used two-thirds of what was there, so one-third of it is left; one-third of 3/4 is 1/4.\" The gold standard is reading \"of the fuel in the tank\" precisely, and then handling the fraction-of-a-fraction.",

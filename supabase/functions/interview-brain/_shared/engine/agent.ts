@@ -232,7 +232,7 @@ export function buildSystemPrompt(pack: SubjectPack, state: AgentState): string 
     '- Keep every turn to one or two short sentences — brevity matters more than completeness, since you can always continue next turn. The student should do most of the talking.',
     '- To finish: thank them warmly, give one genuine, specific positive, and tell them to end the interview to see their feedback, then call finish_interview.',
     '',
-    `Progress so far: ${state.questionIndex} problem(s) done${mock ? ` of about ${state.targetQuestions}` : ''}. Current difficulty: ${state.difficulty}.`,
+    `Progress so far: ${state.questionIndex} problem(s) done${mock ? ` of about ${state.targetQuestions}` : ''}. Current difficulty: star level ${state.difficulty} of 5 (higher = harder). The bank handles which problem to serve — just ask what next_problem gives you.`,
     renderCurrentProblem(state.current),
   ];
   return lines.filter((l) => l !== '').join('\n');
@@ -282,6 +282,8 @@ function executeTool(call: ParsedToolCall, state: AgentState, deps: AgentDeps): 
     topic: state.currentTopic,
     questionIndex: state.questionIndex,
     seed: state.seed,
+    // Prefer a category not yet covered this run, for a good spread across question types.
+    recentTopics: state.evidence.map((e) => e.topic),
   });
   if (!q) {
     return { no_more_problems: true, message: 'No more problems are available. Give a warm closing, then call finish_interview.' };
@@ -294,6 +296,7 @@ function executeTool(call: ParsedToolCall, state: AgentState, deps: AgentDeps): 
   return {
     number: state.evidence.length + 1,
     topic: q.topic,
+    question_type: q.questionType,
     difficulty: q.difficulty,
     question: q.question,
     answer: q.answer,

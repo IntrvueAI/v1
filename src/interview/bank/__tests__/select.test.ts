@@ -3,23 +3,24 @@ import { selectQuestion, makeRng, listTopics, type SelectParams } from '../selec
 import { getMathsBank } from '../index';
 import type { BankQuestion, Difficulty } from '../../engine/types';
 
+// difficulty is now a numeric star level (1 = easiest).
 function q(id: string, topic: string, difficulty: Difficulty): BankQuestion {
   return { id, subject: 'maths', topic, difficulty, question: `Q ${id}`, answer: 'a' };
 }
 
 const BANK: BankQuestion[] = [
-  q('a-f', 'arithmetic', 'foundation'),
-  q('a-s', 'arithmetic', 'standard'),
-  q('a-x', 'arithmetic', 'stretch'),
-  q('w-f', 'word-problems', 'foundation'),
-  q('w-s', 'word-problems', 'standard'),
-  q('w-x', 'word-problems', 'stretch'),
+  q('a-1', 'arithmetic', 1),
+  q('a-2', 'arithmetic', 2),
+  q('a-3', 'arithmetic', 3),
+  q('w-1', 'word-problems', 1),
+  q('w-2', 'word-problems', 2),
+  q('w-3', 'word-problems', 3),
 ];
 
 const base = (over: Partial<SelectParams> = {}): SelectParams => ({
   bank: BANK,
   mode: 'mock',
-  difficulty: 'standard',
+  difficulty: 2,
   askedIds: [],
   questionIndex: 0,
   seed: 12345,
@@ -42,7 +43,6 @@ describe('selectQuestion', () => {
       expect(askedIds).not.toContain(chosen!.id);
       askedIds.push(chosen!.id);
     }
-    // Bank exhausted → null.
     expect(selectQuestion(base({ askedIds, questionIndex: BANK.length }))).toBeNull();
   });
 
@@ -57,17 +57,23 @@ describe('selectQuestion', () => {
     }
   });
 
-  it('prefers the requested difficulty, falling back to a neighbouring tier', () => {
-    // Only a stretch arithmetic question left at standard request → should still resolve.
-    const onlyStretch = [q('a-x', 'arithmetic', 'stretch')];
-    const chosen = selectQuestion(base({ bank: onlyStretch, difficulty: 'foundation' }));
-    expect(chosen!.id).toBe('a-x');
+  it('serves the requested star level, falling back to the nearest available level', () => {
+    const onlyHard = [q('a-3', 'arithmetic', 3)];
+    const chosen = selectQuestion(base({ bank: onlyHard, difficulty: 1 }));
+    expect(chosen!.id).toBe('a-3');
   });
 
-  it('mock mode rotates across strands for coverage', () => {
+  it('picks a question at the running star level', () => {
+    const chosen = selectQuestion(base({ difficulty: 3 }))!;
+    expect(chosen.difficulty).toBe(3);
+  });
+
+  it('mock prefers a category not yet covered (variety)', () => {
     const first = selectQuestion(base({ questionIndex: 0 }))!;
-    const second = selectQuestion(base({ questionIndex: 1, askedIds: [first.id] }))!;
-    expect(first.topic).not.toBe(second.topic);
+    const second = selectQuestion(
+      base({ questionIndex: 1, askedIds: [first.id], recentTopics: [first.topic] }),
+    )!;
+    expect(second.topic).not.toBe(first.topic);
   });
 
   it('returns null on an empty bank', () => {
@@ -76,13 +82,13 @@ describe('selectQuestion', () => {
 });
 
 describe('real maths bank', () => {
-  it('loads the authored maths questions across the four Mathematical Thinking strands', () => {
+  it('loads the authored maths questions with numeric star difficulty and question types', () => {
     const bank = getMathsBank();
     expect(bank.length).toBeGreaterThanOrEqual(20);
     expect(listTopics(bank).sort()).toEqual(
       ['estimation', 'numerical-reasoning', 'pattern-proof-explanation', 'structured-problem-solving'].sort(),
     );
-    // Every question carries the rich 6-part spec.
-    expect(bank.every((q) => q.rubric && q.hints && q.hints.length > 0)).toBe(true);
+    expect(bank.every((x) => typeof x.difficulty === 'number' && x.difficulty >= 1 && x.difficulty <= 5)).toBe(true);
+    expect(bank.every((x) => x.questionType && x.rubric && x.hints && x.hints.length > 0)).toBe(true);
   });
 });
