@@ -13,6 +13,7 @@ import { Play, Square, Mic, MicOff, RotateCcw } from 'lucide-react';
 import { InterviewTimer } from './InterviewTimer';
 import { InterviewType, getDefaultInterviewType } from '@/config/interviewTypes';
 import { InterviewSetup, SetupChoice } from './InterviewSetup';
+import { ShareFeedbackBox } from './ShareFeedbackBox';
 import { getSubjectPack } from '@/interview/subjects';
 
 interface InterviewPlatformProps {
@@ -476,12 +477,19 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
                 {isGeneratingFeedback ? 'Regenerating…' : 'Regenerate Feedback'}
               </Button>
             </div>
-            <InterviewFeedback 
-              feedback={feedback} 
+            <InterviewFeedback
+              feedback={feedback}
               isLoading={isGeneratingFeedback}
               interviewType={interviewType.id}
               scoringSystem={interviewType.scoringSystem}
             />
+            {feedback && !isGeneratingFeedback && (
+              <ShareFeedbackBox
+                sessionReference={sessionReference}
+                interviewType={interviewType.id}
+                transcript={(feedback as any)?.transcription}
+              />
+            )}
           </div>
         )}
       </div>
