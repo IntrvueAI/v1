@@ -16,18 +16,37 @@ import { AdminUserFeedback } from '@/components/admin/AdminUserFeedback';
 import { AdminSystemHealth } from '@/components/admin/AdminSystemHealth';
 import { AdminAuditLog } from '@/components/admin/AdminAuditLog';
 import { useAuth } from '@/contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 import { Shield, LogOut } from 'lucide-react';
 
 export default function AdminDashboard() {
   const { isAdmin, isLoading, error } = useAdminStatus();
   const { user, signOut, signInWithGoogle } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
   const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem('admin_unlocked') === '1');
   const [passcode, setPasscode] = useState('');
   const [passError, setPassError] = useState(false);
 
   const handleSignOut = async () => {
     sessionStorage.removeItem('admin_unlocked');
+    setUnlocked(false);
     await signOut();
+    navigate('/auth'); // land on the full sign-in page so it's obvious you're signed out
+  };
+
+  const handleGoogle = async () => {
+    const { error } = await signInWithGoogle();
+    if (error) {
+      toast({
+        title: 'Google sign-in unavailable',
+        description: `${error.message || error}. Use the main sign-in page instead.`,
+        variant: 'destructive',
+      });
+      navigate('/auth');
+    }
+    // On success the browser redirects to Google, so nothing else to do here.
   };
 
   const tryUnlock = () => {
@@ -84,8 +103,11 @@ export default function AdminDashboard() {
               <p className="text-xs text-muted-foreground">
                 {user ? `Signed in as ${user.email}` : 'Not signed in'} — switch to your admin account:
               </p>
-              <Button variant="outline" className="w-full gap-2" onClick={() => signInWithGoogle()}>
+              <Button variant="outline" className="w-full gap-2" onClick={handleGoogle}>
                 Sign in with Google
+              </Button>
+              <Button variant="ghost" size="sm" className="w-full" onClick={() => navigate('/auth')}>
+                Go to sign-in page
               </Button>
               {user && (
                 <Button variant="ghost" size="sm" className="w-full gap-2" onClick={handleSignOut}>
