@@ -19,7 +19,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				inter: ['Inter', 'sans-serif'],
+				sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+				serif: ['Lora', 'Georgia', 'serif'],
+				inter: ['"Plus Jakarta Sans"', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -27,6 +29,10 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				teal: 'hsl(var(--teal))',
+				gold: 'hsl(var(--gold))',
+				ink: 'hsl(var(--ink))',
+				cream: 'hsl(var(--cream))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',

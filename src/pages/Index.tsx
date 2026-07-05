@@ -32,6 +32,7 @@ import { CreditsStore } from '@/components/credits/CreditsStore';
 import { PaymentSuccess } from '@/components/PaymentSuccess';
 import { MobileBottomNav } from '@/components/mobile/MobileBottomNav';
 import SeasonalEffect from '@/components/SeasonalEffect';
+import { PipMark } from '@/components/brand/Pip';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index = () => {
@@ -179,17 +180,18 @@ const Index = () => {
           <div className="flex items-center gap-2 md:gap-6 w-full">
             {/* Logo and Back Button */}
             <div className="flex items-center gap-2 md:gap-3">
-              <img
-                src="/lovable-uploads/logo.png"
-                alt="Intrvue.ai Logo — go to home"
-                className="h-6 md:h-8 w-auto cursor-pointer"
-                role="button"
-                tabIndex={0}
+              <button
+                type="button"
+                aria-label="intrvue — go to home"
+                className="flex items-center gap-2 cursor-pointer"
                 onClick={() => {
                   setSelectedInterviewType(null);
                   showPaymentSuccess ? clearPaymentSuccessAndNavigate('dashboard') : setCurrentView('dashboard');
                 }}
-              />
+              >
+                <PipMark size={30} />
+                <span className="font-serif text-lg md:text-xl font-semibold tracking-tight text-ink">intrvue</span>
+              </button>
               {currentView === 'interview' && selectedInterviewType && (
                 <Button variant="ghost" size="sm" onClick={handleBackToSelection} className="gap-1 md:gap-2 px-2 md:px-3">
                   <ArrowLeft className="w-4 h-4" />

@@ -1,59 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Professional academic color palette */
-    --background: 210 15% 98%;
-    --foreground: 215 25% 15%;
+    /* Warm scholar palette — cream paper, ink navy, coral. Ref: design-reference/Explorations.html */
+    --background: 38 44% 96%;         /* warm cream #FAF6EF */
+    --foreground: 211 30% 19%;        /* ink navy #22303F */
 
     /* Card and popover surfaces */
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
-    
+    --card-foreground: 211 30% 19%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 211 30% 19%;
 
-    /* Primary: True Coral #FF7F50 */
-    --primary: 16 100% 66%;
-    --primary-foreground: 0 0% 100%;
-    --primary-soft: 16 90% 70%;
+    /* Primary: Coral #F4744E */
+    --primary: 14 88% 63%;
+    --primary-foreground: 40 40% 97%;
+    --primary-soft: 14 88% 70%;
 
-    /* Secondary: Soft professional gray */
-    --secondary: 210 20% 94%;
-    --secondary-foreground: 215 25% 25%;
+    /* Secondary: warm tan for subtle chips */
+    --secondary: 38 34% 88%;
+    --secondary-foreground: 211 30% 25%;
 
     /* Muted tones for subtle elements */
-    --muted: 210 15% 94%;
-    --muted-foreground: 215 15% 45%;
+    --muted: 38 34% 91%;
+    --muted-foreground: 210 16% 42%;
 
-    /* Accent: Professional coral tone for interactive elements */
-    --accent: 16 30% 95%;
-    --accent-foreground: 215 35% 25%;
+    /* Accent: warm cream hover surface */
+    --accent: 38 40% 93%;
+    --accent-foreground: 211 30% 20%;
+
+    /* Named brand accents (mock: teal = strong, gold = coming-along) */
+    --teal: 180 54% 36%;
+    --gold: 39 68% 53%;
+    --ink: 211 30% 19%;
+    --cream: 38 44% 96%;
 
     /* Winter accent - subtle icy blue */
     --winter: 200 60% 70%;
     --winter-soft: 200 40% 85%;
     --winter-frost: 200 30% 95%;
 
-    /* Status colors - muted for professional feel */
-    --success: 145 40% 35%;
-    --success-foreground: 145 40% 95%;
-    
-    --warning: 35 60% 45%;
-    --warning-foreground: 35 60% 95%;
-    
-    --destructive: 0 40% 50%;
-    --destructive-foreground: 0 40% 95%;
+    /* Status colors — teal (strong) / gold (developing) to match the mock */
+    --success: 180 54% 36%;
+    --success-foreground: 40 40% 97%;
+
+    --warning: 39 68% 53%;
+    --warning-foreground: 211 30% 15%;
+
+    --destructive: 0 60% 55%;
+    --destructive-foreground: 40 40% 97%;
 
     /* Interface elements */
-    --border: 215 20% 88%;
-    --input: 215 20% 96%;
-    --ring: 16 100% 66%;
+    --border: 36 22% 87%;
+    --input: 36 22% 90%;
+    --ring: 14 88% 63%;
 
-    /* Professional rounded corners */
-    --radius: 0.75rem;
+    /* Rounded corners — generous, per the mock */
+    --radius: 1rem;
     
     /* Interview control colors */
     --interview-active: 145 40% 35%;
@@ -154,8 +162,13 @@
   }
 
   body {
-    @apply bg-gradient-to-b from-background to-background/95 text-foreground font-inter;
+    @apply bg-background text-foreground font-sans;
     font-feature-settings: 'cv11', 'ss02';
+  }
+
+  /* Display headings use the Lora serif for the warm-scholar feel. */
+  h1, h2 {
+    @apply font-serif tracking-tight;
   }
   
   /* Professional typography for interview platform */

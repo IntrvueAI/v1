@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<!-- saved from url=(0323)https://f758b07e-25da-4b8a-90c0-26e0e9ff438f.claudeusercontent.com/v1/design/projects/f758b07e-25da-4b8a-90c0-26e0e9ff438f/serve/Explorations-print-h5u70t.dc.html?t=8ead3fd43ffa66373a04dc2c59eeacfc8481abb68641e3ba99c6fd8984bcab1a.2295d988-da70-45d7-a586-a1b03a36d93a.1f5accbe-7b43-4ed8-98fc-a4144c5396ca.1783292099&direct=1 -->
+<html data-dc-canvas="" style="color-scheme: light;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+    .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
+      border:1px solid color-mix(in srgb,currentColor 50%,transparent);
+      border-radius:2px;box-sizing:border-box;overflow:hidden}
+    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
+    html.sc-dc-streaming .sc-placeholder,
+    html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
+      background:color-mix(in srgb,currentColor 5%,transparent);
+      border-color:transparent}
+    html.sc-dc-streaming .sc-placeholder::before,
+    html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
+      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
+    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
+    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
+      background:color-mix(in srgb,currentColor 8%,transparent)}
+    .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
+      color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}
+    .sc-interp.sc-missing{display:inline-block;width:2em;height:1em;overflow:hidden;
+      vertical-align:text-bottom;background:rgba(255,255,255,.3);border:1px solid rgba(0,0,0,.5);
+      border-radius:2px;box-sizing:border-box;color:transparent;
+      user-select:none}
+    .sc-interp.sc-unresolved{font-family:ui-monospace,monospace;font-size:.85em;
+      color:color-mix(in srgb,currentColor 50%,transparent);
+      background:color-mix(in srgb,currentColor 10%,transparent);border-radius:3px;
+      padding:0 3px}
+    .sc-host.sc-has-error{position:relative}
+    .sc-logic-error{position:absolute;top:8px;left:8px;z-index:2147483647;max-width:60ch;
+      padding:6px 10px;background:#b00020;color:#fff;font:12px/1.4 ui-monospace,monospace;
+      border-radius:4px;white-space:pre-wrap;pointer-events:none}
+    /* Mirrors PRINT_BASELINE_CSS in apps/web deck-stage-export.ts — keep both
+       in sync until dc-runtime regains a build step. */
+    @media print {
+      @page { margin: 0.5cm; }
+      figure, table { break-inside: avoid; }
+      #dc-root, #dc-root > .sc-host { height: auto; }
+      *, *::before, *::after {
+        print-color-adjust: exact; -webkit-print-color-adjust: exact;
+        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+        animation-delay: -99s !important; animation-duration: .001s !important;
+        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+        animation-play-state: running !important; transition-duration: 0s !important;
+      }
+    }
+  </style><style>@media print {
+  figure, table { break-inside: avoid; }
+  *, *::before, *::after {
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+    animation-delay: -99s !important; animation-duration: .001s !important;
+    animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+    animation-play-state: running !important; transition-duration: 0s !important;
+  }
+}</style>
+<style data-omelette-injected="">html,body{background:transparent}</style><script data-omelette-injected="">(()=>{{const Y=new URLSearchParams(location.search).get("theme");if(Y==="light"||Y==="dark"){document.documentElement.dataset.theme=Y}}{const Y=()=>{try{if(document.querySelector('meta[name="color-scheme"]'))return;const k=getComputedStyle(document.documentElement).getPropertyValue("color-scheme").trim();if(k&&k!=="normal")return;const w=(X)=>{if(!X)return null;const F=getComputedStyle(X).backgroundColor.match(/^rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)(?:[,\s/]+([\d.]+%?))?\s*\)$/);if(!F)return null;const K=F[4]==null?1:parseFloat(F[4])/(F[4].endsWith("%")?100:1);if(K<0.99)return null;return[+F[1],+F[2],+F[3]]};const U=w(document.body)||w(document.documentElement);if(!U)return;const x=(X)=>{const F=X/255;return F<=0.04045?F/12.92:((F+0.055)/1.055)**2.4};const D=0.2126*x(U[0])+0.7152*x(U[1])+0.0722*x(U[2]);document.documentElement.style.setProperty("color-scheme",D<0.4?"dark":"light")}catch{}};if(document.readyState==="complete")Y();else window.addEventListener("load",Y)}var _=["https://claude.ai","https://preview.claude.ai","https://f758b07e-25da-4b8a-90c0-26e0e9ff438f.claudeusercontent.com"];var v=true;var P=30000;var h=3000;document.addEventListener("DOMContentLoaded",()=>{const Y=window.Babel;const k="om-src-id";if(Y&&Y.registerPlugin&&!(Y.availablePlugins&&Y.availablePlugins[k])){Y.registerPlugin(k,({types:D})=>({visitor:{JSXOpeningElement(X,F){const K=X.node;if(K.name&&K.name.type==="JSXMemberExpression")return;for(let z=0;z<K.attributes.length;z++){const V=K.attributes[z];if(V.type==="JSXAttribute"&&V.name&&V.name.name==="data-om-id")return}const B=F.file&&F.file.opts&&F.file.opts.filename||"?";const A=K.loc&&K.loc.start;const J=`jsx:${B}:${K.start??0}:${A?A.line:0}:${A?A.column+1:0}`;K.attributes.push(D.jsxAttribute(D.jsxIdentifier("data-om-id"),D.stringLiteral(J)))}}}))}const w="om-text-extract";let U=false;if(v&&Y&&Y.registerPlugin&&!(Y.availablePlugins&&Y.availablePlugins[w])){const D=window.React;if(D&&D.useSyncExternalStore&&D.createElement){U=true;const X={};const F=new Set;let K=0;window.__omTextO=X;window.__omTextSet=(J)=>{for(const z in J){const V=J[z];if(V==null)delete X[z];else X[z]=V}K++;F.forEach((z)=>z())};const B=(J)=>{F.add(J);return()=>F.delete(J)};const A=()=>K;window.__OmT=function J(z){D.useSyncExternalStore(B,A,A);return D.createElement("span",{"data-om-text":z.i,className:"__om-t"},z.i in X?X[z.i]:z.children)};Y.registerPlugin(w,({types:J})=>{const z={style:1,script:1,noscript:1,textarea:1,title:1,option:1,text:1,tspan:1,textPath:1};const V={placeholder:1,alt:1,title:1,label:1,"aria-label":1,"aria-description":1,"aria-placeholder":1};const W=(Z,H)=>J.logicalExpression("??",J.memberExpression(J.logicalExpression("||",J.memberExpression(J.identifier("window"),J.identifier("__omTextO")),J.objectExpression([])),J.stringLiteral(Z),true),H);const Q=(Z)=>Z.file&&Z.file.opts&&Z.file.opts.filename||"?";const j=(Z)=>Z.file&&Z.file.code||"";const G=(Z,H)=>{const N=($)=>$&&$.start!=null&&$.end!=null&&($.type==="StringLiteral"||$.type==="TemplateLiteral"&&$.expressions.length===0)?[$.start,$.end]:null;const L=N(H);if(L)return L;if(H&&H.type==="Identifier"){const $=Z.scope.getBinding(H.name);if($&&$.constant&&$.path.node.type==="VariableDeclarator"){return N($.path.node.init)}}return null};const R=(Z,H,N)=>{const L=Z.node;let $=false;const M=(q,E)=>{$=true;return J.jsxElement(J.jsxOpeningElement(J.jsxIdentifier("__OmT"),[J.jsxAttribute(J.jsxIdentifier("i"),J.stringLiteral(q))],false),J.jsxClosingElement(J.jsxIdentifier("__OmT")),[E],false)};const C=L.children.map((q)=>{if(q.type==="JSXText"){if(q.start==null||q.end==null)return q;const E=N.slice(q.start,q.end);const f=E.length-E.trimStart().length;const I=E.length-E.trimEnd().length;if(f+I>=E.length)return q;return M(`txt:${H}:${q.start+f}:${q.end-I}`,q)}if(q.type==="JSXExpressionContainer"){const E=G(Z,q.expression);if(E)return M(`str:${H}:${E[0]}:${E[1]}`,q)}return q});if($)L.children=C};return{visitor:{JSXOpeningElement(Z,H){const N=Z.node;const L=Q(H);const $={};for(let M=0;M<N.attributes.length;M++){const C=N.attributes[M];if(C.type!=="JSXAttribute"||!C.name)continue;const q=C.name.name;if(!V[q])continue;if(!C.value||C.value.type!=="StringLiteral")continue;if(C.value.start==null||C.value.end==null)continue;const E=`txt:${L}:${C.value.start}:${C.value.end}`;$[q]=E;C.value=J.jsxExpressionContainer(W(E,J.stringLiteral(C.value.value)))}if(Object.keys($).length){N.attributes.push(J.jsxAttribute(J.jsxIdentifier("data-om-text-attrs"),J.stringLiteral(JSON.stringify($))))}},JSXElement(Z,H){const N=Z.node.openingElement;const L=N&&N.name&&N.name.name;if(L==="__OmT")return;if(typeof L==="string"&&z[L])return;R(Z,Q(H),j(H))},JSXFragment(Z,H){R(Z,Q(H),j(H))}}}})}}const x=U?["transform-react-jsx-source",k,w]:["transform-react-jsx-source",k];document.querySelectorAll('script[type="text/babel"],script[type="text/jsx"]').forEach((D,X)=>{const F=D.getAttribute("data-plugins")||"";const K=x.filter((B)=>F.indexOf(B)<0);if(K.length){D.setAttribute("data-plugins",F?`${F},${K.join(",")}`:K.join(","))}if(!D.hasAttribute("data-filename")){D.setAttribute("data-filename",D.getAttribute("src")||`inline-${X}`)}})});var S=window.parent;if(S&&S!==window){const Y=(J,z)=>{try{S.postMessage({__omelette_log:true,type:J,data:z},"*")}catch{}};["log","warn","error"].forEach((J)=>{const z=console[J];console[J]=(...V)=>{const W=V.map((Q)=>{try{return typeof Q==="object"?JSON.stringify(Q):String(Q)}catch{try{return String(Q)}catch{return"[unstringifiable]"}}}).join(" ");Y(J,W);z.apply(console,V)}});window.addEventListener("error",(J)=>{const z=J.target;if(z&&z!==window&&z.tagName){const V=z.src||z.href||"";Y("resource_error",`${z.tagName} failed to load: ${V}`)}else{Y("error",`${J.message||"Unknown error"} at ${J.filename||"?"}:${J.lineno||0}:${J.colno||0}`)}},true);window.addEventListener("unhandledrejection",(J)=>{const z=J.reason;const V=z instanceof Error?`${z.message} ${z.stack}`:String(z);Y("error",`Unhandled rejection: ${V}`)});const k=()=>{try{S.postMessage({type:"omelette:height",height:document.documentElement.scrollHeight},"*")}catch{}};if(window.ResizeObserver)new ResizeObserver(k).observe(document.documentElement);const w=()=>{k();if(!document.querySelector('script[type="text/babel"],script[type="text/jsx"]'))return;const J=()=>document.getElementById("root")||document.querySelector("body > div[id]");const z=J()?.firstElementChild??null;let V=0;const W=()=>{const Q=J();if(Q&&Q.firstElementChild!==z||++V>30){k();return}setTimeout(W,100)};setTimeout(W,100)};if(document.readyState==="complete")w();else window.addEventListener("load",w);const U={};let x=0;const D=(J)=>new Promise((z,V)=>{if(!_.length){V(new Error("claude.complete: no parent origin"));return}const W=`c${++x}`;const Q=()=>setTimeout(()=>{delete U[W];V(new Error(`claude.complete: no data for ${P/1000}s`))},P);const j=Q();U[W]={resolve:z,reject:V,text:"",t:j,arm:Q};try{for(const G of _){S.postMessage({__om_api:true,id:W,body:J},G)}}catch(G){clearTimeout(j);delete U[W];V(G)}});const X=8;const F=async(J,z)=>{if(!Array.isArray(J.messages)){throw new Error("claude.complete: tools require a messages array")}const V=J.messages.slice();const W={...J,tools:J.tools.map((G)=>{if(G===null||typeof G!=="object")return G;const R={};for(const Z of Object.keys(G)){if(typeof G[Z]!=="function")R[Z]=G[Z]}return R})};const Q=W.tool_choice;const j=Q!=null&&(Q.type==="any"||Q.type==="tool")?{...W,tool_choice:Q.disable_parallel_tool_use!==undefined?{type:"auto",disable_parallel_tool_use:Q.disable_parallel_tool_use}:{type:"auto"}}:W;for(let G=0;G<X;G++){const R=await D({...G===0?W:j,messages:V});const Z=R.message;const H=Z&&Array.isArray(Z.content)?Z.content:null;const N=H?H.filter(($)=>$?.type==="tool_use"):[];if(Z?.stop_reason!=="tool_use"||N.length===0){return R.text}const L=[];for(const $ of N){const M=z.get($.name);if(!M){L.push({type:"tool_result",tool_use_id:$.id,content:`no handler for tool "${$.name}"`,is_error:true});continue}try{const C=await M($.input);const q=typeof C==="string"?C:A(C)??"";L.push({type:"tool_result",tool_use_id:$.id,content:q})}catch(C){L.push({type:"tool_result",tool_use_id:$.id,content:String(C?.message??C??"tool handler failed"),is_error:true})}}V.push({role:"assistant",content:H},{role:"user",content:L})}throw new Error(`claude.complete: exceeded ${X} tool turns`)};window.claude={complete(J){const z=J;if(z!==null&&typeof z==="object"&&Array.isArray(z.tools)&&z.tools.some((V)=>V!==null&&typeof V==="object"&&typeof V.run==="function")){const V=new Map;for(const W of z.tools){if(W!==null&&typeof W==="object"&&typeof W.run==="function"){V.set(String(W.name),W.run)}}return F(z,V)}return D(J).then((V)=>V.text)}};const K={};let B=0;window.omelette={writeFile:(J,z)=>new Promise((V,W)=>{if(!_.length){V();return}const Q=`f${++B}`;const j=setTimeout(()=>{delete K[Q];V()},h);K[Q]={resolve:V,reject:W,t:j};try{for(const G of _){S.postMessage({__om_file:true,id:Q,op:"write",path:J,content:z},G)}}catch{clearTimeout(j);delete K[Q];V()}})};const A=(J)=>{try{return JSON.stringify(J)}catch{return JSON.stringify(String(J))}};window.addEventListener("message",(J)=>{if(_.indexOf(J.origin)<0)return;if(J.source!==S)return;const z=J.data;if(!z)return;if(z.type==="omelette-preview-refresh"){if(typeof z.token!=="string"||!/^[0-9a-f.-]+(\.(rc|pr-[0-9]+))?(\.[0-9]+\.[0-9a-f]{16})?$/.test(z.token))return;const Q=Math.max(1,Math.floor((z.expiresAt||0)-Date.now()/1000));document.cookie="__Host-omelette-preview="+z.token+"; Path=/; Secure; SameSite=None; Partitioned; Max-Age="+Q;return}if(z.__om_file_r){const Q=K[z.id];if(!Q)return;clearTimeout(Q.t);delete K[z.id];if(z.ok)Q.resolve();else Q.reject(new Error(z.error||"write failed"));return}if(z.__om_api_r){const Q=U[z.id];if(!Q)return;if(z.error!=null){clearTimeout(Q.t);delete U[z.id];Q.reject(new Error(z.error));return}if(z.chunk!=null){clearTimeout(Q.t);Q.t=Q.arm();Q.text+=z.chunk;return}if(z.done){clearTimeout(Q.t);delete U[z.id];Q.resolve({text:z.text!=null?z.text:Q.text,message:z.message});return}return}if(!z.__om_eval)return;const V=z;const W=(Q)=>{J.source.postMessage({...Q,__om_eval_r:1,id:V.id},J.origin)};try{const Q=(0,eval)(V.code);if(Q&&typeof Q.then==="function"){Q.then((j)=>W({ok:1,v:A(j)}),(j)=>W({ok:0,e:String(j)}))}else{W({ok:1,v:A(Q)})}}catch(Q){W({ok:0,e:String(Q)})}})}})();
+</script>
+
+<style data-omelette-print-defaults="">
+@media print {
+  @page { margin: 0.5in; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  figure, table, pre, blockquote, img, svg, tr, [class~="card" i] { break-inside: avoid; }
+  img, svg { max-width: 100%; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./Explorations_files/support.js.download"></script><style>x-dc{display:none!important}</style><script src="./Explorations_files/react.production.min.js.download" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script><script src="./Explorations_files/react-dom.production.min.js.download" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<title>Explorations</title><style data-dc-canvas="">html,body{background:#f0eee6}#dc-root>.sc-host{position:relative}</style><style id="__dc-atomics">.fx{display:flex}.col{display:flex;flex-direction:column}.grid{display:grid}.ac{align-items:center}.jc{justify-content:center}.jb{justify-content:space-between}.f1{flex:1}.noshrink{flex-shrink:0}.wrap{flex-wrap:wrap}.fw5{font-weight:500}.fw6{font-weight:600}.fw7{font-weight:700}.fw8{font-weight:800}.fs11{font-size:11px}.fs12{font-size:12px}.fs13{font-size:13px}.fs14{font-size:14px}.fs15{font-size:15px}.fs16{font-size:16px}.fs20{font-size:20px}.fs22{font-size:22px}.upper{text-transform:uppercase}.tc{text-align:center}.nowrap{white-space:nowrap}.gap8{gap:8px}.gap10{gap:10px}.gap12{gap:12px}.gap16{gap:16px}.gap24{gap:24px}.m0{margin:0}.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mb8{margin-bottom:8px}.mb12{margin-bottom:12px}.mb16{margin-bottom:16px}.posrel{position:relative}.posabs{position:absolute}.round{border-radius:50%}.ohide{overflow:hidden}.bbox{box-sizing:border-box}.pointer{cursor:pointer}.w100{width:100%}.b0{border:none}</style><style>html,body{height:100%;margin:0}#dc-root,#dc-root>.sc-host{height:100%}</style><meta name="design_doc_mode" content="canvas" data-dc-tpl="1"><link rel="preconnect" href="https://fonts.googleapis.com/" data-dc-tpl="2"><link href="./Explorations_files/css2" rel="stylesheet" data-dc-tpl="3"><style data-dc-tpl="4">body{margin:0;background:#f0eee9;font-family:system-ui,sans-serif}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}</style><style>*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}</style></head>
+<body data-om-frame-wrap="">
+<div id="dc-root" data-om-frame-wrap=""><div class="sc-host" data-sc-name="Explorations-print-h5u70t" data-om-frame-wrap=""><section data-dc-tpl="5" class="dv-turn" id="t1" data-om-frame=""><div data-dc-tpl="6" class="dv-thd"><a data-dc-tpl="7" class="dv-tid" href="https://f758b07e-25da-4b8a-90c0-26e0e9ff438f.claudeusercontent.com/v1/design/projects/f758b07e-25da-4b8a-90c0-26e0e9ff438f/serve/Explorations-print-h5u70t.dc.html?t=8ead3fd43ffa66373a04dc2c59eeacfc8481abb68641e3ba99c6fd8984bcab1a.2295d988-da70-45d7-a586-a1b03a36d93a.1f5accbe-7b43-4ed8-98fc-a4144c5396ca.1783292099&amp;direct=1#t1">1</a><span data-dc-tpl="8" class="dv-tname">First pass — warm &amp; premium, with Pip the owl. Keeping your coral, adding ink navy + warm cream so it stops feeling like a template.</span></div><div data-dc-tpl="9" class="dv-opts"><div data-dc-tpl="10" class="dv-opt" id="1a"><div data-dc-tpl="11" class="dv-olabel"><a data-dc-tpl="12" class="dv-oid" href="https://f758b07e-25da-4b8a-90c0-26e0e9ff438f.claudeusercontent.com/v1/design/projects/f758b07e-25da-4b8a-90c0-26e0e9ff438f/serve/Explorations-print-h5u70t.dc.html?t=8ead3fd43ffa66373a04dc2c59eeacfc8481abb68641e3ba99c6fd8984bcab1a.2295d988-da70-45d7-a586-a1b03a36d93a.1f5accbe-7b43-4ed8-98fc-a4144c5396ca.1783292099&amp;direct=1#1a">1a</a>Student home — "warm scholar": cream paper, serif greetings, mascot as coach</div><div data-dc-tpl="13" class="dv-card" data-screen-label="1a Student home" style="width: 1280px; background: rgb(250, 246, 239); font-family: &quot;Plus Jakarta Sans&quot;, sans-serif; color: rgb(34, 48, 63); filter: drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 3px) !important; box-shadow: none !important;">
+
+  
+  <div data-dc-tpl="14" style="display: flex; align-items: center; gap: 28px; padding: 18px 40px; border-bottom: 1px solid rgba(34, 48, 63, 0.08);">
+    <div data-dc-tpl="15" style="display: flex; align-items: center; gap: 10px;">
+      <div data-dc-tpl="16" style="position: relative; width: 30px; height: 33px;">
+        <div data-dc-tpl="17" style="position: absolute; inset: 0px; background: rgb(34, 48, 63); border-radius: 46% 46% 48% 48%;"></div>
+        <div data-dc-tpl="18" style="position: absolute; top: -3px; left: 3px; width: 8px; height: 8px; background: rgb(34, 48, 63); transform: rotate(45deg);"></div>
+        <div data-dc-tpl="19" style="position: absolute; top: -3px; right: 3px; width: 8px; height: 8px; background: rgb(34, 48, 63); transform: rotate(45deg);"></div>
+        <div data-dc-tpl="20" style="position: absolute; top: 8px; left: 5px; width: 9px; height: 9px; background: rgb(250, 246, 239); border-radius: 50%;"></div>
+        <div data-dc-tpl="21" style="position: absolute; top: 8px; right: 5px; width: 9px; height: 9px; background: rgb(250, 246, 239); border-radius: 50%;"></div>
+        <div data-dc-tpl="22" style="position: absolute; top: 10px; left: 8px; width: 3px; height: 3px; background: rgb(34, 48, 63); border-radius: 50%;"></div>
+        <div data-dc-tpl="23" style="position: absolute; top: 10px; right: 8px; width: 3px; height: 3px; background: rgb(34, 48, 63); border-radius: 50%;"></div>
+        <div data-dc-tpl="24" style="position: absolute; top: 17px; left: 13px; width: 5px; height: 5px; background: rgb(244, 116, 78); transform: rotate(45deg);"></div>
+      </div>
+      <span data-dc-tpl="25" style="font-family: Lora, serif; font-weight: 600; font-size: 19px; letter-spacing: -0.01em;">intrvue</span>
+    </div>
+    <div data-dc-tpl="26" style="display: flex; gap: 4px; margin-left: 12px;">
+      <span data-dc-tpl="27" style="padding: 8px 16px; border-radius: 999px; background: rgb(34, 48, 63); color: rgb(250, 246, 239); font-size: 13.5px; font-weight: 600;">Home</span>
+      <span data-dc-tpl="28" style="padding: 8px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 500; color: rgb(91, 107, 123);">Practice</span>
+      <span data-dc-tpl="29" style="padding: 8px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 500; color: rgb(91, 107, 123);">My sessions</span>
+      <span data-dc-tpl="30" style="padding: 8px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 500; color: rgb(91, 107, 123);">Questions</span>
+    </div>
+    <div data-dc-tpl="31" style="margin-left: auto; display: flex; align-items: center; gap: 14px;">
+      <span data-dc-tpl="32" style="padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(34, 48, 63, 0.15); font-size: 12.5px; font-weight: 600; color: rgb(91, 107, 123);">96 credits</span>
+      <div data-dc-tpl="33" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(232, 223, 208); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: rgb(34, 48, 63);">A</div>
+    </div>
+  </div>
+
+  
+  <div data-dc-tpl="34" style="display: flex; align-items: center; gap: 48px; padding: 52px 64px 40px;">
+    <div data-dc-tpl="35" style="position: relative; width: 120px; height: 132px; flex: 0 0 auto;">
+      <div data-dc-tpl="36" style="position: absolute; inset: 0px; background: rgb(34, 48, 63); border-radius: 46% 46% 48% 48%;"></div>
+      <div data-dc-tpl="37" style="position: absolute; top: -8px; left: 14px; width: 22px; height: 22px; background: rgb(34, 48, 63); transform: rotate(45deg);"></div>
+      <div data-dc-tpl="38" style="position: absolute; top: -8px; right: 14px; width: 22px; height: 22px; background: rgb(34, 48, 63); transform: rotate(45deg);"></div>
+      <div data-dc-tpl="39" style="position: absolute; bottom: 0px; left: 24px; width: 72px; height: 58px; background: rgb(232, 223, 208); border-radius: 50% 50% 46% 46%;"></div>
+      <div data-dc-tpl="40" style="position: absolute; top: 30px; left: 22px; width: 32px; height: 32px; background: rgb(255, 255, 255); border-radius: 50%; box-shadow: rgb(34, 48, 63) 0px 0px 0px 3px inset;"></div>
+      <div data-dc-tpl="41" style="position: absolute; top: 30px; right: 22px; width: 32px; height: 32px; background: rgb(255, 255, 255); border-radius: 50%; box-shadow: rgb(34, 48, 63) 0px 0px 0px 3px inset;"></div>
+      <div data-dc-tpl="42" style="position: absolute; top: 40px; left: 34px; width: 9px; height: 9px; background: rgb(34, 48, 63); border-radius: 50%;"></div>
+      <div data-dc-tpl="43" style="position: absolute; top: 40px; right: 34px; width: 9px; height: 9px; background: rgb(34, 48, 63); border-radius: 50%;"></div>
+      <div data-dc-tpl="44" style="position: absolute; top: 62px; left: 52px; width: 16px; height: 16px; background: rgb(244, 116, 78); transform: rotate(45deg); border-radius: 3px;"></div>
+    </div>
+    <div data-dc-tpl="45" style="flex: 1 1 0%;">
+      <div data-dc-tpl="46" style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgb(176, 100, 31); margin-bottom: 10px;">Pip says hello</div>
+      <h1 data-dc-tpl="47" style="margin: 0px; font-family: Lora, serif; font-weight: 600; font-size: 44px; line-height: 1.15; letter-spacing: -0.01em;">Good afternoon, Amelia.</h1>
+      <p data-dc-tpl="48" style="margin: 12px 0px 0px; font-size: 17px; line-height: 1.6; color: rgb(91, 107, 123); max-width: 560px;">Your Trinity School interview is in <strong data-dc-tpl="49" style="color: rgb(34, 48, 63);">23 days</strong>. One short practice today keeps you on track — shall we warm up your thinking-aloud?</p>
+      <div data-dc-tpl="50" style="display: flex; gap: 12px; margin-top: 24px;">
+        <span data-dc-tpl="51" style="padding: 14px 26px; border-radius: 999px; background: rgb(244, 116, 78); color: rgb(255, 255, 255); font-weight: 700; font-size: 15px; box-shadow: none !important; filter: drop-shadow(rgba(244, 116, 78, 0.28) 0px 6px 16px) !important;">Start today's practice</span>
+        <span data-dc-tpl="52" style="padding: 14px 26px; border-radius: 999px; border: 1.5px solid rgba(34, 48, 63, 0.18); font-weight: 600; font-size: 15px; color: rgb(34, 48, 63);">Review last session</span>
+      </div>
+    </div>
+    
+    <div data-dc-tpl="53" style="flex: 0 0 auto; width: 230px; background: rgb(34, 48, 63); color: rgb(250, 246, 239); border-radius: 20px; padding: 24px 26px;">
+      <div data-dc-tpl="54" style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(159, 176, 192);">Interview day</div>
+      <div data-dc-tpl="55" style="font-family: Lora, serif; font-size: 40px; font-weight: 600; margin-top: 8px;">23 <span data-dc-tpl="56" style="font-size: 16px; font-family: &quot;Plus Jakarta Sans&quot;, sans-serif; font-weight: 500; color: rgb(159, 176, 192);">days to go</span></div>
+      <div data-dc-tpl="57" style="margin-top: 14px; height: 6px; border-radius: 3px; background: rgba(250, 246, 239, 0.15);"><div data-dc-tpl="58" style="width: 62%; height: 6px; border-radius: 3px; background: rgb(244, 116, 78);"></div></div>
+      <div data-dc-tpl="59" style="margin-top: 10px; font-size: 12.5px; color: rgb(159, 176, 192);">Trinity School · 28 July</div>
+    </div>
+  </div>
+
+  
+  <div data-dc-tpl="60" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; padding: 0px 64px 28px;">
+    <div data-dc-tpl="61" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 18px; padding: 22px 26px;">
+      <div data-dc-tpl="62" style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(132, 147, 163);">Practice sessions</div>
+      <div data-dc-tpl="63" style="display: flex; align-items: baseline; gap: 8px; margin-top: 8px;"><span data-dc-tpl="64" style="font-family: Lora, serif; font-size: 34px; font-weight: 600;">19</span><span data-dc-tpl="65" style="font-size: 13px; color: rgb(91, 107, 123);">· 1 more to your 20 badge</span></div>
+      <div data-dc-tpl="66" style="margin-top: 12px; height: 8px; border-radius: 4px; background: rgb(240, 234, 224);"><div data-dc-tpl="67" style="width: 95%; height: 8px; border-radius: 4px; background: rgb(42, 140, 140);"></div></div>
+    </div>
+    <div data-dc-tpl="68" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 18px; padding: 22px 26px; display: flex; gap: 18px; align-items: center;">
+      <div data-dc-tpl="69" style="width: 64px; height: 64px; border-radius: 50%; background: conic-gradient(rgb(244, 116, 78) 0deg, rgb(244, 116, 78) 40%, rgb(240, 234, 224) 40%, rgb(240, 234, 224) 100%); display: flex; align-items: center; justify-content: center; flex: 0 0 auto;"><div data-dc-tpl="70" style="width: 48px; height: 48px; border-radius: 50%; background: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px;">8<span data-dc-tpl="71" style="font-weight: 500; color: rgb(132, 147, 163); font-size: 11px;">/20</span></div></div>
+      <div data-dc-tpl="72">
+        <div data-dc-tpl="73" style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(132, 147, 163);">Latest score</div>
+        <div data-dc-tpl="74" style="font-size: 13.5px; line-height: 1.5; color: rgb(91, 107, 123); margin-top: 6px;">Strongest in <strong data-dc-tpl="75" style="color: rgb(34, 48, 63);">reasoning</strong> — Pip suggests practising current affairs next.</div>
+      </div>
+    </div>
+    <div data-dc-tpl="76" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 18px; padding: 22px 26px;">
+      <div data-dc-tpl="77" style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(132, 147, 163);">This week</div>
+      <div data-dc-tpl="78" style="display: flex; gap: 8px; margin-top: 14px;">
+        <div data-dc-tpl="79" style="width: 30px; height: 30px; border-radius: 50%; background: rgb(42, 140, 140); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700;">M</div>
+        <div data-dc-tpl="80" style="width: 30px; height: 30px; border-radius: 50%; background: rgb(42, 140, 140); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700;">T</div>
+        <div data-dc-tpl="81" style="width: 30px; height: 30px; border-radius: 50%; background: rgb(240, 234, 224); color: rgb(132, 147, 163); display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700;">W</div>
+        <div data-dc-tpl="82" style="width: 30px; height: 30px; border-radius: 50%; background: rgb(240, 234, 224); color: rgb(132, 147, 163); display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700;">T</div>
+        <div data-dc-tpl="83" style="width: 30px; height: 30px; border-radius: 50%; border: 2px dashed rgb(217, 160, 54); color: rgb(176, 100, 31); display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700;">F</div>
+        <div data-dc-tpl="84" style="width: 30px; height: 30px; border-radius: 50%; background: rgb(240, 234, 224); color: rgb(132, 147, 163); display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700;">S</div>
+        <div data-dc-tpl="85" style="width: 30px; height: 30px; border-radius: 50%; background: rgb(240, 234, 224); color: rgb(132, 147, 163); display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700;">S</div>
+      </div>
+      <div data-dc-tpl="86" style="font-size: 13px; color: rgb(91, 107, 123); margin-top: 12px;">2-day streak — practise today to keep it alive</div>
+    </div>
+  </div>
+
+  
+  <div data-dc-tpl="87" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; padding: 0px 64px 56px;">
+    <div data-dc-tpl="88" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 18px; padding: 26px 30px;">
+      <div data-dc-tpl="89" style="display: flex; align-items: baseline; justify-content: space-between;"><span data-dc-tpl="90" style="font-family: Lora, serif; font-size: 19px; font-weight: 600;">Your skills</span><span data-dc-tpl="91" style="font-size: 12px; color: rgb(132, 147, 163);">average across sessions</span></div>
+      <div data-dc-tpl="92" style="display: flex; flex-direction: column; gap: 16px; margin-top: 20px;">
+        <div data-dc-tpl="93"><div data-dc-tpl="94" style="display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 600;"><span data-dc-tpl="95">Reasoning &amp; agility</span><span data-dc-tpl="96" style="color: rgb(42, 140, 140);">Getting strong</span></div><div data-dc-tpl="97" style="margin-top: 7px; height: 9px; border-radius: 5px; background: rgb(240, 234, 224);"><div data-dc-tpl="98" style="width: 64%; height: 9px; border-radius: 5px; background: rgb(42, 140, 140);"></div></div></div>
+        <div data-dc-tpl="99"><div data-dc-tpl="100" style="display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 600;"><span data-dc-tpl="101">Personal insight</span><span data-dc-tpl="102" style="color: rgb(176, 100, 31);">Coming along</span></div><div data-dc-tpl="103" style="margin-top: 7px; height: 9px; border-radius: 5px; background: rgb(240, 234, 224);"><div data-dc-tpl="104" style="width: 44%; height: 9px; border-radius: 5px; background: rgb(217, 160, 54);"></div></div></div>
+        <div data-dc-tpl="105"><div data-dc-tpl="106" style="display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 600;"><span data-dc-tpl="107">Current awareness</span><span data-dc-tpl="108" style="color: rgb(244, 116, 78);">Pip's next focus</span></div><div data-dc-tpl="109" style="margin-top: 7px; height: 9px; border-radius: 5px; background: rgb(240, 234, 224);"><div data-dc-tpl="110" style="width: 22%; height: 9px; border-radius: 5px; background: rgb(244, 116, 78);"></div></div></div>
+        <div data-dc-tpl="111"><div data-dc-tpl="112" style="display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 600;"><span data-dc-tpl="113">Extracurricular stories</span><span data-dc-tpl="114" style="color: rgb(244, 116, 78);">Pip's next focus</span></div><div data-dc-tpl="115" style="margin-top: 7px; height: 9px; border-radius: 5px; background: rgb(240, 234, 224);"><div data-dc-tpl="116" style="width: 20%; height: 9px; border-radius: 5px; background: rgb(244, 116, 78);"></div></div></div>
+      </div>
+    </div>
+    <div data-dc-tpl="117" style="background: rgb(253, 243, 228); border: 1px solid rgba(217, 160, 54, 0.25); border-radius: 18px; padding: 26px 30px;">
+      <div data-dc-tpl="118" style="font-family: Lora, serif; font-size: 19px; font-weight: 600;">From your last session</div>
+      <p data-dc-tpl="119" style="margin: 14px 0px 0px; font-size: 14.5px; line-height: 1.65; color: rgb(91, 74, 46);">"You spotted that the animal puzzle was about heads and legs — great pattern-spotting. Next time, try saying your steps out loud as you go."</p>
+      <div data-dc-tpl="120" style="display: flex; align-items: center; gap: 10px; margin-top: 18px;">
+        <div data-dc-tpl="121" style="position: relative; width: 26px; height: 29px; flex: 0 0 auto;">
+          <div data-dc-tpl="122" style="position: absolute; inset: 0px; background: rgb(34, 48, 63); border-radius: 46% 46% 48% 48%;"></div>
+          <div data-dc-tpl="123" style="position: absolute; top: 7px; left: 4px; width: 8px; height: 8px; background: rgb(255, 255, 255); border-radius: 50%;"></div>
+          <div data-dc-tpl="124" style="position: absolute; top: 7px; right: 4px; width: 8px; height: 8px; background: rgb(255, 255, 255); border-radius: 50%;"></div>
+          <div data-dc-tpl="125" style="position: absolute; top: 14px; left: 11px; width: 5px; height: 5px; background: rgb(244, 116, 78); transform: rotate(45deg);"></div>
+        </div>
+        <span data-dc-tpl="126" style="font-size: 12.5px; font-weight: 700; color: rgb(176, 100, 31);">Pip · your practice coach</span>
+      </div>
+    </div>
+  </div></div></div><div data-dc-tpl="127" class="dv-opt" id="1b"><div data-dc-tpl="128" class="dv-olabel"><a data-dc-tpl="129" class="dv-oid" href="https://f758b07e-25da-4b8a-90c0-26e0e9ff438f.claudeusercontent.com/v1/design/projects/f758b07e-25da-4b8a-90c0-26e0e9ff438f/serve/Explorations-print-h5u70t.dc.html?t=8ead3fd43ffa66373a04dc2c59eeacfc8481abb68641e3ba99c6fd8984bcab1a.2295d988-da70-45d7-a586-a1b03a36d93a.1f5accbe-7b43-4ed8-98fc-a4144c5396ca.1783292099&amp;direct=1#1b">1b</a>Practice picker — playful premium: colour-blocked cards, interviewer avatars, friendlier copy</div><div data-dc-tpl="130" class="dv-card" data-screen-label="1b Practice picker" style="width: 1280px; background: rgb(250, 246, 239); font-family: &quot;Plus Jakarta Sans&quot;, sans-serif; color: rgb(34, 48, 63); filter: drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 3px) !important; box-shadow: none !important;">
+  <div data-dc-tpl="131" style="display: flex; align-items: center; gap: 28px; padding: 18px 40px; border-bottom: 1px solid rgba(34, 48, 63, 0.08);">
+    <span data-dc-tpl="132" style="font-family: Lora, serif; font-weight: 600; font-size: 19px;">intrvue</span>
+    <div data-dc-tpl="133" style="display: flex; gap: 4px; margin-left: 12px;">
+      <span data-dc-tpl="134" style="padding: 8px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 500; color: rgb(91, 107, 123);">Home</span>
+      <span data-dc-tpl="135" style="padding: 8px 16px; border-radius: 999px; background: rgb(34, 48, 63); color: rgb(250, 246, 239); font-size: 13.5px; font-weight: 600;">Practice</span>
+      <span data-dc-tpl="136" style="padding: 8px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 500; color: rgb(91, 107, 123);">My sessions</span>
+    </div>
+    <span data-dc-tpl="137" style="margin-left: auto; padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(34, 48, 63, 0.15); font-size: 12.5px; font-weight: 600; color: rgb(91, 107, 123);">96 credits</span>
+  </div>
+
+  <div data-dc-tpl="138" style="padding: 48px 64px 20px; display: flex; align-items: flex-end; justify-content: space-between;">
+    <div data-dc-tpl="139">
+      <h1 data-dc-tpl="140" style="margin: 0px; font-family: Lora, serif; font-weight: 600; font-size: 38px;">What shall we practise today?</h1>
+      <p data-dc-tpl="141" style="margin: 10px 0px 0px; font-size: 16px; color: rgb(91, 107, 123);">Pick a session — Pip recommends starting with what feels hardest.</p>
+    </div>
+    <div data-dc-tpl="142" style="display: flex; gap: 8px;">
+      <span data-dc-tpl="143" style="padding: 9px 18px; border-radius: 999px; background: rgb(34, 48, 63); color: rgb(250, 246, 239); font-size: 13px; font-weight: 600;">All</span>
+      <span data-dc-tpl="144" style="padding: 9px 18px; border-radius: 999px; border: 1px solid rgba(34, 48, 63, 0.15); font-size: 13px; font-weight: 600; color: rgb(91, 107, 123);">Full interviews</span>
+      <span data-dc-tpl="145" style="padding: 9px 18px; border-radius: 999px; border: 1px solid rgba(34, 48, 63, 0.15); font-size: 13px; font-weight: 600; color: rgb(91, 107, 123);">Maths</span>
+      <span data-dc-tpl="146" style="padding: 9px 18px; border-radius: 999px; border: 1px solid rgba(34, 48, 63, 0.15); font-size: 13px; font-weight: 600; color: rgb(91, 107, 123);">Verbal</span>
+    </div>
+  </div>
+
+  <div data-dc-tpl="147" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; padding: 24px 64px 56px;">
+    
+    <div data-dc-tpl="148" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 22px; overflow: hidden;">
+      <div data-dc-tpl="149" style="height: 120px; background: rgb(244, 116, 78); position: relative; padding: 18px 22px;">
+        <span data-dc-tpl="150" style="position: absolute; top: 16px; right: 16px; padding: 5px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.25); color: rgb(255, 255, 255); font-size: 11.5px; font-weight: 700;">★ Most popular</span>
+        <div data-dc-tpl="151" style="position: absolute; bottom: -26px; left: 22px; width: 56px; height: 56px; border-radius: 50%; background: rgb(232, 223, 208); border: 4px solid rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-weight: 800; color: rgb(34, 48, 63);">C</div>
+      </div>
+      <div data-dc-tpl="152" style="padding: 38px 24px 24px;">
+        <div data-dc-tpl="153" style="font-family: Lora, serif; font-size: 20px; font-weight: 600;">Full school interview</div>
+        <p data-dc-tpl="154" style="margin: 8px 0px 0px; font-size: 13.5px; line-height: 1.55; color: rgb(91, 107, 123);">A real 30-minute interview with Cara — just like the day itself, hints included.</p>
+        <div data-dc-tpl="155" style="display: flex; gap: 8px; margin-top: 14px;">
+          <span data-dc-tpl="156" style="padding: 5px 11px; border-radius: 999px; background: rgb(250, 246, 239); font-size: 11.5px; font-weight: 700; color: rgb(176, 100, 31);">30 min</span>
+          <span data-dc-tpl="157" style="padding: 5px 11px; border-radius: 999px; background: rgb(250, 246, 239); font-size: 11.5px; font-weight: 700; color: rgb(176, 100, 31);">4 skills</span>
+        </div>
+        <div data-dc-tpl="158" style="margin-top: 18px; padding: 12px 0px; border-radius: 999px; background: rgb(34, 48, 63); color: rgb(250, 246, 239); font-weight: 700; font-size: 14px; text-align: center;">Start with Cara</div>
+      </div>
+    </div>
+    
+    <div data-dc-tpl="159" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 22px; overflow: hidden;">
+      <div data-dc-tpl="160" style="height: 120px; background: rgb(42, 140, 140); position: relative; padding: 18px 22px;">
+        <div data-dc-tpl="161" style="position: absolute; bottom: -26px; left: 22px; width: 56px; height: 56px; border-radius: 50%; background: rgb(232, 223, 208); border: 4px solid rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-weight: 800; color: rgb(34, 48, 63);">Cl</div>
+      </div>
+      <div data-dc-tpl="162" style="padding: 38px 24px 24px;">
+        <div data-dc-tpl="163" style="font-family: Lora, serif; font-size: 20px; font-weight: 600;">Maths, out loud</div>
+        <p data-dc-tpl="164" style="margin: 8px 0px 0px; font-size: 13.5px; line-height: 1.55; color: rgb(91, 107, 123);">Talk through 10 puzzles with Clara — it's about your method, not just the answer.</p>
+        <div data-dc-tpl="165" style="display: flex; gap: 8px; margin-top: 14px;">
+          <span data-dc-tpl="166" style="padding: 5px 11px; border-radius: 999px; background: rgb(250, 246, 239); font-size: 11.5px; font-weight: 700; color: rgb(31, 105, 105);">20 min</span>
+          <span data-dc-tpl="167" style="padding: 5px 11px; border-radius: 999px; background: rgb(250, 246, 239); font-size: 11.5px; font-weight: 700; color: rgb(31, 105, 105);">Intermediate</span>
+        </div>
+        <div data-dc-tpl="168" style="margin-top: 18px; padding: 12px 0px; border-radius: 999px; background: rgb(34, 48, 63); color: rgb(250, 246, 239); font-weight: 700; font-size: 14px; text-align: center;">Start with Clara</div>
+      </div>
+    </div>
+    
+    <div data-dc-tpl="169" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 22px; overflow: hidden;">
+      <div data-dc-tpl="170" style="height: 120px; background: rgb(217, 160, 54); position: relative; padding: 18px 22px;">
+        <span data-dc-tpl="171" style="position: absolute; top: 16px; right: 16px; padding: 5px 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.3); color: rgb(255, 255, 255); font-size: 11.5px; font-weight: 700;">Pip's pick for you</span>
+        <div data-dc-tpl="172" style="position: absolute; bottom: -26px; left: 22px; width: 56px; height: 56px; border-radius: 50%; background: rgb(232, 223, 208); border: 4px solid rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-weight: 800; color: rgb(34, 48, 63);">N</div>
+      </div>
+      <div data-dc-tpl="173" style="padding: 38px 24px 24px;">
+        <div data-dc-tpl="174" style="font-family: Lora, serif; font-size: 20px; font-weight: 600;">Big ideas &amp; the news</div>
+        <p data-dc-tpl="175" style="margin: 8px 0px 0px; font-size: 13.5px; line-height: 1.55; color: rgb(91, 107, 123);">Chat with Nadia about the world — there are no wrong answers, only interesting ones.</p>
+        <div data-dc-tpl="176" style="display: flex; gap: 8px; margin-top: 14px;">
+          <span data-dc-tpl="177" style="padding: 5px 11px; border-radius: 999px; background: rgb(250, 246, 239); font-size: 11.5px; font-weight: 700; color: rgb(176, 100, 31);">20 min</span>
+          <span data-dc-tpl="178" style="padding: 5px 11px; border-radius: 999px; background: rgb(250, 246, 239); font-size: 11.5px; font-weight: 700; color: rgb(176, 100, 31);">Discussion</span>
+        </div>
+        <div data-dc-tpl="179" style="margin-top: 18px; padding: 12px 0px; border-radius: 999px; background: rgb(244, 116, 78); color: rgb(255, 255, 255); font-weight: 700; font-size: 14px; text-align: center; box-shadow: none !important; filter: drop-shadow(rgba(244, 116, 78, 0.28) 0px 6px 16px) !important;">Start with Nadia</div>
+      </div>
+    </div>
+  </div></div></div><div data-dc-tpl="180" class="dv-opt" id="1c"><div data-dc-tpl="181" class="dv-olabel"><a data-dc-tpl="182" class="dv-oid" href="https://f758b07e-25da-4b8a-90c0-26e0e9ff438f.claudeusercontent.com/v1/design/projects/f758b07e-25da-4b8a-90c0-26e0e9ff438f/serve/Explorations-print-h5u70t.dc.html?t=8ead3fd43ffa66373a04dc2c59eeacfc8481abb68641e3ba99c6fd8984bcab1a.2295d988-da70-45d7-a586-a1b03a36d93a.1f5accbe-7b43-4ed8-98fc-a4144c5396ca.1783292099&amp;direct=1#1c">1c</a>Live session — calm "interview room": less chrome, mascot as quiet encouragement</div><div data-dc-tpl="183" class="dv-card" data-screen-label="1c Live session" style="width: 1280px; background: rgb(34, 48, 63); font-family: &quot;Plus Jakarta Sans&quot;, sans-serif; color: rgb(250, 246, 239); filter: drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 3px) !important; box-shadow: none !important;">
+  <div data-dc-tpl="184" style="display: flex; align-items: center; padding: 16px 32px; gap: 16px;">
+    <span data-dc-tpl="185" style="font-family: Lora, serif; font-weight: 600; font-size: 17px;">intrvue</span>
+    <span data-dc-tpl="186" style="font-size: 13px; color: rgb(159, 176, 192);">· 11+ school interview with Cara</span>
+    <div data-dc-tpl="187" style="margin-left: auto; display: flex; align-items: center; gap: 10px;">
+      <span data-dc-tpl="188" style="width: 8px; height: 8px; border-radius: 50%; background: rgb(76, 195, 138);"></span>
+      <span data-dc-tpl="189" style="font-size: 12.5px; color: rgb(159, 176, 192);">Connected</span>
+      <span data-dc-tpl="190" style="padding: 6px 14px; border-radius: 999px; background: rgba(250, 246, 239, 0.1); font-size: 13px; font-weight: 600;">29:51</span>
+    </div>
+  </div>
+
+  <div data-dc-tpl="191" style="display: grid; grid-template-columns: 1.9fr 1fr; gap: 20px; padding: 8px 32px 24px;">
+    
+    <div data-dc-tpl="192" style="position: relative; border-radius: 20px; overflow: hidden; background: repeating-linear-gradient(45deg, rgb(44, 62, 82) 0px, rgb(44, 62, 82) 14px, rgb(49, 68, 90) 14px, rgb(49, 68, 90) 28px); min-height: 520px; display: flex; align-items: center; justify-content: center;">
+      <span data-dc-tpl="193" style="font-family: ui-monospace, monospace; font-size: 12px; color: rgb(159, 176, 192); background: rgba(34, 48, 63, 0.7); padding: 6px 12px; border-radius: 6px;">interviewer video · Cara</span>
+      <span data-dc-tpl="194" style="position: absolute; top: 16px; left: 16px; padding: 6px 14px; border-radius: 999px; background: rgba(244, 116, 78, 0.9); font-size: 12px; font-weight: 700;">● Live</span>
+      <div data-dc-tpl="195" style="position: absolute; bottom: 16px; left: 16px; display: flex; gap: 10px;">
+        <span data-dc-tpl="196" style="padding: 10px 18px; border-radius: 999px; background: rgba(250, 246, 239, 0.12); font-size: 13px; font-weight: 600;">🎙 Mic on</span>
+        <span data-dc-tpl="197" style="padding: 10px 18px; border-radius: 999px; background: rgba(250, 246, 239, 0.12); font-size: 13px; font-weight: 600;">Pause</span>
+      </div>
+      <span data-dc-tpl="198" style="position: absolute; bottom: 16px; right: 16px; padding: 10px 18px; border-radius: 999px; border: 1.5px solid rgba(250, 246, 239, 0.25); font-size: 13px; font-weight: 600;">Finish early</span>
+    </div>
+    
+    <div data-dc-tpl="199" style="display: flex; flex-direction: column; gap: 16px;">
+      <div data-dc-tpl="200" style="background: rgba(250, 246, 239, 0.06); border: 1px solid rgba(250, 246, 239, 0.08); border-radius: 18px; padding: 20px 22px; flex: 1 1 0%;">
+        <div data-dc-tpl="201" style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(159, 176, 192);">Conversation</div>
+        <div data-dc-tpl="202" style="margin-top: 14px; background: rgba(250, 246, 239, 0.08); border-radius: 14px 14px 14px 4px; padding: 14px 16px; font-size: 14px; line-height: 1.6; color: rgb(231, 236, 241);">Hello! I'm Cara, and I'm excited to chat with you. Can you tell me about a book you've enjoyed recently?</div>
+        <div data-dc-tpl="203" style="margin-top: 10px; font-size: 12px; color: rgb(159, 176, 192);">Cara · just now</div>
+      </div>
+      
+      <div data-dc-tpl="204" style="background: rgb(253, 243, 228); border-radius: 18px; padding: 18px 20px; display: flex; gap: 14px; align-items: center; color: rgb(34, 48, 63);">
+        <div data-dc-tpl="205" style="position: relative; width: 44px; height: 48px; flex: 0 0 auto;">
+          <div data-dc-tpl="206" style="position: absolute; inset: 0px; background: rgb(34, 48, 63); border-radius: 46% 46% 48% 48%;"></div>
+          <div data-dc-tpl="207" style="position: absolute; top: 11px; left: 7px; width: 13px; height: 13px; background: rgb(255, 255, 255); border-radius: 50%;"></div>
+          <div data-dc-tpl="208" style="position: absolute; top: 11px; right: 7px; width: 13px; height: 13px; background: rgb(255, 255, 255); border-radius: 50%;"></div>
+          <div data-dc-tpl="209" style="position: absolute; top: 15px; left: 11px; width: 4px; height: 4px; background: rgb(34, 48, 63); border-radius: 50%;"></div>
+          <div data-dc-tpl="210" style="position: absolute; top: 15px; right: 11px; width: 4px; height: 4px; background: rgb(34, 48, 63); border-radius: 50%;"></div>
+          <div data-dc-tpl="211" style="position: absolute; top: 24px; left: 19px; width: 7px; height: 7px; background: rgb(244, 116, 78); transform: rotate(45deg);"></div>
+        </div>
+        <div data-dc-tpl="212" style="font-size: 13.5px; line-height: 1.5;"><strong data-dc-tpl="213">Take your time.</strong> It's fine to pause and think before you answer — interviewers like that.</div>
+      </div>
+    </div>
+  </div></div></div><div data-dc-tpl="214" class="dv-opt" id="1d"><div data-dc-tpl="215" class="dv-olabel"><a data-dc-tpl="216" class="dv-oid" href="https://f758b07e-25da-4b8a-90c0-26e0e9ff438f.claudeusercontent.com/v1/design/projects/f758b07e-25da-4b8a-90c0-26e0e9ff438f/serve/Explorations-print-h5u70t.dc.html?t=8ead3fd43ffa66373a04dc2c59eeacfc8481abb68641e3ba99c6fd8984bcab1a.2295d988-da70-45d7-a586-a1b03a36d93a.1f5accbe-7b43-4ed8-98fc-a4144c5396ca.1783292099&amp;direct=1#1d">1d</a>Results — growth-framed feedback: celebrates effort first, "Needs Support" badge gone</div><div data-dc-tpl="217" class="dv-card" data-screen-label="1d Results" style="width: 1280px; background: rgb(250, 246, 239); font-family: &quot;Plus Jakarta Sans&quot;, sans-serif; color: rgb(34, 48, 63); filter: drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 3px) !important; box-shadow: none !important;">
+  <div data-dc-tpl="218" style="display: flex; align-items: center; gap: 16px; padding: 18px 40px; border-bottom: 1px solid rgba(34, 48, 63, 0.08);">
+    <span data-dc-tpl="219" style="font-family: Lora, serif; font-weight: 600; font-size: 19px;">intrvue</span>
+    <span data-dc-tpl="220" style="font-size: 13.5px; color: rgb(91, 107, 123);">← Back to my sessions</span>
+    <span data-dc-tpl="221" style="margin-left: auto; font-size: 12.5px; color: rgb(132, 147, 163);">Maths mock · 5 July 2026</span>
+  </div>
+
+  <div data-dc-tpl="222" style="display: flex; gap: 48px; align-items: center; padding: 48px 64px 32px;">
+    <div data-dc-tpl="223" style="position: relative; width: 110px; height: 120px; flex: 0 0 auto;">
+      <div data-dc-tpl="224" style="position: absolute; inset: 0px; background: rgb(34, 48, 63); border-radius: 46% 46% 48% 48%;"></div>
+      <div data-dc-tpl="225" style="position: absolute; top: -7px; left: 13px; width: 20px; height: 20px; background: rgb(34, 48, 63); transform: rotate(45deg);"></div>
+      <div data-dc-tpl="226" style="position: absolute; top: -7px; right: 13px; width: 20px; height: 20px; background: rgb(34, 48, 63); transform: rotate(45deg);"></div>
+      <div data-dc-tpl="227" style="position: absolute; bottom: 0px; left: 22px; width: 66px; height: 52px; background: rgb(232, 223, 208); border-radius: 50% 50% 46% 46%;"></div>
+      <div data-dc-tpl="228" style="position: absolute; top: 28px; left: 20px; width: 29px; height: 29px; background: rgb(255, 255, 255); border-radius: 50%;"></div>
+      <div data-dc-tpl="229" style="position: absolute; top: 28px; right: 20px; width: 29px; height: 29px; background: rgb(255, 255, 255); border-radius: 50%;"></div>
+      <div data-dc-tpl="230" style="position: absolute; top: 37px; left: 31px; width: 8px; height: 8px; background: rgb(34, 48, 63); border-radius: 50%;"></div>
+      <div data-dc-tpl="231" style="position: absolute; top: 37px; right: 31px; width: 8px; height: 8px; background: rgb(34, 48, 63); border-radius: 50%;"></div>
+      <div data-dc-tpl="232" style="position: absolute; top: 57px; left: 48px; width: 14px; height: 14px; background: rgb(244, 116, 78); transform: rotate(45deg); border-radius: 3px;"></div>
+      <div data-dc-tpl="233" style="position: absolute; top: -18px; right: -14px; width: 12px; height: 12px; background: rgb(217, 160, 54); transform: rotate(45deg);"></div>
+      <div data-dc-tpl="234" style="position: absolute; top: -6px; right: -30px; width: 8px; height: 8px; background: rgb(244, 116, 78); border-radius: 50%;"></div>
+      <div data-dc-tpl="235" style="position: absolute; top: 12px; right: -22px; width: 7px; height: 7px; background: rgb(42, 140, 140); transform: rotate(45deg);"></div>
+    </div>
+    <div data-dc-tpl="236" style="flex: 1 1 0%;">
+      <h1 data-dc-tpl="237" style="margin: 0px; font-family: Lora, serif; font-weight: 600; font-size: 38px;">That took courage, Amelia.</h1>
+      <p data-dc-tpl="238" style="margin: 10px 0px 0px; font-size: 16px; line-height: 1.6; color: rgb(91, 107, 123); max-width: 620px;">Tricky puzzles today — and you spotted the pattern in the heads-and-legs problem. Here's what Pip noticed, and one thing to try next time.</p>
+    </div>
+    <div data-dc-tpl="239" style="flex: 0 0 auto; text-align: center; background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 20px; padding: 22px 34px;">
+      <div data-dc-tpl="240" style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(132, 147, 163);">Session score</div>
+      <div data-dc-tpl="241" style="font-family: Lora, serif; font-size: 42px; font-weight: 600; margin-top: 4px;">4<span data-dc-tpl="242" style="font-size: 18px; color: rgb(132, 147, 163);">/20</span></div>
+      <div data-dc-tpl="243" style="margin-top: 6px; padding: 5px 14px; border-radius: 999px; background: rgb(253, 243, 228); color: rgb(176, 100, 31); font-size: 12px; font-weight: 700;">Room to grow</div>
+    </div>
+  </div>
+
+  <div data-dc-tpl="244" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0px 64px 24px;">
+    <div data-dc-tpl="245" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 18px; padding: 24px 28px;">
+      <div data-dc-tpl="246" style="display: flex; justify-content: space-between; align-items: baseline;"><span data-dc-tpl="247" style="font-family: Lora, serif; font-size: 18px; font-weight: 600;">What went well</span><span data-dc-tpl="248" style="font-size: 20px;">◕</span></div>
+      <ul data-dc-tpl="249" style="margin: 14px 0px 0px; padding-left: 18px; font-size: 14px; line-height: 1.7; color: rgb(91, 107, 123);">
+        <li data-dc-tpl="250">You noticed the heads-and-legs puzzle was about splitting totals — real pattern recognition.</li>
+        <li data-dc-tpl="251">You shared some thinking out loud, which is exactly what interviewers want.</li>
+      </ul>
+    </div>
+    <div data-dc-tpl="252" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 18px; padding: 24px 28px;">
+      <div data-dc-tpl="253" style="display: flex; justify-content: space-between; align-items: baseline;"><span data-dc-tpl="254" style="font-family: Lora, serif; font-size: 18px; font-weight: 600;">One thing to practise</span><span data-dc-tpl="255" style="padding: 4px 12px; border-radius: 999px; background: rgb(231, 242, 242); color: rgb(31, 105, 105); font-size: 11.5px; font-weight: 700;">Pip's tip</span></div>
+      <p data-dc-tpl="256" style="margin: 14px 0px 0px; font-size: 14px; line-height: 1.7; color: rgb(91, 107, 123);">Write down what you know before you start — "each animal has 1 head, chickens have 2 legs, rabbits have 4" — then build from there. Want to try a 5-minute drill on exactly this?</p>
+      <div data-dc-tpl="257" style="display: inline-block; margin-top: 14px; padding: 10px 20px; border-radius: 999px; background: rgb(244, 116, 78); color: rgb(255, 255, 255); font-size: 13px; font-weight: 700;">Try the 5-min drill</div>
+    </div>
+  </div>
+
+  <div data-dc-tpl="258" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 0px 64px 56px;">
+    <div data-dc-tpl="259" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 16px; padding: 18px 20px;">
+      <div data-dc-tpl="260" style="font-size: 12.5px; font-weight: 700;">Number &amp; calculation</div>
+      <div data-dc-tpl="261" style="margin-top: 10px; height: 7px; border-radius: 4px; background: rgb(240, 234, 224);"><div data-dc-tpl="262" style="width: 20%; height: 7px; border-radius: 4px; background: rgb(244, 116, 78);"></div></div>
+      <div data-dc-tpl="263" style="margin-top: 8px; font-size: 12px; color: rgb(132, 147, 163);">1/5 · just getting started</div>
+    </div>
+    <div data-dc-tpl="264" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 16px; padding: 18px 20px;">
+      <div data-dc-tpl="265" style="font-size: 12.5px; font-weight: 700;">Problem-solving</div>
+      <div data-dc-tpl="266" style="margin-top: 10px; height: 7px; border-radius: 4px; background: rgb(240, 234, 224);"><div data-dc-tpl="267" style="width: 20%; height: 7px; border-radius: 4px; background: rgb(244, 116, 78);"></div></div>
+      <div data-dc-tpl="268" style="margin-top: 8px; font-size: 12px; color: rgb(132, 147, 163);">1/5 · just getting started</div>
+    </div>
+    <div data-dc-tpl="269" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 16px; padding: 18px 20px;">
+      <div data-dc-tpl="270" style="font-size: 12.5px; font-weight: 700;">Mathematical reasoning</div>
+      <div data-dc-tpl="271" style="margin-top: 10px; height: 7px; border-radius: 4px; background: rgb(240, 234, 224);"><div data-dc-tpl="272" style="width: 20%; height: 7px; border-radius: 4px; background: rgb(217, 160, 54);"></div></div>
+      <div data-dc-tpl="273" style="margin-top: 8px; font-size: 12px; color: rgb(132, 147, 163);">1/5 · growing</div>
+    </div>
+    <div data-dc-tpl="274" style="background: rgb(255, 255, 255); border: 1px solid rgba(34, 48, 63, 0.07); border-radius: 16px; padding: 18px 20px;">
+      <div data-dc-tpl="275" style="font-size: 12.5px; font-weight: 700;">Explaining clearly</div>
+      <div data-dc-tpl="276" style="margin-top: 10px; height: 7px; border-radius: 4px; background: rgb(240, 234, 224);"><div data-dc-tpl="277" style="width: 20%; height: 7px; border-radius: 4px; background: rgb(42, 140, 140);"></div></div>
+      <div data-dc-tpl="278" style="margin-top: 8px; font-size: 12px; color: rgb(132, 147, 163);">1/5 · a good start</div>
+    </div>
+  </div></div></div></div><p data-dc-tpl="279" class="dv-next">Try next: "riff on <a data-dc-tpl="280" class="dv-oid" href="https://f758b07e-25da-4b8a-90c0-26e0e9ff438f.claudeusercontent.com/v1/design/projects/f758b07e-25da-4b8a-90c0-26e0e9ff438f/serve/Explorations-print-h5u70t.dc.html?t=8ead3fd43ffa66373a04dc2c59eeacfc8481abb68641e3ba99c6fd8984bcab1a.2295d988-da70-45d7-a586-a1b03a36d93a.1f5accbe-7b43-4ed8-98fc-a4144c5396ca.1783292099&amp;direct=1#1a">1a</a> with a brighter, more playful palette" · "show the mascot bigger / smaller" · "mock the parent-facing landing page in this style" · "try a totally different mascot (fox, robot)"</p></section></div></div>
+<script>
+(async () => {
+  if (!document.title || !document.title.trim()) document.title = "Explorations";
+  // Prepend so page-supplied @page / break rules (deck-stage's margin:0,
+  // author CSS) keep source-order precedence over the baseline.
+  const baseCss = document.createElement('style');
+  baseCss.textContent = "@media print {\n  figure, table { break-inside: avoid; }\n  *, *::before, *::after {\n    print-color-adjust: exact; -webkit-print-color-adjust: exact;\n    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;\n    animation-delay: -99s !important; animation-duration: .001s !important;\n    animation-iteration-count: 1 !important; animation-fill-mode: both !important;\n    animation-play-state: running !important; transition-duration: 0s !important;\n  }\n}";
+  document.head.prepend(baseCss);
+  if (document.readyState === 'loading') {
+    await new Promise((r) => document.addEventListener('DOMContentLoaded', r, { once: true }));
+  }
+  let ds = document.querySelector('deck-stage');
+  // whenDefined never resolves when nothing registers the element, so only
+  // await it when a <deck-stage> tag exists (and race a timeout regardless).
+  if (ds && !customElements.get('deck-stage')) {
+    try {
+      await Promise.race([
+        customElements.whenDefined('deck-stage'),
+        new Promise((r) => setTimeout(r, 3000)),
+      ]);
+    } catch (e) {}
+    ds = document.querySelector('deck-stage');
+  }
+  // dc-runtime assigns window.DCLogic at init and mounts into #dc-root on
+  // DOMContentLoaded; settle on that subtree so React has rendered before
+  // print(). Non-DC pages fall through to weighing body.
+  const isDc = !ds && 'DCLogic' in window;
+  const settleRoot = ds || (isDc ? document.getElementById('dc-root') : null) || document.body;
+  if (settleRoot) {
+    // Weigh only content children — skip script/style/template so inline
+    // Babel/CSS doesn't register as stable "content" before the framework
+    // has mounted anything.
+    const MEDIA = 'img,svg,canvas,video,picture,iframe,embed,object';
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of settleRoot.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll(MEDIA).length + (c.matches(MEDIA) ? 1 : 0);
+      }
+      return text + media * 100;
+    };
+    // "Non-zero and stable" alone is not sufficient to mean rendered: generic
+    // body can carry a static shell while async main content is pending, and
+    // #dc-root can carry the root DC's static text while child refs are still
+    // .sc-placeholder boxes. Gate generic on readyState 'complete', and never
+    // accept stability while a dc-runtime placeholder is present.
+    const isGeneric = settleRoot === document.body;
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      const ready =
+        (!isGeneric || document.readyState === 'complete') &&
+        !settleRoot.querySelector('.sc-placeholder');
+      if (n > 0 && n === last && ready) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  // Project support.js may predate runtime default-seeding; push via bridge.
+  if (isDc && window.__dcSetProps && window.__dcRootName) {
+    try {
+      const dpEl = document.querySelector('script[data-dc-script]');
+      const meta = JSON.parse((dpEl && dpEl.getAttribute('data-props')) || '{}');
+      const bag = {};
+      for (const k in meta)
+        if (k[0] !== '$' && meta[k] && meta[k].default !== undefined)
+          bag[k] = meta[k].default;
+      if (Object.keys(bag).length) {
+        window.__dcSetProps(window.__dcRootName(), bag);
+        await new Promise((r) => setTimeout(r, 50));
+      }
+    } catch (e) {}
+  }
+  // Reveal content gated on scroll or visibility before printing. Lazy <img>,
+  // IntersectionObserver fade-ins, and collapsed <details> don't render while
+  // off-screen, so a long page would print with them blank or closed. Open
+  // every <details>, force native-lazy images eager, and scroll the document
+  // through its full height to trip lazy-load + IO; then wait (bounded) for the
+  // newly-triggered images. Inert for deck-stage (slides aren't scroll-gated).
+  try {
+    for (const d of document.querySelectorAll('details')) d.open = true;
+    for (const img of document.querySelectorAll('img[loading="lazy"]'))
+      img.loading = 'eager';
+    const scroller = document.scrollingElement || document.documentElement;
+    const full = Math.max(scroller.scrollHeight, document.body.scrollHeight);
+    const step = window.innerHeight || 800;
+    for (let y = 0; y <= full; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => requestAnimationFrame(r));
+    }
+    window.scrollTo(0, 0);
+    await Promise.race([
+      Promise.all(
+        [...document.images].map((img) =>
+          img.complete
+            ? null
+            : new Promise((res) => {
+                img.addEventListener('load', res, { once: true });
+                img.addEventListener('error', res, { once: true });
+              })
+        )
+      ),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+  } catch (e) {}
+  try { await document.fonts.ready; } catch (e) {}
+  // Jump every animation to its end state so print() never captures a slide
+  // mid-entrance. Ordering matters: the 0s-transition style must be live
+  // BEFORE data-deck-active is set so attribute-keyed transitions don't
+  // start a (now-0s) run from the pre-active base.
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}';
+  document.head.appendChild(st);
+  for (const d of document.querySelectorAll('deck-stage')) {
+    for (const c of d.children) {
+      const t = c.tagName;
+      if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+      c.setAttribute('data-deck-active', '');
+    }
+  }
+  // Re-append deck-stage's @page last so no author @page can add a margin and
+  // spill each full-bleed slide onto two sheets. Backstop for old copies.
+  if (ds) {
+    let pg = document.getElementById('deck-stage-print-page');
+    if (!pg) {
+      pg = document.createElement('style');
+      pg.textContent = '@page{size:' + (+ds.getAttribute('width') || 1920) +
+        'px ' + (+ds.getAttribute('height') || 1080) + 'px;margin:0}';
+    }
+    document.body.appendChild(pg);
+  }
+  try {
+    const sweep = () => {
+      for (const a of document.getAnimations()) {
+        try { a.finish(); } catch (e) {
+          try { a.currentTime = (a.effect && a.effect.getComputedTiming().duration) || 0; a.pause(); } catch (e2) {}
+        }
+      }
+    };
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+  } catch (e) {}
+  // Size the PDF page to the rendered design unless the file opted into
+  // standard paper via @page{size:letter|A4|…}. Decks own their own @page.
+  // Wrappers (body, …) lose padding+margin so the frame sits at (0,0); the
+  // frame itself loses only margin — its padding is INSIDE the measured
+  // rect and must stay, or content shifts and leaves a gap at bottom/right.
+  var __m = null;
+  try { __m = (() => {
+  var STAMP = true;
+  var docEl = document.documentElement;
+  var doc = { width: docEl.scrollWidth, height: docEl.scrollHeight };
+
+  var ds = document.querySelector('deck-stage');
+  if (ds) {
+    var dw = Number(ds.getAttribute('width')) || 1920;
+    var dh = Number(ds.getAttribute('height')) || 1080;
+    var n = typeof ds.length === 'number' ? ds.length : ds.children.length;
+    var idx = typeof ds.index === 'number' ? ds.index : 0;
+    var frames = [];
+    for (var i = 0; i < n; i++) frames.push({ left: 0, top: 0, width: dw, height: dh });
+    return { kind: 'deck', source: 'declared', doc: doc, frames: frames,
+      authored: frames.map(function(){return{width:true,height:true}}),
+      deck: { width: dw, height: dh, slideCount: n, index: idx },
+      signals: { paperPage: false, pxPage: false } };
+  }
+
+  // Declared kind: a doc-page tag names the kind outright, so no signal
+  // heuristics run (like the deck branch above, signals report false —
+  // they describe inferred classifications only). The tag alone is not
+  // trusted: the element must have upgraded (shadowRoot present), so a
+  // leftover tag whose script was deleted falls through to the heuristics
+  // that handle plain markup.
+  var stageSx = window.scrollX || 0, stageSy = window.scrollY || 0;
+  var dp = document.querySelector('doc-page');
+  if (dp && dp.shadowRoot) {
+    // Crop to the sheet, not the host — the desk around it is screen-only
+    // chrome that must not land in PNG exports.
+    var sheet = dp.shadowRoot.querySelector('.sheet');
+    var sr = (sheet || dp).getBoundingClientRect();
+    return { kind: 'paper-doc', source: 'declared', doc: doc,
+      frames: [{ left: sr.left + stageSx, top: sr.top + stageSy,
+        width: sr.width, height: sr.height }],
+      authored: [{ width: false, height: false }],
+      signals: { paperPage: false, pxPage: false } };
+  }
+  var paperPage = false, pxPage = false;
+  var eachRule = function (fn) {
+    for (var s = 0; s < document.styleSheets.length; s++) {
+      var rs; try { rs = document.styleSheets[s].cssRules; } catch (e) { continue; }
+      for (var r = 0; r < rs.length; r++) {
+        fn(rs[r]);
+        if (rs[r].cssRules) for (var n = 0; n < rs[r].cssRules.length; n++) fn(rs[r].cssRules[n]);
+      }
+    }
+  };
+  eachRule(function (r) {
+    if (r.type !== 6) return;
+    var m = /\bsize\s*:\s*([^;}]+)/i.exec(r.cssText || '');
+    if (!m) return;
+    if (/\b(letter|a[3-5]|legal|ledger)\b/i.test(m[1])) paperPage = true;
+    if (/\d+(?:\.\d+)?px\b/i.test(m[1])) pxPage = true;
+  });
+  var signals = { paperPage: paperPage, pxPage: pxPage };
+
+  var pxVal = function (v) {
+    var m = /^(\d+(?:\.\d+)?)px$/.exec(v || ''); return m ? +m[1] : 0;
+  };
+  var authoredPx = function (el, prop) {
+    if (pxVal(el.style[prop])) return true;
+    var attr = el.getAttribute(prop);
+    if (attr && /^\d+$/.test(attr)) return true;
+    var hit = false;
+    eachRule(function (r) {
+      if (hit || r.type !== 1 || !r.style) return;
+      try { if (el.matches(r.selectorText) && pxVal(r.style[prop])) hit = true; } catch (e) {}
+    });
+    return hit;
+  };
+
+  var el = document.body, rootPxW = false;
+  for (;;) {
+    var kids = [];
+    for (var c = 0; c < el.children.length; c++) {
+      var t = el.children[c].tagName;
+      if (t !== 'SCRIPT' && t !== 'STYLE' && t !== 'TEMPLATE') kids.push(el.children[c]);
+    }
+    if (kids.length !== 1 || !(kids[0] instanceof HTMLElement)) break;
+    if (STAMP) el.setAttribute('data-om-frame-wrap', '');
+    el = kids[0];
+    rootPxW = authoredPx(el, 'width');
+    if (rootPxW) break;
+  }
+  if (!rootPxW) rootPxW = authoredPx(el, 'width');
+
+  // @page{size:letter} alone is a flowing doc; with a px-width root it's a
+  // fixed sheet pretending to be paper — fall through and size to render.
+  if (paperPage && !rootPxW) {
+    return { kind: 'paper-doc', source: 'inferred', doc: doc, signals: signals,
+      frames: [{ left: 0, top: 0, width: doc.width, height: doc.height }],
+      authored: [{ width: false, height: false }] };
+  }
+
+  var sx = window.scrollX || 0, sy = window.scrollY || 0;
+  var rectOf = function (e) {
+    var r = e.getBoundingClientRect();
+    var oy; try { oy = getComputedStyle(e).overflowY; } catch (err) {}
+    var h = oy === 'visible' ? Math.max(r.height, e.scrollHeight || 0) : r.height;
+    return { left: r.left + sx, top: r.top + sy, width: r.width, height: h };
+  };
+
+  // Multi-frame: ≥2 visible non-fixed children, each with authored px width
+  // AND height, all within ±2px of each other. Off unless the page opts in
+  // via data-om-multi-frame on the stop element — guards against card grids
+  // and pricing tables that match the geometry but aren't separate canvases.
+  if (el.hasAttribute('data-om-multi-frame')) {
+    var cands = [];
+    for (var k = 0; k < el.children.length; k++) {
+      var ch = el.children[k];
+      var cs; try { cs = getComputedStyle(ch); } catch (e) { continue; }
+      if (cs.display === 'none' || cs.visibility === 'hidden' || cs.position === 'fixed') continue;
+      var rc = rectOf(ch);
+      if (rc.width < 2 || rc.height < 2) continue;
+      if (!authoredPx(ch, 'width') || !authoredPx(ch, 'height')) continue;
+      cands.push(rc);
+    }
+    if (cands.length >= 2) {
+      var w0 = cands[0].width, h0 = cands[0].height, ok = true;
+      for (var q = 1; q < cands.length; q++)
+        if (Math.abs(cands[q].width - w0) > 2 || Math.abs(cands[q].height - h0) > 2) ok = false;
+      if (ok) return { kind: 'multi-frame', source: 'inferred', doc: doc, signals: signals,
+        frames: cands, authored: cands.map(function(){return{width:true,height:true}}) };
+    }
+  }
+
+  if (STAMP) el.setAttribute('data-om-frame', '');
+  return { kind: 'single-canvas', source: 'inferred', doc: doc, signals: signals,
+    frames: [rectOf(el)],
+    authored: [{ width: rootPxW, height: authoredPx(el, 'height') }] };
+})(); } catch (e) {}
+  var frame = null;
+  if (__m && __m.kind === 'single-canvas') {
+    var f = __m.frames && __m.frames[0];
+    if (f && f.width >= 200 && f.height >= 200) {
+      frame = f;
+      var fst = document.createElement('style');
+      fst.textContent = '@media print{@page{size:' + Math.ceil(f.width) + 'px ' +
+        Math.ceil(f.height) + 'px;margin:0}' +
+        'html,body,[data-om-frame-wrap]{padding:0!important;margin:0!important;background:none!important}' +
+        '[data-om-frame]{margin:0!important}}';
+      document.body.appendChild(fst);
+    }
+  }
+  // Relax break-inside on oversized elements. An element taller than a
+  // printable page can't honor break-inside: avoid — browsers either overflow
+  // it or push it whole to the next page, leaving a blank gap, then break it
+  // anyway at an arbitrary point. After the final layout (content revealed,
+  // animations jumped), find elements taller than a page that still compute
+  // break-inside: avoid and reset them to auto, so the browser breaks them at
+  // their children's boundaries instead (children keep their own avoid). PAGE_PX
+  // is a conservative portrait estimate at 96 CSS px/in — Letter/A4 usable
+  // height minus our 0.5in margins — so only clearly-oversized elements are
+  // touched and under-page elements still stay whole. Skipped for decks (slides
+  // are sized to the page) and for fixed-size canvases (frame set, or an author
+  // px-based @page) — runs as before for flowing docs on letter/A4.
+  try {
+    if (!ds && !frame && !(__m && __m.signals && __m.signals.pxPage)) {
+      const PAGE_PX = 1024;
+      // Our print defaults add a real @page margin only when the source has
+      // no @page of its own; computed style can't tell us (it reports screen
+      // media), so read the injected rule directly.
+      const defaults = document.querySelector('style[data-omelette-print-defaults]');
+      const pageInset = /@page\s*\{[^}]*margin/.test(defaults ? defaults.textContent || '' : '');
+      const SEL = 'section,article,figure,table,pre,blockquote,[class~="card" i],[class~="page" i],[class~="sheet" i]';
+      for (const el of document.body.querySelectorAll(SEL)) {
+        if (el instanceof HTMLElement && el.offsetHeight > PAGE_PX) {
+          el.setAttribute('data-om-oversized', '');
+          // Fake-paged docs simulate sheets with over-tall break-after:page
+          // boxes; honoring the break spills half-blank pages and ends a
+          // colored box mid-sheet. Flow them, and (only when we own the page
+          // inset) drop the redundant padding/background via the rule below.
+          const cs = getComputedStyle(el);
+          if (cs.breakAfter === 'page' || cs.pageBreakAfter === 'always') {
+            el.setAttribute('data-om-fakepage', '');
+          }
+        }
+      }
+      const ost = document.createElement('style');
+      ost.textContent = '@media print{' +
+        '[data-om-oversized]{break-inside:auto !important;page-break-inside:auto !important}' +
+        '[data-om-fakepage]{break-after:auto !important;page-break-after:auto !important}' +
+        (pageInset ? '[data-om-fakepage]{padding:0 !important;background:none !important}' : '') +
+        '}';
+      document.head.appendChild(ost);
+    }
+  } catch (e) {}
+  // macOS Preview renders Skia-PDF Luminosity soft-masks as opaque grey boxes;
+  // swap the CSS that triggers them for Preview-safe forms.
+  try {
+    for (const el of document.body.querySelectorAll('*')) {
+      const cs = getComputedStyle(el);
+
+      if (cs.boxShadow !== 'none' && cs.filter === 'none') {
+        const outs = [], kept = [];
+        for (const s of cs.boxShadow.split(/,(?![^(]*[)])/)) {
+          const t = s.trim();
+          const m = t.match(/^(rgba?[(][^)]+[)]) (-?[0-9.]+px) (-?[0-9.]+px) ([0-9.]+px) -?[0-9.]+px$/);
+          if (m && parseFloat(m[4]) > 0) outs.push('drop-shadow(' + m[2] + ' ' + m[3] + ' ' + m[4] + ' ' + m[1] + ')');
+          else kept.push(t);
+        }
+        if (outs.length) {
+          el.style.setProperty('filter', outs.join(' '), 'important');
+          el.style.setProperty('box-shadow', kept.join(', ') || 'none', 'important');
+        }
+      }
+
+      const mask = cs.maskImage && cs.maskImage !== 'none' ? cs.maskImage : cs.webkitMaskImage;
+      if (mask && mask !== 'none' && cs.filter === 'none') el.style.setProperty('filter', 'opacity(1)', 'important');
+    }
+  } catch (e) {}
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+
+
+<style>@media print{@page{size:1729px 3215px;margin:0}html,body,[data-om-frame-wrap]{padding:0!important;margin:0!important;background:none!important}[data-om-frame]{margin:0!important}}</style></body></html>
