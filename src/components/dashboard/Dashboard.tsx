@@ -22,12 +22,9 @@ const SKILL_ROWS: { key: 'reasoning' | 'personalInsight' | 'currentAwareness' | 
   { key: 'extracurricular', label: 'Extracurricular stories' },
 ];
 
-// The mock colours each bar + status word by how far along the skill is.
-function band(pct: number): { text: string; textClass: string; barClass: string } {
-  if (pct >= 60) return { text: 'Getting strong', textClass: 'text-teal', barClass: 'bg-teal' };
-  if (pct >= 40) return { text: 'Coming along', textClass: 'text-[#b0641f]', barClass: 'bg-gold' };
-  return { text: "Pip's next focus", textClass: 'text-primary', barClass: 'bg-primary' };
-}
+const STRONG = { text: 'Getting strong', textClass: 'text-teal', barClass: 'bg-teal' };
+const COMING = { text: 'Coming along', textClass: 'text-[#b0641f]', barClass: 'bg-gold' };
+const FOCUS = { text: "Pip's next focus", textClass: 'text-primary', barClass: 'bg-primary' };
 
 const LABEL = 'text-[12px] font-bold uppercase tracking-[0.08em] text-muted-foreground';
 
@@ -54,6 +51,20 @@ export const Dashboard: React.FC<DashboardProps> = ({ onStartInterview, onViewHi
   ) as (typeof SKILL_ROWS[number] & { value: number })[];
   const strongest = validSkills.length ? validSkills.reduce((a, b) => (b.value > a.value ? b : a)) : null;
   const weakest = validSkills.length ? validSkills.reduce((a, b) => (b.value < a.value ? b : a)) : null;
+
+  // Rank skills so the status words vary: only the lowest is "Pip's next focus", the highest is
+  // "Getting strong", the rest "Coming along" (stable tiebreak keeps them distinct even when equal).
+  const ranked = [...validSkills].sort((a, b) => b.value - a.value);
+  const bestKey = ranked[0]?.key;
+  const worstKey = ranked[ranked.length - 1]?.key;
+  const skillStatus = (key: string, pct: number) => {
+    if (bestKey !== worstKey) {
+      if (key === worstKey) return FOCUS;
+      if (key === bestKey) return STRONG;
+      return COMING;
+    }
+    return pct >= 55 ? STRONG : COMING; // single skill: fall back to its value
+  };
 
   const streak = stats?.streak ?? 0;
   const weekStrip = stats?.weekStrip ?? [];
@@ -189,7 +200,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onStartInterview, onViewHi
             <div className="flex flex-col gap-4 mt-5">
               {validSkills.map((row) => {
                 const pct = (row.value / MAX_SKILL_SCORE) * 100;
-                const b = band(pct);
+                const b = skillStatus(row.key, pct);
                 return (
                   <div key={row.key}>
                     <div className="flex justify-between text-[13.5px] font-semibold">

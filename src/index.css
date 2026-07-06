@@ -91,46 +91,46 @@
   }
 
   .dark {
-    /* Dark mode with professional academic theme */
-    --background: 215 25% 8%;
-    --foreground: 210 20% 92%;
+    /* Dark = the calm navy "interview room" (mock 1c) */
+    --background: 211 30% 17%;
+    --foreground: 40 40% 95%;
 
-    --card: 215 25% 10%;
-    --card-foreground: 210 20% 92%;
+    --card: 211 26% 22%;
+    --card-foreground: 40 40% 95%;
 
-    --popover: 215 25% 10%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 211 26% 22%;
+    --popover-foreground: 40 40% 95%;
 
-    --primary: 16 100% 66%;
-    --primary-foreground: 215 25% 15%;
-    --primary-soft: 16 90% 70%;
+    --primary: 14 88% 63%;
+    --primary-foreground: 40 40% 97%;
+    --primary-soft: 14 88% 70%;
 
-    --secondary: 215 20% 15%;
-    --secondary-foreground: 210 20% 85%;
+    --secondary: 211 20% 28%;
+    --secondary-foreground: 40 30% 92%;
 
-    --muted: 215 20% 12%;
-    --muted-foreground: 215 15% 60%;
+    --muted: 211 22% 26%;
+    --muted-foreground: 210 18% 70%;
 
-    --accent: 215 20% 18%;
-    --accent-foreground: 210 20% 85%;
+    --accent: 211 22% 30%;
+    --accent-foreground: 40 30% 92%;
 
     /* Winter accent - subtle icy blue for dark mode */
     --winter: 200 50% 60%;
     --winter-soft: 200 30% 40%;
     --winter-frost: 200 20% 25%;
 
-    --success: 145 40% 60%;
-    --success-foreground: 145 40% 10%;
-    
-    --warning: 35 60% 65%;
-    --warning-foreground: 35 60% 10%;
-    
-    --destructive: 0 40% 65%;
-    --destructive-foreground: 0 40% 10%;
+    --success: 158 48% 55%;
+    --success-foreground: 211 30% 12%;
 
-    --border: 215 20% 18%;
-    --input: 215 20% 15%;
-    --ring: 16 100% 66%;
+    --warning: 39 68% 58%;
+    --warning-foreground: 211 30% 12%;
+
+    --destructive: 0 60% 60%;
+    --destructive-foreground: 40 40% 97%;
+
+    --border: 211 18% 31%;
+    --input: 211 18% 29%;
+    --ring: 14 88% 63%;
     
     --interview-active: 145 40% 60%;
     --interview-active-foreground: 145 40% 10%;

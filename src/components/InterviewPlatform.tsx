@@ -303,9 +303,9 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
   }, [setMicMuted]);
 
   return (
-    <div className="min-h-screen bg-gradient-background">
+    <div className="dark min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-4 py-8 max-w-6xl">
-        
+
         {/* Header Section */}
         <div className="text-center mb-8">
           <h1 className="interview-title mb-3">
@@ -367,7 +367,7 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
                 )}
                 
                 {/* Video Element for AI Interviewer - Mobile Optimized Aspect Ratio */}
-                <div className="relative bg-muted rounded-lg overflow-hidden aspect-video md:aspect-[16/10] lg:aspect-[16/9]">
+                <div className="relative bg-muted rounded-2xl overflow-hidden aspect-video md:aspect-[16/10] lg:aspect-[16/9]">
                   <video
                     ref={videoRef}
                     id="interview-video"
@@ -376,15 +376,25 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
                     muted={false}
                     className="w-full h-full object-cover"
                   />
-                  
+
+                  {/* Live pill (mock 1c) */}
+                  {isStreaming && (
+                    <span className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-full bg-primary/90 px-3.5 py-1.5 text-xs font-bold text-white">
+                      <span className="h-1.5 w-1.5 rounded-full bg-white" /> Live
+                    </span>
+                  )}
+
                   {/* Video Overlay for Non-active States */}
                   {!isStreaming && (
-                    <div className="absolute inset-0 bg-muted flex items-center justify-center">
+                    <div
+                      className="absolute inset-0 flex items-center justify-center"
+                      style={{ background: 'repeating-linear-gradient(45deg, hsl(211 28% 20%) 0px, hsl(211 28% 20%) 14px, hsl(211 26% 22%) 14px, hsl(211 26% 22%) 28px)' }}
+                    >
                       <div className="text-center space-y-4">
-                        <div className="w-16 h-16 md:w-24 md:h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                        <div className="w-16 h-16 md:w-24 md:h-24 bg-primary/15 rounded-full flex items-center justify-center mx-auto">
                           <Mic className="w-8 h-8 md:w-12 md:h-12 text-primary" />
                         </div>
-                        <p className="text-sm md:text-base text-muted-foreground font-medium px-4">
+                        <p className="text-sm md:text-base text-cream/60 font-medium px-4">
                           {isConnected ? 'Ready to start interview' : 'Connect to begin'}
                         </p>
                       </div>
