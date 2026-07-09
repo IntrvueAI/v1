@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Plus, Pencil, Trash2, Search } from 'lucide-react';
+import { Plus, Pencil, Trash2, Search, Star } from 'lucide-react';
 
 interface QRow {
   id: string; subject: string; topic: string; question_type: string | null;
@@ -81,22 +81,14 @@ export const AdminQuestions: React.FC = () => {
       toast({ title: 'id, subject, topic and question are required', variant: 'destructive' });
       return;
     }
-    let common_mistakes, live_probes;
-    try {
-      common_mistakes = JSON.parse(draft.common_mistakes_json || '[]');
-      live_probes = JSON.parse(draft.live_probes_json || '[]');
-    } catch {
-      toast({ title: 'Common mistakes / Live probes must be valid JSON', variant: 'destructive' });
-      return;
-    }
     setSaving(true);
+    const hasRubric = draft.rubric_strong || draft.rubric_developing || draft.rubric_weak;
     const rowData = {
       id: draft.id.trim(), subject: draft.subject.trim(), topic: draft.topic.trim(),
       question_type: draft.question_type || null, difficulty: Number(draft.difficulty) || 3,
       title: draft.title || null, question: draft.question, answer: draft.answer || null,
       model_reasoning_path: draft.model_reasoning_path || null,
-      rubric: { strong: draft.rubric_strong, developing: draft.rubric_developing, weak: draft.rubric_weak, finalAnswerNote: draft.rubric_final || undefined },
-      common_mistakes, live_probes,
+      rubric: hasRubric ? { strong: draft.rubric_strong, developing: draft.rubric_developing, weak: draft.rubric_weak, finalAnswerNote: draft.rubric_final || undefined } : null,
       hints: draft.hints_text.split('\n').map((h: string) => h.trim()).filter(Boolean),
       tags: draft.tags_csv.split(',').map((t: string) => t.trim()).filter(Boolean),
       active: !!draft.active, warmup: !!draft.warmup,
@@ -186,7 +178,17 @@ export const AdminQuestions: React.FC = () => {
             <div className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
                 <div><Label>ID</Label><Input value={draft.id} disabled={!isNew} onChange={(e) => set('id', e.target.value)} placeholder="e.g. MA-A8" /></div>
-                <div><Label>Difficulty (1–5 stars)</Label><Input type="number" min={1} max={5} value={draft.difficulty} onChange={(e) => set('difficulty', e.target.value)} /></div>
+                <div>
+                  <Label>Difficulty</Label>
+                  <div className="flex items-center gap-1.5 mt-1.5">
+                    {[1, 2, 3, 4, 5].map((n) => (
+                      <button key={n} type="button" onClick={() => set('difficulty', n)} aria-label={`${n} star${n > 1 ? 's' : ''}`} className="p-0.5">
+                        <Star className={`h-6 w-6 transition-colors ${n <= Number(draft.difficulty) ? 'fill-amber text-amber' : 'text-muted-foreground/40'}`} />
+                      </button>
+                    ))}
+                    <span className="ml-2 text-sm text-muted-foreground">{Number(draft.difficulty)} of 5 ({['', 'easiest', 'easy', 'medium', 'hard', 'hardest'][Number(draft.difficulty)] || ''})</span>
+                  </div>
+                </div>
                 <div><Label>Subject</Label><Input value={draft.subject} onChange={(e) => set('subject', e.target.value)} placeholder="maths | logic | currentaffairs" /></div>
                 <div><Label>Topic (folder id)</Label><Input value={draft.topic} onChange={(e) => set('topic', e.target.value)} placeholder="e.g. numerical-reasoning" /></div>
                 <div><Label>Question type</Label><Input value={draft.question_type} onChange={(e) => set('question_type', e.target.value)} placeholder="e.g. Numerical" /></div>
@@ -203,8 +205,6 @@ export const AdminQuestions: React.FC = () => {
                 <Input value={draft.rubric_final} onChange={(e) => set('rubric_final', e.target.value)} placeholder="Final answer note (optional)" />
               </div>
               <div><Label>Hints (one per line, gentle → near-reveal)</Label><Ta rows={3} value={draft.hints_text} onChange={(e: any) => set('hints_text', e.target.value)} /></div>
-              <div><Label>Common mistakes (JSON: [{'{'}"mistake","reveals"{'}'}])</Label><Ta rows={3} value={draft.common_mistakes_json} onChange={(e: any) => set('common_mistakes_json', e.target.value)} className="font-mono text-xs" /></div>
-              <div><Label>Live probes (JSON: [{'{'}"probe","goodResponse"{'}'}])</Label><Ta rows={3} value={draft.live_probes_json} onChange={(e: any) => set('live_probes_json', e.target.value)} className="font-mono text-xs" /></div>
               <div className="grid grid-cols-2 gap-3 items-end">
                 <div><Label>Tags (comma-separated)</Label><Input value={draft.tags_csv} onChange={(e) => set('tags_csv', e.target.value)} placeholder="e.g. algebra, hard" /></div>
                 <div className="flex flex-col gap-1 pb-1">
