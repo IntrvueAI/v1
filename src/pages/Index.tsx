@@ -7,6 +7,7 @@ import { PostSignupForm } from '@/components/PostSignupForm';
 import { InterviewSelection } from '@/components/InterviewSelection';
 import { QuestionsHub } from '@/components/questions/QuestionsHub';
 import { AchievementsPage } from '@/components/AchievementsPage';
+import { GrownupView } from '@/components/GrownupView';
 import { FeedbackHistory } from '@/components/FeedbackHistory';
 import { UserSettings } from '@/components/UserSettings';
 import { Dashboard } from '@/components/dashboard/Dashboard';
@@ -52,7 +53,7 @@ const Index = () => {
     setShowPostSignupForm
   } = useAuth();
   const navigate = useNavigate();
-  const [currentView, setCurrentView] = useState<'dashboard' | 'selection' | 'interview' | 'history' | 'settings' | 'credits' | 'questions' | 'achievements'>('dashboard');
+  const [currentView, setCurrentView] = useState<'dashboard' | 'selection' | 'interview' | 'history' | 'settings' | 'credits' | 'questions' | 'achievements' | 'grownup'>('dashboard');
   const [selectedInterviewType, setSelectedInterviewType] = useState<InterviewType | null>(null);
   const [paymentSuccessDismissed, setPaymentSuccessDismissed] = useState(false);
 
@@ -146,7 +147,7 @@ const Index = () => {
   }, [showPaymentSuccess, refetchCredits]);
 
   // Function to clear URL parameters and dismiss payment success
-  const clearPaymentSuccessAndNavigate = (view: 'dashboard' | 'selection' | 'interview' | 'history' | 'settings' | 'credits' | 'questions' | 'achievements') => {
+  const clearPaymentSuccessAndNavigate = (view: 'dashboard' | 'selection' | 'interview' | 'history' | 'settings' | 'credits' | 'questions' | 'achievements' | 'grownup') => {
     // Clear URL parameters
     const url = new URL(window.location.href);
     url.searchParams.delete('session_id');
@@ -326,6 +327,9 @@ const Index = () => {
               <DropdownMenuContent align="end" className="w-52">
                 <DropdownMenuLabel className="truncate">{user.user_metadata?.full_name || user.email}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => setCurrentView('grownup')}>
+                  👋 Grown-up view
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setCurrentView('settings')}>
                   <Settings className="w-4 h-4 mr-2" /> Settings
                 </DropdownMenuItem>
@@ -378,6 +382,8 @@ const Index = () => {
           <QuestionsHub name={(user.user_metadata?.full_name as string | undefined)?.split(' ')[0] || user.email?.split('@')[0]} onViewHistory={() => setCurrentView('history')} />
         ) : currentView === 'achievements' ? (
           <AchievementsPage />
+        ) : currentView === 'grownup' ? (
+          <GrownupView onBack={() => setCurrentView('dashboard')} />
         ) : currentView === 'interview' ? (
           <InterviewPlatform selectedInterviewType={selectedInterviewType} />
         ) : currentView === 'history' ? (

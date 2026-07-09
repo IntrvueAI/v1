@@ -21,15 +21,17 @@ export const AchievementsPage: React.FC = () => {
   const streak = stats?.streak ?? 0;
   const avg = stats?.averageScore ?? 0;
   const reasoning = stats?.skills.reasoning ?? 0;
+  const insight = stats?.skills.personalInsight ?? 0;
   const dates = (stats?.upcomingSchoolInterviews ?? []).length;
   const stars = typeof window !== 'undefined' ? getStars() : 0;
+  const bestScore = Math.max(avg, ...(stats?.recentTrend ?? []).map((t) => t.score), 0);
 
   const pct = (v: number, t: number) => Math.min(100, Math.round((v / t) * 100));
 
   const groups: { icon: string; name: string; badges: Badge[] }[] = [
     {
       icon: '🐣', name: 'Getting Started', badges: [
-        { emoji: '👤', title: 'First Steps', desc: 'Create your account', xp: 50, earned: !!user, grad: 'from-emerald to-[#10B981]' },
+        { emoji: '👤', title: 'First Steps', desc: 'Complete your profile', xp: 50, earned: !!user, grad: 'from-emerald to-[#10B981]' },
         { emoji: '🎤', title: 'First Mock', desc: 'Finish your first interview', xp: 100, earned: sessions >= 1, grad: 'from-amber to-[#F59E0B]', progress: pct(sessions, 1) },
         { emoji: '⭐', title: 'Daily Debut', desc: 'Answer your first daily question', xp: 50, earned: stars >= 1, grad: 'from-primary to-rose', progress: pct(stars, 1) },
         { emoji: '📅', title: 'Booked In', desc: 'Add an interview date', xp: 50, earned: dates >= 1, grad: 'from-sky to-[#0EA5E9]', progress: pct(dates, 1) },
@@ -38,17 +40,32 @@ export const AchievementsPage: React.FC = () => {
     {
       icon: '🔥', name: 'Streak Master', badges: [
         { emoji: '🔥', title: 'On a Roll', desc: '3-day practice streak', xp: 150, earned: streak >= 3, grad: 'from-primary to-[#EF4444]', progress: pct(streak, 3) },
-        { emoji: '⚡', title: 'Week Warrior', desc: '7-day streak', xp: 250, earned: streak >= 7, grad: 'from-amber to-primary', progress: pct(streak, 7) },
-        { emoji: '🗓️', title: 'Fortnight', desc: '14-day streak', xp: 400, earned: streak >= 14, grad: 'from-purple to-sky', progress: pct(streak, 14) },
-        { emoji: '👑', title: 'Unstoppable', desc: '30-day streak', xp: 800, earned: streak >= 30, grad: 'from-amber to-rose', progress: pct(streak, 30) },
+        { emoji: '⚡', title: 'Week Warrior', desc: '7-day streak', xp: 300, earned: streak >= 7, grad: 'from-amber to-primary', progress: pct(streak, 7) },
       ],
     },
     {
       icon: '🎯', name: 'Practice Pro', badges: [
-        { emoji: '🖐️', title: 'High Five', desc: 'Complete 5 interviews', xp: 150, earned: sessions >= 5, grad: 'from-sky to-purple', progress: pct(sessions, 5) },
-        { emoji: '🔟', title: 'Ten Club', desc: 'Complete 10 interviews', xp: 300, earned: sessions >= 10, grad: 'from-emerald to-sky', progress: pct(sessions, 10) },
-        { emoji: '🧠', title: 'Deep Thinker', desc: 'Score 3+ in reasoning', xp: 200, earned: reasoning >= 3, grad: 'from-sky to-[#0EA5E9]', progress: pct(reasoning, 3) },
-        { emoji: '🏆', title: 'Top Marks', desc: 'Average 15+ overall', xp: 400, earned: avg >= 15, grad: 'from-amber to-[#F59E0B]', progress: pct(avg, 15) },
+        { emoji: '🌱', title: 'Getting Warm', desc: 'Complete 5 mocks', xp: 100, earned: sessions >= 5, grad: 'from-emerald to-sky', progress: pct(sessions, 5) },
+        { emoji: '💪', title: 'Committed', desc: 'Complete 10 mocks', xp: 200, earned: sessions >= 10, grad: 'from-sky to-purple', progress: pct(sessions, 10) },
+        { emoji: '🏋️', title: 'Dedicated', desc: 'Complete 25 mocks', xp: 500, earned: sessions >= 25, grad: 'from-purple to-rose', progress: pct(sessions, 25) },
+      ],
+    },
+    {
+      icon: '🌟', name: 'Skill Stars', badges: [
+        { emoji: '🧠', title: 'Deep Thinker', desc: 'Score 4/5 in Reasoning', xp: 150, earned: reasoning >= 4, grad: 'from-sky to-[#0EA5E9]', progress: pct(reasoning, 4) },
+        { emoji: '🗣️', title: 'Great Communicator', desc: '4/5 in Personal Insight', xp: 150, earned: insight >= 4, grad: 'from-amber to-primary', progress: pct(insight, 4) },
+      ],
+    },
+    {
+      icon: '🏅', name: 'Score Champions', badges: [
+        { emoji: '👍', title: 'Good Show', desc: 'Score 12+ in an interview', xp: 150, earned: bestScore >= 12, grad: 'from-emerald to-sky', progress: pct(bestScore, 12) },
+        { emoji: '🏆', title: 'Brilliant', desc: 'Score 16+ in an interview', xp: 400, earned: bestScore >= 16, grad: 'from-amber to-[#F59E0B]', progress: pct(bestScore, 16) },
+      ],
+    },
+    {
+      icon: '🎩', name: 'Special', badges: [
+        { emoji: '🌅', title: 'Early Bird', desc: 'Practise before 8am', xp: 50, earned: false, grad: 'from-amber to-primary' },
+        { emoji: '🎪', title: 'All-Rounder', desc: 'Try every interview type', xp: 200, earned: false, grad: 'from-purple to-sky' },
       ],
     },
   ];
