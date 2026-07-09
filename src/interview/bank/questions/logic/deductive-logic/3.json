@@ -4,91 +4,23 @@
     "subject": "logic",
     "topic": "deductive-logic",
     "difficulty": 3,
-    "questionType": "Deductive",
+    "questionType": "Deductive Logic",
     "title": "Knights and Knaves",
     "tags": [],
     "question": "On an island, every inhabitant is either a knight, who always tells the truth, or a knave, who always lies. You meet two people: Alex and Beth. Alex says: 'At least one of us is a knave.' What can you work out about each of them?",
     "answer": "Alex is a knight; Beth is a knave.",
-    "modelReasoningPath": "A top candidate treats Alex's status as a fork and tests both branches aloud. 1. \"Suppose Alex is a knave.\" Then everything he says is false, so \"at least one of us is a knave\" is false - meaning nobody is a knave. But Alex is a knave, so that's a contradiction. The branch collapses. 2. \"So Alex must be a knight.\" A knight tells the truth, so \"at least one of us is a knave\" is genuinely true. 3. Alex is the knight, so the knave referred to must be Beth.  The marker of real skill is step 1 - deliberately assuming the thing you want to disprove and watching it break. That is proof by contradiction, and a child who reaches for it instinctively is reasoning at a high level.",
-    "rubric": {
-      "strong": "Explicitly tests at least one assumption (\"if he's a knave then…\") and follows it to the contradiction. Narrates the fork. Reaches Alex = knight, Beth = knave with justification, or gets the structure right even if they fumble the final label.",
-      "developing": "Senses that Alex is probably telling the truth and lands near the answer, but justifies it by feel (\"he just seems honest\") rather than by ruling out the alternative. Can often be walked to the contradiction with one nudge.",
-      "weak": "Guesses both roles with no test of either case, or treats \"at least one is a knave\" as obviously meaning both are knaves. Cannot engage with the self-referential setup even after prompting."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Reading \"at least one of us is a knave\" as \"both are knaves.\" Watch for this; it derails the whole chain.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Concluding Alex is the knave because he \"accused\" someone",
-        "reveals": "confusing the content of the claim with the truth-status of the speaker."
-      },
-      {
-        "mistake": "Stopping at \"Alex is a knight\" without working out Beth.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "If stuck: \"What happens if we just suppose Alex is a knave - does that hold together?",
-        "goodResponse": "Good response: they spot the contradiction."
-      },
-      {
-        "probe": "To extend a strong child: \"What if Alex had said 'We are both knights' instead?",
-        "goodResponse": "This is consistent only if both are knights - a knave couldn't truthfully be flagged. Reward them for re-running the case test, not for the label."
-      }
-    ],
-    "hints": [
-      "\"Each person is either a knight or a knave. Why not just suppose Alex is one of them and see what follows?\"",
-      "\"Try 'Alex is a knave.' If he's a knave, everything he says is false - so is his sentence true or false?\"",
-      "\"If 'at least one of us is a knave' were false, that would mean nobody is a knave. But we just supposed Alex is one. Does that fit?\""
-    ]
+    "modelReasoningPath": "Suppose Alex is a knave. Then his statement - \"at least one of us is a knave\" - would be false, meaning neither of them is a knave. But that contradicts Alex being a knave. So Alex cannot be a knave; he must be a knight. Since Alex (a knight) truthfully says at least one of them is a knave, and Alex is not the knave, Beth must be the knave.\n\nWhat to listen for: Does the child try both possibilities (\"suppose he's a knight... suppose he's a knave\") and check which leads to a contradiction? This is a core logical technique - proof by contradiction. A child who instinctively tests both cases is showing genuine deductive skill. ---"
   },
   {
     "id": "LG-A3",
     "subject": "logic",
     "topic": "deductive-logic",
     "difficulty": 3,
-    "questionType": "Deductive",
+    "questionType": "Deductive Logic",
     "title": "The Logic Chain",
     "tags": [],
-    "question": "I'm going to give you three facts, so listen carefully. First: everyone in the science club enjoys experiments. Second: some of the science club members also play in the school orchestra. And third: Priya plays in the orchestra, but she's not in the science club. So from just those facts - can you tell me whether Priya enjoys experiments? Talk me through how you work it out.",
+    "question": "Here are three facts: One - all members of the science club enjoy experiments. Two - some members of the science club also play in the school orchestra. Three - Priya plays in the school orchestra but is not a member of the science club. From these facts alone, can you tell me whether Priya enjoys experiments? Explain your answer carefully.",
     "answer": "No - we cannot tell.",
-    "modelReasoningPath": "1. The only fact about who enjoys experiments is fact one: it applies to science club members. 2. Priya is explicitly not a science club member, so fact one says nothing about her. 3. The orchestra link (fact two) is an association, not a rule that transfers the property. Sharing an activity with experiment-lovers doesn't make Priya one. 4. Therefore the honest answer is \"we can't tell\" - she might or might not; we have no information either way.  The hallmark is the child holding three options in mind - \"yes,\" \"no,\" and \"can't tell\" - and choosing the third deliberately.",
-    "rubric": {
-      "strong": "Arrives at \"can't tell\" and explains that the rule only covers science club members, so it can't reach Priya. Distinguishes \"we don't know she does\" from \"we know she doesn't.\"",
-      "developing": "Leans toward \"can't tell\" or hesitates productively (\"well, she's not in the club, so… maybe?\") but doesn't cleanly articulate why the orchestra link is irrelevant. The instinct is right; the justification is loose.",
-      "weak": "Confidently says \"yes\" (because of the orchestra overlap) or \"no\" (she's not in the club, so she can't enjoy experiments) - both treat the absence of information as if it were information."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "\"Yes",
-        "reveals": "she's in the orchestra with science-club people who like experiments.\" Confuses association with implication. The classic error."
-      },
-      {
-        "mistake": "\"No",
-        "reveals": "she's not in the science club, so she doesn't enjoy experiments.\" Treats \"not a member\" as proof of not enjoying experiments (denying the antecedent)."
-      },
-      {
-        "mistake": "Not noticing that \"can't tell\" is even an available answer.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Is there anything in these three facts that tells us about people who are NOT in the science club?",
-        "goodResponse": "Leads to \"no, there isn't.\""
-      },
-      {
-        "probe": "What extra fact would you need to be certain either way?",
-        "goodResponse": "Tests whether they understand exactly what's missing."
-      }
-    ],
-    "hints": [
-      "\"Which of the three facts is actually about Priya?\"",
-      "\"The first fact only tells us about science club members. Is Priya one of them?\"",
-      "\"If the only rule about experiments covers club members, and Priya isn't a member - can you honestly say yes, no, or neither?\""
-    ]
+    "modelReasoningPath": "We only know that science club members enjoy experiments. Priya is not in the science club, so the first fact tells us nothing about her. She might enjoy experiments for some other reason, or she might not - we simply have no information either way.\n\nWhat to listen for: Does the child distinguish between \"we know she does\" and \"we know she doesn't\" and \"we can't tell\"? The third option is often overlooked. A child who says \"we can't say either way\" and explains why has excellent logical precision. Ask: \"What extra fact would you need to be certain?\" ---"
   }
 ]

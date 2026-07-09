@@ -8,46 +8,8 @@
     "title": "Inequality of Birth",
     "tags": [],
     "question": "Is it fair that some people are born into wealthy families while others are born into poverty - and that this affects almost every opportunity they'll have in life?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "\"No, it's not fair\" is the easy opening - the thinking is in what comes next. A strong child engages the real tensions: - What would a genuinely fair alternative even look like? Redistribute wealth at birth? Abolish inheritance? Each has its own problems. - Is luck ever \"fair\" or \"unfair,\" or is fairness only about things we control? - Does the unfairness of birth create an obligation to compensate - and if so, who compensates, and how? The best answers don't stop at \"it's wrong\"; they ask what could realistically be done, and notice that \"unfair\" and \"fixable\" are not the same thing.",
-    "rubric": {
-      "strong": "Goes beyond \"unfair\" to grapple with what a fair alternative would be and whether/how it could work, distinguishing \"this is unfair\" from \"this can or should be changed.\" Engages the provocative self-referential probe with composure.",
-      "developing": "Says it's unfair with a reason and can discuss some remedy when prompted, but initially treats \"unfair → just fix it\" as simple. Thoughtful once pushed.",
-      "weak": "\"It's not fair\" and nothing more, or insists on a fix without any thought about what it would cost or whether it's possible. Deflects the school-fees probe."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Equating \"unfair\" with \"easily fixable,\" ignoring the difficulty of any alternative.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Strong feeling, no constructive thought about remedies or trade-offs.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Dodging the uncomfortable point that they're sitting in a fee-charging school.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "What would a *fair version actually look like - and would that bring its own problems?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "You're at an interview for a school that charges fees most families can't afford. Is that relevant here?",
-        "goodResponse": "Deliberately provocative - reward engagement over deflection."
-      },
-      {
-        "probe": "Is something automatically wrong just because it's down to luck, or only if we could have changed it?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Start simple - does it feel fair to you? Then we'll ask the harder question of what could be done about it.\"",
-      "\"Think about what's in a child's control when they're born. Does that matter for fairness?\"",
-      "\"Imagine you could change one thing to make it fairer - what would you try, and what might go wrong?\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Does the child conflate \"unfair\" with \"something that can or should be changed\"? Can they think about what a just alternative would actually look like, rather than just agreeing it's wrong?"
   },
   {
     "id": "CA-E2",
@@ -58,46 +20,8 @@
     "title": "Should 16-Year-Olds Vote?",
     "tags": [],
     "question": "Should the voting age be lowered to 16? What's your view - and make the case for the other side too.",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "The question explicitly asks for both sides, so it directly tests arguing the case you disagree with - a core intellectual-fairness skill. - For lowering: 16-year-olds pay taxes and can (with consent) join the army; they'll live longest with today's decisions; Scotland let 16-year-olds vote in its independence referendum; civic habits should start early. - Against: brain development (impulse control, long-term thinking) continues into the mid-20s; many 16-year-olds still live with and echo their parents; 18 is a long-standing, broadly respected line. A strong child gives a clear view and makes the opposing case with real force - and the best notice they personally have a stake in the answer.",
-    "rubric": {
-      "strong": "States a view and builds a genuinely fair version of the other side (not a straw man). May note their own stake. Even-handed and specific.",
-      "developing": "Has a clear view with reasons, but the opposing case is thin or reluctant, improving when pushed. Willing but unbalanced.",
-      "weak": "Only argues their own side, or makes a deliberately weak version of the other (\"some people are just against young people\"). Can't genuinely inhabit the disagreement."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Refusing or failing to make the opposing case with any real strength.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Straw-manning the other side rather than steelmanning it.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Self-interest unexamined (\"yes, because I'd like to vote\") with no broader reasoning.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Now give me the *strongest version of the side you don't agree with.\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "You're close to this age yourself - does that make your answer more or less reliable, do you think?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "(Whichever side:) \"What's the best reason a thoughtful person could give for the opposite?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Start with what you think - should it be 16 or stay at 18? - and one reason why.\"",
-      "\"Now pretend you have to convince someone of the *opposite. What would you say?\"*",
-      "\"Think about what 16-year-olds can and can't already do - work, taxes, driving - does that help you weigh it?\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Can the child make the opposing case to their own view as well as their own? Being asked to argue for both sides is a test of intellectual fairness and the ability to understand perspectives you disagree with. Bonus: does the child notice that they personally are close to this age and therefore have a stake in the answer? ---"
   },
   {
     "id": "CA-E3",
@@ -108,46 +32,8 @@
     "title": "Social Media: Good or Harm?",
     "tags": [],
     "question": "Do you think social media does more good or more harm for people your age? You've grown up with it - I want your honest view.",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "The child has lived experience of this, and the strongest answers draw on it - \"I've noticed in myself that…\" is exactly the self-reflection top schools treasure. Both sides are real: - For harm: mental-health effects (comparison, cyberbullying, lost sleep); misinformation; addiction by design; crowding out real-world time. - For good: connecting isolated young people; organising and activism; creative expression; access to information and communities; a wider view of the world. A standout answer notices that tech companies design products to maximise engagement - which complicates the idea that it's all just \"the user's choice.\"",
-    "rubric": {
-      "strong": "Weighs both sides, draws on genuine personal observation, and grasps the design/engagement point (so \"just choose to use it less\" is too simple). Reaches a considered view.",
-      "developing": "Has a view with reasons, mostly abstract, and acknowledges the other side when prompted. Personal reflection appears with encouragement.",
-      "weak": "One-sided (\"it's just bad\" / \"it's fine\") with no personal insight and no awareness that the products are engineered to be compelling."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Only abstract talking points, no lived reflection",
-        "reveals": "or pure anecdote with no broader view."
-      },
-      {
-        "mistake": "Treating usage as purely free choice, ignoring deliberate addictive design.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "A flat verdict with no weighing of the genuine benefits.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Should there be a minimum age to own a smartphone? What age, and why?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "If it's harmful, whose fault is it - the companies, the parents, or the users themselves?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "You say people should just use it less - but if it's *designed to be hard to put down, is that really a fair ask?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Think about your own experience - when has it felt good, and when has it felt bad?\"",
-      "\"Name one way it helps people your age, and one way it might harm them.\"",
-      "\"On balance, if you had to lean one way - more good or more harm - which, and why?\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Does the child draw on personal experience, or only abstract arguments? A child who says \"I've noticed in myself that...\" is showing a quality top schools treasure: genuine self-reflection. Does the child acknowledge the role that tech companies play in designing products to maximise engagement - and what that means for user \"choice\"?"
   },
   {
     "id": "CA-E4",
@@ -158,46 +44,8 @@
     "title": "Animals and Rights",
     "tags": [],
     "question": "Do you think animals should have rights - and if so, which ones? Are some animals more deserving of rights than others?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "Like the \"creativity\" question, the sharpest move is to ask what a \"right\" actually is before deciding whether animals can have them - a right implies a being with interests that can be violated, which leads straight to consciousness and sentience. A strong child opens the idea up (a right not to suffer needlessly; not to be killed for trivial reasons; to live in conditions suited to its nature) and then engages the hard edges: - Do all animals have equal standing, or does it depend on intelligence/sentience? - If a cow has a right not to suffer, what does that imply about eating meat? - Where's the line - insects? bacteria? \"It depends what you mean by a right\" is exactly the right starting instinct.",
-    "rubric": {
-      "strong": "Pauses on what a \"right\" requires (a being that can suffer or have interests), then reasons about which animals qualify and follows the awkward implications (meat, where to draw the line) honestly.",
-      "developing": "Says animals should have some rights with a sensible reason (don't cause needless pain), but treats \"right\" as obvious and needs prompting toward sentience and the harder edges.",
-      "weak": "A flat \"yes animals have rights\" / \"no they don't\" with no thought about what a right is or which animals, and no engagement with the consequences."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Not examining what \"having a right\" even means.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Asserting rights for cute or familiar animals only, with no principle for where the line falls.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Avoiding the uncomfortable follow-through (e.g. the implications for eating meat).",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Before you decide - what does it even mean to *have a right? Does a being need to be able to suffer, or to want things?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "If a cow has a right not to suffer, what does that say about eating meat?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Where's the line - a dog? a fish? an insect? bacteria? Why there?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Start with people: why do *we have rights? Now ask which of those reasons might apply to animals.\"*",
-      "\"Is there a difference between a dog and a worm when it comes to this? What's the difference that matters?\"",
-      "\"Pick one right you think an animal should have, and tell me why.\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Does the child think carefully about what a \"right\" is before deciding whether animals can have them? A right implies someone capable of having interests that can be violated - which connects to questions about consciousness and sentience. A child who says \"it depends what you mean by a right\" before diving in is reasoning at the right level. ---"
   },
   {
     "id": "CA-E5",
@@ -208,45 +56,7 @@
     "title": "School Uniforms",
     "tags": [],
     "question": "Do you think school uniforms are a good idea? Make the strongest case for the opposite of whatever you actually believe.",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "The twist - argue against your own instinct - is the whole point. This is the purest test of steelmanning: building the strongest possible case for a view you don't hold. The material is rich both ways: - For uniforms: reduces visible inequality; cuts distraction; builds identity and belonging; cheaper overall than a wardrobe. - Against uniforms: suppresses individuality; doesn't really remove inequality (shoes, bags, phones remain); compliance isn't the same as good values; can enforce conformity over character. The gold standard is a child who argues the other side with genuine force - and the very best say \"actually, having argued the other side, I'm less sure than I was.\" That shift is exactly the habit top schools want to grow.",
-    "rubric": {
-      "strong": "Builds a genuinely strong case against their own view, not a token one - and may honestly report that doing so softened their certainty. Intellectually fair and self-aware.",
-      "developing": "Manages a counter-argument but a thin or reluctant one, needing encouragement to make it as strong as it could be. Willing, not yet fluent.",
-      "weak": "Can't or won't leave their own view, or offers a two-sentence straw man before snapping back to what they actually think. No real steelmanning."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "A grudging, deliberately weak version of the opposing case.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Sliding back into their own opinion instead of staying in the other side's shoes.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Treating \"argue the other side\" as a trick rather than a genuine exercise.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "That was the case against your view - but make it *stronger. What's the best point on that side?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Having argued the other side, are you any less certain than when you started?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "If a clever friend disagreed with you, what's the one argument of theirs you'd find hardest to answer?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"First, just tell me what *you actually think about uniforms.\"*",
-      "\"Now the hard bit - pretend you have to convince me of the opposite. Give me your best go.\"",
-      "\"Think about someone who'd really disagree with you - a parent, a friend - what would *they say?\"*"
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Can the child genuinely argue against themselves? This is the most important intellectual skill in the whole section - the ability to steelman an opposing view. A child who gives a flat, reluctant two-sentence counter-argument has not really done it. A child who says \"actually, now that I've argued the other side, I'm less sure than I was\" has shown exactly the kind of thinking top schools want to cultivate. --- ## Quick Reference | # | Question | Section | Key Tension | |---|----------|---------|-------------| | A1 | The News Opener | Current Affairs | World awareness, honest opinion | | A2 | One Problem to Solve | Current Affairs | Prioritisation, global empathy | | A3 | Richer & Poorer Countries | Current Affairs | National interest vs. global responsibility | | A4 | Is It Ever Right to Break the Law? | Current Affairs | Legal vs. moral obligation | | A5 | Britain & the Wider World | Current Affairs | Geopolitical awareness | | B1 | Excited or Worried About AI? | Technology | Holding two views simultaneously | | B2 | AI and Cheating | Technology | What learning is actually for | | B3 | Can Computers Be Creative? | Technology | Defining creativity | | B4 | Job a Robot Could Never Do | Technology | Capability vs. accountability | | C1 | Who Should Act on Climate? | Climate | Systemic vs. individual agency | | C2 | Intergenerational Fairness | Climate | Fairness vs. responsibility | | C3 | Personal Sacrifice | Climate | Honest self-reflection | | D1 | Five Strangers or One Friend | Moral Dilemma | Utilitarian vs. relational ethics | | D2 | When Lying is Right | Moral Dilemma | Absolute vs. contextual morality | | D3 | Best Friend's Cheating | Moral Dilemma | Loyalty vs. fairness | | D4 | Motive vs. Outcome | Moral Dilemma | Consequentialism vs. virtue ethics | | D5 | The Found Money | Moral Dilemma | Honesty about actual behaviour | | E1 | Inequality of Birth | Society | Luck, fairness, redistribution | | E2 | Voting Age | Society | Civic rights, maturity | | E3 | Social Media | Society | Personal experience vs. systemic design | | E4 | Animal Rights | Society | Defining rights, sentience | | E5 | School Uniforms | Society | Arguing against yourself | --- Version 1.0 - Current Affairs & Moral Thinking"
   }
 ]

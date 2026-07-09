@@ -4,99 +4,23 @@
     "subject": "maths",
     "topic": "pattern-proof-explanation",
     "difficulty": 3,
-    "questionType": "Proof",
+    "questionType": "Pattern, Proof & Explanation",
     "title": "Consecutive Numbers",
     "tags": [],
     "question": "Is it always true that if you add two consecutive whole numbers together, the answer is always odd? Can you convince me it must always be true - not just with examples, but with a reason?",
-    "answer": "Yes - always odd.",
-    "modelReasoningPath": "This question is really about the explanation, not the answer. Three levels: 1. Examples (the start, not the finish): 2+3=5, 4+5=9, 7+8=15 - \"it keeps coming out odd.\" 2. The parity argument (the key step): of any two numbers in a row, one is always even and the other always odd - and even + odd is always odd. So the sum must be odd, every time. 3. The algebra (exceptional at 11+): call the first number n, the next is n+1; their sum is 2n+1, which is one more than an even number, so always odd.  The gold standard is moving past \"it works in my examples\" to \"it must work because one is even and one is odd.\"",
-    "rubric": {
-      "strong": "Reaches a genuine reason: \"one of them is always even and one always odd, and those add to an odd.\" Bonus for the n + (n+1) = 2n+1 algebra. Understands examples alone aren't a proof.",
-      "developing": "Tests several examples, is convinced it's always true, and - when pushed for why - gets toward the even/odd idea with prompting. Senses the difference between \"seems true\" and \"must be true.\"",
-      "weak": "Checks one or two examples and says \"yes\" with no attempt at a reason, or believes a few examples are the proof. Can't articulate why it always holds."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Treating a handful of examples as a full proof (\"I tried three and they were all odd, so yes\").",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Saying \"because odd + even = odd\" without explaining why two consecutive numbers must be one of each.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Getting tangled trying to prove it and concluding it's \"probably\" true.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "You've shown it works for those. But could you convince me it works for *every pair, even ones you haven't tried?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Take any two numbers next to each other - what can you say about one being even and one being odd?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "What do you always get when you add an even number and an odd number?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Try a few pairs first - 3 and 4, 7 and 8. What do the answers have in common?\"",
-      "\"Now think about the two numbers themselves: in any two numbers in a row, is one always even and one always odd?\"",
-      "\"Even plus odd always gives odd. So if one of your two numbers is even and one is odd, what must their sum be - always?\""
-    ]
+    "answer": "Yes, always odd.",
+    "modelReasoningPath": "Any two consecutive whole numbers contain exactly one even number and one odd number. Even + odd = odd. Always.\n\nWhat to listen for: Most children will test a few examples (2+3=5, 4+5=9) and say \"yes it seems true.\" The real challenge is the explanation. Can the child say \"one of them must be even and one must be odd, and those always add to an odd\"? That is the key logical step. A child who uses n and n+1 to write 2n+1 is thinking algebraically - remarkable at 11+. ---"
   },
   {
     "id": "MA-D4",
     "subject": "maths",
     "topic": "pattern-proof-explanation",
     "difficulty": 3,
-    "questionType": "Proof",
+    "questionType": "Pattern, Proof & Explanation",
     "title": "Reverse and Subtract",
     "tags": [],
-    "question": "Take any two-digit number - let's say 73. Now reverse the digits, so 73 becomes 37. Then take the smaller one away from the bigger one: 73 take away 37 leaves 36. Now try that with a few other two-digit numbers of your own. What do you notice? And can you explain why it happens?",
-    "answer": "The result is always a multiple of 9 - more precisely, 9 times the difference between the two digits. (Examples: 82−28=54, 91−19=72, 51−15=36, 63−36=27 - all multiples of 9.)",
-    "modelReasoningPath": "1. Notice: try several and see \"they're all in the 9 times table\" (9, 18, 27, 36…). 2. State precisely: it's exactly 9 × (difference of the two digits) - e.g. 73 has digits 3 apart, and 3 × 9 = 27. 3. Explain: a two-digit number is 10×(tens) + units; its reverse is 10×(units) + tens; subtracting gives 9×(tens) − 9×(units) = 9 × (difference of the digits) - always a multiple of 9.  The gold standard is climbing as far up these stages as the child can - and the question is built to reward each stage of explanation, not just spotting the answer.",
-    "rubric": {
-      "strong": "Reaches stage 2 (\"it's 9 times the gap between the digits\") and ideally gestures at why (the algebra, or \"the tens and units swap, and the place values differ by 9s\"). Tests enough cases to be sure, then generalises.",
-      "developing": "Reaches stage 1 (\"they're all multiples of 9\") from several examples and, with \"why do you think that happens?\", begins reaching for a reason. Clear pattern-spotting, partial explanation.",
-      "weak": "Computes a few subtractions but sees no pattern, or notices something vague (\"they're even\"... they're not all) without landing on the multiple-of-9 structure."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Computing examples but not looking for what the answers share.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Spotting \"multiples of 9\" but, when asked why, having nothing beyond \"it just is.\"",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Subtracting larger from smaller inconsistently and getting negatives that obscure the pattern.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Look at your answers - 54, 72, 36, 27. What do they all have in common?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Can you predict the answer for a new number *before you subtract? What does it depend on?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Why do you think reversing and subtracting always gives a multiple of 9?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Do a few more and write the answers in a row. Do they belong to a times table you know?\"",
-      "\"They're all multiples of 9. Now look at the two digits of your starting number - how far apart are they, and how does that relate to the answer?\"",
-      "\"The answer is 9 times the gap between the digits. Can you see why? Think about what each digit is *worth - tens versus units.\"*"
-    ]
+    "question": "Take any two-digit number - let's say 73. Reverse the digits to get 37. Now subtract the smaller from the larger: 73 − 37 = 36. Try this with a few other two-digit numbers. What do you notice? Can you explain why?",
+    "answer": "(see working)",
+    "modelReasoningPath": "A two-digit number with tens digit a and units digit b equals 10a + b. Its reverse is 10b + a. The difference: (10a + b) − (10b + a) = 9a − 9b = 9(a − b). Always a multiple of 9.\n\nWhat to listen for: This question has three stages - noticing the pattern, stating it precisely, and explaining it. A child who reaches stage 1 (\"they're all multiples of 9\") is doing well. Stage 2 (\"it's 9 times the difference of the digits\") is excellent. Stage 3 (the algebraic explanation) is exceptional. Ask \"why do you think that happens?\" after each stage to push them further. ---"
   }
 ]

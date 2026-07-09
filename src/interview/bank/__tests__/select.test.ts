@@ -89,6 +89,7 @@ describe('real maths bank', () => {
       ['estimation', 'numerical-reasoning', 'pattern-proof-explanation', 'structured-problem-solving'].sort(),
     );
     expect(bank.every((x) => typeof x.difficulty === 'number' && x.difficulty >= 1 && x.difficulty <= 5)).toBe(true);
-    expect(bank.every((x) => x.questionType && x.rubric && x.hints && x.hints.length > 0)).toBe(true);
+    // New docs are simpler: every question has a type, a spoken question and an answer + working.
+    expect(bank.every((x) => x.questionType && x.question && x.answer && x.modelReasoningPath)).toBe(true);
   });
 });

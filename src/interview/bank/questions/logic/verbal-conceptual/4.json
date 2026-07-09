@@ -4,45 +4,11 @@
     "subject": "logic",
     "topic": "verbal-conceptual",
     "difficulty": 4,
-    "questionType": "Verbal",
+    "questionType": "Verbal & Conceptual Reasoning",
     "title": "The Rule About Rules",
     "tags": [],
-    "question": "Here's a claim for you: 'Every rule has an exception.' Is that claim itself a rule? And if it is - does it have an exception? Have a think out loud.",
-    "answer": "(no single answer)",
-    "modelReasoningPath": "1. Ask whether the claim counts as a rule (it's a general statement, so arguably yes). 2. Apply it to itself: if it's a rule, it has an exception → there's a rule without an exception → the claim is false. 3. Recognise the self-reference: the statement bites its own tail. Sit with the loop rather than forcing an answer.  Like A5, this tests whether a child can reason carefully about something genuinely unresolvable - and ideally enjoy it.",
-    "rubric": {
-      "strong": "Spots the self-referential trap and walks the contradiction through. Comfortable concluding it can't cleanly resolve. May bring up borderline cases (do maths facts like \"2+2=4\" count as exceptionless rules?).",
-      "developing": "Engages, senses something circular, and gets partway (\"if it has an exception, then some rule doesn't… wait\") but needs prompting to close the loop. Curious if a little tangled.",
-      "weak": "Answers \"yes it has an exception\" or \"no it doesn't\" flatly with no awareness of the loop, or dismisses it as a silly word game. Won't engage the self-reference even when pointed at it."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Not noticing the claim refers to itself.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Demanding a tidy yes/no and missing the paradox.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Confusing \"exception to a rule\" with \"exception to this sentence.\"",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "If this rule has an exception, what would that exception have to be - and what does that do to the claim?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Can you think of any rule that definitely has no exceptions?",
-        "goodResponse": "Opens the maths-rules thread."
-      }
-    ],
-    "hints": [
-      "\"Treat the sentence itself as a rule. Now apply it to itself - does this rule have an exception?\"",
-      "\"If this rule DOES have an exception, that means some rule somewhere has none. What does that do to the claim?\"",
-      "\"Notice it's a rule talking about all rules - including itself. Can it ever be cleanly true or false?\""
-    ]
+    "question": "Here is a claim: 'Every rule has an exception.' Is this claim itself a rule? And if so, does it have an exception? Think out loud.",
+    "answer": "(see working)",
+    "modelReasoningPath": "What to listen for: Does the child notice the self-referential trap? Do they enjoy it or find it frustrating? Ask: \"Can you think of any rules that definitely have no exceptions?\" (e.g. mathematical rules: \"2 + 2 = 4\" always - does that count as a rule? Is there an exception?). This question has no resolution - it is testing whether the child can reason carefully about something genuinely unresolvable. Show enthusiasm for the struggle, not the solution. ---"
   }
 ]

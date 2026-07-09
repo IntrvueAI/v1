@@ -4,141 +4,35 @@
     "subject": "logic",
     "topic": "verbal-conceptual",
     "difficulty": 3,
-    "questionType": "Verbal",
+    "questionType": "Verbal & Conceptual Reasoning",
     "title": "Define a Simple Word",
     "tags": [],
     "question": "Can you define the word 'chair' for me? Try to be precise enough that your definition would include every chair - and exclude everything that isn't a chair.",
-    "answer": "(no single answer)",
-    "modelReasoningPath": "A strong candidate expects to be challenged and treats each counterexample as fuel: offer a definition → hear \"but what about X?\" → refine to exclude X → repeat. They're playing the game of carving the concept tighter, and they stay cheerful while doing it. The skill is iteration under challenge, not landing a flawless definition (there isn't one).",
-    "rubric": {
-      "strong": "Gives a definition, recognises themselves or accepts that a counterexample breaks it, and refines - ideally several rounds. Stays curious and flexible as it gets harder. May reflect that the task seems impossible and wonder why.",
-      "developing": "Produces a reasonable definition and can patch it once or twice when handed a counterexample, but tends to add features ad hoc rather than rethinking. Engaged but a bit rigid.",
-      "weak": "Gives one definition and defends it as obviously correct, or becomes frustrated/shuts down when it's challenged. Treats counterexamples as unfair rather than informative."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Believing the first definition is complete and resisting counterexamples.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Getting frustrated that \"you keep changing it\"",
-        "reveals": "missing that refinement is the task."
-      },
-      {
-        "mistake": "Defining by example (\"like the one I'm sitting on\") rather than by properties.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "You can sit on the floor - is the floor a chair?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "What about a stool with no back? A sofa? A throne?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "To close with a strong child: \"Philosophers have tried for centuries and never agreed. Why do you think it's so hard?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Just give me a first try - it doesn't have to be perfect, we'll improve it together.\"",
-      "\"You said a chair is [their words]. But [a stool / the floor / a sofa] fits that too and isn't a chair - can you add something to rule it out?\"",
-      "\"Each time I find an exception, just tweak your definition to exclude it. The fixing is the whole game - keep going.\""
-    ]
+    "answer": "(see working)",
+    "modelReasoningPath": "What to listen for: Does the child notice that their first definition is too broad or too narrow when challenged? Do they iterate - refining their definition each time a counterexample is offered? A child who accepts every counterexample gracefully and adjusts their definition is showing wonderful intellectual flexibility. A child who gets frustrated when their definition is challenged is showing something less useful. After a few rounds, you can say: \"Philosophers have been trying to do this for centuries and haven't agreed. Why do you think it's so difficult?\" ---"
   },
   {
     "id": "LG-C3",
     "subject": "logic",
     "topic": "verbal-conceptual",
     "difficulty": 3,
-    "questionType": "Verbal",
+    "questionType": "Verbal & Conceptual Reasoning",
     "title": "The Odd One Out (Conceptual)",
     "tags": [],
     "question": "Which is the odd one out: painting, sculpture, symphony, novel, poem? Give me as many different answers as you can, each with a completely different reason.",
-    "answer": "- Symphony - exists only in time; can't be held or displayed; needs performance. - Sculpture - the only three-dimensional form. - Painting - the only purely visual form, not performed or read. - Novel - prose, not verse/notation/visual; the only one too long for one sitting. - Poem - short enough to memorise whole; sound matters as much as meaning.",
-    "modelReasoningPath": "As with A6, the task is lens-switching, but the lenses are conceptual: dimension, medium, time, length, how it's experienced. A strong child generates several, each on a distinct principle, and is surprised and pleased to keep finding more.",
-    "rubric": {
-      "strong": "Several answers on genuinely different principles, each named. Finds an unexpected angle (e.g. \"the symphony is the only one that doesn't exist until someone performs it\") and defends it.",
-      "developing": "One strong answer, a second when prompted, but lenses stay close together (e.g. all about physical form). Needs \"which would you pick next?\" to broaden.",
-      "weak": "One answer then stops, or reasons that don't distinguish (\"poem, because poems are boring\"). No principle behind the pick."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Treating it as one-right-answer.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Personal taste masquerading as a categorical reason.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Re-using one lens dressed up as different reasons.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "If that were the odd one out, which would you choose next, and why?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "What's the underlying idea behind that choice?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"There's no single right answer - pick any one and give me a reason it's the odd one.\"",
-      "\"Think about different angles: which one you can touch, which takes time to experience, which is read versus performed.\"",
-      "\"You've found one - now switch the rule entirely and find a different odd one out for a different reason.\""
-    ]
+    "answer": "(see working)",
+    "modelReasoningPath": "What to listen for: This question is deliberately open. A child who offers only one answer and stops is not engaging with the full possibility space. Ask: \"If that were the odd one out, which would you choose next, and why?\" The most impressive children will find angles no one expected - and defend them. ---"
   },
   {
     "id": "LG-C6",
     "subject": "logic",
     "topic": "verbal-conceptual",
     "difficulty": 3,
-    "questionType": "Verbal",
+    "questionType": "Verbal & Conceptual Reasoning",
     "title": "What Comes Next?",
     "tags": [],
-    "question": "Here's a little sequence of words for you: Monday, March, Morning. What could come next? See if you can give me more than one possible answer, and tell me the rule behind each one.",
-    "answer": "- All begin with M → Minute, Monsoon, Marble… - All are units/divisions of time → Minute, Moment… - The units are getting shorter (month → day → part-of-day) → Minute, Second… - All are \"first\" of their category (Monday = first weekday; March = first Roman month; Morning = first part of day) → Midnight, May, Mercury…",
-    "modelReasoningPath": "A strong candidate finds one rule, then deliberately looks for another, realising several patterns fit the same three words. The most impressive response keeps going - first the easy \"all start with M,\" then the subtler \"they're all units of time,\" then \"they're each the first of something.\" This tests creative hypothesis generation.",
-    "rubric": {
-      "strong": "Multiple distinct rules, each with a valid \"next\" word, and visible delight in finding more than one. Reaches at least one non-obvious pattern (units of time / \"firsts\"), not just the initial letter.",
-      "developing": "Finds the \"all start with M\" rule and, when asked for another, can find a second with support. Doesn't spontaneously look past the first pattern.",
-      "weak": "Offers one word with a thin or no rule, or a \"next\" that fits no stated pattern. Doesn't treat it as having multiple possible structures."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Stopping at the first rule (usually the M).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Giving a next word without stating the rule behind it.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Picking a word that breaks their own stated rule.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "That's one rule - is there a completely different rule that also fits these three words?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "What do Monday, March, and Morning each have in common beyond the letter they start with?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"What's one thing all three words share? Start with the easiest thing you notice.\"",
-      "\"Now look past the first letter - what KIND of words are they? What do Monday, March and Morning all measure?\"",
-      "\"Are they all bits of time? Or is each one the 'first' of something? Each idea gives you a different next word.\""
-    ]
+    "question": "Here is a sequence of words: Monday, March, Morning. What could come next? Give me more than one possible answer, and explain the rule behind each.",
+    "answer": "(see working)",
+    "modelReasoningPath": "What to listen for: Does the child find one rule and stop, or do they keep looking? The most impressive response is finding a rule, then a second different rule, then being surprised by a third. This tests creative hypothesis generation - a core intellectual skill. --- ## SECTION D - Language Logic & Word Puzzles Questions that combine precise reasoning with language. Each has a definite answer or a clearly bounded set of valid answers. ---"
   }
 ]

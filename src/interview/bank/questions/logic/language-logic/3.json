@@ -4,229 +4,59 @@
     "subject": "logic",
     "topic": "language-logic",
     "difficulty": 3,
-    "questionType": "Language",
+    "questionType": "Language Logic & Word Puzzles",
     "title": "The Logic Grid",
     "tags": [],
-    "question": "Three friends - Alice, Ben, and Clara - each have a favourite animal and a favourite sport. The animals are cat, dog, and rabbit, and the sports are swimming, tennis, and cycling. I'll give you five clues, so see if you can keep track. Clue one: Alice doesn't like cats. Clue two: whoever likes dogs also likes swimming. Clue three: Ben likes tennis. Clue four: Clara doesn't like rabbits. And clue five: Alice doesn't like cycling. So - can you work out which animal and which sport each of them likes?",
-    "answer": "Alice - dog, swimming. Ben - rabbit, tennis. Clara - cat, cycling.",
-    "modelReasoningPath": "1. Start with the most constraining clue: clue 3 fixes Ben = tennis. 2. Chain it: Ben plays tennis → Ben doesn't swim → (clue 2, dog-lover swims) Ben isn't the dog-lover. 3. Alice: not cycling (clue 5), and tennis is taken by Ben → Alice swims. 4. Alice swims → (clue 2) Alice likes dogs. Consistent with clue 1 (not cats). ✓ 5. Clara: not rabbits (clue 4), dogs taken → Clara likes cats. Ben gets rabbit. 6. Sports left: Clara gets cycling.  The signal of strong reasoning is clue selection - beginning with the clue that pins something down, then propagating, rather than hopping around at random.",
-    "rubric": {
-      "strong": "Works systematically: identifies a high-constraint clue to start, chains consequences, and keeps a running track (aloud or \"in my head, Ben's tennis, so…\"). Reaches the full solution, or a near-complete one with sound steps.",
-      "developing": "Engages clue by clue and makes correct local deductions but jumps around, loses the thread, or needs \"which clue is most definite?\" to get organised. The logic is sound in pieces.",
-      "weak": "Guesses assignments and checks them haphazardly, or can't link clue 2 and clue 3. No method for keeping track; contradictions go unnoticed."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Not using clue 2 as a link (dog ↔ swimming) and treating animals and sports as separate puzzles.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Forgetting to carry a deduction forward (e.g. establishing Alice swims but not using it for her animal).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Random clue order leading to dead ends.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Which clue gives you the most definite information to start with?",
-        "goodResponse": "Steers to clue 3."
-      },
-      {
-        "probe": "You know the dog-lover swims - who have you already shown does NOT swim?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Which clue gives you something for certain straight away, with no working needed?\"",
-      "\"Start from 'Ben likes tennis.' If Ben plays tennis, he doesn't swim - so can Ben be the dog-lover?\"",
-      "\"Keep a little table going. Once you fix one person's sport, it squeezes what the others can have - work outward from there.\""
-    ]
+    "question": "Three friends - Alice, Ben, and Clara - each have a favourite animal and a favourite sport. The animals are cat, dog, and rabbit. The sports are swimming, tennis, and cycling. Here are your clues:",
+    "answer": "- Alice: dog, swimming - Ben: rabbit, tennis - Clara: cat, cycling",
+    "modelReasoningPath": "- Ben likes tennis (clue 3) → Ben does not swim → Ben does not like dogs (clue 2) - Alice does not like cycling (clue 5) and Ben has tennis, so Alice swims or plays tennis. Since Ben has tennis, Alice swims. - Alice swims → Alice likes dogs (clue 2, the dog-lover swims) - Alice does not like cats (clue 1) ✓ - she likes dogs, consistent - Clara does not like rabbits (clue 4) and Alice has dogs → Clara likes cats - Ben gets the remaining animal: rabbit - Alice has swimming, Ben has tennis → Clara gets cycling\n\nWhat to listen for: Does the child work through clues systematically, or jump between them randomly? The disciplined approach is to find the clue with the most constraint first (clue 3 is the most direct) and build from there. A child who keeps a running table - even mentally - shows organised thinking. When they get stuck, ask: \"Which clue gives you the most definite information?\" ---"
   },
   {
     "id": "LG-D2",
     "subject": "logic",
     "topic": "language-logic",
     "difficulty": 3,
-    "questionType": "Language",
+    "questionType": "Language Logic & Word Puzzles",
     "title": "Who Broke the Window?",
     "tags": [],
-    "question": "A classroom window gets broken, and four children are asked who did it. Alice says, 'It was Ben.' Ben says, 'It wasn't me.' Clara says, 'It wasn't Alice.' And Dan says, 'It was Ben.' Now, exactly one of those four children is lying. So - who broke the window?",
-    "answer": "Ben broke it, and Ben is the liar.",
-    "modelReasoningPath": "1. Test each suspect and count the liars their guilt would create: - Ben did it → Alice true, Ben false, Clara true, Dan true = 1 liar. ✓ - Alice did it → Alice false, Ben true, Clara false, Dan false = 3 liars. ✗ - Clara did it → Alice false, Ben true, Clara true, Dan false = 2 liars. ✗ - Dan did it → Alice false, Ben true, Clara true, Dan false = 2 liars. ✗ 2. Only \"Ben did it\" yields exactly one liar. 3. Shortcut a strong child may spot: Alice and Dan say the same thing, so they're always both true or both false together - if they lie, that's already two liars, which is too many. So Alice and Dan are telling the truth → it was Ben.  The skill is methodical case-testing against a constraint (\"exactly one liar\"), ideally with the efficiency insight about Alice/Dan.",
-    "rubric": {
-      "strong": "Tests suspects systematically, counts liars against the \"exactly one\" rule, and reaches Ben. Bonus for noticing the Alice/Dan shortcut and using it to cut the work.",
-      "developing": "Understands they should test possibilities and counts correctly for some, but doesn't try all four cleanly or needs reminding of the \"exactly one liar\" constraint. Right method, incomplete execution.",
-      "weak": "Guesses based on who \"sounds guilty,\" ignores the counting constraint, or can't handle two people saying the same thing. No systematic testing."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Forgetting to check the answer against exactly one liar (settling for \"at least one\").",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Missing that Alice and Dan are logically locked together.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Picking Ben for the wrong reason (because two people accused him) rather than via the liar count.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Let's test one suspect at a time - if Alice did it, how many of them would be lying?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Notice Alice and Dan say the same thing. What does that tell you about them?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Try assuming each child did it, one at a time, and count how many statements become lies.\"",
-      "\"Only one person is lying. So you're hunting for the suspect that makes exactly ONE statement false.\"",
-      "\"Look at Alice and Dan - they say the same thing, so they're both true or both lying together. If they both lie, that's already two liars - too many.\""
-    ]
+    "question": "Four children are asked who broke a classroom window. Each one makes a statement:",
+    "answer": "Ben broke the window, and Ben is the one lying.",
+    "modelReasoningPath": "Test each possibility: - If Ben did it: Alice (true), Ben - \"it was not me\" (lie), Clara (true), Dan (true). Exactly one liar. ✓ - If Alice did it: Alice (lie), Ben (true), Clara - \"it was not Alice\" (lie), Dan (lie). Three liars. ✗ - If Clara did it: Alice (lie), Ben (true), Clara (true), Dan (lie). Two liars. ✗ - If Dan did it: Alice (lie), Ben (true), Clara (true), Dan (lie). Two liars. ✗ Only the first scenario satisfies the condition of exactly one liar.\n\nWhat to listen for: Does the child instinctively test each suspect, or guess? The systematic approach - \"let me assume it was Alice and see how many liars that creates\" - is the right one. A child who tries all four possibilities methodically, even if slowly, is showing excellent logical structure. Note that Alice and Dan say the same thing, which is a useful shortcut: if they're both lying, that's already two liars. ---"
   },
   {
     "id": "LG-D4",
     "subject": "logic",
     "topic": "language-logic",
     "difficulty": 3,
-    "questionType": "Language",
+    "questionType": "Language Logic & Word Puzzles",
     "title": "The Mislabelled Boxes",
     "tags": [],
-    "question": "There are three boxes in front of you. One holds only apples, one holds only oranges, and one holds a mixture of both. All three are labelled - but here's the catch: every single label is wrong. The labels say 'Apples', 'Oranges', and 'Mixed'. Now, you're allowed to reach into just one box and pull out a single piece of fruit, without peeking inside first. Which box would you pick - and what could you work out from what you pull out?",
-    "answer": "Pick from the box labelled \"Mixed.\"",
-    "modelReasoningPath": "1. Use the fact that every label is wrong as the key lever. 2. The \"Mixed\" box therefore isn't mixed - it's all apples or all oranges. So one fruit reveals its true contents completely. 3. Say you draw an apple → \"Mixed\" box is really Apples. 4. Now propagate: the \"Apples\" box can't be apples (label wrong) and can't be mixed (just identified) → it's Oranges. The \"Oranges\" box must be the Mixed one. 5. One draw resolves all three - because you started from the most constrained box.  The insight is choosing the box with the fewest possibilities (\"Mixed\" can only be one of two pure types), which makes a single draw decisive.",
-    "rubric": {
-      "strong": "Chooses \"Mixed\" and explains why the all-wrong-labels rule makes that box only two possibilities, then shows how one fruit cascades to identify all three. Can say why the other boxes wouldn't work as the pick.",
-      "developing": "Picks \"Mixed\" by good instinct, or reasons partway, but can't fully explain the cascade to all three boxes until prompted. Right choice, incomplete justification.",
-      "weak": "Picks \"Apples\" or \"Oranges,\" or \"Mixed\" with no reason, and can't trace what one fruit would tell them. Doesn't use the \"all labels wrong\" constraint."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Picking the \"Apples\" or \"Oranges\" box, which leaves two boxes ambiguous.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Forgetting that all labels are wrong (treating some as possibly right).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Stopping at \"it's apples\" without deducing the other two boxes.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Since every label is wrong, what can the box labelled 'Mixed' NOT contain?",
-        "goodResponse": "Unlocks the choice."
-      },
-      {
-        "probe": "You pulled out an apple from 'Mixed.' What must the other two boxes be?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Use the fact that EVERY label is wrong. Which box's label can you be most sure about?\"",
-      "\"The box labelled 'Mixed' can't actually be mixed - so it must be all of one fruit. What does that mean for your one pick?\"",
-      "\"Pick from the 'Mixed' box. Once you see that one fruit, the wrong labels force the other two boxes - try tracing it through.\""
-    ]
+    "question": "There are three boxes in front of you. One box contains only apples, one contains only oranges, and one contains a mixture of both. All three boxes are labelled - but every single label is wrong. The labels say: 'Apples', 'Oranges', and 'Mixed'. You are allowed to reach into exactly one box and take out one piece of fruit, without looking inside first. Which box should you choose, and what can you work out from the result?",
+    "answer": "Pick from the box labelled \"Mixed\".",
+    "modelReasoningPath": "Since all labels are wrong, the box labelled \"Mixed\" cannot contain a mixture. It must contain either only apples or only oranges. Suppose you pull out an apple - then this box contains only apples. Now: the box labelled \"Apples\" cannot contain apples (its label is wrong), and it cannot be the mixed box (you just found that). So the \"Apples\" box must contain only oranges. That leaves the \"Oranges\" box to contain the mixture. You have identified all three boxes from a single piece of fruit.\n\nWhat to listen for: The key insight is that the \"Mixed\" label is the most constrained - it can only be one of two things, not three. Does the child articulate why this box is the right choice, or do they arrive at it by instinct? After they answer, always ask: \"Why couldn't you have picked one of the other boxes?\" This tests depth of understanding. ---"
   },
   {
     "id": "LG-D6",
     "subject": "logic",
     "topic": "language-logic",
     "difficulty": 3,
-    "questionType": "Language",
+    "questionType": "Language Logic & Word Puzzles",
     "title": "The Hidden Rule",
     "tags": [],
-    "question": "I'm going to read you some words that are in a special group, and some that aren't - and your job is to work out the rule. So, these words are in the group: knife, write, pneumonia, gnome, wrap. And these words are not in the group: king, right, planet, garden, rope. Have a think - what's the rule?",
-    "answer": "Every \"in\" word begins with a silent letter (written but not pronounced): K‑nife, W‑rite, P‑neumonia, G‑nome, W‑rap. The \"not in\" words begin with fully pronounced letters.",
-    "modelReasoningPath": "1. The decisive move is saying the words aloud - the rule is invisible on the page and audible only in speech. 2. Notice each \"in\" word starts with a letter you don't hear → \"the first letter is silent.\" 3. Confirm against the \"not in\" list: those first letters are pronounced.  The single best diagnostic is whether the child sounds the words out. A child reasoning silently will likely miss it; a child who mutters the words and lights up has used exactly the right method.",
-    "rubric": {
-      "strong": "Tests by pronouncing the words, identifies the silent-first-letter rule, and verifies it against both lists. Can supply a fresh example (KNEEL, WRIST, PSALM, GNAT).",
-      "developing": "Notices something about the spellings or starts sounding words out and, with a small nudge (\"try saying them\"), reaches the rule. On the right method once prompted to use sound.",
-      "weak": "Hunts only at the visual/letter level (e.g. \"they have odd letters\"), doesn't try pronouncing them, and can't find the rule even when nudged toward sound."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Reading silently and never testing by ear.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Spotting that the words \"look unusual\" without isolating the silent first letter.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Proposing a rule that fits the \"in\" list but not the \"not in\" list (not checking both).",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Try saying each word out loud - slowly. Notice anything about the first sound?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "How would you describe the rule to someone who hadn't noticed it?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Try saying each word out loud, nice and slowly.\"",
-      "\"Listen to the very first sound of each one. Is every letter you can see actually being spoken?\"",
-      "\"In KNIFE, do you say the K? Check the start of each word the same way - what do the 'in' words share?\""
-    ]
+    "question": "I'm going to tell you which words belong to a special group and which don't. Your job is to figure out the rule.",
+    "answer": "Every word in the group begins with a silent letter - a letter that is written but not pronounced when you say the word aloud. - KNIFE → the K is silent (you say nife) - WRITE → the W is silent (you say rite) - PNEUMONIA → the P is silent (you say new-monia) - GNOME → the G is silent (you say nome) - WRAP → the W is silent (you say rap) The \"NOT in the group\" words all begin with letters that are fully pronounced.",
+    "modelReasoningPath": "What to listen for: Does the child say the words aloud to test them? This is the key move - a child who reads silently may miss the pattern entirely. A child who starts sounding out each word and then says \"oh, they all start with a letter you don't say!\" has found it through exactly the right method. If they identify the rule but can't explain it clearly, ask: \"How would you describe it to someone who hadn't noticed?\" ---"
   },
   {
     "id": "LG-D7",
     "subject": "logic",
     "topic": "language-logic",
     "difficulty": 3,
-    "questionType": "Language",
+    "questionType": "Language Logic & Word Puzzles",
     "title": "The Broken Sequence",
     "tags": [],
-    "question": "I'm going to give you a little sequence of words - listen carefully: once, twice, thrice. What comes next?",
-    "answer": "There is no standard English word for \"four times.\" The pattern breaks - you simply say \"four times.\"",
-    "modelReasoningPath": "1. Read the pattern: once = one time, twice = two, thrice = three. 2. Reach for the next term and discover the gap - there's no common word for four times. 3. The strong response isn't frustration but curiosity: the clean pattern just stopped; why? A child who invents \"frice\" or \"quadrice\" is showing lovely creativity, as long as they know it isn't a real word.  This tests verbal reasoning and adaptability - meeting a pattern that fails and staying intellectually engaged rather than insisting it must continue.",
-    "rubric": {
-      "strong": "Recognises there's no standard word and engages with why (these words are old and once-common; usage dropped off after three). On the follow-up, finds other English patterns that break (goose/geese but moose/moose; sing/sang/sung but bring/brought). Genuinely curious.",
-      "developing": "Either confidently coins a word (\"frice\") or realises something's off, and with prompting sees that the pattern has no standard continuation. Engaged but doesn't probe why on their own.",
-      "weak": "Insists on a \"correct\" next word and treats the gap as their own failure, or disengages. Doesn't entertain that a pattern can simply stop."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Assuming there must be a word and getting stuck hunting for it.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Coining a word but believing it's genuinely standard.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Not recognising the broader phenomenon of patterns breaking in language.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Is there a real, everyday English word for four times? What do we actually say?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Can you think of other patterns in English that seem neat but then stop?",
-        "goodResponse": "e.g. goose→geese, moose→moose."
-      }
-    ],
-    "hints": [
-      "\"Once means one time, twice means two times, thrice means three times. So what about four times?\"",
-      "\"Is there a normal, everyday English word for 'four times'? What do we actually say instead?\"",
-      "\"It's completely fine if the pattern just runs out - why do you think English has 'once' and 'twice' but nothing past 'thrice'?\""
-    ]
+    "question": "I am going to give you a sequence of words. Listen carefully: once, twice, thrice. What comes next?",
+    "answer": "There is no standard English word for \"four times.\" The sequence breaks.",
+    "modelReasoningPath": "What to listen for: The first test is whether the child confidently says \"four-ce\" or \"frice\" - some will invent a word, which is a lovely creative response. Then the real interest is in the follow-up: does the child find other examples of pattern-breaking in English? Does the question make them genuinely curious about language? This tests both verbal reasoning and intellectual adaptability. --- ## Quick Reference | # | Question | Section | Difficulty | Primary Skill | |---|----------|---------|------------|---------------| | A1 | Knights and Knaves | Deductive Logic | ★★★ | Proof by contradiction | | A2 | The Four Cards | Deductive Logic | ★★★★ | Logical implication | | A3 | The Logic Chain | Deductive Logic | ★★★ | Valid inference | | A4 | The Three Hats | Deductive Logic | ★★★★ | Iterative deduction | | A5 | The Liar's Paradox | Deductive Logic | ★★★★ | Self-reference, paradox | | A6 | Odd One Out (animals) | Deductive Logic | ★★ | Multiple-lens thinking | | B1 | The Surgeon | Lateral Thinking | ★★ | Challenging assumptions | | B2 | The Man in the Lift | Lateral Thinking | ★★★ | Physical reasoning | | B3 | The Poisoned Coffee | Lateral Thinking | ★★★ | Material properties | | B4 | The Parachute | Lateral Thinking | ★★★ | Spatial/directional thinking | | B5 | The Rope Bridge | Lateral Thinking | ★★★★ | Optimisation, adaptability | | B6 | The Hospital Room | Lateral Thinking | ★★★ | Causation vs. correlation | | C1 | Define \"Chair\" | Verbal Reasoning | ★★★ | Precise definition | | C2 | Word Analogies | Verbal Reasoning | ★★-★★★★ | Relational reasoning | | C3 | Odd One Out (arts) | Verbal Reasoning | ★★★ | Conceptual categorisation | | C4 | The Rule About Rules | Verbal Reasoning | ★★★★ | Self-reference, paradox | | C5 | Multiple Meanings | Verbal Reasoning | ★★ | Lexical range | | C6 | What Comes Next? | Verbal Reasoning | ★★★ | Pattern generation | | D1 | Logic Grid | Language Logic | ★★★ | Systematic deduction | | D2 | Who Broke the Window? | Language Logic | ★★★ | Case-testing, truth values | | D3 | One Statement is True | Language Logic | ★★★★ | Self-referential logic | | D4 | Mislabelled Boxes | Language Logic | ★★★ | Constraint reasoning | | D5 | What's the Connection? | Language Logic | ★ | Analogy and relationship | | D6 | The Hidden Rule | Language Logic | ★★★ | Pattern discovery, phonics | | D7 | The Broken Sequence | Language Logic | ★★★ | Linguistic pattern, adaptability | --- Version 2.0 - Logic & Reasoning"
   }
 ]

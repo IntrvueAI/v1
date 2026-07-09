@@ -8,46 +8,8 @@
     "title": "Five Strangers or One Friend",
     "tags": [],
     "question": "Imagine you're in a situation where you could save five strangers from serious harm, or save one person who is your closest friend - but not both. What would you do?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "This is a child-friendly trolley problem, pitting relationships against numbers. Both sides are serious: - Save the friend: loyalty and love matter; we can't be purely calculating machines; the specific bonds we have carry real moral weight. - Save the five: numbers count ethically; your friend would probably want you to save five; treating everyone impartially is a basic moral demand. What's actually being scored is whether the child feels the difficulty. \"Obviously my friend, no question\" has dodged the dilemma; \"I'd probably save my friend, but I know that's not the most logical answer\" shows real moral honesty - holding what they'd do against what they think is right.",
-    "rubric": {
-      "strong": "Recognises it as genuinely hard, gives reasons on both sides, takes a position, and is honest about any gap between instinct and logic. Stays thoughtful as the numbers/details change.",
-      "developing": "Picks a side with a reason, but treats it as easy; with pushback (the elderly version, the fifty version) starts to feel the tension. Engages once nudged.",
-      "weak": "\"Obviously my friend\" or \"obviously the five\" with no sense that the other side has any force, and unmoved even when the scenario is varied."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Declaring it obvious in either direction",
-        "reveals": "the main thing to challenge."
-      },
-      {
-        "mistake": "Going coldly utilitarian (\"five is more than one, done\") with no feel for the loyalty pull, or the reverse.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Trying to escape the dilemma (\"I'd save everyone somehow\") rather than choosing.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Would it change if the five strangers were very old and your friend was young?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "What if it were fifty strangers instead of five? Five hundred?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "(If they chose the five:) \"But this is your closest friend - can we really expect someone to be that impartial about people they love?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"There's no right answer here - just tell me which way you lean and we'll explore it.\"",
-      "\"What does your gut say first? Now - is there anything to be said for the other choice?\"",
-      "\"Imagine you had to look either your friend, or the five families, in the eye afterwards. Does that help you feel which way you'd go?\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Does the child notice that this is genuinely hard - that there are serious arguments on both sides? A child who immediately says \"obviously I'd save my friend, there's no question\" has not engaged with the difficulty. A child who says \"I'd probably save my friend but I know that's not the most logical answer\" is showing real moral honesty."
   },
   {
     "id": "CA-D2",
@@ -58,46 +20,8 @@
     "title": "When Lying is Right",
     "tags": [],
     "question": "Can you think of a situation where lying might actually be the morally correct thing to do?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "Most children can reach \"yes, sometimes\" with a concrete example - lying to an aggressor about where someone is hiding, a white lie to spare needless hurt, protecting a surprise. The richer thinking is the limit problem: if lying is sometimes right, what stops that reasoning excusing any lie? A strong child gives a specific case and names the principle that made the lie acceptable - compassion, preventing serious harm, protecting someone's dignity - rather than just \"it was nice.\"",
-    "rubric": {
-      "strong": "Offers a specific, vivid scenario and articulates the underlying principle, then engages with where the limit sits (why this lie is okay but a selfish lie isn't). Distinguishes protecting-someone from protecting-myself.",
-      "developing": "Gives a real example and senses it's justified, but explains it only as \"to be kind,\" and needs prompting to reach for the principle or the limit. Sound instinct.",
-      "weak": "Either \"lying is always wrong, no exceptions\" with no flexibility even given the aggressor case, or \"lying's fine if it helps you\" with no limit at all."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "A vague scenario (\"if it helps someone\") with nothing concrete.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Justifying with \"it's nice\" rather than a principle (harm, dignity, compassion).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "No worry about the slippery slope from \"some lies\" to \"any lie I find convenient.\"",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "What exactly made *that lie okay? Could that same reason be used to excuse a selfish lie?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Where's the limit - what's a lie that crosses the line, and why?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Is there a difference between lying to protect someone else and lying to protect yourself?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Imagine someone dangerous asks where your friend is hiding. Would telling the truth be the right thing?\"",
-      "\"Think of a time a small lie might spare someone real, pointless hurt.\"",
-      "\"Give me one situation where a lie might be kind - then we'll work out what made it okay.\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Does the child reach for a specific, concrete scenario rather than a vague one? The most interesting follow-up is asking them to explain what made the lie right in that case - the principle behind it. Compassion? Preventing harm? Respecting someone's dignity? ---"
   },
   {
     "id": "CA-D3",
@@ -108,46 +32,8 @@
     "title": "The Best Friend's Cheating",
     "tags": [],
     "question": "You find out that your closest friend cheated in an important school exam. Not a small thing - it's the kind of exam that affects their future. Do you say something, and if so, to whom?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "A three-way conflict: loyalty to the friend, fairness to everyone who didn't cheat, and the friend's own long-term interest. There's a spread of options - say nothing (and own why), talk to the friend privately and urge them to come clean, go straight to a teacher, or do nothing but feel bad. A strong child weighs the consequences of options, not just abstract principle, and often finds the nuanced middle: \"I'd talk to my friend first and push them to own up themselves\" - protecting the friendship while still acting ethically. The key test comes in the follow-up, when the friend refuses.",
-    "rubric": {
-      "strong": "Names the competing pulls, considers more than one course of action and its consequences, and reasons toward a defensible plan. Holds up (adapts thoughtfully) when the friend refuses to come clean.",
-      "developing": "Picks a reasonable action with a reason, but sees it one-dimensionally (just loyalty, or just rules) until the other pulls are raised. Engages with the follow-up.",
-      "weak": "A reflex with no weighing - \"I'd never tell on a friend, ever\" or \"I'd report them instantly\" - and no movement when the stakes or the friend's refusal are introduced."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Seeing only loyalty or only the rule, never the tension between them.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Ignoring what's actually best for the friend in the long run.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "No thought about consequences",
-        "reveals": "treating it as a slogan rather than a situation."
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "What if your friend said they won't tell anyone - and begs you not to either?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "(If they'd report:) \"Is there nothing owed to a close friend? Could you have handled it more gently first?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "(If they'd stay silent:) \"Is that fair on everyone who *didn't cheat - and is it even good for your friend?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Notice the pull in different directions: your friend, the other students, and your friend's own future. Which tugs hardest?\"",
-      "\"There's a whole range - from saying nothing, to talking to your friend, to telling a teacher. Where do you land?\"",
-      "\"Just tell me your first instinct, and then we'll test it together.\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Does the child think about the consequences of each option, not just the abstract principle? A child who says \"I'd talk to my friend first and tell them they should come clean themselves\" is showing nuance - trying to preserve the relationship while still acting ethically. Ask: \"What if your friend said they wouldn't tell anyone - and asked you not to either?\" ---"
   },
   {
     "id": "CA-D4",
@@ -158,46 +44,8 @@
     "title": "Motive vs. Outcome",
     "tags": [],
     "question": "A very wealthy person donates a huge amount of money to build a hospital in a poor area. But they only do it because it makes them look good - it's purely for the publicity. Is it still a good thing to do? Does their motive matter?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "Two moral traditions pull against each other here: - Outcome view (consequentialism): what matters is the result - the hospital exists, lives are saved - so the motive is irrelevant. - Motive view (virtue/duty ethics): part of what makes an act good is why it was done; a good deed done for selfish reasons is morally compromised. The standout move is separating \"is it a good outcome?\" from \"is it a good act / a good person?\" - a child who says \"The outcome is genuinely good, but we shouldn't praise them as if they were being kind, because they weren't\" has nailed the distinction.",
-    "rubric": {
-      "strong": "Explicitly splits outcome from motive, can argue each, and reaches a position that honours both (good result, but not praiseworthy as character). Handles the anonymous-donation twist.",
-      "developing": "Takes a side (\"still good, the hospital helps people\" or \"no, they're selfish\") with a reason, but treats outcome and motive as the same question until they're prised apart. Gets there with prompting.",
-      "weak": "A flat verdict - \"good, it's a hospital\" or \"bad, they're selfish\" - with no sense that outcome and motive are two different things."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Collapsing the two questions into one (\"it helped people so the person is good\").",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Judging only the motive and ignoring the very real benefit, or vice versa.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "No vocabulary for \"good thing happened\" vs. \"good person did it.\"",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Does it change if the donation was anonymous - no credit at all? Why does that shift things?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Should we care about people's *motives, or only about what they actually do?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "(If \"still good\":) \"So should we praise them just as much as someone who gave quietly out of kindness?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Try two separate questions: is the *result good? And is the person good for doing it that way?\"*",
-      "\"Picture two donors - one does it to look good, one does it secretly out of kindness. Same act, same hospital. Any difference?\"",
-      "\"Give me your gut: good thing, bad thing, or a bit of both - and we'll unpick why.\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Can the child distinguish between \"is it a good outcome\" and \"is it a good act\"? These are different questions. A nuanced answer might be: \"The outcome is good, but we shouldn't praise or reward the person as if they acted virtuously, because they didn't.\" That's a sophisticated distinction."
   },
   {
     "id": "CA-D5",
@@ -208,45 +56,7 @@
     "title": "The Found Money",
     "tags": [],
     "question": "You find a £50 note on the pavement in a busy high street. There's no one obviously nearby who might have dropped it. What do you do - and be honest?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "The honest version is harder than the virtuous one - and honesty is the point. The aim isn't to extract \"I'd hand it to the police\"; it's to see whether the child engages with the real tension between what they think they should do and what they think they would do. It helps to acknowledge the messy reality (police are unlikely to find the owner; \"finders-keepers\" is a common norm; the owner may never be found). A child who says \"I'd probably keep it, but feel a bit guilty - and here's how I'd justify it to myself\" is being far more reflective than one who performs \"I'd hand it in, obviously\" with no hesitation.",
-    "rubric": {
-      "strong": "Honest about what they'd really do and why, engages the should/would gap, and can reason about the competing considerations (the owner, the odds, the norm) rather than reciting the \"correct\" answer.",
-      "developing": "Gives a sincere-sounding answer with a reason, but doesn't probe the should/would gap until prompted. Some genuine reflection.",
-      "weak": "A polished \"hand it to the police, obviously\" with no engagement (likely performance), or \"keep it, finders-keepers\" with no acknowledgement that there's any tension at all."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Performing virtue",
-        "reveals": "the textbook answer with no sign of real reflection."
-      },
-      {
-        "mistake": "The opposite: keeping it with zero acknowledgement of the owner's loss.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Not noticing that \"what I should do\" and \"what I'd actually do\" might differ.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Be honest - is that what you'd *actually do, or what you feel you should say?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Do you think most people your age would do the same? Does what others would do change what's right?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "(If hand it in:) \"The police almost certainly won't find the owner - does that change anything for you?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"There's no trap here - I'm genuinely more interested in honesty than in the 'good' answer.\"",
-      "\"Think about two things separately: what's the right thing to do, and what you think you'd really do in the moment.\"",
-      "\"Picture it actually happening - £50 on the pavement, no one around. What's your first instinct?\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Is the child honest about the difficulty? A child who says \"I'd hand it in to the police, obviously\" with no hesitation may be performing virtue rather than reasoning. A child who says \"I'd probably keep it but feel a bit guilty about it - and here's why I'd justify that to myself\" is being genuinely reflective. Follow up: \"Do you think most people your age would do the same thing? Does that matter?\" --- ## SECTION E - Society, Rights & Fairness ---"
   }
 ]

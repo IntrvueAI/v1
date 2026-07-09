@@ -4,49 +4,11 @@
     "subject": "maths",
     "topic": "structured-problem-solving",
     "difficulty": 5,
-    "questionType": "Structured",
+    "questionType": "Structured Problem Solving",
     "title": "The Camel and the Desert",
     "tags": [],
-    "question": "A man has 3,000 bananas and a camel, and he wants to get as many bananas as he can across a desert that's 1,000 miles wide. The camel can only carry 1,000 bananas at a time, and here's the catch - it eats exactly one banana for every mile it walks. So what's the largest number of whole bananas the man can arrive with on the other side?",
-    "answer": "833 bananas (the maths gives 833⅓, but bananas are whole, so 833).",
-    "modelReasoningPath": "This is the hardest question in the bank - do not expect a full solution. Score the structural insights, not the final number. 1. See that 3,000 bananas can't be carried at once (the camel holds 1,000), so the camel must make multiple trips, shuttling bananas forward in stages and coming back for more. 2. See that return trips cost bananas too - the camel eats on the way back, so moving the whole pile forward is expensive while there's lots to carry. 3. The efficient method uses depots: move everything forward a short distance, then a bit further with fewer trips as the pile shrinks. For miles 0-200, with 3,000 bananas, the camel makes 3 trips forward and 2 back (5 legs × 200 = 1,000 eaten), leaving 2,000 at mile 200. From 200 to 533⅓, 2 forward + 1 back (3 legs), leaving 1,000. From 533⅓ to the end, one straight trip - arriving with 833.  The gold standard here is structural: realising multiple trips are forced, that return journeys are a real cost, and that stockpiling at intermediate points helps.",
-    "rubric": {
-      "strong": "Grasps that the camel must make several trips and that eating on the return is a genuine cost; reaches the depot idea (stockpile partway and reduce trips as the pile shrinks). A near-complete numerical answer is exceptional, not required.",
-      "developing": "Sees that one trip can't carry 3,000 and that multiple trips are needed, and engages with the banana-eating cost, but doesn't reach the staged-depot strategy without help. Real partial insight.",
-      "weak": "Treats it as 3,000 − 1,000 (one trip), ignoring that the camel can't carry it all or that it eats as it walks. No structural grip."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Forgetting the camel eats on the way back, so return trips waste bananas.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Assuming all 3,000 can somehow move at once, or that you simply subtract 1,000 miles of eating.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Not noticing that once the pile drops below 2,000 (then below 1,000), fewer trips are needed",
-        "reveals": "so the \"cost per mile\" falls."
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "The camel can only carry 1,000 but there are 3,000 bananas. So what does it have to do?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "When the camel goes back for the next load - is it still eating bananas on that return journey?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Would it help to move bananas forward to a stockpile partway, rather than all the way in one go?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"The camel can't carry 3,000 at once - only 1,000. So straight away, what does that force it to do?\"",
-      "\"Every mile it walks - forwards *or backwards - it eats a banana. So those trips back to fetch more cost you bananas too.\"*",
-      "\"The trick is to shift the whole pile forward just a little at a time, building up a stockpile, so that once the pile is smaller you need fewer trips. Think about how the cost drops once you're under 2,000, then under 1,000.\""
-    ]
+    "question": "A man has 3,000 bananas and a camel. He wants to transport as many bananas as possible across a 1,000-mile desert. The camel can carry at most 1,000 bananas at a time, and eats exactly one banana per mile it walks. What is the maximum number of whole bananas the man can arrive with at the other side?",
+    "answer": "833 bananas (technically 833⅓, but since bananas are whole, 833).",
+    "modelReasoningPath": "What to listen for: Don't expect a full solution. Watch whether the child understands why the camel must make multiple trips. Do they figure out that leaving stockpiles at intermediate points helps? Do they see that the camel eating bananas on return trips is a real cost? Award credit generously for structural insight, even without a final answer. --- ## SECTION D - Pattern, Proof & Explanation Quality Questions that test whether a child can spot a rule, articulate it clearly, and begin to explain why it must be true. ---"
   }
 ]

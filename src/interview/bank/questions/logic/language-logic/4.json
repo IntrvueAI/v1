@@ -4,45 +4,11 @@
     "subject": "logic",
     "topic": "language-logic",
     "difficulty": 4,
-    "questionType": "Language",
+    "questionType": "Language Logic & Word Puzzles",
     "title": "Exactly One Statement is True",
     "tags": [],
-    "question": "I'm going to read you four statements, and exactly one of them is true - your job is to tell me which. Statement A says: exactly one of these four statements is false. Statement B says: exactly two of them are false. Statement C says: exactly three of them are false. And statement D says: all four of them are false. So - which one is the true one?",
-    "answer": "C.",
-    "modelReasoningPath": "1. Translate the premise: if exactly one statement is true, then exactly three are false. 2. Which statement says \"exactly three are false\"? That's C - so C would be the true one, and that's self-consistent. 3. Sanity-check the others as the lone truth: A says one is false (would mean three true - contradicts \"only one true\"); B says two false (would mean two true - contradiction); D says four false (would mean none true, including itself - contradiction). Only C survives.  The skill is connecting the premise (\"exactly one true\") to its arithmetic consequence (\"exactly three false\") and finding the statement that asserts exactly that.",
-    "rubric": {
-      "strong": "Reasons \"one true means three false, and C says three false, so C\" - fast, from the self-referential structure. Can show why A/B/D each contradict themselves as the sole truth.",
-      "developing": "Gets there by testing statements one at a time (often needs to be walked through A collapsing first), then applies the method to the rest. Sound once the testing method is modelled.",
-      "weak": "Picks a statement with no test of consistency, or can't see that \"exactly one true\" fixes the number of false ones. Doesn't engage the self-reference."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Not converting \"exactly one true\" into \"exactly three false.\"",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Checking each statement's wording in isolation without testing it as the unique true one.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Picking D because \"most false\" feels dramatic.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "If exactly one statement is true, how many are false?",
-        "goodResponse": "Bridge to C."
-      },
-      {
-        "probe": "Suppose A were the true one - would that hold together?",
-        "goodResponse": "Models the collapse method."
-      }
-    ],
-    "hints": [
-      "\"If exactly one statement is true, then how many of the four are false?\"",
-      "\"Now find the statement that claims that exact number of false ones.\"",
-      "\"Test it - does that statement being the only true one stay consistent? Try A as the true one and watch it fall apart, then do the same with the rest.\""
-    ]
+    "question": "Here are four statements. Exactly one of them is true. Which one?",
+    "answer": "C - \"Exactly three of these statements are false.\"",
+    "modelReasoningPath": "If exactly one statement is true, then exactly three are false. - Check C: \"Exactly three of these statements are false\" - yes, that is what we've assumed. C is true. ✓ - Check A: \"Exactly one is false\" - we have three false statements, so A is false. ✓ - Check B: \"Exactly two are false\" - false. ✓ - Check D: \"Exactly four are false\" - false (one is true). ✓ So C being the one true statement is self-consistent. No other choice works: - If A were the one true statement, then exactly one statement would be false - meaning three are true. But that contradicts A being the only true statement. - Similarly, B and D each contradict themselves when assumed to be the sole true statement.\n\nWhat to listen for: The child should test whether each statement is consistent with being \"the one true statement.\" A child who immediately says \"C, because if exactly one is true then exactly three are false, and C says exactly that\" has understood the self-referential structure instantly. More commonly, a child will need to be walked through testing A first - show them how the assumption collapses, then they can apply the same method to B, C, D. ---"
   }
 ]

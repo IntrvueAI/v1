@@ -7,47 +7,9 @@
     "questionType": "Estimation",
     "title": "The Average Speed Trap",
     "tags": [],
-    "question": "I drive from London to Edinburgh - that's a journey of 400 miles. On the way there, I average 50 miles per hour. On the way back the roads are busier, so I only manage 40 miles per hour. So what's my average speed for the whole round trip? Have a think before you answer.",
+    "question": "I drive from London to Edinburgh, a journey of 400 miles. On the way there I average 50 miles per hour. On the way back the roads are busier and I only average 40 miles per hour. What is my average speed for the whole round trip? Have a think before you answer.",
     "answer": "44.4 mph - not 45 mph.",
-    "modelReasoningPath": "1. Resist averaging the two speeds. Average speed = total distance ÷ total time. 2. Total distance = 400 + 400 = 800 miles. Time there = 400 ÷ 50 = 8 hours; time back = 400 ÷ 40 = 10 hours; total = 18 hours. 3. Average = 800 ÷ 18 ≈ 44.4 mph. 4. Why below 45: you spend more time crawling at 40 than cruising at 50, so the slow speed pulls the average down. Simply averaging speeds only works for equal times, but here the distances are equal.  The gold standard is the instinct \"I spend longer driving slowly, so the answer should dip below the halfway 45\" - even before the exact figure.",
-    "rubric": {
-      "strong": "Pauses on the \"obvious\" 45 and reasons that more time is spent slow, so it must be under 45; computes via total distance ÷ total time to 44.4 (or argues it's just below 45). Explains the equal-distance vs equal-time point.",
-      "developing": "Initially says 45, but when prompted (\"have a think before you answer\" / \"are you sure?\") reconsiders and sees the slower leg takes longer, moving toward \"a bit less than 45.\" May need help with total-over-total.",
-      "weak": "States 45 and defends it on \"halfway between 40 and 50,\" with no sense that time spent differs. Doesn't engage when nudged."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "(40 + 50) ÷ 2 = 45",
-        "reveals": "the headline trap."
-      },
-      {
-        "mistake": "Computing the two times but then still averaging the speeds rather than dividing total distance by total time.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Forgetting to double the distance (using 400, not 800).",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Do you spend the same amount of *time going as coming back? Which leg takes longer?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "How long does the trip there take? And the trip back? So what's the total time for 800 miles?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Since you're slow for longer, should the average be above or below 45?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Average speed isn't the average of the two numbers - it's all the distance divided by all the time. How far in total?\"",
-      "\"Work out the time for each leg: 400 miles at 50, then 400 miles at 40.\"",
-      "\"Add the two times, then divide the total 800 miles by that total time.\""
-    ]
+    "modelReasoningPath": "Total distance = 800 miles. Time there = 400 ÷ 50 = 8 hours. Time back = 400 ÷ 40 = 10 hours. Total time = 18 hours. Average speed = 800 ÷ 18 ≈ 44.4 mph.\n\nWhat to listen for: Nearly everyone says 45 mph. The child who pauses and thinks \"but I spend longer driving slowly, so shouldn't it be below 45?\" has excellent instincts. The formula insight - total distance ÷ total time - is the key. ---"
   },
   {
     "id": "MA-B2",
@@ -58,46 +20,8 @@
     "title": "Heart Beats in a Year",
     "tags": [],
     "question": "Roughly how many times does your heart beat in a year? I don't want an exact answer - just a sensible estimate. Talk me through how you'd work it out.",
-    "answer": "(no single answer)",
-    "modelReasoningPath": "The whole question is process. A strong candidate builds the estimate in stages - beats per minute → per hour or day → per year - choosing round numbers deliberately (\"I'll call it 70 a minute and 365 days\") and sanity-checking at the end (\"tens of millions - that feels about right for a whole year\"). Multiplying in friendly chunks (using 100,000 a day) is a sign of real numerical maturity.",
-    "rubric": {
-      "strong": "Breaks the problem into clear stages, picks sensible round approximations and says why, multiplies in manageable steps, and sanity-checks the magnitude. Reaches the right ballpark (tens of millions).",
-      "developing": "Has the right structure (rate × time) and most stages, but needs prompting for one link (e.g. minutes in a day) or makes a place-value slip in the big multiplication. The plan is sound.",
-      "weak": "Guesses a final number with no stages, or gets lost converting minutes/hours/days. No estimate of the heart rate and no idea how to proceed when told it."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Place-value errors in the large multiplications (answers off by a factor of 10 or 100).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Stopping at \"beats per day\" and forgetting to scale to a year (or vice versa).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Choosing an absurd heart rate (e.g. 5 or 500 a minute) and not sanity-checking it.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Roughly how many times a minute does a heart beat? If you're not sure, call it about 70.",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "How could you get from beats per minute to beats in a whole day?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Your answer's about 37 million - does that feel sensible for a year? How would you check?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Let's build it up in steps. Start small: roughly how many beats in one minute?\"",
-      "\"Now grow it - how many minutes in an hour, and in a whole day?\"",
-      "\"You've got beats per day. There are about 365 days in a year - put those together.\""
-    ]
+    "answer": "(see working)",
+    "modelReasoningPath": "What to listen for: This is entirely about process. Does the child break it into stages? Do they choose sensible approximations and say why? Do they sanity-check (\"that seems plausible\")? A child who says \"I don't know how fast hearts beat\" can be told - what matters is whether they then use that information structurally. ---"
   },
   {
     "id": "MA-B3",
@@ -108,46 +32,8 @@
     "title": "Stack of a Million Pounds",
     "tags": [],
     "question": "If you stacked one million £1 coins in a single pile, roughly how tall would it be? Would it be about as tall as a house, a skyscraper, or a mountain?",
-    "answer": "A reasonable path: - A £1 coin is about 3 mm thick. - 1,000,000 × 3 mm = 3,000,000 mm = 3,000 m = 3 km. - Compare: Burj Khalifa ≈ 830 m (much shorter); Snowdon ≈ 1,085 m and Ben Nevis ≈ 1,345 m (still shorter than the stack); Mont Blanc ≈ 4,800 m (taller). So the stack beats every skyscraper and British mountain, but not the high Alps.",
-    "modelReasoningPath": "1. Pick a sensible thickness for a coin - a few millimetres (about 3 mm). 2. Multiply by a million: 3 mm × 1,000,000 = 3,000,000 mm. 3. Convert the units carefully: mm → m (÷1,000) → km (÷1,000), landing at 3 km. 4. Anchor it against something real - taller than the tallest tower, shorter than a big mountain. The gold standard is the clean unit conversion plus a sanity-check against a known height.",
-    "rubric": {
-      "strong": "Estimates the coin thickness (or uses the given 3 mm), multiplies correctly, and converts mm → m → km fluently, then compares to a real landmark. Comfortable with the place value.",
-      "developing": "Sets up \"thickness × a million\" correctly but stumbles on the unit conversion (needs help stepping mm → m → km) or on the size of the comparison. Recovers with a nudge.",
-      "weak": "No sense of a coin's thickness and can't proceed when told; or multiplies but then can't turn millimetres into a meaningful height, producing an answer wildly off (e.g. 3 m or 3,000 km)."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Unit-conversion slips",
-        "reveals": "dropping or adding a factor of 1,000 (getting 30 m or 300 km)."
-      },
-      {
-        "mistake": "Guessing a coin is e.g. 1 cm thick without flagging it as a rough estimate.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Giving \"3,000,000 mm\" as the final answer without converting to a relatable unit.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Roughly how thick is a £1 coin - a few millimetres? Let's say 3 mm.",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "You've got 3 million millimetres. How many metres is that? And how many kilometres?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Is 3 km taller than a skyscraper? Taller than a mountain? Where does it sit?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Start with one coin - about 3 mm thick. Now you've got a million of them stacked up.\"",
-      "\"Multiply: 3 mm times a million. That's a lot of millimetres - write it out.\"",
-      "\"There are 1,000 mm in a metre, and 1,000 m in a kilometre. Step it down twice.\""
-    ]
+    "answer": "(see working)",
+    "modelReasoningPath": "What to listen for: Does the child know a £1 coin is a few millimetres thick? (If not, say \"assume it's about 3 mm.\") The key skill is unit conversion: mm → m → km. A child who gets confused going from mm to km is showing a gap in numerical fluency worth noting. ---"
   },
   {
     "id": "MA-B4",
@@ -157,47 +43,9 @@
     "questionType": "Estimation",
     "title": "Counting to a Million",
     "tags": [],
-    "question": "If you counted out loud at one number every second - one, two, three, and so on - how long would it take you to count all the way from one to a million? Give me your answer in a sensible unit - hours, days, whatever fits best.",
+    "question": "If you counted out loud at one number per second - one, two, three... - how long would it take to count from 1 to 1,000,000? Give your answer in a sensible unit.",
     "answer": "About 11.5 days of non-stop counting.",
-    "modelReasoningPath": "1. One number per second means 1,000,000 numbers = 1,000,000 seconds. 2. Step the seconds up into bigger units: ÷ 60 → ≈ 16,667 minutes; ÷ 60 → ≈ 278 hours; ÷ 24 → ≈ 11.6 days. 3. Sanity-check: \"a million is huge, so not hours - but under two weeks feels right.\" A neat alternative is knowing/deriving 86,400 seconds in a day (60 × 60 × 24) and doing 1,000,000 ÷ 86,400 ≈ 11.6.  The gold standard is choosing a sensible final unit (days, not seconds) and stepping the conversion through cleanly.",
-    "rubric": {
-      "strong": "Sets up 1,000,000 seconds and converts step by step to days, choosing a meaningful unit and sanity-checking. May derive 86,400 seconds/day independently.",
-      "developing": "Knows it's a conversion problem and gets partway (e.g. to minutes or hours) but needs prompting for the next step, or to land on a sensible unit. Method is sound, execution partial.",
-      "weak": "Guesses \"a few hours\" or \"a year\" with no conversion, or can't get from seconds to a larger unit at all. No sense of scale."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Stopping at minutes or hours and reporting an unrelatable number.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Dividing by the wrong factor (e.g. ÷100 instead of ÷60) at a conversion step.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Guessing the magnitude without any working, often by orders of magnitude.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "One number a second - so how many seconds for a million numbers?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Seconds is an awkward unit for something this big. Can you turn it into minutes, then hours, then days?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Does your final answer feel sensible - hours, days, or years?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"A million numbers at one per second is a million seconds. That's the starting point.\"",
-      "\"Seconds is too small to picture. How many seconds in a minute? In an hour?\"",
-      "\"Keep stepping up: seconds → minutes → hours → days. Roughly how many days does it land on?\""
-    ]
+    "modelReasoningPath": "1,000,000 seconds ÷ 60 = 16,667 minutes ÷ 60 = 278 hours ÷ 24 ≈ 11.6 days.\n\nWhat to listen for: Most children guess \"a few hours\" or \"a few days.\" The interest is whether they correctly convert seconds into a meaningful unit. Does the child realise there are 86,400 seconds in a day? (60 × 60 × 24 - they may need prompting to derive this.) A child who works through the unit conversion systematically is demonstrating excellent structured thinking. ---"
   },
   {
     "id": "MA-B5",
@@ -207,1096 +55,260 @@
     "questionType": "Estimation",
     "title": "The Birthday Puzzle",
     "tags": [],
-    "question": "Imagine a class of 30 children. What do you think the chances are that at least two of them share the same birthday? Would you say it's more likely than not, or less likely than not? And why do you think that?",
-    "answer": "More likely than not - the probability is about 70%.",
-    "modelReasoningPath": "This is the famous (and deeply counterintuitive) Birthday Problem. It is not a calculation question - it's about probabilistic intuition and argument. 1. The tempting wrong frame: \"365 days, only 30 people, so it's unlikely.\" 2. The better frame: we're not asking \"does someone share my birthday,\" we're asking \"do any two of the 30 match.\" The number of pairs is what matters: 30 × 29 ÷ 2 = 435 different pairs, each a fresh chance to match. 3. With that many chances, a match becomes likely - in fact about 71%. The gold standard is the leap from \"people\" to \"pairs of people,\" even without the exact percentage.",
-    "rubric": {
-      "strong": "Reasons in terms of pairs (\"there are loads of possible pairings, so it's more likely than it first seems\") and concludes \"more likely than not,\" ideally noticing it's surprising. Doesn't need the exact number.",
-      "developing": "Starts with the \"365 vs 30\" intuition (less likely) but, when asked \"how many pairs are there?\", shifts and sees why the chance is higher than expected. Adapts well to the nudge.",
-      "weak": "Commits to \"unlikely, because 30 is small next to 365\" and can't move off it even when prompted about pairs. Treats it as comparing two raw numbers."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "The classic: comparing 30 people to 365 days and concluding \"unlikely.\"",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Answering the wrong question",
-        "reveals": "\"shares my birthday\" rather than \"any two share.\""
-      },
-      {
-        "mistake": "Assuming you'd need ~183 people (half of 365) for a 50% chance.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Are we asking if someone shares *your birthday, or if any two people in the room match?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "How many different *pairs of people are there among the 30? Each pair is a chance to match.\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "With hundreds of possible pairs, does a match start to feel more or less likely?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Don't think about your own birthday - think about every possible *pair of children who could match.\"*",
-      "\"Roughly how many pairs can you make from 30 people? It's a lot more than 30.\"",
-      "\"With over 400 pairs, each one a chance to share a birthday - would you now say it's more or less likely than not?\""
-    ]
+    "question": "In a class of 30 children, what do you think is the probability that at least two of them share the same birthday? Would you say it is more likely than not, or less likely than not? Why do you think so?",
+    "answer": "More likely than not - the probability is approximately 70%.",
+    "modelReasoningPath": "This is the famous Birthday Problem and is deeply counterintuitive. With 30 people, the probability that all birthdays are different is roughly 29% - so the chance of at least one shared birthday is about 71%. The reason is that with 30 people there are 30 × 29 ÷ 2 = 435 different pairs of people who could share a birthday. That's a lot of chances.\n\nWhat to listen for: This question is not about calculation - it's about probabilistic intuition and argumentation. A child who says \"there are loads of pairs, so it's probably more likely than you'd think\" is reasoning beautifully. A child who says \"there are 365 days and only 30 people, so it's unlikely\" - a very common and understandable mistake - should be asked: \"how many pairs of people are there?\" --- ## SECTION C - Structured Problem Solving Multi-step problems where the path to the answer requires systematic organisation. ---"
   },
   {
     "id": "MA-A2",
     "subject": "maths",
     "topic": "numerical-reasoning",
     "difficulty": 2,
-    "questionType": "Numerical",
+    "questionType": "Numerical Reasoning",
     "title": "Three-Digit Mystery",
     "tags": [],
-    "question": "Here's a riddle: I'm a three-digit number. My hundreds digit is three times my units digit, and my tens digit is one more than my units digit. And if you add all three of my digits together, you get 16. So - what number am I?",
+    "question": "I am a three-digit number. My hundreds digit is three times my units digit. My tens digit is one more than my units digit. The sum of all three of my digits is 16. What number am I?",
     "answer": "943",
-    "modelReasoningPath": "A strong candidate anchors everything to the units digit, because the other two are defined in terms of it. 1. Call the units digit \"something\" (or u). Then hundreds = 3 × units, and tens = units + 1. 2. All three add to 16: (3u) + (u + 1) + u = 16, i.e. 5u + 1 = 16, so 5u = 15, u = 3. 3. Units = 3, tens = 4, hundreds = 9 → 943. Check: 9 + 4 + 3 = 16 ✓, and 9 = 3 × 3 ✓.  A trial approach also works well: \"the units must be small, because the hundreds is three times it - try 3: hundreds 9, tens 4, sum 16, yes.\" The gold standard is realising the units digit is the key that unlocks the other two.",
-    "rubric": {
-      "strong": "Spots that everything depends on the units digit and builds from there (by algebra or smart trial), holding all three clues at once. Checks the total at the end.",
-      "developing": "Tries values for the digits and checks them against the clues, getting there by organised trial, but without first seeing that the units digit drives the rest. Some hopping between clues.",
-      "weak": "Guesses three-digit numbers with no link to the constraints, or uses only one clue. Can't combine \"three times\" and \"one more\" and \"adds to 16\" together."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Reading \"hundreds is three times units\" backwards (units = 3 × hundreds), giving an impossible digit.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Forgetting to check all three clues hold for the final number.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Trying random numbers rather than realising the hundreds digit being \"three times\" something tightly limits the units to 1, 2, or 3.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Which digit do the other two depend on? Could you start there?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "If the hundreds digit is three times the units, how big can the units digit actually be?",
-        "goodResponse": "It can only be 1, 2, or 3, else hundreds > 9."
-      },
-      {
-        "probe": "Does your number pass all three clues? Check each one.",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Two of the digits are described using the units digit. So try starting with the units digit and calling it 'something'.\"",
-      "\"The hundreds digit is three times the units, and the tens is one more than the units. So if the units were 3, what would the other two be?\"",
-      "\"Add your three digits up - they need to make 16. Try units = 3 and see if it works.\""
-    ]
+    "modelReasoningPath": "Let the units digit = u. Then hundreds = 3u, tens = u + 1. Sum: 3u + (u + 1) + u = 5u + 1 = 16, so 5u = 15, u = 3. Units = 3, tens = 4, hundreds = 9. The number is 943.\n\nWhat to listen for: Does the child name a variable (or call it \"something\") and build equations from the clues? Or do they work by trial? Either is valid - the key is whether they set up all three constraints before testing values. ---"
   },
   {
     "id": "MA-A6",
     "subject": "maths",
     "topic": "numerical-reasoning",
     "difficulty": 2,
-    "questionType": "Numerical",
+    "questionType": "Numerical Reasoning",
     "title": "Chickens and Rabbits",
     "tags": [],
-    "question": "A farmer's counting up all the animals in his yard. He's only got chickens and rabbits - nothing else. Altogether he counts 20 heads and 56 legs. So how many chickens has he got, and how many rabbits?",
+    "question": "A farmer counts all the animals in his yard. He has only chickens and rabbits. He counts 20 heads and 56 legs. How many chickens and how many rabbits does he have?",
     "answer": "12 chickens, 8 rabbits.",
-    "modelReasoningPath": "1. Suppose all 20 animals were chickens. That's 20 × 2 = 40 legs. 2. But there are 56 legs - that's 16 legs too many. 3. Each rabbit has 2 more legs than a chicken, so every chicken we swap for a rabbit adds 2 legs. To explain 16 extra legs we need 16 ÷ 2 = 8 rabbits. 4. So 8 rabbits and 12 chickens. Check: 8 × 4 + 12 × 2 = 32 + 24 = 56 ✓.  Several routes are all good: the \"all chickens\" baseline (most elegant), organised trial and improvement, or two equations (c + r = 20; 2c + 4r = 56). The gold standard is any method the child can explain - especially the leap \"if they were all chickens, the extra legs must come from rabbits.\"",
-    "rubric": {
-      "strong": "Uses a structured method (baseline-and-adjust, or equations, or systematic trial) and can explain why it works. Checks legs and heads at the end.",
-      "developing": "Reaches the answer by trial and improvement, adjusting sensibly after each guess (e.g. \"too many legs, swap a rabbit for a chicken\"), even if it takes several tries. Method is sound but slower and less explained.",
-      "weak": "Guesses pairs of numbers without checking both the head count and the leg count, or fixes one total and ignores the other. Can't explain the approach."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Satisfying the heads (some split of 20) but not checking the legs, or vice versa.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Forgetting a rabbit has 4 legs and a chicken 2 (mixing them up).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Random guessing with no adjustment rule between guesses.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Pretend for a moment they're all chickens - how many legs would that be? Why isn't it 56?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Each time you turn a chicken into a rabbit, what happens to the leg count?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Can you check your answer fits *both the 20 heads and the 56 legs?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Imagine every animal is a chicken. How many legs would 20 chickens have?\"",
-      "\"You've got 40, but you need 56 - that's 16 legs short. Where do extra legs come from?\"",
-      "\"Each rabbit adds 2 legs compared to a chicken. So how many rabbits give you those 16 extra legs?\""
-    ]
+    "modelReasoningPath": "What to listen for: The \"all chickens\" method is elegant and shows a child who creates a baseline and adjusts. Trial and improvement works but is slower. Some children set up two simultaneous equations (c + r = 20; 2c + 4r = 56) - this is impressive. Ask \"can you explain why your method works?\" regardless of approach. ---"
   },
   {
     "id": "MA-A1",
     "subject": "maths",
     "topic": "numerical-reasoning",
     "difficulty": 3,
-    "questionType": "Numerical",
+    "questionType": "Numerical Reasoning",
     "title": "Digit Reversal",
     "tags": [],
-    "question": "I'm thinking of a two-digit number. If you swap its two digits round, you get a number that's 27 bigger than the one I started with. And here's another clue: those two digits add up to 11. So - what's my number?",
+    "question": "I am thinking of a two-digit number. If you reverse its digits, you get a number that is 27 more than my original number. Also, the two digits add up to 11. What is my number?",
     "answer": "47",
-    "modelReasoningPath": "A strong candidate turns the two clues into two facts about the digits and combines them. 1. Reversing adds 27. Because swapping the tens and units of a two-digit number changes its value by 9 × (difference of the digits), \"27 bigger\" means the digits differ by 3 (since 27 ÷ 9 = 3). A child needn't know the \"× 9\" rule - many reason \"to jump up by 27 when you swap, the units must be a fair bit bigger than the tens.\" 2. The digits add to 11. 3. So: two digits that differ by 3 and add to 11 → 4 and 7. Since reversing makes it bigger, the larger digit is in the units: the number is 47 (47 → 74, a jump of 27 ✓).  Algebra (10b + a − 10a − b = 27 → b − a = 3) is impressive but absolutely not required. Reasoning \"they differ by 3 and add to 11, so 4 and 7\" is the gold standard at this age.",
-    "rubric": {
-      "strong": "Uses both constraints together and narrows systematically (pairs adding to 11, then which differ by 3), or sets up algebra. Checks the answer by reversing. May spot which way round (47 not 74) and explain why.",
-      "developing": "Uses one clue well (e.g. lists pairs adding to 11) and then trials them against the other, a bit unsystematically, but gets there. Or finds 4 and 7 but isn't sure whether the answer is 47 or 74 until they test.",
-      "weak": "Guesses two-digit numbers at random with no use of the clues, or uses only one clue and stops. Doesn't check by reversing."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Giving 74 instead of 47",
-        "reveals": "forgetting that reversing must make it bigger, so the original is the smaller of the pair."
-      },
-      {
-        "mistake": "Using only \"adds to 11\" and guessing among the pairs without the \"differ by 3\" constraint.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Treating \"27 more\" as \"the digits sum to 27\" or some other misreading.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "How could you check that's right?",
-        "goodResponse": "Look for them reversing 47 and finding the 27 gap."
-      },
-      {
-        "probe": "Which pairs of digits add up to 11?",
-        "goodResponse": "Nudges the systematic list: 2+9, 3+8, 4+7, 5+6…"
-      },
-      {
-        "probe": "Once you reverse it, does it get bigger or smaller? What does that tell you?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"What pairs of single digits add up to 11? Try listing them.\"",
-      "\"Now, swapping the digits makes the number 27 bigger. Which of your pairs are far enough apart to make that big a jump?\"",
-      "\"You're looking for two digits that add to 11 and are 3 apart. Which pair is that - and which way round makes the smaller number?\""
-    ]
+    "modelReasoningPath": "The tens digit and units digit add to 11. Reversing the number increases it by 27. If the digits are a and b, then 10b + a − (10a + b) = 27, so 9b − 9a = 27, meaning b − a = 3. Combined with a + b = 11: b = 7, a = 4. The number is 47 (reversed: 74, difference: 27 ✓).\n\nWhat to listen for: A child using algebra is impressive but not required. More interesting is whether they reason: \"the digits differ by 3 and add to 11 - so they must be 4 and 7.\" Trial and improvement is fine, but look for systematic checking rather than random guessing. ---"
   },
   {
     "id": "MA-A3",
     "subject": "maths",
     "topic": "numerical-reasoning",
     "difficulty": 3,
-    "questionType": "Numerical",
+    "questionType": "Numerical Reasoning",
     "title": "Sharing Remainders",
     "tags": [],
-    "question": "Four friends are sharing out a pile of sweets equally between them, but there are 2 left over. Then a fifth friend turns up, and when they share the same pile equally between all five of them, this time there are 3 left over. So - what's the smallest number of sweets the pile could have been?",
+    "question": "Four friends are dividing a pile of sweets equally, but there are 2 left over. A fifth friend then arrives, and when they share equally between five people, there are 3 left over. What is the smallest number of sweets the pile could contain?",
     "answer": "18",
-    "modelReasoningPath": "1. Translate the words into two conditions: the number leaves remainder 2 when divided by 4, and remainder 3 when divided by 5. 2. Generate candidates for each and look for the first overlap. - Remainder 2 with 4: 2, 6, 10, 14, 18, 22… - Remainder 3 with 5: 3, 8, 13, 18, 23… 3. The first number in both lists is 18. Check: 18 ÷ 4 = 4 remainder 2 ✓; 18 ÷ 5 = 3 remainder 3 ✓.  The gold standard is building both lists and hunting the overlap - a clear, organised search rather than random trial.",
-    "rubric": {
-      "strong": "Correctly turns each sentence into a remainder condition, lists candidates for both, and finds the smallest common one. Verifies both divisions at the end.",
-      "developing": "Understands remainders and can build one list confidently, but needs a nudge to build the second or to look for the overlap rather than checking numbers at random.",
-      "weak": "Confuses remainder with the answer to the division (the quotient), or tests scattered numbers with no system. Doesn't grasp \"2 left over\" as a condition to satisfy."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Confusing the remainder with the quotient (\"18 ÷ 4 is about 4, so the answer's 4\").",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Listing multiples of 4 and 5 (or their LCM, 20) instead of remainder sequences.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Finding a number that fits one condition and forgetting to check the other.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "What does 'two left over' actually mean when you divide by four?",
-        "goodResponse": "Checks they understand remainder."
-      },
-      {
-        "probe": "Could you write out the numbers that leave 2 left over with four, and the ones that leave 3 left over with five?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "How can you check 18 works for *both friends?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Let's take it one part at a time. What numbers, when you share them between 4, leave exactly 2 left over? List a few.\"",
-      "\"Now do the same for 5 - which numbers leave 3 left over?\"",
-      "\"Look at your two lists. Is there a number that turns up in both? Pick the smallest one.\""
-    ]
+    "modelReasoningPath": "Find the smallest number that leaves remainder 2 when divided by 4, and remainder 3 when divided by 5. Numbers leaving remainder 2 ÷ 4: 2, 6, 10, 14, 18, 22… Numbers leaving remainder 3 ÷ 5: 3, 8, 13, 18, 23… First number in both lists: 18.\n\nWhat to listen for: A child who writes out both lists and looks for overlap is thinking well. Watch whether they understand what a remainder is - some children confuse it with the quotient. Asking \"can you check your answer?\" is useful here. ---"
   },
   {
     "id": "MA-A4",
     "subject": "maths",
     "topic": "numerical-reasoning",
     "difficulty": 3,
-    "questionType": "Numerical",
+    "questionType": "Numerical Reasoning",
     "title": "The Persistent Adder",
     "tags": [],
-    "question": "I start at 1, and I keep adding on the next odd number each time. So I start with 1. Then 1 plus 3 makes 4. Then 4 plus 5 makes 9. Then 9 plus 7 makes 16, and so on. If I keep going until I've added the twentieth odd number - what's my total?",
+    "question": "Starting from 1, I keep adding the next odd number each time. So I have: 1, then 1 + 3 = 4, then 4 + 5 = 9, then 9 + 7 = 16, and so on. After I have added the 20th odd number, what is my total?",
     "answer": "400",
-    "modelReasoningPath": "1. Look at the running totals already given: 1, 4, 9, 16. 2. Recognise these as square numbers - 1×1, 2×2, 3×3, 4×4. The total after adding the n*th odd number is n². 3. So after the 20th odd number, the total is 20 × 20 = 400.  The gold standard is spotting the squares pattern *from the examples in the question and generalising to \"the 20th total is 20 squared.\" A child who instead writes out more terms (25, 36, 49…) and then sees the squares is also reasoning well - slower, but sound. Credit anyone who sees the pattern even if they can't say why odds make squares (that \"why\" is question D5).",
-    "rubric": {
-      "strong": "Spots that 1, 4, 9, 16 are squares quickly, links the count to the square (20th → 20²), and gets 400 without grinding out all 20 additions. Bonus for noticing the position matches the root.",
-      "developing": "Senses a pattern and extends the sequence by writing more terms, eventually reaching the squares idea or grinding to 400 by careful repeated addition. Gets there with effort.",
-      "weak": "Tries to add 20 odd numbers one by one and loses track, or sees no pattern at all in 1, 4, 9, 16. No attempt to shortcut."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Adding up the odd numbers themselves to the 20th (1+3+5+…+39) by hand and slipping in the arithmetic",
-        "reveals": "valid but error-prone; nudge them toward the pattern."
-      },
-      {
-        "mistake": "Thinking the answer is the 20th odd number (39) rather than the running total.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Seeing \"1, 4, 9, 16\" as \"+3, +5, +7\" only, and not noticing they are also squares.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Look at 1, 4, 9, 16 - do those numbers remind you of anything?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "What kind of numbers are 1, 4, 9 and 16?",
-        "goodResponse": "Nudges \"square numbers\"."
-      },
-      {
-        "probe": "If the 4th total is 16, which is 4 times 4, what do you think the 20th total will be?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Don't add all twenty yet - first look hard at the totals you've already got: 1, 4, 9, 16.\"",
-      "\"Are those special numbers? What's 2 times 2? What's 3 times 3? What's 4 times 4?\"",
-      "\"So the 4th total is 4 times 4. What would the 20th total be - 20 times what?\""
-    ]
+    "modelReasoningPath": "The sum of the first n odd numbers always equals n². The sequence 1, 4, 9, 16… are perfect squares. After 20 odd numbers: 20² = 400. (The 20th odd number is 2 × 20 − 1 = 39.)\n\nWhat to listen for: Does the child spot the pattern (1, 4, 9, 16 are perfect squares) from the examples given in the question? Can they generalise? A strong candidate notices the pattern immediately; a good candidate spots it after writing out a few more terms. Credit anyone who sees it, even if they can't explain why it works. ---"
   },
   {
     "id": "MA-A5",
     "subject": "maths",
     "topic": "numerical-reasoning",
     "difficulty": 3,
-    "questionType": "Numerical",
+    "questionType": "Numerical Reasoning",
     "title": "The Sale Price Trap",
     "tags": [],
-    "question": "A coat normally costs £80. In a sale, the shop takes 20% off the price. Then, once the sale ends, they put the price back up by 25%. So what's the new price now? And is it more than, less than, or exactly the same as the original £80?",
+    "question": "A coat normally costs £80. In a sale, the price is reduced by 20%. After the sale ends, the shop puts the price back up by 25%. What is the new price? Is it more than, less than, or the same as the original £80?",
     "answer": "Exactly £80 - the same as the original.",
-    "modelReasoningPath": "1. Work it in order, not by combining the percentages. 20% off £80 is £16 off, leaving £64. 2. Now 25% on is applied to £64, not to £80. 25% of £64 is £16, giving £64 + £16 = £80. 3. The two changes cancel exactly. The deep reason: a fifth off takes you to 4/5 of the price; a quarter on from there multiplies by 5/4; and 4/5 × 5/4 = 1, back to the start.  The gold standard isn't the arithmetic - it's the insight that the 25% is taken of a smaller number than the 20% was, so you can't just compare 25 against 20.",
-    "rubric": {
-      "strong": "Works the two steps in sequence on the actual amounts, applies the 25% to £64 (not £80), and articulates why it cancels (\"the rise is of a smaller amount\"). May spot the fractions cancelling.",
-      "developing": "Computes £64 correctly, and with a nudge applies the 25% to £64 and reaches £80, but was initially tempted to say \"more\" or to add/subtract the percentages. Senses the trap once prompted.",
-      "weak": "Says \"more, because 25 is bigger than 20,\" or \"they cancel because 20 and 25 are close,\" with no calculation on the actual prices. Treats percentages as if they're of the same base."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Concluding the price is higher because 25% > 20%",
-        "reveals": "the central trap."
-      },
-      {
-        "mistake": "Applying the 25% rise to the original £80 instead of the reduced £64.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "\"Adding\" the percentages (−20% + 25% = +5%) as if they act on the same amount.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "The 25% - is that 25% of £80, or 25% of something else?",
-        "goodResponse": "Targets the trap directly."
-      },
-      {
-        "probe": "What's the actual price after the 20% is taken off? Now take 25% of *that.\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "You said it ends up higher - can you show me with the real pounds and pence?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Take it one step at a time. What's the price after 20% is taken off £80?\"",
-      "\"Now the 25% goes on - but careful, on which amount? The £80 or the new £64?\"",
-      "\"Work out 25% of £64 and add it on. Where does that land you?\""
-    ]
+    "modelReasoningPath": "20% off: £80 × 0.8 = £64. Then 25% on: £64 × 1.25 = £80.\n\nWhat to listen for: Almost every child says \"they should cancel but I'm not sure which way.\" Very many say the final price is more (because 25 > 20). The insight is that the 25% is applied to a smaller number. A child who says \"you can't just add percentages because they're of different amounts\" is thinking at an excellent level. ---"
   },
   {
     "id": "MA-A7",
     "subject": "maths",
     "topic": "numerical-reasoning",
     "difficulty": 3,
-    "questionType": "Numerical",
+    "questionType": "Numerical Reasoning",
     "title": "The Fuel Tank",
     "tags": [],
-    "question": "My car's fuel tank is three-quarters full. Then I go on a long drive, and I use up two-thirds of the fuel that was in the tank when I set off. So at the end - what fraction of a full tank have I got left?",
+    "question": "My car's fuel tank is three-quarters full. During a long drive, I use two-thirds of the fuel that was in the tank at the start of the journey. What fraction of a full tank do I have left?",
     "answer": "1/4",
-    "modelReasoningPath": "1. Read carefully: the fuel used is two-thirds of what was in the tank (which is 3/4 of a tank), not two-thirds of a full tank. 2. Fuel used = 2/3 × 3/4 = 6/12 = 1/2 a tank. 3. Fuel left = started with 3/4, used 1/2 → 3/4 − 2/4 = 1/4 of a tank.  A neat alternative: \"they used two-thirds of what was there, so one-third of it is left; one-third of 3/4 is 1/4.\" The gold standard is reading \"of the fuel in the tank\" precisely, and then handling the fraction-of-a-fraction.",
-    "rubric": {
-      "strong": "Reads the \"of what was in the tank\" correctly, multiplies the fractions (or reasons \"one-third of 3/4 is left\"), and gives 1/4. Can explain the multiply-then-subtract steps.",
-      "developing": "Sets up the right idea but slips on the fraction arithmetic, or needs a nudge to see that 2/3 is taken of 3/4 rather than of a whole tank. Recovers once pointed at the wording.",
-      "weak": "Computes 2/3 of a full tank, or just subtracts 2/3 from 3/4 without multiplying, with no sense of \"a fraction of a fraction.\" Doesn't notice the wording matters."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Taking two-thirds of a full tank instead of of the 3/4 that's actually there",
-        "reveals": "the central misread."
-      },
-      {
-        "mistake": "Subtracting 3/4 − 2/3 directly (treating \"two-thirds\" as an amount of the whole tank).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Fraction-multiplication slips (e.g. 2/3 × 3/4 = 5/7 by adding).",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Two-thirds of *what, exactly? The full tank, or the fuel that was actually in it?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "How much fuel was in the tank when you set off? Now take two-thirds of that.",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "If you used two-thirds of it, what fraction of it is still there?",
-        "goodResponse": "Opens the \"one-third left\" shortcut."
-      }
-    ],
-    "hints": [
-      "\"Careful with the wording - the two-thirds is of the fuel that's *in the tank, which is only three-quarters full to begin with.\"*",
-      "\"So you need two-thirds of three-quarters. What do you get when you multiply those?\"",
-      "\"You used half a tank. You started with three-quarters. So how much is left?\""
-    ]
+    "modelReasoningPath": "Start with 3/4 of a tank. Use 2/3 of that: 2/3 × 3/4 = 6/12 = 1/2. Remaining: 3/4 − 1/2 = 3/4 − 2/4 = 1/4.\n\nWhat to listen for: The key distinction is \"two-thirds of what is in the tank\" versus \"two-thirds of the full tank.\" A child who computes 2/3 of the full tank (giving 2/3 used, leaving 1/4... wait, that gives 1/3 − something, which doesn't parse) has misread the question. Ask them to re-read it slowly. A child who multiplies fractions correctly and then subtracts is handling this well. --- ## SECTION B - Estimation & Order of Magnitude Questions that test whether a child can reason sensibly about size and scale, making and justifying approximations. ---"
   },
   {
     "id": "MA-D1",
     "subject": "maths",
     "topic": "pattern-proof-explanation",
     "difficulty": 2,
-    "questionType": "Pattern",
+    "questionType": "Pattern, Proof & Explanation",
     "title": "The Lily Pad",
     "tags": [],
-    "question": "On the first of June, there's a single lily pad floating on a pond. Every day, the number of lily pads doubles. By the thirtieth of June, the whole pond is completely covered. So - on which date was the pond exactly half covered?",
+    "question": "On the first of June, there is a single lily pad on a pond. Every day, the number of lily pads exactly doubles. By the thirtieth of June, the pond is completely full. On which date was the pond exactly half full?",
     "answer": "The 29th of June.",
-    "modelReasoningPath": "1. Don't work forwards. The pads double each day, so going backwards they halve each day. 2. The pond is full on the 30th. The day before - the 29th - it must have been exactly half full, because one more doubling fills it. 3. So the answer is the 29th of June, with no calculation at all.  The gold standard is working backwards: \"whatever it looks like on the 30th, on the 29th it was half of that.\" A child who reaches for 2²⁸ or tries to count up from day 1 has missed the elegant shortcut.",
-    "rubric": {
-      "strong": "Immediately works backwards from \"full on the 30th\" to \"half full the day before,\" and can explain why no calculation is needed (doubling forwards = halving backwards). Often delighted by how simple it is.",
-      "developing": "Starts forwards (day 1 = 1, day 2 = 2…) but, prompted with \"what was it the day before it was full?\", flips to the backwards view and gets the 29th. The insight lands with a nudge.",
-      "weak": "Insists on calculating forwards, tries to halve 30 to get the 15th, or guesses a date with no doubling logic. Doesn't connect \"doubles\" to \"half the day before.\""
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Answering the 15th (\"half of 30 days\")",
-        "reveals": "the classic trap; halving the time instead of using the doubling."
-      },
-      {
-        "mistake": "Trying to compute the actual number of pads (2²⁹) and getting bogged down.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Working forwards from day 1 and losing the thread.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "If the pond doubles each day, what was it the day *before it was completely full?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Do you actually need to know how many lily pads there are to answer this?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Going backwards in time, what happens to the number of pads each day?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Try thinking backwards instead of forwards. The pond's full on the 30th - picture the day before.\"",
-      "\"Each day it doubles. So the day before it was full, how much of the pond was covered?\"",
-      "\"If one more doubling fills it, the day before must have been exactly half. Which date is that?\""
-    ]
+    "modelReasoningPath": "Since the lily pads double every day, the day before the pond was full, it was exactly half full. This works backwards from the answer - no calculation needed.\n\nWhat to listen for: Many children try to work forwards: \"on day 1 there's 1, day 2 there's 2, day 3 there's 4…\" and want to calculate 2²⁸ or 2²⁹. The beautiful insight is to work backwards: \"Whatever the pond looks like on the 30th, on the 29th it must have been half of that.\" A child who says this immediately has excellent mathematical instincts. Ask anyone who gives the right answer: \"can you explain that without any calculation?\" ---"
   },
   {
     "id": "MA-D6",
     "subject": "maths",
     "topic": "pattern-proof-explanation",
     "difficulty": 2,
-    "questionType": "Pattern",
+    "questionType": "Pattern, Proof & Explanation",
     "title": "Folded Paper",
     "tags": [],
-    "question": "I take a square piece of paper and fold it in half three times. Then I make one straight cut, all the way through every layer. When I unfold the paper again, what's the most holes I could possibly have made?",
+    "question": "I take a square piece of paper and fold it in half three times. I then make one straight cut all the way through. When I unfold the paper, what is the maximum number of holes I could have made?",
     "answer": "8 holes.",
-    "modelReasoningPath": "1. Each fold doubles the number of layers: 1 → 2 → 4 → 8. After 3 folds there are 2 × 2 × 2 = 8 layers. 2. One straight cut goes through all 8 layers at once. If the cut is placed so it doesn't sit on a fold, it makes a hole in each layer → 8 holes when unfolded. 3. The \"maximum\" wording matters: a cut landing on a fold line would join holes up and give fewer, so the cut must avoid the folds.  The gold standard is linking \"3 folds\" to \"8 layers\" by doubling (powers of 2), and reasoning about where the cut lands.",
-    "rubric": {
-      "strong": "Connects folds to layers by doubling (3 folds → 8 layers), sees one cut pierces every layer for 8 holes, and notes the cut must avoid the folds to get the maximum. May reason it out or test with paper.",
-      "developing": "Gets that folding multiplies the layers and that the cut goes through all of them, but needs a nudge on the doubling count or on the \"avoid the fold\" point. Sound instinct.",
-      "weak": "Guesses (often \"3\", matching the folds, or \"1\" for one cut) with no layer-doubling idea. Doesn't picture the stacked layers."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Answering 3 (confusing folds with holes) or 6.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Adding layers (2+2+2) instead of doubling (2×2×2).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Ignoring placement",
-        "reveals": "not seeing that a cut on a fold yields fewer holes."
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Each time you fold, what happens to the number of layers stacked up?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "After three folds, how many layers does your one cut pass through?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Does it matter *where you make the cut - could a bad spot give you fewer holes?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Count the layers as you fold: one fold makes 2 layers, two folds make…?\"",
-      "\"After three folds you've got 8 layers stacked. Your single cut slices through all of them at once.\"",
-      "\"Each layer gets its own hole - as long as the cut doesn't land on a fold. So how many holes when you open it out?\""
-    ]
+    "modelReasoningPath": "Each fold doubles the number of layers. After 3 folds: 2³ = 8 layers. A single straight cut through all 8 layers, positioned so it doesn't land on a fold line, creates 8 holes when unfolded.\n\nWhat to listen for: Does the child connect \"3 folds\" to \"8 layers\" via powers of 2? Do they reason about where the cut must land to create the maximum holes (not on a fold)? A child who asks to use a piece of paper to experiment is showing good scientific instinct - allow it. --- ## Quick Reference | # | Question | Section | Difficulty | Core Skill | |---|----------|---------|------------|------------| | A1 | Digit Reversal | Numerical | ★★★ | Digit constraints, systematic logic | | A2 | Three-Digit Mystery | Numerical | ★★ | Simultaneous constraints | | A3 | Sharing Remainders | Numerical | ★★★ | Remainders, list intersection | | A4 | Persistent Adder | Numerical | ★★★ | Pattern recognition, n² | | A5 | Sale Price Trap | Numerical | ★★★ | Percentage misconceptions | | A6 | Chickens and Rabbits | Numerical | ★★ | Simultaneous reasoning | | A7 | Fuel Tank | Numerical | ★★★ | Fraction of a fraction | | B1 | Average Speed Trap | Estimation | ★★★ | Weighted averages, total ÷ total | | B2 | Heart Beats in a Year | Estimation | ★★★ | Fermi estimation, unit building | | B3 | Stack of a Million Coins | Estimation | ★★★ | Unit conversion, scale | | B4 | Counting to a Million | Estimation | ★★★ | Unit conversion, magnitude | | B5 | Birthday Puzzle | Estimation | ★★★ | Probability intuition | | C1 | Locker Problem | Structured | ★★★ | Factors, perfect squares | | C2 | Painted Cube | Structured | ★★★ | 3D systematic classification | | C3 | Running Track | Structured | ★★★ | Circles, decomposing perimeter | | C4 | Handshake Problem | Structured | ★★★ | Combinatorics, triangular numbers | | C5 | Village Well | Structured | ★★★★ | Rate equations, break-even | | C6 | Tournament Matches | Structured | ★★ | Elimination invariant | | C7 | Broken Calculator | Structured | ★★ | Optimisation, systematic search | | C8 | Camel and Desert | Structured | ★★★★★ | Optimisation, depots | | D1 | Lily Pad | Pattern | ★★ | Exponential, working backwards | | D2 | Staircase | Pattern | ★★★★ | Fibonacci / recursion | | D3 | Consecutive Numbers | Proof | ★★★ | Parity argument, algebraic proof | | D4 | Reverse and Subtract | Proof | ★★★ | Digit algebra, multiples of 9 | | D5 | Square from Odd Numbers | Proof | ★★★★ | Visual proof, n² identity | | D6 | Folded Paper | Pattern | ★★ | Powers of 2, layers | --- Version 2.0 - Mathematical Thinking Focus"
   },
   {
     "id": "MA-D3",
     "subject": "maths",
     "topic": "pattern-proof-explanation",
     "difficulty": 3,
-    "questionType": "Proof",
+    "questionType": "Pattern, Proof & Explanation",
     "title": "Consecutive Numbers",
     "tags": [],
     "question": "Is it always true that if you add two consecutive whole numbers together, the answer is always odd? Can you convince me it must always be true - not just with examples, but with a reason?",
-    "answer": "Yes - always odd.",
-    "modelReasoningPath": "This question is really about the explanation, not the answer. Three levels: 1. Examples (the start, not the finish): 2+3=5, 4+5=9, 7+8=15 - \"it keeps coming out odd.\" 2. The parity argument (the key step): of any two numbers in a row, one is always even and the other always odd - and even + odd is always odd. So the sum must be odd, every time. 3. The algebra (exceptional at 11+): call the first number n, the next is n+1; their sum is 2n+1, which is one more than an even number, so always odd.  The gold standard is moving past \"it works in my examples\" to \"it must work because one is even and one is odd.\"",
-    "rubric": {
-      "strong": "Reaches a genuine reason: \"one of them is always even and one always odd, and those add to an odd.\" Bonus for the n + (n+1) = 2n+1 algebra. Understands examples alone aren't a proof.",
-      "developing": "Tests several examples, is convinced it's always true, and - when pushed for why - gets toward the even/odd idea with prompting. Senses the difference between \"seems true\" and \"must be true.\"",
-      "weak": "Checks one or two examples and says \"yes\" with no attempt at a reason, or believes a few examples are the proof. Can't articulate why it always holds."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Treating a handful of examples as a full proof (\"I tried three and they were all odd, so yes\").",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Saying \"because odd + even = odd\" without explaining why two consecutive numbers must be one of each.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Getting tangled trying to prove it and concluding it's \"probably\" true.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "You've shown it works for those. But could you convince me it works for *every pair, even ones you haven't tried?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Take any two numbers next to each other - what can you say about one being even and one being odd?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "What do you always get when you add an even number and an odd number?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Try a few pairs first - 3 and 4, 7 and 8. What do the answers have in common?\"",
-      "\"Now think about the two numbers themselves: in any two numbers in a row, is one always even and one always odd?\"",
-      "\"Even plus odd always gives odd. So if one of your two numbers is even and one is odd, what must their sum be - always?\""
-    ]
+    "answer": "Yes, always odd.",
+    "modelReasoningPath": "Any two consecutive whole numbers contain exactly one even number and one odd number. Even + odd = odd. Always.\n\nWhat to listen for: Most children will test a few examples (2+3=5, 4+5=9) and say \"yes it seems true.\" The real challenge is the explanation. Can the child say \"one of them must be even and one must be odd, and those always add to an odd\"? That is the key logical step. A child who uses n and n+1 to write 2n+1 is thinking algebraically - remarkable at 11+. ---"
   },
   {
     "id": "MA-D4",
     "subject": "maths",
     "topic": "pattern-proof-explanation",
     "difficulty": 3,
-    "questionType": "Proof",
+    "questionType": "Pattern, Proof & Explanation",
     "title": "Reverse and Subtract",
     "tags": [],
-    "question": "Take any two-digit number - let's say 73. Now reverse the digits, so 73 becomes 37. Then take the smaller one away from the bigger one: 73 take away 37 leaves 36. Now try that with a few other two-digit numbers of your own. What do you notice? And can you explain why it happens?",
-    "answer": "The result is always a multiple of 9 - more precisely, 9 times the difference between the two digits. (Examples: 82−28=54, 91−19=72, 51−15=36, 63−36=27 - all multiples of 9.)",
-    "modelReasoningPath": "1. Notice: try several and see \"they're all in the 9 times table\" (9, 18, 27, 36…). 2. State precisely: it's exactly 9 × (difference of the two digits) - e.g. 73 has digits 3 apart, and 3 × 9 = 27. 3. Explain: a two-digit number is 10×(tens) + units; its reverse is 10×(units) + tens; subtracting gives 9×(tens) − 9×(units) = 9 × (difference of the digits) - always a multiple of 9.  The gold standard is climbing as far up these stages as the child can - and the question is built to reward each stage of explanation, not just spotting the answer.",
-    "rubric": {
-      "strong": "Reaches stage 2 (\"it's 9 times the gap between the digits\") and ideally gestures at why (the algebra, or \"the tens and units swap, and the place values differ by 9s\"). Tests enough cases to be sure, then generalises.",
-      "developing": "Reaches stage 1 (\"they're all multiples of 9\") from several examples and, with \"why do you think that happens?\", begins reaching for a reason. Clear pattern-spotting, partial explanation.",
-      "weak": "Computes a few subtractions but sees no pattern, or notices something vague (\"they're even\"... they're not all) without landing on the multiple-of-9 structure."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Computing examples but not looking for what the answers share.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Spotting \"multiples of 9\" but, when asked why, having nothing beyond \"it just is.\"",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Subtracting larger from smaller inconsistently and getting negatives that obscure the pattern.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Look at your answers - 54, 72, 36, 27. What do they all have in common?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Can you predict the answer for a new number *before you subtract? What does it depend on?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Why do you think reversing and subtracting always gives a multiple of 9?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Do a few more and write the answers in a row. Do they belong to a times table you know?\"",
-      "\"They're all multiples of 9. Now look at the two digits of your starting number - how far apart are they, and how does that relate to the answer?\"",
-      "\"The answer is 9 times the gap between the digits. Can you see why? Think about what each digit is *worth - tens versus units.\"*"
-    ]
+    "question": "Take any two-digit number - let's say 73. Reverse the digits to get 37. Now subtract the smaller from the larger: 73 − 37 = 36. Try this with a few other two-digit numbers. What do you notice? Can you explain why?",
+    "answer": "(see working)",
+    "modelReasoningPath": "A two-digit number with tens digit a and units digit b equals 10a + b. Its reverse is 10b + a. The difference: (10a + b) − (10b + a) = 9a − 9b = 9(a − b). Always a multiple of 9.\n\nWhat to listen for: This question has three stages - noticing the pattern, stating it precisely, and explaining it. A child who reaches stage 1 (\"they're all multiples of 9\") is doing well. Stage 2 (\"it's 9 times the difference of the digits\") is excellent. Stage 3 (the algebraic explanation) is exceptional. Ask \"why do you think that happens?\" after each stage to push them further. ---"
   },
   {
     "id": "MA-D2",
     "subject": "maths",
     "topic": "pattern-proof-explanation",
     "difficulty": 4,
-    "questionType": "Pattern",
+    "questionType": "Pattern, Proof & Explanation",
     "title": "The Staircase",
     "tags": [],
     "question": "A staircase has 10 steps. I can climb it by taking either one step or two steps at a time, in any combination I like. For example, I could take 10 single steps, or 5 double steps, or some mixture. How many different ways are there to climb the staircase?",
     "answer": "89 ways.",
-    "modelReasoningPath": "1. Start small and build up. 1 step: 1 way. 2 steps: 2 ways (1+1, or 2). 3 steps: 3 ways. 4 steps: 5 ways. 2. Notice the pattern: each answer is the sum of the previous two (3 = 1+2, 5 = 2+3…). Why? To reach step n, your last move is either a single step (from step n−1) or a double (from step n−2), so the ways to reach n = ways to reach (n−1) + ways to reach (n−2). It's the Fibonacci sequence. 3. Build it: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89.  The gold standard is spotting \"each number is the sum of the two before\" - exceptional at this age. Don't expect it; many will list combinations for small cases, which is exactly the right way to discover the pattern.",
-    "rubric": {
-      "strong": "Works small cases systematically (1, 2, 3, 5…), spots that each total is the sum of the previous two, and uses it to reach 89 - ideally explaining why (last move is a 1 or a 2). Rare and impressive.",
-      "developing": "Lists combinations carefully for small staircases and gets the early numbers right, sensing a pattern but needing a nudge (\"look at how each number relates to the two before it\") to build to 89. Strong method, partial leap.",
-      "weak": "Tries to list all combinations for 10 steps and loses track, or guesses, with no move to small cases and no pattern. Disorganised."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Trying to enumerate every route for 10 steps directly",
-        "reveals": "far too many to track."
-      },
-      {
-        "mistake": "Getting the small cases wrong (e.g. saying 2 steps has 1 way), which breaks the pattern.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Spotting \"add the two before\" but making an arithmetic slip partway up the chain.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "How many ways for a tiny staircase - 1 step? 2 steps? 3 steps? Write them out.",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Look at your numbers so far - how does each one relate to the two before it?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "To land on step 10, what could your very last move have been?",
-        "goodResponse": "Opens the n−1 / n−2 idea."
-      }
-    ],
-    "hints": [
-      "\"Ten steps is a lot to list. Start tiny - how many ways to climb 1 step, 2 steps, 3 steps?\"",
-      "\"Write the totals in a row: 1, 2, 3, 5… Do you see how each one is made from the two before it?\"",
-      "\"Each number is the sum of the previous two. Keep that rule going up to the 10th - where do you land?\""
-    ]
+    "modelReasoningPath": "What to listen for: Expect most children to start listing combinations. The insight is to notice that the number of ways to reach step n depends only on steps n−1 and n−2 - once seen, this builds the sequence quickly. A child who discovers this structure and says \"each answer is the sum of the two before\" is showing exceptional mathematical maturity. Don't expect this - reward it highly if it appears. ---"
   },
   {
     "id": "MA-D5",
     "subject": "maths",
     "topic": "pattern-proof-explanation",
     "difficulty": 4,
-    "questionType": "Proof",
+    "questionType": "Pattern, Proof & Explanation",
     "title": "Square Numbers from Odd Numbers",
     "tags": [],
-    "question": "Earlier we noticed something interesting. 1 on its own is 1. 1 plus 3 makes 4. 1 plus 3 plus 5 makes 9. And 1 plus 3 plus 5 plus 7 makes 16. And those are all square numbers - one squared, two squared, three squared, four squared. So can you think of a picture, or a reason, why adding up the odd numbers in order like this always lands you on a square number?",
-    "answer": "(no single answer)",
-    "modelReasoningPath": "This is open-ended and visual - encourage drawing. A strong candidate connects \"adding the next odd number\" to \"adding a border that makes the next-size square.\" Even \"each time you add a border, and the border gets bigger by 2 each time\" is most of the insight. The gold standard is seeing the odd number as the L-shaped layer.",
-    "rubric": {
-      "strong": "Reaches the picture: each odd number is an L-shaped border that turns an n×n square into an (n+1)×(n+1) square, so the running total is always a perfect square. May draw it and explain clearly.",
-      "developing": "Senses that \"you keep adding a bigger layer each time\" and that the totals are squares, but doesn't fully nail the border-makes-the-next-square link without prompting or drawing. Real partial insight.",
-      "weak": "Re-checks that the sums are squares but offers no picture or reason for why, or can't engage with a visual/structural explanation at all."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Re-verifying the arithmetic (1+3+5+7=16) and treating that as the explanation, rather than giving a reason.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Drawing squares but not lining the odd numbers up with the borders.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Thinking the borders are full rings (4 sides) rather than L-shapes (2 sides), so the tile counts don't match.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Try drawing it. Start with one square, then add 3 tiles - what shape can you make?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Where do the 3 extra tiles go to turn a 1×1 into a 2×2? And the next 5?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "So what is each odd number actually *doing to the square?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Grab some squared paper. Colour 1 square. Now add 3 more - can you make a 2-by-2 square?\"",
-      "\"Add the next odd number, 5, around two sides - does it become a 3-by-3 square?\"",
-      "\"Each odd number is the L-shaped border that grows the square to the next size. That's why the totals are always square numbers - can you say it back in your own words?\""
-    ]
+    "question": "We noticed earlier that 1 = 1, 1 + 3 = 4, 1 + 3 + 5 = 9, 1 + 3 + 5 + 7 = 16. These are all perfect squares. Can you think of a picture or a reason why adding the first n odd numbers always gives you n squared?",
+    "answer": "(see working)",
+    "modelReasoningPath": "What to listen for: This is an open-ended question. Some children will want to draw. Encourage it. The L-shape insight is beautiful and accessible - a child who discovers it is making a genuine mathematical observation. Even a child who says \"each time you're adding a border, and the border gets bigger each time\" is close to the right idea. ---"
   },
   {
     "id": "MA-C6",
     "subject": "maths",
     "topic": "structured-problem-solving",
     "difficulty": 2,
-    "questionType": "Structured",
+    "questionType": "Structured Problem Solving",
     "title": "Tournament Matches",
     "tags": [],
-    "question": "A knockout tennis tournament has 64 players. In every match there's one winner and one loser, and the moment you lose, you're out. So how many matches need to be played altogether before you're left with a single champion?",
+    "question": "A knockout tennis tournament has 64 players. Every match has one winner and one loser, and the loser is immediately eliminated. How many matches need to be played in total before there is one champion?",
     "answer": "63 matches.",
-    "modelReasoningPath": "- Round by round (fine): 64 → 32 matches → 16 → 8 → 4 → 2 → 1. Add the matches: 32 + 16 + 8 + 4 + 2 + 1 = 63. - The elegant invariant: every match knocks out exactly one player. To get from 64 players down to 1 champion, 63 players must be knocked out - so exactly 63 matches, whatever the bracket looks like.  The gold standard is the invariant argument - \"one match, one player out, so 63 matches to remove 63 players.\" A child who reaches it (even after the round-by-round count) is reasoning at a high level.",
-    "rubric": {
-      "strong": "Gets 63, and either reaches the \"each match eliminates one player\" insight or arrives at it when prompted to find a quicker way. Reasons cleanly either route.",
-      "developing": "Works it round by round (32 + 16 + … + 1) carefully and correctly to 63, but doesn't see the one-match-one-elimination shortcut even when nudged. Sound, mechanical.",
-      "weak": "Loses track of the halving, miscounts the rounds, or guesses (e.g. says 64 or 32). No reliable structure."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Saying 64 (one per player) or 32 (just the first round).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Slipping in the halving sequence (e.g. forgetting the final 1).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Adding the players per round instead of the matches.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "How many players get knocked out in each single match?",
-        "goodResponse": "Targets the invariant."
-      },
-      {
-        "probe": "To crown one champion out of 64, how many players need to be eliminated altogether?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Can you think of a quicker way to see it than counting every round?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Work it round by round. 64 players - how many matches in the first round, and how many players go through?\"",
-      "\"Keep halving: 64, 32, 16, 8, 4, 2, 1. Add up the matches in each round.\"",
-      "\"Here's a shortcut to spot: every match knocks out exactly one player. How many players must be knocked out to leave one winner?\""
-    ]
+    "modelReasoningPath": "What to listen for: The brute-force approach (64 → 32 → 16 → 8 → 4 → 2 → 1, counting 32 + 16 + 8 + 4 + 2 + 1 = 63) gives the right answer and is fine. But the elegant argument - \"each match eliminates exactly one person, so you need 63 matches to eliminate 63 people\" - shows a child who reasons from invariants. Ask \"can you think of a quicker way to see it?\" to prompt this. ---"
   },
   {
     "id": "MA-C7",
     "subject": "maths",
     "topic": "structured-problem-solving",
     "difficulty": 2,
-    "questionType": "Structured",
+    "questionType": "Structured Problem Solving",
     "title": "The Broken Calculator",
     "tags": [],
-    "question": "My calculator's broken. The only buttons that still work are the 'one' button, the 'plus' button, the 'minus' button, and the 'equals' button. I can press them as many times as I like. So what's the smallest number of button presses I'd need to make it show the number 13?",
-    "answer": "7 presses - pressing `1` `1` `+` `1` `+` `1` `=` (that is, 11 + 1 + 1 = 13).",
-    "modelReasoningPath": "1. The crucial insight: you can't press a \"3\", but you can build the two-digit number 11 by pressing `1` twice. So use 11 as a building block. 2. 11 + 1 + 1 = 13. Count the presses: `1` `1` (makes 11), `+`, `1`, `+`, `1`, `=` → 7 presses. 3. Check you can't do better: any single repunit you can make is 1 or 11 (111 is already too big), so reaching 13 needs 11 plus two more 1s, which can't be done in fewer than 7 presses. Subtraction doesn't help here (it would need even more presses to overshoot and come back).  The gold standard is the \"build 11 from two 1-presses\" idea, plus a genuine attempt to show 7 is the minimum, not just a way.",
-    "rubric": {
-      "strong": "Spots that 11 can be built by pressing `1` twice, constructs 13 = 11 + 1 + 1 in 7 presses, and argues (even informally) that nothing shorter works. Counts the presses carefully, including the `=`.",
-      "developing": "Finds a working sequence to 13 but with more presses (e.g. 1+1+1+…+1), and when nudged toward \"can you build a bigger number from 1s?\" sees the 11 shortcut. On the right track.",
-      "weak": "Adds 1s one at a time (13 ones plus operators) and treats that as the answer, with no idea you can form 11, and no attempt to minimise. Miscounts presses."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Not realising two `1` presses make `11`",
-        "reveals": "adding 1 thirteen times instead."
-      },
-      {
-        "mistake": "Forgetting to count the final `=` (or the operator presses) in the total.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Claiming a shorter sequence that doesn't actually evaluate to 13.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "You can't press 3 - but could you make a bigger number than 1 using only the 1 button?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "If you can make 11 easily, how close to 13 does that get you?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Count every press, including the equals. Can you find anything shorter than 7?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"There's no 3 button - so you'll have to build 13 out of 1s, pluses and minuses. What numbers can you actually make?\"",
-      "\"Pressing the 1 button twice gives you 11. Does that help you get near 13?\"",
-      "\"11 plus 1 plus 1 is 13. Count up every button press you'd need, equals included.\""
-    ]
+    "question": "My calculator is broken. The only working buttons are: 1, +, −, and =. I can press them as many times as I like. What is the fewest number of button presses needed to display the number 13?",
+    "answer": "7 presses: `1`, `1`, `+`, `1`, `1`, `+`, `1` `=`... actually let's be precise. The key is to use `11` as a building block. 11 + 1 + 1 = 13. Button presses: `[1]` `[1]` `[+]` `[1]` `[+]` `[1]` `[=]` = 7 presses. Can we do fewer? With 6 presses (5 entries + `=`): the maximum reachable would be something like `1 1 + 1 1 [=]` = 22, but we need 13. `1 + 1 1 + 1 [=]` = 14. `1 1 + 1 - 1 [=]` = wait that needs a `-`, giving 11 + 1 − 1 = 11, not 13. 6 presses cannot reach 13.",
+    "modelReasoningPath": "What to listen for: Does the child realise they can form the number 11 (by pressing 1 twice)? This \"building two-digit numbers\" insight is the crux. Do they consider subtraction as a route? A child who systematically eliminates 6-press options before settling on 7 is showing rigorous thinking. ---"
   },
   {
     "id": "MA-C1",
     "subject": "maths",
     "topic": "structured-problem-solving",
     "difficulty": 3,
-    "questionType": "Structured",
+    "questionType": "Structured Problem Solving",
     "title": "The Locker Problem",
     "tags": [],
-    "question": "There are 20 lockers in a row, and they all start off closed. The first student walks along and opens every single locker. The second student walks along and closes every second one - so locker 2, locker 4, locker 6, and so on. The third student goes to every third locker and flips it - if it's open they close it, and if it's closed they open it. And this carries on, each student flipping every locker in their turn, right up until the twentieth student has walked past. At the very end - how many lockers are left open?",
+    "question": "There are 20 lockers in a row, all starting closed. The first student walks past and opens every locker. The second student walks past and closes every second locker - locker 2, locker 4, locker 6, and so on. The third student changes the state of every third locker. This continues until the twentieth student has walked past. At the end, how many lockers are left open?",
     "answer": "4 lockers - numbers 1, 4, 9, and 16.",
-    "modelReasoningPath": "1. Realise a locker is touched once by each student whose number is a factor of the locker number (locker 12 is touched by students 1, 2, 3, 4, 6, 12). 2. A locker ends open if it's touched an odd number of times - i.e. if it has an odd number of factors. 3. Test small cases: locker 1 (just student 1 → open), locker 2 (1, 2 → closed), locker 3 (1, 3 → closed), locker 4 (1, 2, 4 → open!). The open ones are 1, 4, 9, 16. 4. See why: factors normally pair up (for 12: 1×12, 2×6, 3×4), giving an even count - except perfect squares, where one factor pairs with itself (9 = 3×3, so 3 isn't double-counted), giving an odd count. So perfect squares stay open.  The gold standard is working a few lockers by hand, spotting that 1, 4, 9, 16 stay open, and connecting it to factors/perfect squares. The full \"factors pair up\" explanation is exceptional and not expected.",
-    "rubric": {
-      "strong": "Tackles it case by case (\"let me follow locker 4\"), spots that the open lockers are 1, 4, 9, 16, and links it to factors or perfect squares. Bonus for the pairing argument.",
-      "developing": "Traces a few lockers correctly and notices some pattern, but needs prompting to see \"open = odd number of toggles\" or to identify them as squares. Sound method, incomplete leap.",
-      "weak": "Tries to picture all 20 lockers and 20 students at once and loses track, or guesses a number with no case-testing. No link to factors."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Losing track of the toggling",
-        "reveals": "best fixed by following one locker at a time."
-      },
-      {
-        "mistake": "Thinking only about which lockers each student touches, rather than how many times each locker is touched.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Seeing 1, 4, 9, 16 but not recognising them as square numbers.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Pick locker number 6 - which students touch it, and is it open or closed at the end?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "For a locker to stay open, is it touched an odd or an even number of times?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "The open ones are 1, 4, 9, 16 - what kind of numbers are those?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Don't try to do all 20 at once - just follow one locker, say locker 4, and count how many students touch it.\"",
-      "\"A locker is touched by every student whose number divides into it. It ends up open if that's an *odd number of touches.\"*",
-      "\"Work out which lockers get an odd number of touches. You'll find they're 1, 4, 9, 16 - notice anything special about those?\""
-    ]
+    "modelReasoningPath": "A locker ends up open if it is toggled an odd number of times. A locker is toggled once for each of its factors. Only perfect squares have an odd number of factors (because one factor pairs with itself - e.g. 9 has factors 1, 3, 9, and 3 × 3 = 9 means 3 is its own pair). So only lockers in perfect-square positions stay open.\n\nWhat to listen for: A child who says \"let me try locker 1, then locker 2, then locker 3 and see what happens\" is taking exactly the right approach. The leap to \"perfect squares\" may not come immediately - what matters is whether they can find the pattern from cases. ---"
   },
   {
     "id": "MA-C2",
     "subject": "maths",
     "topic": "structured-problem-solving",
     "difficulty": 3,
-    "questionType": "Structured",
+    "questionType": "Structured Problem Solving",
     "title": "The Painted Cube",
     "tags": [],
-    "question": "I build a big cube out of 27 little cubes - so it's three cubes wide, three cubes tall, and three cubes deep. Then I dip the whole thing in red paint, so the entire outside is covered. Once it's dry, I break it apart into all 27 little cubes again. How many of those little cubes have paint on exactly two of their faces?",
+    "question": "I make a large cube out of 27 smaller cubes - it is three cubes wide, three cubes tall, and three cubes deep. I dip the whole thing in red paint, so the entire outside is covered. Then I break it apart into all 27 small cubes. How many of the small cubes have paint on exactly two faces?",
     "answer": "12",
-    "modelReasoningPath": "A strong candidate classifies the little cubes by where they sit, because position decides how many painted faces: 1. Corners - 8 of them, each showing 3 faces → 3 painted faces. 2. Edges (the middle cube along each of the 12 edges) → exactly 2 painted faces. There are 12 edges, so 12 cubes. 3. Face-centres - 6 of them (one in the middle of each face) → 1 painted face. 4. The very centre - 1 cube, hidden inside → 0 painted faces. 5. Check it all adds up: 8 + 12 + 6 + 1 = 27 ✓.  The gold standard is this systematic by-position classification, and verifying the four groups total 27 - not just blurting \"12.\"",
-    "rubric": {
-      "strong": "Thinks about position (corner / edge / face / centre), reasons that two-painted-faces means edge cubes, counts 12 edges, and checks the four categories sum to 27. Often gestures or sketches.",
-      "developing": "Has the right idea that different positions get different amounts of paint, and gets some categories, but needs help being systematic or miscounts a group. Recovers when asked to check the total.",
-      "weak": "Guesses a number with no spatial reasoning, or can't picture the 3×3×3 cube at all. Doesn't separate positions."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Confusing edges with corners (corners have 3 faces, not 2).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Forgetting the hidden centre cube exists, so the total doesn't reach 27.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Answering for a different paint-count (e.g. giving the 8 corners or 6 faces).",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Where on the big cube would a little cube get paint on exactly two sides - a corner, an edge, or a flat face?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "How many edges does a cube have? How many of these middle-of-edge cubes are there?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Add up your groups - corners, edges, faces, centre. Does it come to 27?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Think about *where a small cube sits. A corner cube shows three painted faces - that's too many. Where shows exactly two?\"*",
-      "\"A cube along the middle of an edge has two faces showing. How many edges does a cube have?\"",
-      "\"Count the cubes on the 12 edges (not the corners). Then check all your groups add to 27.\""
-    ]
+    "modelReasoningPath": "Imagine the positions: 8 corner cubes have 3 painted faces. 12 edge cubes (along each of the 12 edges of the large cube, each edge contributes 1 non-corner cube) have exactly 2 painted faces. 6 face-centre cubes have 1 painted face. 1 centre cube has 0 painted faces. Total: 8 + 12 + 6 + 1 = 27 ✓.\n\nWhat to listen for: Does the child visualise the cube systematically by thinking about where each small cube sits? Using hands to point to corners, edges, and faces is a very good sign. A child who jumps to 12 without checking the other cases should be asked to verify the total adds to 27. ---"
   },
   {
     "id": "MA-C3",
     "subject": "maths",
     "topic": "structured-problem-solving",
     "difficulty": 3,
-    "questionType": "Structured",
+    "questionType": "Structured Problem Solving",
     "title": "The Running Track",
     "tags": [],
-    "question": "Picture a running track. It's got two straight sections down the sides, and two curved, half-circle ends, all joined up into one big loop. Each of the straight sections is 80 metres long, and one full lap all the way round comes to 400 metres. So here's my question: what's the distance straight across from one side to the other - in other words, the width of the track?",
-    "answer": "About 76.4 m (exactly 240 ÷ π metres).",
-    "modelReasoningPath": "1. Split the lap into parts: two straights + two curved ends. The straights are 2 × 80 = 160 m. 2. Subtract: the curved ends together are 400 − 160 = 240 m. 3. The key decomposition: the two half-circle ends join to make one whole circle, so that circle's circumference is 240 m. 4. Circumference = π × diameter, so the width (diameter) = 240 ÷ π ≈ 76.4 m. (Leaving it as \"240 ÷ π\" with a clear explanation is perfectly fine if they don't recall π ≈ 3.14.)  The gold standard is the decomposition - peeling off the straights, then realising two semicircles = one circle.",
-    "rubric": {
-      "strong": "Subtracts the straights, recognises the two semicircles form one full circle of circumference 240 m, and uses C = πd to get the diameter (or leaves 240 ÷ π and explains it). Clear structure throughout.",
-      "developing": "Gets the 240 m for the curves, but needs a nudge to see the two ends make a complete circle, or to recall how circumference relates to diameter. The decomposition instinct is there.",
-      "weak": "Doesn't separate straights from curves, or treats the whole 400 m as a circle, or has no link between a circle's perimeter and its width. No clear plan."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Forgetting to subtract the two straight sections before dealing with the curves.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Treating each end as a full circle (using 240 as two circles, or halving incorrectly).",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Mixing up radius and diameter, or using area (πr²) instead of circumference.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "The lap is made of straight bits and curved bits. How much of the 400 m is straight?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "The two curved ends - if you pushed them together, what shape would they make?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "You know that circle is 240 m around. How do you get from the distance around a circle to the distance across it?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Break the lap into pieces. First take away the two straight sections - how much is left for the curves?\"",
-      "\"Those two half-circle ends - put them together and they make one full circle. So that circle is 240 m all the way round.\"",
-      "\"The distance around a circle is π times the distance across. So divide 240 by π to get the width.\""
-    ]
+    "question": "A standard running track has two straight sections and two semicircular ends, making a complete loop. Each straight section is 80 metres long. The total length of one lap around the outside is 400 metres. What is the distance from one straight edge to the other - the width of the track?",
+    "answer": "Approximately 76.4 m (exactly 240/π metres).",
+    "modelReasoningPath": "The two straights contribute 2 × 80 = 160 m. The remaining 400 − 160 = 240 m comes from the two semicircular ends, which together form one complete circle. So the circumference of that circle is 240 m. Since C = πd, the diameter = 240/π ≈ 76.4 m.\n\nWhat to listen for: The key decomposition step - realising the two semicircles together make one circle - is the crux. Does the child set up the problem by subtracting the straight sections first? Do they know the circumference formula? If they don't know π ≈ 3.14, that's fine - they can leave the answer as 240/π and explain what they've done. ---"
   },
   {
     "id": "MA-C4",
     "subject": "maths",
     "topic": "structured-problem-solving",
     "difficulty": 3,
-    "questionType": "Structured",
+    "questionType": "Structured Problem Solving",
     "title": "The Handshake Problem",
     "tags": [],
     "question": "At a party, every person shakes hands with every other person exactly once. There are 45 handshakes in total. How many people are at the party?",
     "answer": "10 people.",
-    "modelReasoningPath": "- Building up: the 1st person shakes 9 hands - wait, we don't know it's 10 yet, so build the count: with each new person added, they shake hands with everyone already there. 1 + 2 + 3 + … keeps a running total of handshakes; it reaches 45 when you've added up 1+2+…+9 = 45, which happens with 10 people. (Equivalently: person 1 shakes 9, person 2 shakes 8 new, … 9+8+…+1 = 45.) - Formula: with n people, handshakes = n × (n − 1) ÷ 2 (each of n people shakes n − 1 others, divided by 2 because each handshake is counted from both ends). Set equal to 45: n(n − 1) = 90, and 10 × 9 = 90, so n = 10.  The gold standard is recognising that each handshake involves two people, so you can't just multiply people by something - you must avoid double-counting.",
-    "rubric": {
-      "strong": "Uses a systematic method (the \"each new person shakes all previous → 1+2+…\" sum, or the n(n−1)÷2 formula) and explains the \"divide by 2 / don't double-count\" idea. Lands on 10 and can justify it.",
-      "developing": "Tries sensible values and adds up handshakes by hand (e.g. checks what 10 people give), reaching 45 by organised trial, even without the formula. Sound, slower.",
-      "weak": "Multiplies in a way that double-counts (e.g. 10 × 9 = 90 and stops, or guesses) with no awareness that each handshake is shared between two people."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Forgetting to halve",
-        "reveals": "giving an answer based on n(n−1) without the ÷ 2 (double-counting every handshake)."
-      },
-      {
-        "mistake": "Counting a person shaking their own hand, or re-counting A-B and B-A as two.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Testing one value and not adjusting systematically.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "When two people shake hands, how many handshakes is that - one or two?",
-        "goodResponse": "Targets double-counting."
-      },
-      {
-        "probe": "If a new person joins a group, how many new handshakes do they add?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Try a small party first - how many handshakes with 3 people? With 4? See the pattern build.",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Start small. With 3 people, how many handshakes? With 4? Build the numbers up.\"",
-      "\"Each time one more person arrives, they shake hands with everyone already there. So the totals grow 1, then +2, then +3…\"",
-      "\"Keep adding 1 + 2 + 3 + … until you hit 45. How many people does that take?\""
-    ]
+    "modelReasoningPath": "With n people, the number of handshakes = n(n − 1) ÷ 2. Setting this equal to 45: n(n − 1) = 90. Testing n = 10: 10 × 9 = 90 ✓.\n\nWhat to listen for: Does the child recognise that each handshake involves two people, so you can't just multiply? Do they approach it systematically - either by formula or by the \"each new person shakes with all previous\" method? Both are excellent. ---"
   },
   {
     "id": "MA-C5",
     "subject": "maths",
     "topic": "structured-problem-solving",
     "difficulty": 4,
-    "questionType": "Structured",
+    "questionType": "Structured Problem Solving",
     "title": "The Village Well",
     "tags": [],
-    "question": "A village has a single well. Every day, four families each take the same amount of water from it, and every night the well slowly refills itself at a steady rate. Now, here's the thing: if six families lived there instead of four, the well would run dry after exactly 12 days. But if only two families lived there, the well would never run dry at all - in fact it'd slowly overflow. So, if the well starts off completely full - how many days would it last with the four families?",
+    "question": "A village has one well. Every day, four families each draw the same amount of water from it. The well refills itself at a constant rate overnight. If six families lived in the village instead of four, the well would run dry after exactly 12 days. If only two families lived there, the well would never run dry - in fact it would slowly overflow. Assuming the well starts full, how many days would it last with four families?",
     "answer": "36 days.",
-    "modelReasoningPath": "This is one of the hardest questions - reward structure and insight, not a complete solution. 1. Name the quantities: C = how much the well holds, r = how much it refills each night, d = how much one family uses a day. 2. The key insight: \"2 families would never run dry\" means the refill keeps pace with 2 families' use - so the break-even point is r = 2d (2 families' usage exactly equals the refill). 3. With 6 families, the well loses (6d − r) = (6d − 2d) = 4d each day, and it empties in 12 days. So C = 12 × 4d = 48d. 4. With 4 families, it loses (4d − 2d) = 2d a day. Time to empty = 48d ÷ 2d = 36 days.  The gold standard moment is realising 2 families = break-even (refill = 2 families' use) - that one idea unlocks everything.",
-    "rubric": {
-      "strong": "Names variables (or clear words), interprets \"never runs dry\" as the refill matching 2 families' usage (break-even), and chains through to 36 - or gets most of the way with sound structure. Exceptional insight if they spot the break-even unprompted.",
-      "developing": "Sets up the situation sensibly (a draining/refilling well, net loss per day) and makes progress, but doesn't crack what \"never runs dry\" tells them without a nudge. Good structure, stuck on the key insight.",
-      "weak": "No way to organise the three quantities; treats it as a single simple division, or can't interpret the \"two families\" clue at all. No structured attempt."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Ignoring the refill entirely and just scaling 12 days from 6 families to 4.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Misreading \"never runs dry\" as irrelevant flavour rather than the crucial break-even clue.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Setting up net loss wrongly (forgetting to subtract the refill).",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "What does it tell you that with only 2 families the well never empties? What must the refill be doing?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Each day, the families take water out and the well puts some back. What's the *net change with 6 families?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "If 2 families' worth of water is exactly replaced each night, how much does the well lose with 4 families?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"There are three things moving here: how much the well holds, how much it refills each night, and how much each family takes. Try giving them names.\"",
-      "\"'With 2 families it never runs dry' is a big clue - it means the nightly refill is exactly 2 families' worth of water.\"",
-      "\"So with 6 families it loses 4 families' worth a day and empties in 12 days - that tells you how big the well is. Now do 4 families.\""
-    ]
+    "modelReasoningPath": "Let C = capacity of the well, r = daily refill rate, d = daily usage per family. With 6 families: daily net loss = 6d − r. Well runs dry in 12 days: 12(6d − r) = C → 72d − 12r = C. The \"2 families never run dry\" condition means 2d ≤ r. The borderline case - just barely never running dry - is r = 2d. Substituting r = 2d into the first equation: 72d − 12(2d) = C → 72d − 24d = C → C = 48d. With 4 families: daily net loss = 4d − 2d = 2d. Days until empty = 48d ÷ 2d = 36 days.\n\nWhat to listen for: This is one of the harder questions. Award credit for any structured approach - naming variables, correctly interpreting \"never runs dry,\" or getting partway through. A child who correctly identifies that 2 families is the break-even point is showing excellent insight. ---"
   },
   {
     "id": "MA-C8",
     "subject": "maths",
     "topic": "structured-problem-solving",
     "difficulty": 5,
-    "questionType": "Structured",
+    "questionType": "Structured Problem Solving",
     "title": "The Camel and the Desert",
     "tags": [],
-    "question": "A man has 3,000 bananas and a camel, and he wants to get as many bananas as he can across a desert that's 1,000 miles wide. The camel can only carry 1,000 bananas at a time, and here's the catch - it eats exactly one banana for every mile it walks. So what's the largest number of whole bananas the man can arrive with on the other side?",
-    "answer": "833 bananas (the maths gives 833⅓, but bananas are whole, so 833).",
-    "modelReasoningPath": "This is the hardest question in the bank - do not expect a full solution. Score the structural insights, not the final number. 1. See that 3,000 bananas can't be carried at once (the camel holds 1,000), so the camel must make multiple trips, shuttling bananas forward in stages and coming back for more. 2. See that return trips cost bananas too - the camel eats on the way back, so moving the whole pile forward is expensive while there's lots to carry. 3. The efficient method uses depots: move everything forward a short distance, then a bit further with fewer trips as the pile shrinks. For miles 0-200, with 3,000 bananas, the camel makes 3 trips forward and 2 back (5 legs × 200 = 1,000 eaten), leaving 2,000 at mile 200. From 200 to 533⅓, 2 forward + 1 back (3 legs), leaving 1,000. From 533⅓ to the end, one straight trip - arriving with 833.  The gold standard here is structural: realising multiple trips are forced, that return journeys are a real cost, and that stockpiling at intermediate points helps.",
-    "rubric": {
-      "strong": "Grasps that the camel must make several trips and that eating on the return is a genuine cost; reaches the depot idea (stockpile partway and reduce trips as the pile shrinks). A near-complete numerical answer is exceptional, not required.",
-      "developing": "Sees that one trip can't carry 3,000 and that multiple trips are needed, and engages with the banana-eating cost, but doesn't reach the staged-depot strategy without help. Real partial insight.",
-      "weak": "Treats it as 3,000 − 1,000 (one trip), ignoring that the camel can't carry it all or that it eats as it walks. No structural grip."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Forgetting the camel eats on the way back, so return trips waste bananas.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Assuming all 3,000 can somehow move at once, or that you simply subtract 1,000 miles of eating.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Not noticing that once the pile drops below 2,000 (then below 1,000), fewer trips are needed",
-        "reveals": "so the \"cost per mile\" falls."
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "The camel can only carry 1,000 but there are 3,000 bananas. So what does it have to do?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "When the camel goes back for the next load - is it still eating bananas on that return journey?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Would it help to move bananas forward to a stockpile partway, rather than all the way in one go?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"The camel can't carry 3,000 at once - only 1,000. So straight away, what does that force it to do?\"",
-      "\"Every mile it walks - forwards *or backwards - it eats a banana. So those trips back to fetch more cost you bananas too.\"*",
-      "\"The trick is to shift the whole pile forward just a little at a time, building up a stockpile, so that once the pile is smaller you need fewer trips. Think about how the cost drops once you're under 2,000, then under 1,000.\""
-    ]
+    "question": "A man has 3,000 bananas and a camel. He wants to transport as many bananas as possible across a 1,000-mile desert. The camel can carry at most 1,000 bananas at a time, and eats exactly one banana per mile it walks. What is the maximum number of whole bananas the man can arrive with at the other side?",
+    "answer": "833 bananas (technically 833⅓, but since bananas are whole, 833).",
+    "modelReasoningPath": "What to listen for: Don't expect a full solution. Watch whether the child understands why the camel must make multiple trips. Do they figure out that leaving stockpiles at intermediate points helps? Do they see that the camel eating bananas on return trips is a real cost? Award credit generously for structural insight, even without a final answer. --- ## SECTION D - Pattern, Proof & Explanation Quality Questions that test whether a child can spot a rule, articulate it clearly, and begin to explain why it must be true. ---"
   }
 ]

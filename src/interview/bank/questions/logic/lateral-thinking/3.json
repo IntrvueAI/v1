@@ -4,183 +4,47 @@
     "subject": "logic",
     "topic": "lateral-thinking",
     "difficulty": 3,
-    "questionType": "Lateral",
+    "questionType": "Lateral Thinking",
     "title": "The Man in the Lift",
     "tags": [],
-    "question": "A man lives on the 10th floor of a tall block of flats. Every morning he takes the lift all the way down to the ground floor and heads off to work. When he comes home in the evening, here's the strange thing: on rainy days he takes the lift all the way back up to the 10th floor - but on dry days, he only takes it up to the 7th floor, and then walks up the last three flights of stairs. He's not doing it for exercise, and he's not stopping to see a friend. So why does he do it?",
-    "answer": "He is too short to reach the button for the 10th floor; he can only reach the 7th. On rainy days he has an umbrella, which he uses to press the higher button. (Accept equivalents: a child, a wheelchair user - anything that explains a height/reach difference plus the umbrella variable.)",
-    "modelReasoningPath": "1. Notice the genuine puzzle is the asymmetry: down is always fine, up depends on weather. 2. Ask what is physically different on a rainy day → he carries an umbrella. 3. Connect the umbrella to the lift buttons → reach. The constraint is his height, not his preference.  The key is shifting from psychological explanations (\"he likes the walk\") to physical ones (he can't reach), prompted by the rain clue.",
-    "rubric": {
-      "strong": "Zeroes in on what changes between wet and dry days (the umbrella) and links it to a physical constraint. Asks probing yes/no questions (\"Is something different about him on rainy days?\"). May well solve it unaided.",
-      "developing": "Explores plausible angles and, given the \"what's different on a rainy day?\" prompt, follows the umbrella thread to the answer. Reasoning is sound once aimed.",
-      "weak": "Offers only behaviour/preference explanations and doesn't use the rain detail as a clue even when pointed at it. Doesn't generate testable questions."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Fixating on exercise or laziness despite being told it isn't exercise.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Ignoring the rain as decorative rather than central.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Not asking why the difference is weather-dependent.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "What's different about him, or about what he's carrying, on a rainy day compared to a dry day?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Is there a reason he might not be able to press the button himself on a dry day?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"The real puzzle is why going DOWN is always fine, but going UP depends on the weather. What changes with the weather?\"",
-      "\"What does he carry on a rainy day that he doesn't carry on a dry one?\"",
-      "\"Think about the buttons in the lift and how tall he is. How could an umbrella help him reach a higher one?\""
-    ]
+    "question": "A man lives on the 10th floor of a tall apartment block. Every morning, he takes the lift from the 10th floor all the way down to the ground floor and goes to work. When he returns in the evening, on rainy days he takes the lift all the way back up to the 10th floor. But on dry days, he takes the lift only as far as the 7th floor and then walks up the remaining three flights of stairs. He is not taking exercise. He is not meeting a friend. Why does he do this?",
+    "answer": "He is too short to reach the button for the 10th floor. On rainy days, he uses his umbrella to press it.",
+    "modelReasoningPath": "What to listen for: Listen for whether the child questions physical circumstances (height, disability, buttons), rather than assuming the puzzle is about human behaviour or preference. If they're stuck, ask: \"What would be different about him on a rainy day compared to a dry day?\" The imaginative leap to the umbrella is delightful when it comes. A child who says \"what if he can't reach the button?\" and follows that thread is reasoning exactly right. ---"
   },
   {
     "id": "LG-B3",
     "subject": "logic",
     "topic": "lateral-thinking",
     "difficulty": 3,
-    "questionType": "Lateral",
+    "questionType": "Lateral Thinking",
     "title": "The Poisoned Coffee",
     "tags": [],
     "question": "Two men sit down at a café and order the same drink: iced coffee. The drinks arrive at the same time. The first man gulps his down quickly. The second man sips his slowly. Shortly after, the second man is taken to hospital - he had been poisoned. The poison was definitely in both drinks. Why did the first man survive?",
-    "answer": "The poison was in the ice. The fast drinker finished before the ice melted and released the poison; the slow sipper gave the ice time to melt.",
-    "modelReasoningPath": "1. Both drinks were poisoned, yet only the slow drinker fell ill - so the difference must be time, not dose. 2. Ask what about an iced drink changes over time → the ice melts. 3. Separate \"the drink\" from \"the ice\": if the poison is frozen in the ice, only melting releases it.  The decisive move is realising the drink is not uniform - it has a component (ice) that changes with time.",
-    "rubric": {
-      "strong": "Locks onto the only variable that differs (speed → time) and reasons that the drink must change over time, landing on the ice. Asks sharp questions (\"Were the drinks exactly identical?\").",
-      "developing": "Notices the speed difference is the clue and, prompted to think about how the drink changes over time, reaches the ice. Right track, needs a nudge to the mechanism.",
-      "weak": "Attributes survival to body size, tolerance, or \"he was lucky,\" ignoring that the only stated difference is drinking speed. Doesn't treat the drink as having parts."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Explaining it by the men (\"one was bigger/stronger\") rather than the drink.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Assuming the drink is a uniform liquid",
-        "reveals": "missing the ice entirely."
-      },
-      {
-        "mistake": "Forgetting the prompt says both drinks were poisoned (so it isn't \"one wasn't poisoned\").",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "The only difference is how fast they drank. So what might change about the drink while it sits?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Were the two drinks identical in every single part?",
-        "goodResponse": "Steers toward the ice."
-      }
-    ],
-    "hints": [
-      "\"The only difference is how fast they drank. So the clue is about time - what happens to a drink over time?\"",
-      "\"What part of an iced coffee changes if you leave it sitting for a while?\"",
-      "\"Where could the poison be hiding so it only spreads into the drink once the ice melts?\""
-    ]
+    "answer": "The poison was in the ice. The man who drank quickly finished his coffee before the ice had melted and the poison had dissolved into the drink. The man who sipped slowly gave the ice time to melt.",
+    "modelReasoningPath": "What to listen for: Does the child consider the physical properties of the drink, or do they focus only on human behaviour? The key leap is separating \"the drink\" from \"the ice.\" A child who asks \"were the drinks identical in every way?\" is thinking well. If they get stuck, prompt: \"Think about how the drink might change over time.\" ---"
   },
   {
     "id": "LG-B4",
     "subject": "logic",
     "topic": "lateral-thinking",
     "difficulty": 3,
-    "questionType": "Lateral",
+    "questionType": "Lateral Thinking",
     "title": "The Parachute",
     "tags": [],
-    "question": "A man is found dead in the middle of a large, open field. He's wearing a backpack. There are no footprints anywhere in the field, and there's no one else around. How did he die?",
-    "answer": "His parachute failed to open - the \"backpack\" is an unopened parachute. He fell from above, which is why there are no footprints.",
-    "modelReasoningPath": "1. Treat the no footprints as the load-bearing clue: he didn't walk in. 2. If he didn't arrive horizontally, he arrived vertically - from above. 3. Combine \"from above\" + \"backpack\" → parachute. The backpack isn't luggage; it's the failed equipment.  The leap is allowing vertical movement into a scenario the mind defaults to picturing horizontally.",
-    "rubric": {
-      "strong": "Uses \"no footprints\" to rule out walking and reasons toward arrival from above; connects the backpack to a parachute. Probes the backpack's contents (\"Is there something in the backpack?\").",
-      "developing": "Recognises the no-footprints clue is important and, prompted to think about how else he could have got there, reaches the falling/parachute idea. Sound once the vertical angle is suggested.",
-      "weak": "Keeps him walking into the field (despite no footprints) or invents unrelated causes, never questioning how he arrived. Ignores the backpack as a clue."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Picturing only horizontal arrival and missing the \"from above\" possibility.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Treating the backpack as irrelevant background detail.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Not registering that \"no footprints\" actively rules something out.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "What does the absence of footprints tell you about how he got there?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "What might be in the backpack?",
-        "goodResponse": "Nudges parachute."
-      }
-    ],
-    "hints": [
-      "\"What's the strangest thing about the scene? Look hard at the footprints.\"",
-      "\"No footprints means he didn't walk in. So how else could he have got to the middle of the field?\"",
-      "\"If he came down from above, what might that backpack on his back really be?\""
-    ]
+    "question": "A man is found dead in the centre of a large, open field. He is wearing a backpack. There are no footprints in the field and no one else nearby. How did he die?",
+    "answer": "His parachute failed to open. The backpack is the parachute.",
+    "modelReasoningPath": "What to listen for: Does the child consider vertical movement as well as horizontal movement? Most children imagine the man walked into the field - the absence of footprints should dislodge this assumption. Ask: \"What does the absence of footprints tell you?\" A child who asks \"does the backpack contain anything?\" is probing cleverly. The eureka moment of connecting \"backpack + fell from above + no footprints\" is satisfying to watch. ---"
   },
   {
     "id": "LG-B6",
     "subject": "logic",
     "topic": "lateral-thinking",
     "difficulty": 3,
-    "questionType": "Lateral",
+    "questionType": "Lateral Thinking",
     "title": "The Empty Hospital Room",
     "tags": [],
     "question": "A woman walks into a hospital room and sees a man lying in a bed connected to various machines. She walks over, switches off one of the machines, and walks out. Soon afterwards, the man in the bed dies. The woman is not arrested, charged, or even questioned by the police. Why not?",
-    "answer": "The switched-off machine didn't cause the death - e.g. she's a nurse/doctor turning off a device that was no longer needed, or she turned off something irrelevant (a TV, a lamp) and he died of natural causes. The key is breaking the assumed link \"machine off → man died.\"",
-    "modelReasoningPath": "1. Resist the assumption that switching off the machine caused the death - the puzzle plants a false cause. 2. Question both threads: was she authorised (clinical staff), and was the machine even relevant to his survival (maybe it was a TV)? 3. The broader the questioning across authority and causation, the stronger the thinking.  This question specifically tests causation vs. correlation: two events near in time aren't necessarily cause and effect.",
-    "rubric": {
-      "strong": "Questions whether the machine caused the death at all, not just whether she had permission. Generates more than one explanation across both legal and causal angles. Explicitly separates \"after\" from \"because of.\"",
-      "developing": "Offers a sensible single explanation (usually \"she's a nurse / she had permission\") and, when prompted for another reason, can find a second. On the right lines but initially narrow.",
-      "weak": "Assumes she's guilty and only searches for how she \"got away with it,\" never questioning whether she caused the death. Can't move off the causal assumption even when prompted."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Assuming guilt and hunting only for a loophole.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Locking onto a single explanation and stopping.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Treating \"the man died soon after\" as proof the machine caused it (post hoc reasoning).",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Did switching off the machine definitely cause his death?",
-        "goodResponse": "Targets causation directly."
-      },
-      {
-        "probe": "Is there any other reason she might not even be questioned?",
-        "goodResponse": "Pushes for breadth."
-      }
-    ],
-    "hints": [
-      "\"Does switching off the machine definitely mean she caused his death? Are you sure those two things are linked?\"",
-      "\"Who in a hospital is allowed to switch off a machine? And what if that machine wasn't keeping him alive at all?\"",
-      "\"Try two separate ideas: maybe she's a nurse doing her job - or maybe the machine she switched off was just a TV.\""
-    ]
+    "answer": "She is a nurse or doctor switching off a machine that is no longer needed - for instance, switching off a ventilator after the patient has already died, or (in a legitimate clinical context) turning off a life-support machine as part of authorised end-of-life care. Alternatively: she switched off a machine that was irrelevant to his survival - for instance, a TV or a lamp - and his death was from natural causes.",
+    "modelReasoningPath": "What to listen for: Does the child assume guilt and look for an escape route (\"maybe she had permission\")? Or do they question whether switching off the machine was the cause of death at all? The broader the child's questioning - covering both legal authority and causal connection - the better. If they only consider \"she had permission,\" probe: \"Is there any other reason she might not be questioned?\" --- ## SECTION C - Verbal & Conceptual Reasoning Questions about language, analogy, and ideas. These test how precisely and flexibly a child can think with words. ---"
   }
 ]

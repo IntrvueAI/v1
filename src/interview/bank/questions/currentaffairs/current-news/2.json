@@ -4,257 +4,58 @@
     "subject": "currentaffairs",
     "topic": "current-news",
     "difficulty": 2,
-    "questionType": "Current News",
-    "title": "The News Opener (always ask this first)",
+    "questionType": "Current News & World Affairs",
+    "title": "The News Opener",
     "tags": [],
     "question": "Have you been following anything in the news recently? Tell me about it - what's happening, and what do you make of it?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "This opener is the most revealing question in the interview. A strong child names a specific story (not just a topic), explains it accurately in their own words, and offers a genuine opinion - ideally including what they find confusing, surprising, or troubling. The hallmark is cleanly separating fact (\"what happened\") from view (\"what I make of it\"), and saying \"I think\" when they're giving an opinion. Naming a gap in their own understanding (\"I don't fully get why the two sides can't agree\") is a plus, not a weakness.",
-    "rubric": {
-      "strong": "A specific story, explained accurately, with a reasoned personal view and a clear fact/opinion distinction. Engages with follow-ups, and is honest about the edges of their knowledge.",
-      "developing": "Knows of a real story but is vague on the detail, or has facts but only a thin opinion (or an opinion with shaky facts). Comes to life with follow-up prompts.",
-      "weak": "Only a broad topic with no actual event (\"climate change\"), or an opinion presented as fact with no grounding, or \"I don't really follow the news\" with no attempt to engage."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "A topic, not a story (\"I've heard about the war\") with no specifics.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Opinion dressed as fact (\"the government is just bad\") with no event behind it.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Bluffing a half-remembered headline and inventing detail",
-        "reveals": "worse than admitting uncertainty."
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Who do you think is most affected by this story?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "What do you think should happen next - and who'd disagree with that?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Is there anything about this you don't fully understand yet?",
-        "goodResponse": "Reward honest gap-spotting."
-      },
-      {
-        "probe": "Do you think most people your age know about this? Why or why not?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"It doesn't have to be politics - it could be sport, science, something local, anything you've noticed recently.\"",
-      "\"Have you talked about anything in the news at home or at school lately?\"",
-      "\"Pick one thing you've heard about, even if you only know a little - tell me what you do know, and what you'd want to find out.\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "A strong response: The child names a specific story (not just a topic), explains it accurately in their own words, and offers a genuine opinion on it - including what they find confusing, surprising, or troubling about it.\n\nA weak response: A vague topic (\"I've been hearing about climate change\") with no specific event, or an opinion with no factual grounding (\"I think the government is doing badly\").\n\nWhat to listen for: Does the child distinguish between facts and their own opinions? Do they say \"I think\" when they are giving a view, rather than presenting opinion as fact? Top schools value intellectual honesty over confident bluffing. ---"
   },
   {
     "id": "CA-A2",
     "subject": "currentaffairs",
     "topic": "current-news",
     "difficulty": 2,
-    "questionType": "Current News",
+    "questionType": "Current News & World Affairs",
     "title": "One Problem to Solve",
     "tags": [],
     "question": "If you could solve one problem in the world - just one - what would you choose, and why that one above all others?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "The hard part isn't naming a problem - anyone can - it's justifying it above all others. Why this one? A strong child names something specific (\"extreme poverty,\" not \"inequality\"), gives a reason it beats the other candidates (most urgent? most foundational, so solving it unlocks others? most solvable?), acknowledges a trade-off (\"if I poured everything here, something else gets less\"), and shows some grasp of why it hasn't been solved already. The reasoning behind the choice matters far more than which problem they pick.",
-    "rubric": {
-      "strong": "Specific problem, with a genuine argument for why this one above others, plus awareness of trade-offs or why it's unsolved. Holds the comparison in mind, not just the single choice.",
-      "developing": "Names a real, specific problem and one reason for caring, but treats \"why this one rather than another\" as obvious and doesn't really compare. Engages when pushed to compare.",
-      "weak": "A vague category (\"badness,\" \"war\") with no reason for the choice, or can't say why their problem matters more than any other. No sense of prioritisation."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Naming a problem but giving no reason for choosing it over others",
-        "reveals": "missing the whole point of \"just one.\""
-      },
-      {
-        "mistake": "Picking something so broad it isn't actionable (\"sadness,\" \"evil\").",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Assuming their solution is easy and ignoring why the problem persists.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Why that one rather than [a big problem they didn't mention - disease, climate, war]?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Who would resist your solution, and why might they have a point?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "If you fixed that, would other problems get easier - or is it separate?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Think about problems that affect lots of people - health, poverty, the environment, fairness. Any of those pull at you?\"",
-      "\"Is there a problem you'd most hate to still exist when you're grown up?\"",
-      "\"Pick any one to start with - we can always change it - and tell me why it matters to you.\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response."
   },
   {
     "id": "CA-A3",
     "subject": "currentaffairs",
     "topic": "current-news",
     "difficulty": 2,
-    "questionType": "Current News",
+    "questionType": "Current News & World Affairs",
     "title": "Richer Countries & Poorer Countries",
     "tags": [],
     "question": "Do you think wealthy countries have a responsibility to help poorer ones - or should each country focus on its own people first?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "The genuine tension is national interest vs. global solidarity, and both sides have serious arguments. A strong child takes a side and shows they understand the other: - For helping: global inequality is partly the result of history (colonialism, trade systems); extreme poverty causes preventable deaths; in a connected world, problems don't stay contained. - Against an obligation: governments are elected to serve their own citizens first; aid can create dependency; \"charity begins at home.\" The hallmark is \"I think they should help, but I can see why people disagree, because…\" - treating it as a real dilemma, not a question with an obvious answer.",
-    "rubric": {
-      "strong": "Commits to a position, gives reasons, and articulates the strongest version of the opposing view. Engages with the moral-vs-legal and luck-vs-government nuances when probed.",
-      "developing": "Takes a side with a reason, but treats the other side as obviously wrong or can only caricature it. Acknowledges complexity when prompted.",
-      "weak": "\"Of course they should help\" / \"no, look after your own\" with no reasons, and no sense that a thoughtful person could disagree."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Treating it as obvious in either direction, with no acknowledgement of the other side.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Pure emotional appeal (\"poor people are sad\") with no argument about responsibility.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Not distinguishing \"it would be kind to help\" from \"they have a duty to help.\"",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "(If they say help:) \"But a government is elected by its own people, with its own poor to look after - why should they send money abroad?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "(If they say don't:) \"If a country got rich partly through its history with poorer ones, does that change things?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Does it matter whether the country is poor through bad luck or bad government?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Is there a difference between a *moral responsibility and a legal one?\"*",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Think of it like people: if you have plenty and your neighbour has nothing, do you owe them anything?\"",
-      "\"What's one reason a country *should help - and one reason it might focus on its own people?\"*",
-      "\"You don't have to be certain - just lean one way for now and tell me why.\""
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Does the child acknowledge the strength of the opposing view? A child who says \"I think they should help, but I can see why some people think otherwise because...\" is showing real maturity. A child who treats the question as having an obvious answer isn't engaging with it properly."
   },
   {
     "id": "CA-A4",
     "subject": "currentaffairs",
     "topic": "current-news",
     "difficulty": 2,
-    "questionType": "Current News",
+    "questionType": "Current News & World Affairs",
     "title": "Is It Ever Right to Break the Law?",
     "tags": [],
     "question": "Can you think of a situation where breaking the law might actually be the right thing to do?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "Most children can reach \"yes, sometimes\" with a historical example - hiding people from the Nazis, the suffragettes, Rosa Parks, helping an enslaved person escape. The richer thinking is in the deeper question: what makes a law unjust? Who decides? If anyone who thought a law was wrong could just break it, could society function at all? A strong child both gives a concrete example and grapples with where the line sits - ideally distinguishing a law that is morally wrong from one they simply find inconvenient.",
-    "rubric": {
-      "strong": "Gives a genuine example of a justified law-break and engages with the limit: how unjust must a law be, who decides, and why \"I disagree with it\" isn't enough on its own. Distinguishes unjust laws from merely disliked ones.",
-      "developing": "Reaches \"it depends on the law\" with an example, but doesn't probe where the line is or who decides, until pushed. Starting point of \"always obey\" is fine if they move.",
-      "weak": "\"You must always follow the law, full stop\" with no flexibility even when offered an extreme case, or \"break any law you don't like\" with no limiting principle."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Treating all laws as equally sacred, even when given the hiding-from-the-Nazis case.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "The opposite: \"if it's unfair, just break it,\" with no worry about who judges fairness.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Confusing disagreeing with a law with the law being unjust.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "So where's the line? How unfair does a law have to be before breaking it is right?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "What if two people disagree about whether a law is unjust - say someone thinks a tax is unfair and refuses to pay? Are they justified too?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Is there a difference between breaking a law and working to change it?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Think back in history - have there been laws we'd now all agree were wrong?\"",
-      "\"Imagine a law that told you to do something clearly cruel. Would you have to obey it?\"",
-      "\"Start simple: are *all laws always right, or could a law itself be wrong? Give me your gut feeling and we'll build from there.\"*"
-    ]
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Does the child land on \"it depends on the law\" quickly, or do they initially say \"no, you should always follow the law\"? Either starting point is fine - what matters is the reasoning journey. The best responses distinguish between laws that are procedurally bad (e.g. poorly enforced) vs. laws that are morally wrong. ---"
   },
   {
     "id": "CA-A5",
     "subject": "currentaffairs",
     "topic": "current-news",
     "difficulty": 2,
-    "questionType": "Current News",
+    "questionType": "Current News & World Affairs",
     "title": "Britain and the Wider World",
     "tags": [],
-    "question": "Which country, or part of the world, do you think Britain has its most important relationship with right now - and why that one?",
-    "answer": "Open discussion - there is no single right answer; score the quality of reasoning.",
-    "modelReasoningPath": "This is the most knowledge-dependent question in the section, so calibrate expectations: genuine awareness matters, but reasoning still counts most. Plausible answers include the US (military alliance, cultural ties, trade), Europe (proximity, shared history, the post-Brexit relationship), Ukraine/Russia (conflict on Europe's doorstep), India or China (trade, geopolitics), or the Commonwealth. The strongest answers show that relationships are complicated - \"the US is our closest ally, but we don't always agree\"; \"China is a huge trade partner and a political rival.\" Honest uncertainty (\"I'm not sure, but I'd guess…\") beats confident bluffing.",
-    "rubric": {
-      "strong": "Names a relationship and gives a real reason, ideally showing it's not simple (ally-but-tensions, partner-but-rival). Honest about the limits of what they know.",
-      "developing": "Names a sensible country with a basic reason (\"the US, because they're our friends\"), but one-dimensional, and thin on recent events. Builds with prompts.",
-      "weak": "Can't name any relationship, or bluffs with invented detail, or picks somewhere with no reason at all. Confident-but-empty."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Bluffing",
-        "reveals": "confidently asserting something made-up rather than admitting uncertainty."
-      },
-      {
-        "mistake": "A flat \"they're our friends\" with no sense of trade, security, or history.",
-        "reveals": "what this reveals about their thinking"
-      },
-      {
-        "mistake": "Treating a relationship as purely good or purely bad, missing the mixed reality.",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "Has anything happened recently that affected that relationship?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "You said they're an ally - is it all straightforward, or are there tensions too?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      },
-      {
-        "probe": "Do you think Britain has more or less influence in the world than it did 20 years ago?",
-        "goodResponse": "engages thoughtfully and gives a reasoned response"
-      }
-    ],
-    "hints": [
-      "\"Think about countries Britain trades with, or has a history with, or relies on for security.\"",
-      "\"Is there a country that comes up a lot in the news in connection with Britain?\"",
-      "\"You don't need to be certain - make your best guess and tell me why you'd pick that one.\""
-    ]
+    "question": "What do you think is Britain's most important relationship with another country or region right now - and why?",
+    "answer": "Discussion question — there is no single correct answer. Assess the reasoning, honesty and perspective-taking, not a 'right' response.",
+    "modelReasoningPath": "What to listen for: Does the child have any genuine knowledge here, or are they bluffing? It's absolutely fine to say \"I'm not certain, but I think...\" - far better than false confidence. The most impressive answers show awareness that Britain's relationships are complicated (e.g. the US is an ally but there are tensions; China is a major trade partner but a political rival)."
   }
 ]

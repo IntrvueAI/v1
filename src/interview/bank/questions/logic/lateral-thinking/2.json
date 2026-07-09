@@ -4,41 +4,11 @@
     "subject": "logic",
     "topic": "lateral-thinking",
     "difficulty": 2,
-    "questionType": "Lateral",
+    "questionType": "Lateral Thinking",
     "title": "The Surgeon",
     "tags": [],
     "question": "A boy is badly injured in a road accident and is rushed to hospital. The surgeon looks at him on the operating table and says: 'I cannot operate on this child - he is my son.' But the boy's father died in the accident. How is this possible?",
-    "answer": "The surgeon is the boy's mother. (Also valid: a second father in a same-sex family, a stepfather/adoptive father - any answer that breaks the \"surgeon = male\" assumption.)",
-    "modelReasoningPath": "The puzzle works by exploiting an unstated assumption that the surgeon is a man. A strong candidate either spots it fast or - more valuably - notices what they were assuming: \"I kept picturing the surgeon as a man.\" The real prize is self-awareness about the assumption, not the speed of the answer.",
-    "rubric": {
-      "strong": "Solves it and can name the assumption they (or most people) make, or doesn't solve it instantly but explicitly interrogates \"what am I taking for granted about the surgeon?\" Reflective about their own thinking.",
-      "developing": "Gets there with the single nudge below and, when asked, recognises the gender assumption. Engaged but doesn't reach for self-examination on their own.",
-      "weak": "Proposes only literal escapes (\"the father came back to life,\" \"it's a ghost\") and, even after the nudge, can't locate the assumption. Treats the contradiction as a plot hole rather than a clue."
-    },
-    "commonMistakes": [
-      {
-        "mistake": "Insisting the father \"wasn't really dead\"",
-        "reveals": "refusing the premise instead of questioning the assumption."
-      },
-      {
-        "mistake": "Reaching the answer but missing the lesson (no awareness of why it was hard).",
-        "reveals": "what this reveals about their thinking"
-      }
-    ],
-    "liveProbes": [
-      {
-        "probe": "What assumptions are you making about the surgeon?",
-        "goodResponse": "Primary unlock."
-      },
-      {
-        "probe": "After a correct answer: \"Why do you think that was hard to see at first?",
-        "goodResponse": "Converts a right answer into evidence of insight."
-      }
-    ],
-    "hints": [
-      "\"Read it again - is there something you're picturing in your head that the puzzle never actually told you?\"",
-      "\"What are you assuming about the surgeon?\"",
-      "\"Does a surgeon have to be a man?\""
-    ]
+    "answer": "The surgeon is the boy's mother.",
+    "modelReasoningPath": "What to listen for: This puzzle reveals assumed gender roles. A child who gets it immediately deserves credit but miss the real lesson - ask them: \"Why did you find that hard at first?\" or \"What assumption were you making?\" A child who cannot get it should be nudged: \"What assumptions are you making about the surgeon?\" The inability to see past the assumption is not a failing - it's the point of the puzzle. Reward self-awareness about the assumption, not just the answer. ---"
   }
 ]
