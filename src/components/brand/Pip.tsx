@@ -1,55 +1,35 @@
 /**
- * Pip — the intrvue owl mascot. Built from the design mock (design-reference/Explorations.html).
- * `Pip` is the full character (belly + big eyes) for hero/coach moments; `PipMark` is the compact
- * head used as the logo glyph. Both scale from a single `size` (height in px).
+ * Pip — the intrvue owl mascot, as drawn in design-reference/Intrvue Bright Deck.html.
+ * One friendly SVG used everywhere; `size` is the width in px, `float` adds the gentle bob.
  */
+import { cn } from '@/lib/utils';
 
-const INK = 'hsl(var(--ink))';
-const CORAL = 'hsl(var(--primary))';
-const TAN = '#E8DFD0';
-const CREAM = 'hsl(var(--cream))';
-
-/** Full owl. Base geometry is 120×132; everything scales by size/132. */
-export function Pip({ size = 120, className }: { size?: number; className?: string }) {
-  const f = size / 132;
-  const px = (n: number) => `${n * f}px`;
-  const abs = { position: 'absolute' as const };
+export function Pip({ size = 96, float = false, className }: { size?: number; float?: boolean; className?: string }) {
   return (
-    <div className={className} style={{ position: 'relative', width: px(120), height: px(132), flex: '0 0 auto' }} aria-hidden="true">
-      {/* body */}
-      <div style={{ ...abs, inset: 0, background: INK, borderRadius: '46% 46% 48% 48%' }} />
-      {/* ear tufts */}
-      <div style={{ ...abs, top: px(-8), left: px(14), width: px(22), height: px(22), background: INK, transform: 'rotate(45deg)' }} />
-      <div style={{ ...abs, top: px(-8), right: px(14), width: px(22), height: px(22), background: INK, transform: 'rotate(45deg)' }} />
-      {/* belly */}
-      <div style={{ ...abs, bottom: 0, left: px(24), width: px(72), height: px(58), background: TAN, borderRadius: '50% 50% 46% 46%' }} />
-      {/* eyes */}
-      <div style={{ ...abs, top: px(30), left: px(22), width: px(32), height: px(32), background: '#fff', borderRadius: '50%', boxShadow: `${INK} 0 0 0 ${px(3)} inset` }} />
-      <div style={{ ...abs, top: px(30), right: px(22), width: px(32), height: px(32), background: '#fff', borderRadius: '50%', boxShadow: `${INK} 0 0 0 ${px(3)} inset` }} />
-      {/* pupils */}
-      <div style={{ ...abs, top: px(40), left: px(34), width: px(9), height: px(9), background: INK, borderRadius: '50%' }} />
-      <div style={{ ...abs, top: px(40), right: px(34), width: px(9), height: px(9), background: INK, borderRadius: '50%' }} />
-      {/* beak */}
-      <div style={{ ...abs, top: px(62), left: px(52), width: px(16), height: px(16), background: CORAL, transform: 'rotate(45deg)', borderRadius: px(3) }} />
-    </div>
+    <svg
+      viewBox="0 0 120 134"
+      width={size}
+      height={(size * 134) / 120}
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn(float && 'pip-float', className)}
+      aria-hidden="true"
+    >
+      <rect x="14" y="16" width="92" height="104" rx="46" ry="46" fill="#232D45" />
+      <polygon points="16,28 34,14 26,38" fill="#232D45" />
+      <polygon points="104,28 86,14 94,38" fill="#232D45" />
+      <path d="M30,90 C30,112 44,122 60,122 C76,122 90,112 90,90 C90,80 76,74 60,74 C44,74 30,80 30,90 Z" fill="#EDE6D8" />
+      <circle cx="44" cy="62" r="18" fill="#fff" />
+      <circle cx="76" cy="62" r="18" fill="#fff" />
+      <circle cx="44" cy="64" r="9.5" fill="#1E2740" />
+      <circle cx="76" cy="64" r="9.5" fill="#1E2740" />
+      <circle cx="47" cy="61" r="2.6" fill="#fff" />
+      <circle cx="79" cy="61" r="2.6" fill="#fff" />
+      <polygon points="60,76 68,84 60,92 52,84" fill="#FF7A45" />
+    </svg>
   );
 }
 
-/** Compact head — the logo glyph. Base geometry 30×33; scales by size/33. */
-export function PipMark({ size = 33, className }: { size?: number; className?: string }) {
-  const f = size / 33;
-  const px = (n: number) => `${n * f}px`;
-  const abs = { position: 'absolute' as const };
-  return (
-    <div className={className} style={{ position: 'relative', width: px(30), height: px(33), flex: '0 0 auto' }} aria-hidden="true">
-      <div style={{ ...abs, inset: 0, background: INK, borderRadius: '46% 46% 48% 48%' }} />
-      <div style={{ ...abs, top: px(-3), left: px(3), width: px(8), height: px(8), background: INK, transform: 'rotate(45deg)' }} />
-      <div style={{ ...abs, top: px(-3), right: px(3), width: px(8), height: px(8), background: INK, transform: 'rotate(45deg)' }} />
-      <div style={{ ...abs, top: px(8), left: px(5), width: px(9), height: px(9), background: CREAM, borderRadius: '50%' }} />
-      <div style={{ ...abs, top: px(8), right: px(5), width: px(9), height: px(9), background: CREAM, borderRadius: '50%' }} />
-      <div style={{ ...abs, top: px(10), left: px(8), width: px(3), height: px(3), background: INK, borderRadius: '50%' }} />
-      <div style={{ ...abs, top: px(10), right: px(8), width: px(3), height: px(3), background: INK, borderRadius: '50%' }} />
-      <div style={{ ...abs, top: px(17), left: px(13), width: px(5), height: px(5), background: CORAL, transform: 'rotate(45deg)' }} />
-    </div>
-  );
+/** Compact alias — the same owl at a small default size, for logos/inline use. */
+export function PipMark({ size = 30, className }: { size?: number; className?: string }) {
+  return <Pip size={size} className={className} />;
 }

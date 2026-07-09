@@ -198,7 +198,7 @@ const Index = () => {
                 }}
               >
                 <PipMark size={30} />
-                <span className="font-serif text-lg md:text-xl font-semibold tracking-tight text-ink">intrvue</span>
+                <span className="font-display text-lg md:text-xl font-semibold tracking-tight text-white">intrvue</span>
               </button>
               {currentView === 'interview' && selectedInterviewType && (
                 <Button variant="ghost" size="sm" onClick={handleBackToSelection} className="gap-1 md:gap-2 px-2 md:px-3">
@@ -222,8 +222,8 @@ const Index = () => {
                       key={view}
                       onClick={() => showPaymentSuccess ? clearPaymentSuccessAndNavigate(view) : setCurrentView(view)}
                       className={cn(
-                        'px-4 py-2 rounded-full text-[13.5px] transition-colors',
-                        active ? 'bg-ink text-cream font-semibold' : 'text-muted-foreground hover:text-foreground font-medium',
+                        'px-4 py-2 rounded-xl text-[13.5px] font-extrabold transition-colors',
+                        active ? 'bg-white/10 text-white' : 'text-muted-foreground hover:text-white hover:bg-white/5',
                       )}
                     >
                       {label}
@@ -296,7 +296,7 @@ const Index = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
-                  className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center font-bold text-[13px] text-ink hover:opacity-90 transition-opacity"
+                  className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-rose flex items-center justify-center font-extrabold text-[13px] text-white hover:opacity-90 transition-opacity"
                   aria-label="Account menu"
                 >
                   {(user.user_metadata?.full_name || user.email || 'U').charAt(0).toUpperCase()}

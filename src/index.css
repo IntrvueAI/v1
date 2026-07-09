@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,62 +6,67 @@
 
 @layer base {
   :root {
-    /* Warm scholar palette — cream paper, ink navy, coral. Ref: design-reference/Explorations.html */
-    --background: 38 44% 96%;         /* warm cream #FAF6EF */
-    --foreground: 211 30% 19%;        /* ink navy #22303F */
+    /* Bright Deck — dark, playful, gamified. Ref: design-reference/Intrvue Bright Deck.html */
+    --background: 226 50% 8%;         /* deep navy #0A0E1E */
+    --foreground: 214 45% 92%;        /* near-white slate */
 
-    /* Card and popover surfaces */
-    --card: 0 0% 100%;
-    --card-foreground: 211 30% 19%;
+    /* Card / tile surfaces */
+    --card: 220 44% 15%;              /* tile #152036 */
+    --card-foreground: 214 45% 94%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 211 30% 19%;
+    --popover: 220 44% 15%;
+    --popover-foreground: 214 45% 94%;
 
-    /* Primary: Coral #F4744E */
-    --primary: 14 88% 63%;
-    --primary-foreground: 40 40% 97%;
-    --primary-soft: 14 88% 70%;
+    /* Primary: Coral #FF7F50 */
+    --primary: 16 100% 66%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 18 100% 73%;
 
-    /* Secondary: warm tan for subtle chips */
-    --secondary: 38 34% 88%;
-    --secondary-foreground: 211 30% 25%;
+    /* Secondary: subtle dark chip */
+    --secondary: 220 32% 20%;
+    --secondary-foreground: 221 25% 78%;
 
-    /* Muted tones for subtle elements */
-    --muted: 38 34% 91%;
-    --muted-foreground: 210 16% 42%;
+    /* Muted tones */
+    --muted: 220 30% 18%;
+    --muted-foreground: 221 20% 66%;   /* #93A0B8 */
 
-    /* Accent: warm cream hover surface */
-    --accent: 38 40% 93%;
-    --accent-foreground: 211 30% 20%;
+    /* Accent: hover surface */
+    --accent: 220 30% 22%;
+    --accent-foreground: 214 45% 92%;
 
-    /* Named brand accents (mock: teal = strong, gold = coming-along) */
-    --teal: 180 54% 36%;
-    --gold: 39 68% 53%;
-    --ink: 211 30% 19%;
-    --cream: 38 44% 96%;
+    /* Named brand accents from the deck */
+    --sky: 199 92% 60%;      /* #38BDF8 */
+    --purple: 258 90% 66%;   /* #8B5CF6 */
+    --rose: 350 89% 60%;     /* #F43F5E */
+    --amber: 43 96% 56%;     /* #FBBF24 */
+    --emerald: 158 64% 52%;  /* #34D399 */
+    --ink: 220 44% 12%;      /* deep tile */
+    --cream: 40 33% 89%;     /* Pip belly #EDE6D8 */
+    --teal: 158 64% 52%;     /* alias → emerald (back-compat) */
+    --gold: 43 96% 56%;      /* alias → amber (back-compat) */
 
     /* Winter accent - subtle icy blue */
     --winter: 200 60% 70%;
     --winter-soft: 200 40% 85%;
     --winter-frost: 200 30% 95%;
 
-    /* Status colors — teal (strong) / gold (developing) to match the mock */
-    --success: 180 54% 36%;
-    --success-foreground: 40 40% 97%;
+    /* Status colors */
+    --success: 158 64% 52%;
+    --success-foreground: 226 50% 8%;
 
-    --warning: 39 68% 53%;
-    --warning-foreground: 211 30% 15%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 226 50% 8%;
 
-    --destructive: 0 60% 55%;
-    --destructive-foreground: 40 40% 97%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    /* Interface elements */
-    --border: 36 22% 87%;
-    --input: 36 22% 90%;
-    --ring: 14 88% 63%;
+    /* Interface elements (subtle light-on-dark borders) */
+    --border: 220 28% 24%;
+    --input: 220 28% 22%;
+    --ring: 16 100% 66%;
 
-    /* Rounded corners — generous, per the mock */
-    --radius: 1rem;
+    /* Rounded corners — big and friendly, per the deck (20px) */
+    --radius: 1.25rem;
     
     /* Interview control colors */
     --interview-active: 145 40% 35%;
@@ -163,12 +168,25 @@
 
   body {
     @apply bg-background text-foreground font-sans;
-    font-feature-settings: 'cv11', 'ss02';
   }
 
-  /* Display headings use the Lora serif for the warm-scholar feel. */
+  /* Display headings use Fredoka — round, friendly, kid-ready. */
   h1, h2 {
-    @apply font-serif tracking-tight;
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* A dark surface card, matching the deck's .tile. */
+  .tile {
+    @apply rounded-[20px] border border-white/[0.07] bg-card;
+  }
+  /* Pill filter chip. */
+  .chip {
+    @apply cursor-pointer rounded-full border border-white/10 bg-white/[0.04] px-[15px] py-2 text-[13px] font-extrabold text-[hsl(var(--secondary-foreground))] transition-colors hover:text-white hover:border-white/20;
+  }
+  .chip-on {
+    @apply border-transparent bg-gradient-to-br from-[#FB923C] to-[#F1730B] text-white;
   }
   
   /* Professional typography for interview platform */
@@ -239,3 +257,11 @@
 .animate-seasonal-rise {
   animation: seasonal-rise ease-in-out infinite;
 }
+
+/* Bright Deck playful animations */
+@keyframes floaty { 0%,100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-9px) rotate(1.5deg); } }
+@keyframes pip-pop { 0% { transform: scale(.7); opacity: 0; } 70% { transform: scale(1.06); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes pulsering { 0% { box-shadow: 0 0 0 0 hsl(var(--primary) / .5); } 70% { box-shadow: 0 0 0 14px hsl(var(--primary) / 0); } 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0); } }
+.pip-float { animation: floaty 4.5s ease-in-out infinite; transform-origin: 50% 90%; }
+.animate-pip-pop { animation: pip-pop .35s ease-out both; }
+.animate-pulsering { animation: pulsering 2.2s ease-out infinite; }

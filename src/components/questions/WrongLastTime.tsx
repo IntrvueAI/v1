@@ -55,7 +55,7 @@ export function WrongLastTime({ onViewHistory, name = 'superstar' }: { onViewHis
     >
       <div className="flex items-center gap-2 rounded-xl bg-gold/10 p-3">
         <PipMark size={22} />
-        <p className="text-sm font-medium text-[#5a4a2e]">
+        <p className="text-sm font-medium text-[#C7D2E4]">
           Getting these wrong is how you get better, {name}. Let&rsquo;s take another look together.
         </p>
       </div>

@@ -19,9 +19,10 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-				serif: ['Lora', 'Georgia', 'serif'],
-				inter: ['"Plus Jakarta Sans"', 'sans-serif'],
+				sans: ['Nunito', 'system-ui', 'sans-serif'],
+				display: ['Fredoka', 'system-ui', 'sans-serif'],
+				serif: ['Fredoka', 'system-ui', 'sans-serif'],
+				inter: ['Nunito', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -33,6 +34,11 @@ export default {
 				gold: 'hsl(var(--gold))',
 				ink: 'hsl(var(--ink))',
 				cream: 'hsl(var(--cream))',
+				sky: 'hsl(var(--sky))',
+				purple: 'hsl(var(--purple))',
+				rose: 'hsl(var(--rose))',
+				amber: 'hsl(var(--amber))',
+				emerald: 'hsl(var(--emerald))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',

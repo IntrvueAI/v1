@@ -61,7 +61,7 @@ export function QuestionOfTheDay({ name = 'superstar' }: { name?: string }) {
       accent="primary"
       title="Question of the Day"
       subtitle={q.subject ? `Today's ${q.subject} puzzle` : 'A quick daily challenge'}
-      right={<span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-gold/15 px-2.5 py-1 text-[11px] font-bold text-[#b0641f]"><Star className="h-3 w-3 fill-current" /> Earn a star</span>}
+      right={<span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-gold/15 px-2.5 py-1 text-[11px] font-bold text-amber"><Star className="h-3 w-3 fill-current" /> Earn a star</span>}
     >
       {q.title && <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{q.title}</p>}
       <p className="text-lg font-medium leading-relaxed">{q.question}</p>

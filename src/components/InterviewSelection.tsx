@@ -71,7 +71,7 @@ export const InterviewSelection = ({ onSelectInterview }: InterviewSelectionProp
           const color = PALETTE[i % PALETTE.length];
           const isPick = filtered.length > 1 && i === filtered.length - 1;
           const badge = interview.id === '11-plus' || i === 0 ? '★ Most popular' : isPick ? "Pip's pick for you" : null;
-          const pillText = color === 'bg-teal' ? 'text-[#1f6969]' : 'text-[#b0641f]';
+          const pillText = 'text-white/80';
           const Icon = ICONS[interview.icon || ''] || Sparkles;
           return (
             <div key={interview.id} className="flex flex-col rounded-[22px] border border-border bg-card overflow-hidden transition-transform hover:-translate-y-1">
@@ -83,7 +83,7 @@ export const InterviewSelection = ({ onSelectInterview }: InterviewSelectionProp
                 )}
                 {/* Subject picture */}
                 <Icon className="absolute right-6 bottom-6 h-14 w-14 text-white/85" strokeWidth={1.75} />
-                <div className="absolute -bottom-[26px] left-[22px] flex h-14 w-14 items-center justify-center rounded-full border-4 border-card bg-secondary text-lg font-extrabold text-ink">
+                <div className="absolute -bottom-[26px] left-[22px] flex h-14 w-14 items-center justify-center rounded-full border-4 border-card bg-white text-lg font-extrabold text-ink">
                   {interviewer.charAt(0)}
                 </div>
               </div>
