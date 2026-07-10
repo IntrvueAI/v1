@@ -20,19 +20,11 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { cn } from '@/lib/utils';
 
-// Landing page components
-import { LandingHero } from '@/components/landing/LandingHero';
-import { LandingInterviewTypes } from '@/components/landing/LandingInterviewTypes';
-import { LandingProcess } from '@/components/landing/LandingProcess';
-import { LandingPricing } from '@/components/landing/LandingPricing';
-import { LandingTruth } from '@/components/landing/LandingTruth';
-import { LandingFAQ } from '@/components/landing/LandingFAQ';
-import { LandingCTA } from '@/components/landing/LandingCTA';
-import { LandingFooter } from '@/components/landing/LandingFooter';
+// Landing page (marketing) — the new design, rendered 1:1 from the authored HTML.
+import { LandingV2 } from '@/components/landing/LandingV2';
 import { CreditsStore } from '@/components/credits/CreditsStore';
 import { PaymentSuccess } from '@/components/PaymentSuccess';
 import { MobileBottomNav } from '@/components/mobile/MobileBottomNav';
-import SeasonalEffect from '@/components/SeasonalEffect';
 import { PipMark } from '@/components/brand/Pip';
 import {
   DropdownMenu,
@@ -168,17 +160,7 @@ const Index = () => {
 
   // Show landing page if not authenticated
   if (!user) {
-    return <div className="min-h-screen relative">
-        <SeasonalEffect />
-        <LandingHero onSignUp={() => navigate('/auth')} />
-        <LandingInterviewTypes />
-        <LandingProcess />
-        <LandingTruth />
-        <LandingPricing onSignUp={() => navigate('/auth')} />
-        <LandingFAQ />
-        <LandingCTA onSignUp={() => navigate('/auth')} />
-        <LandingFooter />
-      </div>;
+    return <LandingV2 onSignUp={() => navigate('/auth')} />;
   }
 
   // Show main app for authenticated users
