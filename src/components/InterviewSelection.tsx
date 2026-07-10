@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { getAllInterviewTypes, INTERVIEW_CATEGORIES, InterviewType } from '@/config/interviewTypes';
 import { cn } from '@/lib/utils';
 import { useCredits } from '@/hooks/useCredits';
-import { GraduationCap, Brain, Calculator, Globe, Timer, BookOpen, Sparkles, Search, Clock, Star, Play, type LucideIcon } from 'lucide-react';
+import { GraduationCap, Brain, Calculator, Globe, Timer, BookOpen, Sparkles, Clock, type LucideIcon } from 'lucide-react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 
 interface InterviewSelectionProps {
@@ -10,7 +10,6 @@ interface InterviewSelectionProps {
 }
 
 const ICONS: Record<string, LucideIcon> = { GraduationCap, Brain, Calculator, Globe, Timer, BookOpen };
-// Accent (top bar + icon tint) per interview.
 const ACCENT: Record<string, string> = {
   '11-plus': '#FF7F50', 'maths-interview': '#38BDF8', 'logic-puzzles': '#8B5CF6',
   'current-affairs-interview': '#34D399', demo: '#FBBF24',
@@ -22,19 +21,13 @@ const DIFF: Record<number, { label: string; cls: string }> = {
 };
 
 export const InterviewSelection = ({ onSelectInterview }: InterviewSelectionProps) => {
-  const [search, setSearch] = useState('');
   const [category, setCategory] = useState<string | null>(null);
   const { credits } = useCredits();
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [pending, setPending] = useState<InterviewType | null>(null);
   const all = getAllInterviewTypes();
 
-  const filtered = all.filter((iv) => {
-    if (category && iv.category !== category) return false;
-    if (!search) return true;
-    const s = search.toLowerCase();
-    return [iv.name, iv.description, ...(iv.tags || [])].some((v) => (v || '').toLowerCase().includes(s));
-  });
+  const filtered = all.filter((iv) => !category || iv.category === category);
 
   const launch = (iv: InterviewType) => {
     const cost = iv.costCredits ?? 1;
@@ -43,82 +36,53 @@ export const InterviewSelection = ({ onSelectInterview }: InterviewSelectionProp
   };
 
   return (
-    <div className="mx-auto max-w-[1120px] px-4 sm:px-6 py-6">
-      <div className="text-center mb-5">
-        <h1 className="font-display text-[28px] font-semibold text-white">Choose your interview</h1>
-        <p className="mt-1.5 text-sm font-semibold text-muted-foreground">Pick what you&rsquo;d like to practise — each one earns XP!</p>
-      </div>
-
-      {/* Search */}
-      <div className="relative mb-3.5">
-        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <input
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search interviews by name, topic, or tag…"
-          className="w-full rounded-2xl border border-white/10 bg-white/[0.04] py-3 pl-10 pr-4 text-sm font-semibold text-white placeholder:text-muted-foreground focus:outline-none focus:border-primary/50"
-        />
+    <div className="mx-auto max-w-[1000px] px-4 sm:px-6 py-8">
+      <div className="mb-6">
+        <h1 className="font-display text-[26px] font-semibold text-white">Choose your interview</h1>
+        <p className="mt-1.5 text-sm font-semibold text-muted-foreground">Pick a session to practise.</p>
       </div>
 
       {/* Category chips */}
-      <div className="flex gap-2.5 flex-wrap mb-5">
+      <div className="flex gap-2 flex-wrap mb-6">
         <button onClick={() => setCategory(null)} className={cn('chip', category === null && 'chip-on')}>All</button>
         {Object.entries(INTERVIEW_CATEGORIES).map(([key, c]) => (
           <button key={key} onClick={() => setCategory(key)} className={cn('chip', category === key && 'chip-on')}>{c.name}</button>
         ))}
       </div>
 
-      {/* Cards */}
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      {/* Clean, minimal card grid */}
+      <div className="grid gap-4 sm:grid-cols-2">
         {filtered.map((iv) => {
           const Icon = ICONS[iv.icon || ''] || Sparkles;
           const accent = ACCENT[iv.id] || '#FF7F50';
           const diff = DIFF[iv.difficultyLevel] || DIFF[2];
-          const areas = iv.scoringCriteria || [];
           return (
-            <div key={iv.id} className="tile p-0 overflow-hidden flex flex-col transition-transform hover:-translate-y-1">
-              <div style={{ height: 4, background: accent }} />
-              <div className="p-[18px] flex flex-col gap-3 flex-1">
-                <div className="flex items-center gap-2.5">
-                  <div className="h-10 w-10 rounded-xl flex items-center justify-center" style={{ background: `${accent}26` }}>
-                    <Icon className="h-5 w-5" style={{ color: accent }} />
+            <div key={iv.id} className="tile p-5 flex flex-col gap-3.5">
+              <div className="flex items-center gap-3">
+                <div className="h-11 w-11 rounded-xl flex items-center justify-center flex-none" style={{ background: `${accent}22` }}>
+                  <Icon className="h-5 w-5" style={{ color: accent }} />
+                </div>
+                <div className="min-w-0">
+                  <div className="font-display text-[16px] font-semibold text-white leading-tight">{iv.name}</div>
+                  <div className="flex items-center gap-2.5 mt-0.5 text-[12px] font-bold text-muted-foreground">
+                    <span className="flex items-center gap-1"><Clock className="h-3 w-3" /> {iv.duration} min</span>
+                    <span className={diff.cls}>{diff.label}</span>
                   </div>
-                  <div className="font-extrabold text-[15px] text-white leading-tight">{iv.name}</div>
                 </div>
-                <p className="text-[12.5px] font-semibold text-muted-foreground leading-[1.5] line-clamp-2">{iv.description}</p>
-                <div className="flex gap-1.5 flex-wrap">
-                  <span className="text-[10.5px] font-extrabold text-[#AEB9D0] bg-white/5 px-2.5 py-[3px] rounded-full">{INTERVIEW_CATEGORIES[iv.category]?.name || iv.category}</span>
-                  <span className={cn('text-[10.5px] font-extrabold px-2.5 py-[3px] rounded-full bg-white/5', diff.cls)}>● {diff.label}</span>
-                </div>
-                <div className="flex gap-4 text-[12px] font-bold text-muted-foreground">
-                  <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" /> {iv.duration} min</span>
-                  <span className="flex items-center gap-1.5 text-amber"><Star className="h-3.5 w-3.5 fill-current" /> up to {iv.duration * 8} XP</span>
-                </div>
-                {areas.length > 0 && (
-                  <div>
-                    <div className="text-[11px] font-extrabold text-[#7E8BA6] mb-1.5">ASSESSMENT AREAS</div>
-                    <div className="flex gap-1.5 flex-wrap">
-                      {areas.slice(0, 2).map((a) => (
-                        <span key={a} className="text-[10.5px] font-bold text-[#C7D2E4] bg-white/5 px-2 py-[3px] rounded-lg">{a.split(' ').slice(0, 2).join(' ')}</span>
-                      ))}
-                      {areas.length > 2 && <span className="text-[10.5px] font-bold text-[#C7D2E4] bg-white/5 px-2 py-[3px] rounded-lg">+{areas.length - 2}</span>}
-                    </div>
-                  </div>
-                )}
-                <button
-                  onClick={() => launch(iv)}
-                  className="mt-auto flex items-center justify-center gap-2 w-full rounded-xl py-3 text-sm font-extrabold text-white transition-transform hover:-translate-y-0.5"
-                  style={{ background: 'linear-gradient(135deg,#FF7F50,#F43F5E)' }}
-                >
-                  <Play className="h-3.5 w-3.5 fill-current" /> {iv.costCredits === 0 ? 'Try free' : 'Start interview'}
-                </button>
               </div>
+              <p className="text-[13px] font-semibold text-muted-foreground leading-[1.5]">{iv.description}</p>
+              <button
+                onClick={() => launch(iv)}
+                className="mt-auto w-full rounded-xl bg-primary py-2.5 text-sm font-extrabold text-white transition-opacity hover:opacity-90"
+              >
+                {iv.costCredits === 0 ? 'Try free' : 'Start interview'}
+              </button>
             </div>
           );
         })}
       </div>
 
-      {filtered.length === 0 && <p className="py-12 text-center text-muted-foreground">No interviews match your search.</p>}
+      {filtered.length === 0 && <p className="py-12 text-center text-muted-foreground">No interviews in this category.</p>}
 
       <AlertDialog open={confirmOpen} onOpenChange={setConfirmOpen}>
         <AlertDialogContent className="mx-4 max-w-[calc(100vw-2rem)] md:max-w-md">

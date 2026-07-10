@@ -350,19 +350,25 @@ export async function advanceAgent(prev: AgentState, req: AgentRequest, deps: Ag
   ];
 
   let say = '';
-  for (let i = 0; i < 5; i++) {
-    const res = await deps.chat({ messages, tools: TOOLS });
-    if (res.toolCalls.length > 0) {
-      messages.push({ role: 'assistant', content: res.content || '', tool_calls: res.raw });
-      for (const call of res.toolCalls) {
-        const result = executeTool(call, state, deps);
-        messages.push({ role: 'tool', tool_call_id: call.id, name: call.name, content: JSON.stringify(result) });
+  // Never let a model/network hiccup 500 the whole turn — on failure we fall back to a spoken line
+  // below so the avatar always says *something* rather than going silent.
+  try {
+    for (let i = 0; i < 5; i++) {
+      const res = await deps.chat({ messages, tools: TOOLS });
+      if (res.toolCalls.length > 0) {
+        messages.push({ role: 'assistant', content: res.content || '', tool_calls: res.raw });
+        for (const call of res.toolCalls) {
+          const result = executeTool(call, state, deps);
+          messages.push({ role: 'tool', tool_call_id: call.id, name: call.name, content: JSON.stringify(result) });
+        }
+        if (res.content?.trim()) say = say ? `${say} ${res.content.trim()}` : res.content.trim();
+        continue;
       }
       if (res.content?.trim()) say = say ? `${say} ${res.content.trim()}` : res.content.trim();
-      continue;
+      break;
     }
-    if (res.content?.trim()) say = say ? `${say} ${res.content.trim()}` : res.content.trim();
-    break;
+  } catch (err) {
+    console.error('agent chat loop failed:', (err as Error)?.message || err);
   }
 
   // Never leave the avatar silent (e.g. the model replied with only a tool call and no words).
