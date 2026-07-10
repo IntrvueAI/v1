@@ -88,17 +88,25 @@ function mapQuestionRow(r: any) {
   };
 }
 
+// The 11+ main interview is a whole-child interview but should feel intellectually rigorous, so it
+// draws from the academic banks (maths/logic/current-affairs) as well as its own — the harder
+// academic questions naturally make up the majority, with the 11+ personal/ethics questions mixed in.
+const BANK_SUBJECTS: Record<string, string[]> = {
+  elevenplus: ["elevenplus", "maths", "logic", "currentaffairs"],
+};
+
 /** Load the question bank for a subject from the DB (source of truth); fall back to the bundled
  *  JSON if the table isn't seeded yet, so interviews work before and after the migration. */
 async function loadBank(admin: any, subject: string): Promise<any[]> {
+  const subjects = BANK_SUBJECTS[subject] ?? [subject];
   try {
     const { data, error } = await admin
-      .from("questions").select("*").eq("subject", subject).eq("active", true);
+      .from("questions").select("*").in("subject", subjects).eq("active", true);
     if (!error && data && data.length) return data.map(mapQuestionRow);
   } catch (e) {
     console.warn("questions DB load failed, using bundled bank:", (e as Error)?.message || e);
   }
-  return BANKS[subject] || [];
+  return subjects.flatMap((s) => BANKS[s] || []);
 }
 
 const uiStateOf = (s: AgentState): BrainResponse["uiState"] => ({
