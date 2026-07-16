@@ -30,14 +30,28 @@ type BrainUiState = ReturnType<typeof useInterviewSession>['brainUiState'];
 function progressLabel(ui: NonNullable<BrainUiState>): string {
   const total = ui.targetQuestions ?? 10;
   const idx = ui.questionIndex ?? 0;
-  if (ui.phase === 'about-you') return 'Getting to know you';
+  if (ui.phase === 'about-you') {
+    const about = Math.max(1, ui.aboutYouCount ?? 0);
+    return `Getting to know you · ${Math.min(idx + 1, about)} of ${about}`;
+  }
   if (ui.phase === 'challenge') {
     const about = ui.aboutYouCount ?? 0;
     const local = Math.min(idx - about + 1, total - about);
-    return `Question ${Math.max(1, local)} of ${Math.max(1, total - about)}`;
+    return `The challenge · ${Math.max(1, local)} of ${Math.max(1, total - about)}`;
   }
   if (!ui.onQuestion && idx === 0) return 'Warming up';
   return `Question ${Math.min(idx + 1, total)} of ${total}`;
+}
+
+/** Progress dots scoped to the CURRENT phase (so "getting to know you" doesn't appear to keep
+ *  filling while the hard questions are underway). */
+function phaseDots(ui: NonNullable<BrainUiState>): { count: number; idx: number } {
+  const total = ui.targetQuestions ?? 10;
+  const idx = ui.questionIndex ?? 0;
+  const about = ui.aboutYouCount ?? 0;
+  if (ui.phase === 'about-you') return { count: Math.max(1, about), idx };
+  if (ui.phase === 'challenge') return { count: Math.max(1, total - about), idx: Math.max(0, idx - about) };
+  return { count: total, idx };
 }
 
 /**
@@ -674,23 +688,23 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
             {isStreaming && brainUiState && (
               <div className="tile p-5">
                 <div className="text-[11px] font-extrabold uppercase tracking-wide text-[#7E8BA6] mb-2">
-                  {brainUiState.phase === 'about-you' ? 'About you' : 'Progress'}
+                  {brainUiState.phase === 'about-you' ? 'Part 1 · About you' : brainUiState.phase === 'challenge' ? 'Part 2 · The challenge' : 'Progress'}
                 </div>
                 <div className="text-[15px] font-bold text-[#EAF0FA] leading-relaxed capitalize">
                   {progressLabel(brainUiState)}
                   {brainUiState.phase !== 'about-you' && brainUiState.topic ? ` · ${brainUiState.topic.replace(/-/g, ' ')}` : ''}
                 </div>
                 <div className="mt-4 flex gap-1.5 flex-wrap">
-                  {Array.from({ length: brainUiState.targetQuestions ?? 10 }).map((_, i) => {
-                    const idx = brainUiState.questionIndex ?? 0;
-                    return (
+                  {(() => {
+                    const { count, idx } = phaseDots(brainUiState);
+                    return Array.from({ length: count }).map((_, i) => (
                       <span
                         key={i}
                         className="h-2 w-[22px] rounded-full"
                         style={{ background: i < idx ? 'hsl(var(--emerald))' : i === idx ? 'hsl(var(--primary))' : 'rgba(255,255,255,.1)' }}
                       />
-                    );
-                  })}
+                    ));
+                  })()}
                 </div>
               </div>
             )}

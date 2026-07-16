@@ -21,8 +21,8 @@ export const elevenplusPack: SubjectPack = {
     'their interests, hobbies, extracurriculars, family, school and reading. This part MATTERS: it is ' +
     'where you judge who they are, what they care about and how well they express themselves, so give ' +
     'them real room to talk about their interests and enthusiasms. The rhythm is: main question → ' +
-    'listen → EXACTLY ONE warm follow-up that picks up their actual words ("Percy Jackson — who\'s ' +
-    'your favourite character?") → then bridge and move on. The one follow-up is not optional: firing ' +
+    'listen → EXACTLY ONE warm follow-up that picks up their actual words (they mention a brother — ' +
+    '"what do you two get up to together?") → then bridge and move on. The one follow-up is not optional: firing ' +
     'a question, taking the answer, and jumping cold to the next topic feels robotic and wastes what ' +
     'they offered. But do not go beyond one (two at the very most for something genuinely interesting) ' +
     '— a sensible answer is enough. Never chain three or four questions on ' +
