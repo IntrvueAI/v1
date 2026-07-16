@@ -37,6 +37,14 @@ Score these FOUR dimensions, each 0-5 (total out of 20). Weight PROCESS and ADAP
 3. ${d3}
 4. ${d4}
 
+CALIBRATION — be rigorous, not generous. These scores guide real preparation, and inflated marks mislead families:
+- 5 = exceptional and RARE: sustained, independent excellence a top school would remark on. Most interviews contain no 5s.
+- 4 = consistently strong across the whole interview in that dimension, with no real weak moments.
+- 3 = solid: real engagement and some good moments, but with clear gaps (needed hints, thin explanations, patchy structure).
+- 2 = developing: attempted but frequently stuck, vague, or reliant on heavy prompting.
+- 0-1 = little to no evidence shown.
+A typical decent performance lands 10-13 total. Reserve 15+ for genuinely impressive interviews (fluent reasoning, minimal hints, specific and reflective answers throughout). Check the evidence log: hints used, wrong answers, "stuck" outcomes and thin one-line replies MUST pull the relevant dimension down — do not award a 4 where the log shows repeated scaffolding.
+
 Ground your scores in the structured evidence log provided (per-question reasoning band, outcome, hints used, and notes) as well as the transcript. For each dimension, write feedback that names one specific reasoning strength actually observed and one concrete next step — warm, concrete, process-focused, never reducing the child to their final answer.
 
 CRITICAL: respond ONLY with a valid JSON object, no markdown. Required structure (the four score keys map to ${d1}, ${d2}, ${d3}, ${d4} in order):
@@ -520,7 +528,9 @@ try {
     });
   }
 
-  // Rate limit: max 3 feedback generations per 10 minutes per user
+  // Rate limit: max 10 feedback generations per 10 minutes per user. (Was 3 — too tight for real
+  // use: a testing session with several back-to-back interviews + regenerations on one account hit
+  // it and surfaced as intermittent "feedback error". Credits are the real spend guard anyway.)
   const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
   const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000).toISOString();
   const { count: recentCount } = await supabaseAdmin
@@ -528,7 +538,7 @@ try {
     .select('id', { count: 'exact', head: true })
     .eq('user_id', userId)
     .gte('created_at', tenMinutesAgo);
-  if ((recentCount ?? 0) >= 3) {
+  if ((recentCount ?? 0) >= 10) {
     return new Response(JSON.stringify({ error: 'Rate limit exceeded. Please wait before generating more feedback.' }), {
       status: 429,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -877,16 +887,20 @@ try {
     try {
       const segments = splitTranscriptIntoSegments(sanitizedTranscription, 4);
       console.log(`Processing ${segments.length} transcript segments for comprehensive annotation coverage`);
-      
-      // Process each segment separately to ensure full coverage
-      for (const segment of segments) {
+
+      // Process all segments IN PARALLEL — this used to be sequential (4 slow LLM calls one after
+      // another), which on long transcripts pushed the whole request past the edge-function time
+      // budget and surfaced as intermittent "feedback error". Each call also no longer embeds the
+      // full transcript a second time: quotes are re-anchored to character offsets by
+      // sanitizeAnnotation() below, so the model's own indices are optional anyway.
+      const segmentResults = await Promise.all(segments.map(async (segment) => {
         const segmentAnnotationPrompt = `You are an expert speaking examiner. Analyze ONLY this specific segment (${segment.segmentNumber}/${segment.totalSegments}) of the student's interview transcript.
 
 CRITICAL INSTRUCTIONS:
 - Extract exactly ${segment.expectedAnnotations}-${segment.expectedAnnotations + 2} annotations from ONLY the Student lines in this segment
 - Categories: "strength", "grammar", "fluency", "lexical" (aim for 2-3 annotations per category)
-- For each quote, provide: { "quote": string, "category": string, "explanation": string, "suggestion": string, "start": number, "end": number }
-- start/end are 0-based character offsets into the FULL ORIGINAL transcript (not just this segment)
+- For each quote, provide: { "quote": string, "category": string, "explanation": string, "suggestion": string }
+- IMPORTANT: "quote" must be an EXACT substring copied from a Student line (preserve casing/punctuation/spacing)
 - Focus on this segment only - do not analyze other parts of the conversation
 - Be thorough and granular: annotate specific words, phrases, grammatical structures, vocabulary choices
 - Return ONLY valid JSON: { "annotations": Annotation[] }
@@ -897,7 +911,7 @@ Segment to analyze:`;
           model: 'gpt-4.1',
           messages: [
             { role: 'system', content: segmentAnnotationPrompt },
-            { role: 'user', content: `${segment.content}\n\nFull transcript for character index reference:\n${sanitizedTranscription}` }
+            { role: 'user', content: segment.content }
           ],
           temperature: 0,
           max_tokens: 2000,
@@ -912,39 +926,38 @@ Segment to analyze:`;
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(segmentRequest),
+            signal: AbortSignal.timeout(60_000), // a hung call must never eat the whole request budget
           });
 
-          if (segmentResp.ok) {
-            const segmentData = await segmentResp.json();
-            const segmentText = (segmentData.choices?.[0]?.message?.content || '').trim();
-            
-            try {
-              const parsed = JSON.parse(segmentText);
-              if (parsed && Array.isArray(parsed.annotations)) {
-                annotations.push(...parsed.annotations);
-                console.log(`Added ${parsed.annotations.length} annotations from segment ${segment.segmentNumber}`);
-              }
-            } catch (_) {
-              const match = segmentText.match(/\{[\s\S]*\}/);
-              if (match) {
-                try {
-                  const parsed = JSON.parse(match[0]);
-                  if (parsed && Array.isArray(parsed.annotations)) {
-                    annotations.push(...parsed.annotations);
-                  }
-                } catch { /* ignore */ }
-              }
-            }
-          } else {
+          if (!segmentResp.ok) {
             console.warn(`Segment ${segment.segmentNumber} annotation API error:`, segmentResp.status);
+            return [];
           }
+          const segmentData = await segmentResp.json();
+          const segmentText = (segmentData.choices?.[0]?.message?.content || '').trim();
+          try {
+            const parsed = JSON.parse(segmentText);
+            if (parsed && Array.isArray(parsed.annotations)) return parsed.annotations;
+          } catch (_) {
+            const match = segmentText.match(/\{[\s\S]*\}/);
+            if (match) {
+              try {
+                const parsed = JSON.parse(match[0]);
+                if (parsed && Array.isArray(parsed.annotations)) return parsed.annotations;
+              } catch { /* ignore */ }
+            }
+          }
+          return [];
         } catch (e) {
           console.warn(`Segment ${segment.segmentNumber} annotation failed:`, e?.message || e);
+          return [];
         }
-      }
+      }));
+      // Concatenate in segment order so annotations stay chronological.
+      annotations = segmentResults.flat();
 
       console.log(`Total annotations generated from all segments: ${annotations.length}`);
-      
+
     } catch (e) {
       console.warn('Segmented annotation generation failed, falling back to single request:', e?.message || e);
       
@@ -984,6 +997,7 @@ CRITICAL: You MUST provide exactly 30-35 annotations to give thorough feedback c
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(fallbackRequest),
+          signal: AbortSignal.timeout(60_000),
         });
 
         if (fallbackResp.ok) {
@@ -1125,6 +1139,7 @@ CRITICAL: You MUST provide exactly 30-35 annotations to give thorough feedback c
           method: 'POST',
           headers: { 'Authorization': `Bearer ${openAIApiKey}`, 'Content-Type': 'application/json' },
           body: JSON.stringify(backupReq),
+          signal: AbortSignal.timeout(60_000),
         });
         if (backupRes.ok) {
           const b = await backupRes.json();
@@ -1175,6 +1190,7 @@ STUDENT PERFORMANCE DATA:`;
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(improvementRequest),
+        signal: AbortSignal.timeout(45_000),
       });
 
       if (improvementResponse.ok) {

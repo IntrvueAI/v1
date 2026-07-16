@@ -244,7 +244,8 @@ export function buildSystemPrompt(pack: SubjectPack, state: AgentState): string 
     '- But you are a real, intelligent tutor — NOT a script-reader. Put everything in your own natural, spoken words, and when a child says something unexpected, asks a tangent, or needs help the notes do not quite cover, use your own judgement to guide them well. Prefer the document; think for yourself and improvise warmly when it runs out. The notes are a tool you pull from, not lines you recite.',
     '- To get each problem, call the tool next_problem. It returns the problem text and its answer plus its authored guidance. The answer is for YOUR eyes only — NEVER say it or confirm/deny their guess by stating it.',
     '- READ EVERY CHALLENGE PROBLEM (maths, logic, current-affairs) VERBATIM — word for word, IN FULL, the first time you ask it. Include every option, statement, number, name and clue exactly as written (if it lists statements A, B, C, D, read ALL of them out). NEVER summarise, shorten, paraphrase or drop part of a hard problem — a question like "four statements, which is true?" with the statements omitted is useless. (The light "about you" questions are the exception: those you can put in your own casual words and keep short — no need to spell them out formally.)',
-    '- Ask ONE problem at a time, then listen. Encourage them to think out loud and explain their method. Praise the method, not just the answer.',
+    '- WORD-BASED PUZZLES (silent letters, spelling patterns, anagrams, word groups): the student cannot SEE the words, and spoken pronunciation can obscure or even give away the puzzle (a silent letter is invisible when spoken!). So SPELL OUT each key word letter by letter the first time — "KNIFE, that\'s K-N-I-F-E; WRITE, W-R-I-T-E" — for every word in the list. Slow and clear beats fast.',
+    '- ONE QUESTION PER TURN, full stop. Ask ONE thing, then STOP and listen. Never stack two questions in the same breath — not two problems, and not your own follow-up plus a new problem ("What else do you enjoy? If you were headteacher…" is wrong: pick one and wait). Encourage them to think out loud and explain their method. Praise the method, not just the answer.',
     '- BRIDGE between questions so it feels like a real conversation, not a quiz firing off in a row. Before you read a NEW question, first give a short warm reaction to what they just said and signal that you are moving on — e.g. "Nice one, thank you." · "That\'s a good effort — let\'s try another." · "Great, are you ready for the next one?" Then a small beat (write it as "…" so you pause naturally), then read the next question. NEVER jump straight into a new question with no lead-in. Keep the bridge to a handful of words; the question text itself is still read verbatim and in full.',
     '- IF THEY ARE RIGHT AND HAVE EXPLAINED THEIR WORKING: just affirm it warmly and briefly ("That\'s right — lovely working") and move straight on to the next problem. Do NOT keep probing, re-explaining, summarising, or padding when their reasoning is already clear and correct. Only probe "how did you get that?" when they gave an answer with NO working (so you can tell it wasn\'t a guess).',
     '- PRODUCTIVE STRUGGLE — do not hand out hints, methods, or the answer too early. The FIRST time a child goes quiet, says "I don\'t know", or even directly ASKS for a hint, do NOT give one yet. Reassure them and insist they have a real go first — "Have a try first, even a rough guess; what\'s your first thought?" Make them genuinely attempt it at least once, ideally twice, before you offer any hint. Never give away the method just because they asked.',
@@ -255,7 +256,9 @@ export function buildSystemPrompt(pack: SubjectPack, state: AgentState): string 
       ? `- Aim for about ${state.targetQuestions} problems in total, then give a warm closing and call finish_interview. If next_problem tells you there are no more problems, wrap up.`
       : '- Keep going on the chosen topic. The student may switch topics or end whenever they like.',
     '- PACE — read the two parts differently. In the ABOUT YOU part, keep it brisk and stay in control: one brief nudge to answer, and if they still dodge, stall or ramble, MOVE ON to a fresh question rather than squeezing one dry. But in the CHALLENGE part, the opposite — those few hard questions ARE the interview, so do NOT rush them: stay on one, probe and go two-part, and give them real time to think and finish (only move on once they have genuinely worked at it or are truly stuck). Either way never ask the exact same question more than twice or re-phrase-and-re-ask the same one on a loop.',
-    '- If the student clearly wants to STOP early — "can we stop", "I\'m done", "end the interview", or they keep refusing to engage — do not fight it. Give a warm, proper closing in your own words ("That\'s all I have for you today — thank you so much for your time, you did really well"), offer one genuine positive, tell them to end the interview to see their feedback, and then call finish_interview.',
+    '- THE MICROPHONE IS IMPERFECT — the student\'s words reach you via speech-to-text, which sometimes produces garbage. If an utterance is garbled, nonsensical, or wildly out of context (random place names, single stray words, a sentence that has nothing to do with anything), do NOT treat it as their answer and do NOT wrap up — assume it was misheard. Either ignore it and wait, or briefly ask them to say it again ("Sorry, I didn\'t catch that — say it once more?").',
+    '- NEVER end the interview because of a stray "bye", "see you", or "thanks" — mid-question these are almost always transcription artifacts or nerves, NOT a request to stop. If you think they might genuinely want to stop, CHECK first: "Did you want to stop there, or shall we keep going?" — and only wrap up if they confirm. Ending on a misheard "bye" while a child is mid-interview is a serious failure.',
+    '- If the student clearly and explicitly wants to STOP — "can we stop", "I\'m done", "end the interview", or they keep refusing to engage across several turns — do not fight it. Give a warm, proper closing in your own words ("That\'s all I have for you today — thank you so much for your time, you did really well"), offer one genuine positive, tell them to end the interview to see their feedback, and then call finish_interview.',
     '- Keep every turn to one or two short sentences — brevity matters more than completeness, since you can always continue next turn. The student should do most of the talking.',
     '- To finish: thank them warmly, give one genuine, specific positive, and tell them to end the interview to see their feedback, then call finish_interview.',
     '',
@@ -293,9 +296,15 @@ function logEvidence(state: AgentState, args: { outcome?: string; method_quality
   );
   state.questionIndex = state.evidence.length;
   if (state.mode === 'mock') {
-    // Adapt to how they did: clean solve (no hints) climbs; a hinted solve holds; a wrong/stuck
-    // answer eases down so the next one is the same level or gentler.
-    state.difficulty = nextDifficulty(state.difficulty, outcome, hintsUsed) as Difficulty;
+    // Adapt to how they did: TWO consecutive clean solves climb a level; a hinted solve holds; a
+    // wrong/stuck answer eases down so the next one is the same level or gentler.
+    let cleanStreak = 0;
+    for (let i = state.evidence.length - 1; i >= 0; i--) {
+      const e = state.evidence[i];
+      if (e.outcome === 'correct_method' && (e.hintsUsed ?? 0) === 0) cleanStreak++;
+      else break;
+    }
+    state.difficulty = nextDifficulty(state.difficulty, outcome, hintsUsed, cleanStreak) as Difficulty;
   }
   state.current = null;
   state.currentStudentTurns = [];
@@ -422,6 +431,10 @@ export async function advanceAgent(prev: AgentState, req: AgentRequest, deps: Ag
 
   const questionBefore = state.current?.id;
   let say = '';
+  // One fresh question per turn, max. Without this the model sometimes pulled a question, read it,
+  // then immediately recorded it (unanswered!) and pulled ANOTHER in the same turn — the student
+  // heard two questions in one breath and the first was scored as if they'd attempted it.
+  let fetchedThisTurn = false;
   // Never let a model/network hiccup 500 the whole turn — on failure we fall back to a spoken line
   // below so the avatar always says *something* rather than going silent.
   try {
@@ -430,7 +443,10 @@ export async function advanceAgent(prev: AgentState, req: AgentRequest, deps: Ag
       if (res.toolCalls.length > 0) {
         messages.push({ role: 'assistant', content: res.content || '', tool_calls: res.raw });
         for (const call of res.toolCalls) {
-          const result = executeTool(call, state, deps);
+          const result = call.name === 'next_problem' && fetchedThisTurn
+            ? { rejected: 'You already have a fresh problem on the table this turn. Ask it and WAIT for the student to answer — never ask two problems at once.' }
+            : executeTool(call, state, deps);
+          if (call.name === 'next_problem' && (result as any)?.question) fetchedThisTurn = true;
           messages.push({ role: 'tool', tool_call_id: call.id, name: call.name, content: JSON.stringify(result) });
         }
         if (res.content?.trim()) say = say ? `${say} ${res.content.trim()}` : res.content.trim();
