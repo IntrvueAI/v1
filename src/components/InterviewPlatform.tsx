@@ -9,7 +9,7 @@ import { useInterviewSession } from '@/hooks/useInterviewSession';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Play, Square, Mic, MicOff, RotateCcw, Eye, EyeOff } from 'lucide-react';
+import { Play, Square, Mic, MicOff, RotateCcw, Eye, EyeOff, Keyboard, Send } from 'lucide-react';
 import { InterviewTimer } from './InterviewTimer';
 import { InterviewType, getDefaultInterviewType } from '@/config/interviewTypes';
 import { InterviewSetup, SetupChoice } from './InterviewSetup';
@@ -61,6 +61,10 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
   });
   const [pttHeld, setPttHeld] = useState(false);
   const pttMuteTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Type mode: answer by keyboard instead of voice (testing exact prompts / accessibility).
+  // Mic is muted while on so stray room noise can't interleave with typed answers.
+  const [typeMode, setTypeMode] = useState(false);
+  const [typedText, setTypedText] = useState('');
   const [feedback, setFeedback] = useState(null);
   const [isGeneratingFeedback, setIsGeneratingFeedback] = useState(false);
   const { user } = useAuth();
@@ -92,6 +96,7 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
     stopInterview,
     sessionStatus,
     setMicMuted,
+    sendTypedMessage,
     skipQuestion,
     switchTopic,
     brainUiState,
@@ -342,13 +347,14 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
     });
   }, []);
 
-  // Keep the actual mic state in sync with the mode: PTT on => muted until held;
-  // PTT off => whatever the normal mic button says.
+  // Keep the actual mic state in sync with the mode: type mode => muted (typed answers only);
+  // PTT on => muted until held; otherwise => whatever the normal mic button says.
   useEffect(() => {
     if (!isStreaming) return;
+    if (typeMode) { setPttHeld(false); setMicMuted(true); return; }
     if (pushToTalk) { setPttHeld(false); setMicMuted(true); }
     else setMicMuted(!isAudioEnabled);
-  }, [pushToTalk, isStreaming, isAudioEnabled, setMicMuted]);
+  }, [typeMode, pushToTalk, isStreaming, isAudioEnabled, setMicMuted]);
 
   const pttStart = useCallback(() => {
     if (!pushToTalk || !isStreaming) return;
@@ -368,7 +374,7 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
   // Hold T = talk (desktop). T rather than Space — Space is page-scroll, so holding it jumped the
   // page around. Ignores typing fields; releases on window blur so the mic can never get stuck open.
   useEffect(() => {
-    if (!pushToTalk || !isStreaming) return;
+    if (!pushToTalk || !isStreaming || typeMode) return;
     const down = (e: KeyboardEvent) => {
       if (e.code !== 'KeyT' || e.repeat) return;
       const t = e.target as HTMLElement | null;
@@ -390,7 +396,7 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
       window.removeEventListener('keyup', up);
       window.removeEventListener('blur', cancel);
     };
-  }, [pushToTalk, isStreaming, pttStart, pttEnd]);
+  }, [pushToTalk, isStreaming, typeMode, pttStart, pttEnd]);
 
   useEffect(() => () => { if (pttMuteTimerRef.current) clearTimeout(pttMuteTimerRef.current); }, []);
 
@@ -431,6 +437,17 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
               <div className="text-[13px] font-extrabold text-white">
                 {progressLabel(brainUiState)}
               </div>
+            )}
+            {isStreaming && (
+              <button
+                onClick={() => setTypeMode((v) => !v)}
+                className={typeMode
+                  ? "flex items-center gap-1.5 rounded-full border border-sky/60 bg-sky/15 px-3.5 py-1.5 text-[12.5px] font-extrabold text-sky transition-colors"
+                  : "flex items-center gap-1.5 rounded-full border border-white/12 bg-white/[0.05] px-3.5 py-1.5 text-[12.5px] font-extrabold text-[#C7D2E4] hover:bg-white/10 transition-colors"}
+                title="Answer by typing instead of talking (mutes the microphone)"
+              >
+                <Keyboard className="w-4 h-4" /> Type answers{typeMode ? ': on' : ''}
+              </button>
             )}
             {isStreaming && (
               <button
@@ -520,7 +537,7 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
                   )}
 
                   {/* Push-to-talk: hold to open the mic. Sits on the video so it works in focus mode too. */}
-                  {isStreaming && pushToTalk && (
+                  {isStreaming && pushToTalk && !typeMode && (
                     <button
                       type="button"
                       onMouseDown={pttStart}
@@ -558,6 +575,30 @@ export const InterviewPlatform: React.FC<InterviewPlatformProps> = ({
                     </div>
                   )}
                 </div>
+
+                {/* Type mode: submit answers by keyboard (mic muted while on) */}
+                {isStreaming && typeMode && (
+                  <form
+                    className="flex gap-2"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      if (!typedText.trim()) return;
+                      sendTypedMessage(typedText);
+                      setTypedText('');
+                    }}
+                  >
+                    <input
+                      value={typedText}
+                      onChange={(e) => setTypedText(e.target.value)}
+                      placeholder="Type your answer to Clara and press Enter…"
+                      autoFocus
+                      className="flex-1 rounded-full border border-white/12 bg-white/[0.05] px-4 py-2.5 text-sm font-semibold text-white placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-sky/60"
+                    />
+                    <Button type="submit" size="sm" disabled={!typedText.trim()} className="rounded-full min-h-[42px] px-4 gap-1.5">
+                      <Send className="w-4 h-4" /> Send
+                    </Button>
+                  </form>
+                )}
 
                 {/* Audio Controls and Timer - Mobile Optimized */}
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-2">

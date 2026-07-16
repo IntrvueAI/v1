@@ -40,6 +40,8 @@ interface UseInterviewSessionReturn {
   startInterview: (userId: string, opts?: StartOptions) => Promise<void>;
   stopInterview: () => Promise<string | null>;
   setMicMuted: (muted: boolean) => void;
+  /** Type-mode: submit a typed answer instead of speech (testing / accessibility). */
+  sendTypedMessage: (text: string) => void;
   /** Engine-driven only: skip the current question (recorded in the evidence log). */
   skipQuestion: () => Promise<void>;
   /** Engine-driven only: switch the practice-mode topic mid-run. */
@@ -319,6 +321,25 @@ export const useInterviewSession = (
     }
   }, [videoRef, sessionLogger, connectionHealth, interviewType, engineDriven, runBrainTurn, handleStudentTurn]);
 
+  /**
+   * Submit a TYPED answer (type-mode). Engine path feeds it straight into the same turn pipeline
+   * as speech (transcript + coalesced brain turn); legacy path hands it to Anam's own brain via
+   * the data channel.
+   */
+  const sendTypedMessage = useCallback((text: string) => {
+    const t = (text || '').trim();
+    if (!t) return;
+    if (engineDriven) {
+      handleStudentTurn(t);
+    } else {
+      try {
+        clientRef.current?.sendUserMessage(t);
+      } catch (err) {
+        console.error('Failed to send typed message:', err);
+      }
+    }
+  }, [engineDriven, handleStudentTurn]);
+
   /** Engine-driven: skip the current question. No-op once the interview is complete. */
   const skipQuestion = useCallback(async () => {
     if (!engineDriven || interviewComplete) return;
@@ -469,6 +490,7 @@ export const useInterviewSession = (
     startInterview,
     stopInterview,
     setMicMuted,
+    sendTypedMessage,
     skipQuestion,
     switchTopic,
     brainUiState,
