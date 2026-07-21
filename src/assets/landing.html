@@ -79,7 +79,7 @@
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
   .brand{display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque";font-weight:800;font-size:20px;letter-spacing:-.02em}
   .brand .dot{color:var(--orange)}
-  .owl{width:34px;height:34px;flex:0 0 auto}
+  .brand-logo{height:32px;width:auto;display:block}
   .nav-links{display:flex;align-items:center;gap:30px}
   .nav-links a{font-size:15.5px;color:var(--muted);font-weight:500;transition:color .2s}
   .nav-links a:hover{color:var(--ink)}
@@ -297,12 +297,15 @@
 
   /* demo video */
   .video-frame{position:relative;margin-top:42px;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/9;background:linear-gradient(160deg,#16203a,#0d1322);border:1px solid var(--line-strong);display:grid;place-items:center;box-shadow:0 44px 100px -34px rgba(0,0,0,.7)}
-  .video-frame::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 62% at 50% 42%,rgba(255,90,78,.17),transparent 70%)}
-  .play{position:relative;width:88px;height:88px;border-radius:50%;border:0;cursor:pointer;background:var(--grad);color:#fff;display:grid;place-items:center;box-shadow:0 18px 44px -8px rgba(255,90,78,.6);transition:transform .2s var(--ease)}
+  .video-frame::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 62% at 50% 42%,rgba(255,90,78,.17),transparent 70%);pointer-events:none}
+  .video-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#0d1322}
+  .video-frame.playing::before{display:none}
+  .video-frame.playing .play,.video-frame.playing .video-label{display:none}
+  .play{position:relative;width:88px;height:88px;border-radius:50%;border:0;cursor:pointer;background:var(--grad);color:#fff;display:grid;place-items:center;box-shadow:0 18px 44px -8px rgba(255,90,78,.6);transition:transform .2s var(--ease);z-index:1}
   .play:hover{transform:scale(1.07)}
   .play svg{width:30px;height:30px;margin-left:5px}
-  .video-badge{position:absolute;bottom:16px;right:16px;background:rgba(10,15,28,.72);border:1px solid var(--line);padding:6px 13px;border-radius:20px;font-size:12.5px;color:var(--muted)}
-  .video-label{position:absolute;top:16px;left:16px;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink);background:rgba(10,15,28,.55);border:1px solid var(--line);padding:6px 13px;border-radius:20px}
+  .video-badge{position:absolute;bottom:16px;right:16px;background:rgba(10,15,28,.72);border:1px solid var(--line);padding:6px 13px;border-radius:20px;font-size:12.5px;color:var(--muted);z-index:1}
+  .video-label{position:absolute;top:16px;left:16px;display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink);background:rgba(10,15,28,.55);border:1px solid var(--line);padding:6px 13px;border-radius:20px;z-index:1}
   .video-cap{text-align:center;color:var(--faint);font-size:13px;margin-top:16px}
 
   /* value band */
@@ -447,13 +450,7 @@
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="#top" aria-label="intrvue.ai home">
-      <svg class="owl" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <rect x="5" y="6" width="30" height="30" rx="14" fill="#fff"/>
-        <circle cx="14.5" cy="18" r="6.4" fill="#0B1121"/><circle cx="25.5" cy="18" r="6.4" fill="#0B1121"/>
-        <circle cx="14.5" cy="18" r="2.6" fill="#FF5A4E"/><circle cx="25.5" cy="18" r="2.6" fill="#4FC3F7"/>
-        <path d="M17.6 24.5 L20 27 L22.4 24.5 Z" fill="#FF8A4B"/>
-      </svg>
-      intrvue<span class="dot">.ai</span>
+      <img class="brand-logo" src="/lovable-uploads/logo.png" alt="intrvue.ai" />
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#how">How it works</a>
@@ -568,15 +565,19 @@
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="eyebrow">See it in action</span>
-      <h2>See a real interview in 90 seconds.</h2>
+      <h2>See a real interview in under a minute.</h2>
       <p>The conversation, the live scoring, and the feedback your child gets the moment they finish.</p>
     </div>
-    <div class="video-frame reveal">
+    <div class="video-frame reveal" id="demoVideoFrame">
       <span class="video-label"><span style="width:8px;height:8px;border-radius:50%;background:var(--coral);display:inline-block"></span>Product demo</span>
-      <button class="play" aria-label="Play the demo walkthrough" onclick="alert('Demo video coming soon!')">
+      <video id="demoVideo" preload="metadata" playsinline aria-label="intrvue.ai demo — a full practice interview walkthrough">
+        <source src="/lovable-uploads/DemoVideoV2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <button class="play" aria-label="Play the demo walkthrough" onclick="var f=document.getElementById('demoVideoFrame'),v=document.getElementById('demoVideo');f.classList.add('playing');v.controls=true;v.play();">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
       </button>
-      <span class="video-badge">1:30</span>
+      <span class="video-badge">0:47</span>
     </div>
     <p class="video-cap">A 90-second walkthrough of a full practice session.</p>
   </div>
@@ -800,7 +801,7 @@
       </div>
       <div class="compare-row">
         <div class="col-a">£80–£100 per hour</div>
-        <div class="col-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span><b>From £9.99</b> per interview — 5 for £45.99, 10 for £69.99</span></div>
+        <div class="col-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span><b>From £9.99</b> per interview</span></div>
       </div>
       <div class="compare-row">
         <div class="col-a">Limited availability</div>
@@ -860,7 +861,7 @@
     <div class="cta-card reveal">
       <span class="eyebrow" style="justify-content:center">Join the waitlist</span>
       <h2 style="margin-top:14px">Give them the practice<br>that makes the difference.</h2>
-      <p>Be first in when we open — every waitlist family gets a free 2-minute demo. No card, no commitment.</p>
+      <p>Be first in when we open.</p>
       <div class="waitlist">
         <form id="waitlistForm2" novalidate>
           <input type="email" id="wlEmail2" name="email" placeholder="Your email address" aria-label="Email address" required />
@@ -885,13 +886,7 @@
     <div class="ft-grid">
       <div>
         <a class="brand" href="#top">
-          <svg class="owl" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-            <rect x="5" y="6" width="30" height="30" rx="14" fill="#fff"/>
-            <circle cx="14.5" cy="18" r="6.4" fill="#0B1121"/><circle cx="25.5" cy="18" r="6.4" fill="#0B1121"/>
-            <circle cx="14.5" cy="18" r="2.6" fill="#FF5A4E"/><circle cx="25.5" cy="18" r="2.6" fill="#4FC3F7"/>
-            <path d="M17.6 24.5 L20 27 L22.4 24.5 Z" fill="#FF8A4B"/>
-          </svg>
-          intrvue<span class="dot">.ai</span>
+          <img class="brand-logo" src="/lovable-uploads/logo.png" alt="intrvue.ai" />
         </a>
         <p class="ft-tag">Spoken interview practice for the 11+ and independent school entry.</p>
       </div>

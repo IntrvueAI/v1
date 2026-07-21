@@ -27,3 +27,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw/uncompressed video sources dropped in design-reference — these are 100MB+ camera/screen
+# recordings; only the compressed web asset (public/lovable-uploads/*.mp4) belongs in git history.
+design-reference/*.mov
+design-reference/*.mp4
+design-reference/*.MOV
+design-reference/*.MP4
